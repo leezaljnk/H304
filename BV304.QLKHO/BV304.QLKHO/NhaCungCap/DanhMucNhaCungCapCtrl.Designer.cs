@@ -1,6 +1,6 @@
 ﻿namespace BV.QLKHO.THUOC
 {
-    partial class DanhMucThuocCtrl
+    partial class DanhMucNhaCungCapCtrl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,20 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DanhMucThuocCtrl));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DanhMucNhaCungCapCtrl));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label39 = new System.Windows.Forms.Label();
             this.txtTenCSSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.toolbarGeneral1 = new BVSharedComponent.ToolbarGeneral();
-            this.clmIDThuoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTenThuoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmThanhPhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmHamLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDonVi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmCachDung = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmHoTriLieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -99,13 +97,11 @@
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmIDThuoc,
             this.clmTenThuoc,
             this.clmThanhPhan,
             this.clmHamLuong,
             this.clmDonVi,
-            this.clmCachDung,
-            this.clmHoTriLieu});
+            this.clmCachDung});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 71);
             this.dataGridView1.MultiSelect = false;
@@ -125,57 +121,45 @@
             this.toolbarGeneral1.Text = "toolbarGeneral1";
             this.toolbarGeneral1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolbarGeneral1_ItemClicked);
             // 
-            // clmIDThuoc
-            // 
-            this.clmIDThuoc.HeaderText = "Mã";
-            this.clmIDThuoc.Name = "clmIDThuoc";
-            this.clmIDThuoc.ReadOnly = true;
-            // 
             // clmTenThuoc
             // 
             this.clmTenThuoc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.clmTenThuoc.HeaderText = "Tên Thuốc/Vật Tư Y Tế";
+            this.clmTenThuoc.HeaderText = "Tên";
             this.clmTenThuoc.Name = "clmTenThuoc";
             this.clmTenThuoc.ReadOnly = true;
             // 
             // clmThanhPhan
             // 
-            this.clmThanhPhan.HeaderText = "Hoạt Chất";
+            this.clmThanhPhan.HeaderText = "Địa Chỉ";
             this.clmThanhPhan.Name = "clmThanhPhan";
             this.clmThanhPhan.ReadOnly = true;
             // 
             // clmHamLuong
             // 
-            this.clmHamLuong.HeaderText = "Hàm Lượng";
+            this.clmHamLuong.HeaderText = "Tỉnh Thành";
             this.clmHamLuong.Name = "clmHamLuong";
             this.clmHamLuong.ReadOnly = true;
             // 
             // clmDonVi
             // 
-            this.clmDonVi.HeaderText = "Đóng Gói";
+            this.clmDonVi.HeaderText = "Số Điện Thoại";
             this.clmDonVi.Name = "clmDonVi";
             this.clmDonVi.ReadOnly = true;
             // 
             // clmCachDung
             // 
-            this.clmCachDung.HeaderText = "Cách Dùng";
+            this.clmCachDung.HeaderText = "Ghi Chú";
             this.clmCachDung.Name = "clmCachDung";
             this.clmCachDung.ReadOnly = true;
             // 
-            // clmHoTriLieu
-            // 
-            this.clmHoTriLieu.HeaderText = "Họ Trị Liệu";
-            this.clmHoTriLieu.Name = "clmHoTriLieu";
-            this.clmHoTriLieu.ReadOnly = true;
-            // 
-            // DanhMucThuocCtrl
+            // DanhMucNhaCungCapCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolbarGeneral1);
-            this.Name = "DanhMucThuocCtrl";
+            this.Name = "DanhMucNhaCungCapCtrl";
             this.Size = new System.Drawing.Size(782, 481);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -193,12 +177,10 @@
         private System.Windows.Forms.TextBox txtTenCSSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmIDThuoc;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTenThuoc;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmThanhPhan;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmHamLuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDonVi;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmCachDung;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmHoTriLieu;
     }
 }

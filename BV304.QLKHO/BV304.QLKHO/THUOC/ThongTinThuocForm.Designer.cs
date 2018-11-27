@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            Infragistics.Win.UltraWinEditors.EditorButton editorButton1 = new Infragistics.Win.UltraWinEditors.EditorButton();
+            Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtTenThuoc = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -46,7 +48,6 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.txtGiaDichVu = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.btnAddFromDmByt = new System.Windows.Forms.Button();
             this.txtHoatChat = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSoDangKy = new System.Windows.Forms.TextBox();
@@ -65,6 +66,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtGiaBH = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.txtTenThuoc = new Infragistics.Win.UltraWinEditors.UltraTextEditor();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboHoTriLieu)).BeginInit();
@@ -72,6 +74,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboDonVi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTenThuoc)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -82,15 +85,6 @@
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Tên thuốc:";
-            // 
-            // txtTenThuoc
-            // 
-            this.txtTenThuoc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTenThuoc.Location = new System.Drawing.Point(133, 12);
-            this.txtTenThuoc.Name = "txtTenThuoc";
-            this.txtTenThuoc.Size = new System.Drawing.Size(629, 21);
-            this.txtTenThuoc.TabIndex = 1;
             // 
             // label4
             // 
@@ -104,7 +98,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 24);
+            this.label6.Location = new System.Drawing.Point(32, 24);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(70, 13);
             this.label6.TabIndex = 15;
@@ -254,18 +248,6 @@
             this.label7.TabIndex = 17;
             this.label7.Text = "Giá dịch vụ:";
             // 
-            // btnAddFromDmByt
-            // 
-            this.btnAddFromDmByt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddFromDmByt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddFromDmByt.Location = new System.Drawing.Point(768, 12);
-            this.btnAddFromDmByt.Name = "btnAddFromDmByt";
-            this.btnAddFromDmByt.Size = new System.Drawing.Size(34, 20);
-            this.btnAddFromDmByt.TabIndex = 2;
-            this.btnAddFromDmByt.Text = "+";
-            this.btnAddFromDmByt.UseVisualStyleBackColor = true;
-            this.btnAddFromDmByt.Click += new System.EventHandler(this.btnAddFromDmByt_Click);
-            // 
             // txtHoatChat
             // 
             this.txtHoatChat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -405,7 +387,7 @@
             this.groupBox2.Size = new System.Drawing.Size(777, 60);
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Giá Thuốc ( tính theo Việt Nam đồng )";
+            this.groupBox2.Text = "Giá Thuốc (tính theo Việt Nam đồng)";
             // 
             // txtGiaCB
             // 
@@ -443,12 +425,31 @@
             this.label12.TabIndex = 23;
             this.label12.Text = "Giá bảo hiểm:";
             // 
+            // txtTenThuoc
+            // 
+            appearance1.TextHAlignAsString = "Center";
+            appearance1.TextVAlignAsString = "Middle";
+            editorButton1.Appearance = appearance1;
+            editorButton1.ButtonStyle = Infragistics.Win.UIElementButtonStyle.Flat;
+            appearance2.TextHAlignAsString = "Center";
+            appearance2.TextVAlignAsString = "Middle";
+            editorButton1.PressedAppearance = appearance2;
+            editorButton1.Text = "+";
+            editorButton1.Width = 30;
+            this.txtTenThuoc.ButtonsRight.Add(editorButton1);
+            this.txtTenThuoc.Location = new System.Drawing.Point(133, 12);
+            this.txtTenThuoc.Name = "txtTenThuoc";
+            this.txtTenThuoc.Size = new System.Drawing.Size(669, 22);
+            this.txtTenThuoc.TabIndex = 24;
+            this.txtTenThuoc.EditorButtonClick += new Infragistics.Win.UltraWinEditors.EditorButtonEventHandler(this.utxtTenThuoc_EditorButtonClick);
+            // 
             // ThongTinThuocForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(821, 537);
+            this.Controls.Add(this.txtTenThuoc);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.cboDuongDung);
             this.Controls.Add(this.cboHoTriLieu);
@@ -461,12 +462,10 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.btnAddFromDmByt);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtTenThuoc);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Name = "ThongTinThuocForm";
@@ -481,6 +480,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTenThuoc)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -489,7 +489,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtTenThuoc;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -500,7 +499,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox txtGiaDichVu;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btnAddFromDmByt;
         private System.Windows.Forms.TextBox txtHoatChat;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtSoDangKy;
@@ -524,5 +522,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtGiaBH;
         private System.Windows.Forms.Label label12;
+        private Infragistics.Win.UltraWinEditors.UltraTextEditor txtTenThuoc;
     }
 }

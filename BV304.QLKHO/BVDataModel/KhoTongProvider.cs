@@ -30,11 +30,6 @@ namespace BV.DataModel
 
         public List<TEntity> GetDanhMuc<TEntity>(int take = 0) where TEntity: class
         {
-            if (typeof(TEntity).Name == "THUOC_BOYTE")
-            {
-                take = 10;
-            }
-
             if (take == 0)
                 return dbContext.Set<TEntity>().AsNoTracking().ToList();
             else

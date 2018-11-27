@@ -150,6 +150,7 @@
             // 
             this.ultraCombo1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ultraCombo1.AutoCompleteIgnoreDiacritics = true;
             this.ultraCombo1.AutoCompleteMode = Infragistics.Win.AutoCompleteMode.Suggest;
             this.ultraCombo1.AutoSuggestFilterMode = Infragistics.Win.AutoSuggestFilterMode.Contains;
             appearance1.BackColor = System.Drawing.SystemColors.Window;
@@ -266,7 +267,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(627, 238);
+            this.ClientSize = new System.Drawing.Size(623, 234);
             this.ControlBox = false;
             this.Controls.Add(this.txtHoatChat);
             this.Controls.Add(this.label7);

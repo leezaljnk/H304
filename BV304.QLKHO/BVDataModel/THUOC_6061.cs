@@ -12,7 +12,7 @@ namespace BV.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Thuoc_BoYTe
+    public partial class THUOC_6061
     {
         public int THUOC_ID { get; set; }
         public string SO_DANG_KY { get; set; }

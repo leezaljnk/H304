@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\WORKING_DATA\02B4\BV304\BV304.QLKHO\BVDataModel\BVModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\WORKING_DATA\02B4\BenhVien304\BV304.QLKHO\BVDataModel\BVModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

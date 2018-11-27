@@ -1,4 +1,6 @@
-﻿using BV.QLKHO.THUOC;
+﻿using BV.QLKHO.PhieuNhapThuoc;
+using BV.QLKHO.THUOC;
+using BV.SharedComponent;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,13 +20,14 @@ namespace BV.QLKHO
             InitializeComponent();
         }
 
-        private void danhMụcToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void thuocVtytToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
                 this.Cursor = Cursors.WaitCursor;
 
                 var view = new DanhMucThuocCtrl();
+                view.CloseView += View_CloseView;
                 view.InitControlUI();
 
                 AddUserControl("Danh Mục Thuốc", view);
@@ -33,6 +36,18 @@ namespace BV.QLKHO
             catch (Exception ex)
             {
                 HandleException(ex);
+            }
+        }
+
+        private void View_CloseView(object sender, EventArgs e)
+        {
+            UserControl ctrl = sender as UserControl;
+            var removeTabPage = CheckTabPage(ctrl.Name);
+            if (removeTabPage != null)
+            {
+                tabMain.TabPages.Remove(removeTabPage);
+                removeTabPage.Dispose();
+                removeTabPage = null;
             }
         }
 
@@ -55,7 +70,7 @@ namespace BV.QLKHO
                 tabMain.SuspendLayout();
                 newTabPage.SuspendLayout();
 
-                tabMain.Controls.Add(newTabPage);
+                
                 newTabPage.Controls.Add(ctrl);
                 newTabPage.Location = new System.Drawing.Point(4, 22);
                 newTabPage.Name = ctrl.Name;
@@ -71,11 +86,18 @@ namespace BV.QLKHO
                 ctrl.Size = new System.Drawing.Size(688, 367);
                 ctrl.TabIndex = 0;
 
+                tabMain.Controls.Add(newTabPage);
+
                 newTabPage.ResumeLayout();
-                tabMain.ResumeLayout(false);
+                tabMain.ResumeLayout(true);
 
             }
             tabMain.SelectedTab = newTabPage;
+        }
+
+        private void Ctrl_CloseView(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public void HandleException(Exception ex)
@@ -85,8 +107,6 @@ namespace BV.QLKHO
             //CommonFunction.WriteLog(ex.Message);
             MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
-        Form2 oFom = new Form2();
 
         private void textBox1_Enter(object sender, EventArgs e)
         {
@@ -100,12 +120,44 @@ namespace BV.QLKHO
 
         private void textBox1_Leave(object sender, EventArgs e)
         {
-            oFom.Hide();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             //this.CanFocus = true;
+        }
+
+        private void gridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ThongTinThuocFormTest oForm = new ThongTinThuocFormTest();
+            oForm.InitData();
+            oForm.ShowDialog(this);
+        }
+
+        private void nhậpTừNhàCungCấpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PhieuNhapForm oForm = new PhieuNhapThuoc.PhieuNhapForm();
+            oForm.InitData(Guid.Empty);
+            oForm.ShowDialog(this); 
+        }
+
+        private void nhàCungCấpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+
+                var view = new DanhMucNhaCungCapCtrl();
+                view.CloseView += View_CloseView;
+                view.InitControlUI();
+
+                AddUserControl("Danh Mục Nhà Cung Cấp", view);
+                this.Cursor = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ namespace BV.QLKHO.THUOC
 {
     public partial class ThongTinThuocForm : Form
     {
-        public Thuoc304 Entity { get; internal set; }
+        public Thuoc_VatTuYte Entity { get; internal set; }
         private GiaThuoc _giaThuoc;
         private List<ChuyenDoiDonViThuoc> _lstDonVis = new List<ChuyenDoiDonViThuoc>();
         public ThongTinThuocForm()
@@ -44,7 +44,7 @@ namespace BV.QLKHO.THUOC
             clmDonVi.ValueMember = "ID";
         }
 
-        public void InitThongTin(Thuoc304 oThuoc)
+        public void InitThongTin(DataModel.Thuoc_VatTuYte oThuoc)
         {
             //btnAddFromDmByt.Enabled = oThuoc != null;
             InitControl();
@@ -52,7 +52,7 @@ namespace BV.QLKHO.THUOC
             this.Entity = oThuoc;
             if (Entity == null)
             {
-                Entity = new Thuoc304() { ID = Guid.NewGuid() };
+                Entity = new DataModel.Thuoc_VatTuYte() { ID = Guid.NewGuid() };
                 _giaThuoc = new GiaThuoc() { ID = Guid.NewGuid(), ThuocID = Entity.ID };
 
                 return;
@@ -66,13 +66,13 @@ namespace BV.QLKHO.THUOC
 
             _lstDonVis = KhoUtil.GetChuyenDoiDonViThuoc(Entity.ID);
 
-            txtTenThuoc.Text = Entity.TEN_THUOC;
-            txtSoDangKy.Text = Entity.SO_DANG_KY;
-            txtHoatChat.Text = Entity.HOAT_CHAT;
-            txtHamLuong.Text = Entity.HAM_LUONG;
-            cboDuongDung.Text = Entity.DUONG_DUNG;
-            txtDongGoi.Text = Entity.DONG_GOI;
-            cboHoTriLieu.Text = Entity.HO_TRI_LIEU;
+            txtTenThuoc.Text = Entity.Ten;
+            txtSoDangKy.Text = Entity.Ma;
+            txtHoatChat.Text = Entity.HoatChat;
+            txtHamLuong.Text = Entity.HamLuong;
+            cboDuongDung.Text = Entity.DuongDung;
+            txtDongGoi.Text = Entity.DongGoi;
+            cboHoTriLieu.Text = Entity.HoTriLieu;
             //Đơn vị tính giá
             cboDonVi.Value = _giaThuoc.DonViID;
             txtGiaDichVu.Text = _giaThuoc.GiaDichVu.ToString();
@@ -84,7 +84,7 @@ namespace BV.QLKHO.THUOC
             foreach (var item in lstChuyenDoiDonViThuoc)
             {
                 i++;
-                object[] arr = new object[] { i.ToString(), item.DonViID, item.TiLeChuyenDoi, item.PhuongThucChuyenDoi == 0? "Chia" : "Nhân", item.MoTa };
+                object[] arr = new object[] { i.ToString(), item.DonViID, item.TiLeChuyenDoi.ToString("0.0"), item.PhuongThucChuyenDoi == 0? "Chia" : "Nhân", item.MoTa };
                 int index = dataGridView1.Rows.Add(arr);
                 dataGridView1.Rows[index].Tag = item;
             }
@@ -241,15 +241,16 @@ namespace BV.QLKHO.THUOC
 
         private void SaveEntity()
         {
-            Thuoc304 oThuoc = new Thuoc304();
+            DataModel.Thuoc_VatTuYte oThuoc = new DataModel.Thuoc_VatTuYte();
             oThuoc.ID = Entity.ID;
-            oThuoc.TEN_THUOC = txtTenThuoc.Text;
-            oThuoc.SO_DANG_KY = txtSoDangKy.Text;
-            oThuoc.HOAT_CHAT = txtHoatChat.Text;
-            oThuoc.HAM_LUONG = txtHamLuong.Text;
-            oThuoc.DUONG_DUNG = cboDuongDung.Text;
-            oThuoc.DONG_GOI = txtDongGoi.Text;
-            oThuoc.HO_TRI_LIEU = cboHoTriLieu.Text;
+            oThuoc.Ten= txtTenThuoc.Text;
+            oThuoc.TenKhac = txtTenThuoc.Text;
+            oThuoc.Ma = txtSoDangKy.Text;
+            oThuoc.HoatChat = txtHoatChat.Text;
+            oThuoc.HamLuong = txtHamLuong.Text;
+            oThuoc.DuongDung = cboDuongDung.Text;
+            oThuoc.DongGoi = txtDongGoi.Text;
+            oThuoc.HoTriLieu = cboHoTriLieu.Text;
             oThuoc.DonViID = (Guid)cboDonVi.Value;
 
             GiaThuoc oGiaThuoc = new GiaThuoc();
@@ -284,7 +285,7 @@ namespace BV.QLKHO.THUOC
 
                 oDonVi.ThuocID = oThuoc.ID;
                 oDonVi.DonViID = (Guid)row.Cells[1].Value;
-                oDonVi.TiLeChuyenDoi = int.Parse(row.Cells[2].Value.ToString());
+                oDonVi.TiLeChuyenDoi = decimal.Parse(row.Cells[2].Value.ToString());
                 oDonVi.PhuongThucChuyenDoi = row.Cells[3].Value.ToString() == "Chia" ? (byte)0 : (byte)1;
                 oDonVi.MoTa = row.Cells[4].Value.ToString();
 
@@ -294,16 +295,18 @@ namespace BV.QLKHO.THUOC
             //Save data
             KhoUtil.SaveThuoc304(oThuoc, oGiaThuoc, lstDonVi);
 
+            KhoUtil.UpdateDanhMuc<Thuoc_VatTuYte>(Entity, oThuoc);
+            Entity = oThuoc;
             //Update cached
-            var item = KhoUtil.GetDanhMuc<Thuoc304>().FirstOrDefault(t => t.ID == oThuoc.ID);
-            if (item == null)
-            {
-                KhoUtil.GetDanhMuc<Thuoc304>().Add(item);
-            }
-            else
-            {
-                item = oThuoc;   
-            }
+            //var item = KhoUtil.GetDanhMuc<Thuoc_VatTuYte>().FirstOrDefault(t => t.ID == oThuoc.ID);
+            //if (item == null)
+            //{
+            //    KhoUtil.GetDanhMuc<Thuoc_VatTuYte>().Add(item);
+            //}
+            //else
+            //{
+            //    item = oThuoc;   
+            //}
         }
 
         private DonViThuoc GetDonViThuoc()
@@ -323,6 +326,7 @@ namespace BV.QLKHO.THUOC
         {
             try
             {
+                dataGridView1.CommitEdit(DataGridViewDataErrorContexts.CurrentCellChange);
                 SaveEntity();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
@@ -331,6 +335,11 @@ namespace BV.QLKHO.THUOC
             {
                 HandleException(ex);
             }
+        }
+
+        private void utxtTenThuoc_EditorButtonClick(object sender, Infragistics.Win.UltraWinEditors.EditorButtonEventArgs e)
+        {
+            btnAddFromDmByt_Click(null, null);
         }
     }
 }

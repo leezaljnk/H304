@@ -87,18 +87,30 @@
     <Compile Include="HoTriLieu.cs">
       <DependentUpon>BVModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="KhoProvider.cs" />
+    <Compile Include="KhoTongProvider.cs" />
     <Compile Include="NhaCungCap.cs">
       <DependentUpon>BVModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Thuoc304.cs">
+    <Compile Include="QuyetDinhThau.cs">
+      <DependentUpon>BVModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QuyetDinhThauChiTiet.cs">
       <DependentUpon>BVModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ThuocDuongDung.cs">
       <DependentUpon>BVModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Thuoc_BoYTe.cs">
+    <Compile Include="THUOC_6061.cs">
+      <DependentUpon>BVModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Thuoc_VatTuYte.cs">
+      <DependentUpon>BVModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VATTU_YTE_6061.cs">
+      <DependentUpon>BVModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="v_DonViInfo.cs">
       <DependentUpon>BVModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

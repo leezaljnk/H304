@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BV.DataConnector;
 using BV.DataModel;
+using BV.SharedComponent;
 
 namespace BV.QLKHO.THUOC
 {
     public partial class DanhMucThuocCtrl : UserControl
     {
-        private List<Thuoc_BoYTe> _DanhMucThuocBYT;
-        private List<Thuoc304> _DanhMucThuoc304;
+        public event EventHandler CloseView;
+        private List<Thuoc_VatTuYte> _DanhMucThuoc304;
         private List<HoTriLieu> _HoTriLieu;
 
         public DanhMucThuocCtrl()
@@ -25,11 +26,11 @@ namespace BV.QLKHO.THUOC
 
         internal void InitControlUI()
         {
-            _DanhMucThuoc304 = KhoUtil.GetDanhMuc<Thuoc304>();
+            _DanhMucThuoc304 = KhoUtil.GetDanhMuc<Thuoc_VatTuYte>();
             _HoTriLieu = KhoUtil.GetDanhMuc<HoTriLieu>();
             foreach (var t in _DanhMucThuoc304)
             {
-                var item = new object[] { t.ID, t.TEN_THUOC, t.HAM_LUONG, t.HOAT_CHAT, t.HO_TRI_LIEU, t.DUONG_DUNG, t.DonViID };
+                var item = new object[] { t.Ma, t.Ten, t.HoatChat, t.HamLuong, t.DongGoi, t.DuongDung, t.HoTriLieu };
                 int i = dataGridView1.Rows.Add(item);
                 dataGridView1.Rows[i].Tag = t;
             }
@@ -46,7 +47,7 @@ namespace BV.QLKHO.THUOC
                     if (oForm.ShowDialog(this) == DialogResult.OK)
                     {
                         var t = oForm.Entity;
-                        var item = new object[] { t.ID, t.TEN_THUOC, t.HAM_LUONG, t.HOAT_CHAT, t.HO_TRI_LIEU, t.DUONG_DUNG, t.DonViID };
+                        var item = new object[] { t.Ma, t.Ten, t.HoatChat, t.HamLuong, t.DongGoi, t.DuongDung, t.HoTriLieu };
                         int i = dataGridView1.Rows.Add(item);
                         dataGridView1.Rows[i].Tag = t;
                     }
@@ -56,21 +57,25 @@ namespace BV.QLKHO.THUOC
                     if (dataGridView1.SelectedRows.Count > 0)
                     {
                         var row = dataGridView1.SelectedRows[0];
-                        Thuoc304 oThuoc = row.Tag as Thuoc304;
+                        Thuoc_VatTuYte oThuoc = row.Tag as Thuoc_VatTuYte;
                         ThongTinThuocForm oForm = new ThongTinThuocForm();
                         oForm.InitThongTin(oThuoc);
                         if (oForm.ShowDialog(this) == DialogResult.OK)
                         {
                             var t = oForm.Entity;
-                            row.Cells[0].Value = t.ID;
-                            row.Cells[1].Value = t.TEN_THUOC;
-                            row.Cells[2].Value = t.HAM_LUONG;
-                            row.Cells[3].Value = t.HOAT_CHAT;
-                            row.Cells[4].Value = t.HO_TRI_LIEU;
-                            row.Cells[5].Value = t.DUONG_DUNG;
-                            row.Cells[6].Value = t.DonViID;
+                            row.Cells[0].Value = t.Ma;
+                            row.Cells[1].Value = t.Ten;
+                            row.Cells[2].Value = t.HoatChat;
+                            row.Cells[3].Value = t.HamLuong;
+                            row.Cells[4].Value = t.DongGoi;
+                            row.Cells[5].Value = t.DongGoi;
+                            row.Cells[6].Value = t.HoTriLieu;
                         }
                     }
+                }
+                else if(e.ClickedItem.Name == "exit")
+                {
+                    CloseView?.Invoke(this, e);
                 }
             }
             catch (Exception ex)

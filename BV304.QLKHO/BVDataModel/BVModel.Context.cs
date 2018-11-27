@@ -29,9 +29,13 @@ namespace BV.DataModel
         public virtual DbSet<DonViThuoc> DonViThuoc { get; set; }
         public virtual DbSet<GiaThuoc> GiaThuoc { get; set; }
         public virtual DbSet<NhaCungCap> NhaCungCap { get; set; }
-        public virtual DbSet<Thuoc_BoYTe> Thuoc_BoYTe { get; set; }
         public virtual DbSet<HoTriLieu> HoTriLieu { get; set; }
         public virtual DbSet<ThuocDuongDung> ThuocDuongDung { get; set; }
-        public virtual DbSet<Thuoc304> Thuoc304 { get; set; }
+        public virtual DbSet<QuyetDinhThau> QuyetDinhThau { get; set; }
+        public virtual DbSet<QuyetDinhThauChiTiet> QuyetDinhThauChiTiet { get; set; }
+        public virtual DbSet<THUOC_6061> THUOC_6061 { get; set; }
+        public virtual DbSet<Thuoc_VatTuYte> Thuoc_VatTuYte { get; set; }
+        public virtual DbSet<VATTU_YTE_6061> VATTU_YTE_6061 { get; set; }
+        public virtual DbSet<v_DonViInfo> v_DonViInfo { get; set; }
     }
 }
