@@ -1,4 +1,5 @@
 ﻿using BV.DataModel;
+using BV.DataModel.KhoChung;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,7 +45,7 @@ namespace BV.QLKHO.THUOC
             clmDonVi.ValueMember = "ID";
         }
 
-        public void InitThongTin(DataModel.Thuoc_VatTuYte oThuoc)
+        public void InitThongTin(Thuoc_VatTuYte oThuoc)
         {
             //btnAddFromDmByt.Enabled = oThuoc != null;
             InitControl();
@@ -52,7 +53,7 @@ namespace BV.QLKHO.THUOC
             this.Entity = oThuoc;
             if (Entity == null)
             {
-                Entity = new DataModel.Thuoc_VatTuYte() { ID = Guid.NewGuid() };
+                Entity = new Thuoc_VatTuYte() { ID = Guid.NewGuid() };
                 _giaThuoc = new GiaThuoc() { ID = Guid.NewGuid(), ThuocID = Entity.ID };
 
                 return;
@@ -241,7 +242,7 @@ namespace BV.QLKHO.THUOC
 
         private void SaveEntity()
         {
-            DataModel.Thuoc_VatTuYte oThuoc = new DataModel.Thuoc_VatTuYte();
+            Thuoc_VatTuYte oThuoc = new Thuoc_VatTuYte();
             oThuoc.ID = Entity.ID;
             oThuoc.Ten= txtTenThuoc.Text;
             oThuoc.TenKhac = txtTenThuoc.Text;

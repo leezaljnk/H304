@@ -1,4 +1,5 @@
 ﻿using BV.DataModel;
+using BV.DataModel.KhoChung;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

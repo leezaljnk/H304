@@ -60,87 +60,138 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BVModel.Context.cs">
+    <Compile Include="KhoChung\ChuyenDoiDonViThuoc.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\DonViThuoc.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\GiaThuoc.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\HoTriLieu.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\KhoChungModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BVModel.Context.tt</DependentUpon>
+      <DependentUpon>KhoChungModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="BVModel.cs">
+    <Compile Include="KhoChung\KhoChungModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BVModel.tt</DependentUpon>
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BVModel.Designer.cs">
+    <Compile Include="KhoChung\KhoChungModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BVModel.edmx</DependentUpon>
+      <DependentUpon>KhoChungModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="ChuyenDoiDonViThuoc.cs">
-      <DependentUpon>BVModel.tt</DependentUpon>
+    <Compile Include="KhoChung\LoHang.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DonViThuoc.cs">
-      <DependentUpon>BVModel.tt</DependentUpon>
+    <Compile Include="KhoChung\NhaCungCap.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="GiaThuoc.cs">
-      <DependentUpon>BVModel.tt</DependentUpon>
+    <Compile Include="KhoChung\QuyetDinhThau.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="HoTriLieu.cs">
-      <DependentUpon>BVModel.tt</DependentUpon>
+    <Compile Include="KhoChung\QuyetDinhThauChiTiet.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="KhoTongProvider.cs" />
-    <Compile Include="NhaCungCap.cs">
-      <DependentUpon>BVModel.tt</DependentUpon>
+    <Compile Include="KhoChung\ThuocDuongDung.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\THUOC_6061.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\Thuoc_VatTuYte.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\VATTU_YTE_6061.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\v_DonViInfo.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\KhoChungProvider.cs" />
+    <Compile Include="Kho\ChiTietPhieu.cs">
+      <DependentUpon>KhoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kho\KhoModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KhoModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kho\KhoModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KhoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kho\KhoModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KhoModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Kho\PhieuDeNghi.cs">
+      <DependentUpon>KhoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kho\PhieuNhapKho.cs">
+      <DependentUpon>KhoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kho\PhieuXuatKho.cs">
+      <DependentUpon>KhoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kho\Thuoc_VatTuYteTonKho.cs">
+      <DependentUpon>KhoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuyetDinhThau.cs">
-      <DependentUpon>BVModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="QuyetDinhThauChiTiet.cs">
-      <DependentUpon>BVModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ThuocDuongDung.cs">
-      <DependentUpon>BVModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="THUOC_6061.cs">
-      <DependentUpon>BVModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Thuoc_VatTuYte.cs">
-      <DependentUpon>BVModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VATTU_YTE_6061.cs">
-      <DependentUpon>BVModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="v_DonViInfo.cs">
-      <DependentUpon>BVModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="BVModel.edmx">
+    <EntityDeploy Include="KhoChung\KhoChungModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BVModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>KhoChungModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
-    <None Include="BVModel.edmx.diagram">
-      <DependentUpon>BVModel.edmx</DependentUpon>
+    <None Include="KhoChung\KhoChungModel.edmx.diagram">
+      <DependentUpon>KhoChungModel.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="Kho\KhoModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>KhoModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Kho\KhoModel.edmx.diagram">
+      <DependentUpon>KhoModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BVModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BVModel.edmx</DependentUpon>
-      <LastGenOutput>BVModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="BVModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BVModel.edmx</DependentUpon>
-      <LastGenOutput>BVModel.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Folder Include="TuTruc\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="KhoChung\KhoChungModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KhoChungModel.edmx</DependentUpon>
+      <LastGenOutput>KhoChungModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="KhoChung\KhoChungModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KhoChungModel.edmx</DependentUpon>
+      <LastGenOutput>KhoChungModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Kho\KhoModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KhoModel.edmx</DependentUpon>
+      <LastGenOutput>KhoModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Kho\KhoModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KhoModel.edmx</DependentUpon>
+      <LastGenOutput>KhoModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

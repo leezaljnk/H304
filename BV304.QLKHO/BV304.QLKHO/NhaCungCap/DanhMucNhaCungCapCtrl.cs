@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using BV.DataConnector;
 using BV.DataModel;
 using BV.SharedComponent;
+using BV.DataModel.KhoChung;
 
 namespace BV.QLKHO.THUOC
 {

@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BD6DA53F-02B3-490B-957F-1C3A32F871E8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BV.DataModel</RootNamespace>
+    <AssemblyName>BVDataModel</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="KhoChung\ChuyenDoiDonViThuoc.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\DonViThuoc.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\GiaThuoc.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\HoTriLieu.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\KhoChungModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KhoChungModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\KhoChungModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\KhoChungModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KhoChungModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\LoHang.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\NhaCungCap.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\QuyetDinhThau.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\QuyetDinhThauChiTiet.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\ThuocDuongDung.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\THUOC_6061.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\Thuoc_VatTuYte.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\VATTU_YTE_6061.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\v_DonViInfo.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kho\ChiTietPhieu.cs">
+      <DependentUpon>KhoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kho\KhoModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KhoModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kho\KhoModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KhoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kho\KhoModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KhoModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Kho\PhieuDeNghi.cs">
+      <DependentUpon>KhoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kho\PhieuNhapKho.cs">
+      <DependentUpon>KhoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kho\PhieuXuatKho.cs">
+      <DependentUpon>KhoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kho\Thuoc_VatTuYteTonKho.cs">
+      <DependentUpon>KhoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="KhoChung\KhoChungModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>KhoChungModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config" />
+    <None Include="KhoChung\KhoChungModel.edmx.diagram">
+      <DependentUpon>KhoChungModel.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="Kho\KhoModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>KhoModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Kho\KhoModel.edmx.diagram">
+      <DependentUpon>KhoModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TuTruc\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="KhoChung\KhoChungModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KhoChungModel.edmx</DependentUpon>
+      <LastGenOutput>KhoChungModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="KhoChung\KhoChungModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KhoChungModel.edmx</DependentUpon>
+      <LastGenOutput>KhoChungModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Kho\KhoModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KhoModel.edmx</DependentUpon>
+      <LastGenOutput>KhoModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Kho\KhoModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KhoModel.edmx</DependentUpon>
+      <LastGenOutput>KhoModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

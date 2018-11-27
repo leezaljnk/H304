@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using BV.DataModel;
 using BV.QLKHO.THUOC;
 using Infragistics.Win.UltraWinEditors;
+using BV.DataModel.KhoChung;
 
 namespace BV.QLKHO.PhieuNhapThuoc
 {

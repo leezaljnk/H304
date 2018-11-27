@@ -1,5 +1,6 @@
 ﻿using BV.AppCommon;
 using BV.DataModel;
+using BV.DataModel.KhoChung;
 using System;
 using System.Collections.Generic;
 using System.Linq;
