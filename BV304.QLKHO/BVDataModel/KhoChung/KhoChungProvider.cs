@@ -5,14 +5,14 @@ using System.Linq;
 
 namespace BV.DataModel
 {
-    public class KhoTongProvider
+    public class KhoChungProvider
     {
         private static KhoChungEntities _bvProvider;
         public static KhoChungEntities KhoTong => _bvProvider ?? (_bvProvider = new KhoChungEntities());
 
         KhoChungEntities dbContext;
 
-        public KhoTongProvider()
+        public KhoChungProvider()
         {
             dbContext = new KhoChungEntities();
         }
@@ -24,7 +24,7 @@ namespace BV.DataModel
         public static void InitKho()
         { }
 
-        public KhoTongProvider(DbContext db)
+        public KhoChungProvider(DbContext db)
         {
             dbContext = db as KhoChungEntities;
         }

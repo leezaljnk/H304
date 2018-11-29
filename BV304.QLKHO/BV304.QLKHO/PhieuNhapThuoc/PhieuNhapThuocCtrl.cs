@@ -11,6 +11,7 @@ using BV.DataModel;
 using BV.QLKHO.THUOC;
 using Infragistics.Win.UltraWinEditors;
 using BV.DataModel.KhoChung;
+using BV.DataModel.Kho;
 
 namespace BV.QLKHO.PhieuNhapThuoc
 {
@@ -29,9 +30,9 @@ namespace BV.QLKHO.PhieuNhapThuoc
         {
             //lấy dữ liệu các danh mục
             var lstNhaCungCap = KhoUtil.GetDanhMuc<NhaCungCap>();
-            var lstThuocVTYT = KhoUtil.GetDanhMuc<Thuoc_VatTuYte>();
-            var lstThuocDetail = KhoUtil.GetDanhMuc<v_DonViInfo>();
-            //KhoUtil.GetDanhMuc<ChuyenDoiDonViThuoc>();
+            var lstThuocVTYT = KhoUtil.GetDanhMuc<HangHoa>();
+            var lstThuocDetail = KhoUtil.GetDanhMuc<v_ChiTietDonViHangHoa>();
+            var lstPhanLoaiHoaDon = KhoUtil.GetDanhMuc<PhanLoaiHoaDon>();
         }
 
         public void InitControl(Guid phieuID)
@@ -44,7 +45,11 @@ namespace BV.QLKHO.PhieuNhapThuoc
             cboNhaCungCap.ValueMember = "NguonNhapID";
             cboNhaCungCap.DisplayMember = "Ten";
 
-            cboThuoc.DataSource = KhoUtil.GetDanhMuc<Thuoc_VatTuYte>();
+            cboPLHoaDon.DataSource = KhoUtil.GetDanhMuc<PhanLoaiHoaDon>();
+            cboPLHoaDon.DisplayMember = "Ten";
+            cboPLHoaDon.ValueMember = "ID";
+
+            cboThuoc.DataSource = KhoUtil.GetDanhMuc<HangHoa>();
             cboThuoc.ValueMember = "ID";
             cboThuoc.DisplayMember = "Ten";
             cboThuoc.DisplayLayout.PerformAutoResizeColumns(false, Infragistics.Win.UltraWinGrid.PerformAutoSizeType.AllRowsInBand);
@@ -81,7 +86,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
 
         private void cboThuoc_EditorButtonClick(object sender, Infragistics.Win.UltraWinEditors.EditorButtonEventArgs e)
         {
-            Thuoc_VatTuYte oThuoc = null;
+            HangHoa oThuoc = null;
             if (e.Button.Key == "add")
             {
                 ThongTinThuocForm oForm = new ThongTinThuocForm();
@@ -95,12 +100,12 @@ namespace BV.QLKHO.PhieuNhapThuoc
                     cboThuoc.Value = oForm.Entity.ID;
                 }
             }
-            else if(e.Button.Key == "edit")
+            else if (e.Button.Key == "edit")
             {
                 if (cboThuoc.Value != null)
                 {
                     var itemID = (Guid)cboThuoc.Value;
-                    var item = KhoUtil.GetDanhMuc<Thuoc_VatTuYte>().FirstOrDefault(t => t.ID == itemID);
+                    var item = KhoUtil.GetDanhMuc<HangHoa>().FirstOrDefault(t => t.ID == itemID);
 
                     ThongTinThuocForm oForm = new ThongTinThuocForm();
                     oForm.InitThongTin(item);
@@ -113,7 +118,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
                         cboThuoc.Value = oForm.Entity.ID;
 
                         ShowThuocInfo(oForm.Entity.ID);
-                        //var items = KhoUtil.GetDanhMuc<v_DonViInfo>().Where(t => t.ThuocID == itemID).ToList();
+                        //var items = KhoUtil.GetDanhMuc<v_ChiTietDonViHangHoa>().Where(t => t.ThuocID == itemID).ToList();
 
                         //cboDonVi.DataSource = items;
                         //cboDonVi.ValueMember = "ID";
@@ -128,7 +133,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
         {
             bComboDropDownVisible = false;
             if (bComboValueChanged && cboThuoc.SelectedRow != null)
-            {   
+            {
                 ShowThuocInfo((Guid)cboThuoc.Value);
                 bComboValueChanged = true;
             }
@@ -150,18 +155,18 @@ namespace BV.QLKHO.PhieuNhapThuoc
 
         private void UpdateCached()
         {
-            KhoUtil.GetDanhMuc<Thuoc_VatTuYte>(true);
-            KhoUtil.GetDanhMuc<v_DonViInfo>(true);
+            KhoUtil.GetDanhMuc<HangHoa>(true);
+            KhoUtil.GetDanhMuc<v_ChiTietDonViHangHoa>(true);
             //KhoUtil.GetDanhMuc<ChuyenDoiDonViThuoc>(true);
         }
 
         private void ShowThuocInfo(Guid itemID)
         {
-            var items = KhoUtil.GetDanhMuc<v_DonViInfo>().Where(t => t.ThuocID == itemID).ToList();
+            var items = KhoUtil.GetDanhMuc<v_ChiTietDonViHangHoa>().Where(t => t.HangHoaID == itemID).ToList();
 
-            cboDonVi.DataSource = items;
-            cboDonVi.ValueMember = "ID";
-            cboDonVi.DisplayMember = "Ten";
+            cboDonVi.DataSource = items.OrderBy(d => d.TiLeChuyenDoi);
+            cboDonVi.ValueMember = "DonViID";
+            cboDonVi.DisplayMember = "TenDonVi";
             cboDonVi.DataBind();
         }
 
@@ -185,11 +190,11 @@ namespace BV.QLKHO.PhieuNhapThuoc
                 e.Layout.Bands[0].Override.HeaderAppearance.BackColor = Color.DimGray;
                 foreach (var clm in e.Layout.Bands[0].Columns)
                 {
-                    if (clm.Key =="Ten")
+                    if (clm.Key == "Ten")
                     {
                         clm.Header.Caption = "Tên";
                     }
-                    else if (clm.Key =="DiaChi")
+                    else if (clm.Key == "DiaChi")
                     {
                         clm.Header.Caption = "Địa Chỉ";
                     }
@@ -211,19 +216,19 @@ namespace BV.QLKHO.PhieuNhapThuoc
                 //e.Layout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
                 foreach (var clm in e.Layout.Bands[0].Columns)
                 {
-                    if (clm.Key =="Ma")
+                    if (clm.Key == "Ma")
                     {
                         clm.Header.Caption = "Mã Vật Tư";
                     }
-                    else if (clm.Key =="Ten")
+                    else if (clm.Key == "Ten")
                     {
                         clm.Header.Caption = "Tên Vật Tư";
                     }
-                    else if (clm.Key =="HamLuong")
+                    else if (clm.Key == "HamLuong")
                     {
                         clm.Header.Caption = "Hàm Lượng";
                     }
-                    else if (clm.Key =="DongGoi")
+                    else if (clm.Key == "DongGoi")
                     {
                         clm.Header.Caption = "Đóng Gói";
                     }
@@ -242,11 +247,11 @@ namespace BV.QLKHO.PhieuNhapThuoc
                 e.Layout.Bands[0].Override.HeaderAppearance.BackColor = Color.DimGray;
                 foreach (var clm in e.Layout.Bands[0].Columns)
                 {
-                    if (clm.Key == "Ten")
+                    if (clm.Key == "TenDonVi")
                     {
-                        clm.Header.Caption = "Tên";
+                        clm.Header.Caption = "Đơn Vị";
                     }
-                    else if (clm.Key =="MoTa")
+                    else if (clm.Key == "MoTa")
                     {
                         clm.Header.Caption = "Mô Tả";
                     }
@@ -268,6 +273,50 @@ namespace BV.QLKHO.PhieuNhapThuoc
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnAddRow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //get chi tiet phieu
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
+
+        private void GetChiTietPhieu()
+        {
+            ChiTietPhieu oRow = new ChiTietPhieu();
+            oRow.ID = Guid.NewGuid();
+            oRow.HangHoaID = (Guid)cboThuoc.Value;
+            //oRow.LoHangID
+        }
+
+        public void HandleException(Exception ex)
+        {
+            this.Cursor = Cursors.Default;
+            //TODO: ghi log client vào đây
+            //CommonFunction.WriteLog(ex.Message);
+            MessageBox.Show(this, "Có lỗi xảy ra, vui lòng thử lại hoặc liên hệ với người quản trị. \n Lỗi: " + ex.Message, "Phiếu Nhập Kho", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void cboThuoc_Enter(object sender, EventArgs e)
+        {
+            foreach (var item in cboThuoc.ButtonsRight)
+            {
+                item.Visible = true;
+            } 
+        }
+
+        private void cboThuoc_Leave(object sender, EventArgs e)
+        {
+            foreach (var item in cboThuoc.ButtonsRight)
+            {
+                item.Visible = false;
+            }
         }
     }
 }

@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BV.AppCommon", "AppCommon\B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BV.KhoTong.DataModel", "BV.KhoTong.DataModel\BV.KhoTong.DataModel.csproj", "{59A07A11-51AB-412C-A527-5A3D142354B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BV.QuanTriHeThong", "BV304.QuanTriKho\BV.QuanTriHeThong.csproj", "{98307EB2-BC31-4909-872E-74B8FD2DEC28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{59A07A11-51AB-412C-A527-5A3D142354B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59A07A11-51AB-412C-A527-5A3D142354B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59A07A11-51AB-412C-A527-5A3D142354B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98307EB2-BC31-4909-872E-74B8FD2DEC28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98307EB2-BC31-4909-872E-74B8FD2DEC28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98307EB2-BC31-4909-872E-74B8FD2DEC28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98307EB2-BC31-4909-872E-74B8FD2DEC28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

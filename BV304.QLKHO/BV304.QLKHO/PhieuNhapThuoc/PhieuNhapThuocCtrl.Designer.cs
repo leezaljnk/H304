@@ -100,7 +100,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rdAllTypes = new System.Windows.Forms.RadioButton();
@@ -110,9 +109,11 @@
             this.rdThuocTamThan = new System.Windows.Forms.RadioButton();
             this.rdThuocGayNghien = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cboPLHoaDon = new Infragistics.Win.UltraWinEditors.UltraComboEditor();
             this.label17 = new System.Windows.Forms.Label();
             this.ultraDataSource1 = new Infragistics.Win.UltraWinDataSource.UltraDataSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnAddRow = new System.Windows.Forms.Button();
             this.dtHSD = new BV.SharedComponent.Controls.BVDateTimeCtrl();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -142,10 +143,10 @@
             this.clmDonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmChietKhau = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.cboNhaCungCap)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboPLHoaDon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraDataSource1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtChietKhau)).BeginInit();
@@ -221,6 +222,7 @@
             this.cboNhaCungCap.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
             this.cboNhaCungCap.DisplayStyle = Infragistics.Win.EmbeddableElementDisplayStyle.Standard;
             this.cboNhaCungCap.DropDownResizeHandleStyle = Infragistics.Win.DropDownResizeHandleStyle.DiagonalResize;
+            this.cboNhaCungCap.DropDownSearchMethod = Infragistics.Win.UltraWinGrid.DropDownSearchMethod.Linear;
             this.cboNhaCungCap.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.cboNhaCungCap.Location = new System.Drawing.Point(121, 54);
             this.cboNhaCungCap.Name = "cboNhaCungCap";
@@ -385,16 +387,6 @@
             this.label9.TabIndex = 12;
             this.label9.Text = "Số hóa đơn:";
             // 
-            // textBox9
-            // 
-            this.textBox9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox9.Location = new System.Drawing.Point(105, 113);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(200, 22);
-            this.textBox9.TabIndex = 19;
-            this.textBox9.Text = "Tiền mặt hóa chất";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -498,10 +490,10 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.cboPLHoaDon);
             this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.textBox8);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.textBox9);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.textBox7);
@@ -513,6 +505,17 @@
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Hóa Đơn Đỏ";
+            // 
+            // cboPLHoaDon
+            // 
+            this.cboPLHoaDon.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboPLHoaDon.DropDownButtonDisplayStyle = Infragistics.Win.ButtonDisplayStyle.OnMouseEnter;
+            this.cboPLHoaDon.DropDownStyle = Infragistics.Win.DropDownStyle.DropDownList;
+            this.cboPLHoaDon.Location = new System.Drawing.Point(106, 112);
+            this.cboPLHoaDon.Name = "cboPLHoaDon";
+            this.cboPLHoaDon.Size = new System.Drawing.Size(199, 23);
+            this.cboPLHoaDon.TabIndex = 21;
             // 
             // label17
             // 
@@ -544,7 +547,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 10;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 132F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
@@ -553,7 +556,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.Controls.Add(this.button1, 9, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnAddRow, 9, 1);
             this.tableLayoutPanel1.Controls.Add(this.dtHSD, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label14, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label15, 2, 0);
@@ -580,6 +583,17 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1094, 46);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
+            // btnAddRow
+            // 
+            this.btnAddRow.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAddRow.Location = new System.Drawing.Point(1057, 20);
+            this.btnAddRow.Name = "btnAddRow";
+            this.btnAddRow.Size = new System.Drawing.Size(34, 23);
+            this.btnAddRow.TabIndex = 26;
+            this.btnAddRow.Text = "+";
+            this.btnAddRow.UseVisualStyleBackColor = true;
+            this.btnAddRow.Click += new System.EventHandler(this.btnAddRow_Click);
+            // 
             // dtHSD
             // 
             this.dtHSD.Dock = System.Windows.Forms.DockStyle.Top;
@@ -593,18 +607,20 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(277, 0);
+            this.label14.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label14.Location = new System.Drawing.Point(225, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(38, 14);
+            this.label14.Size = new System.Drawing.Size(42, 14);
             this.label14.TabIndex = 4;
             this.label14.Text = "Số lô:";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label15.Location = new System.Drawing.Point(357, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(81, 14);
+            this.label15.Size = new System.Drawing.Size(90, 14);
             this.label15.TabIndex = 5;
             this.label15.Text = "Hạn sử dụng:";
             // 
@@ -620,9 +636,10 @@
             // label19
             // 
             this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label19.Location = new System.Drawing.Point(957, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(71, 14);
+            this.label19.Size = new System.Drawing.Size(77, 14);
             this.label19.TabIndex = 9;
             this.label19.Text = "Thành tiền:";
             // 
@@ -647,34 +664,37 @@
             // label13
             // 
             this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label13.Location = new System.Drawing.Point(647, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(60, 14);
+            this.label13.Size = new System.Drawing.Size(67, 14);
             this.label13.TabIndex = 3;
             this.label13.Text = "Số lượng:";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label20.Location = new System.Drawing.Point(837, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(69, 14);
+            this.label20.Size = new System.Drawing.Size(77, 14);
             this.label20.TabIndex = 27;
             this.label20.Text = "Chiết khấu:";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label18.Location = new System.Drawing.Point(457, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(57, 14);
+            this.label18.Size = new System.Drawing.Size(62, 14);
             this.label18.TabIndex = 8;
             this.label18.Text = "QĐ thầu:";
             // 
             // txtSoLo
             // 
             this.txtSoLo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtSoLo.Location = new System.Drawing.Point(277, 20);
+            this.txtSoLo.Location = new System.Drawing.Point(225, 20);
             this.txtSoLo.Name = "txtSoLo";
             this.txtSoLo.Size = new System.Drawing.Size(74, 22);
             this.txtSoLo.TabIndex = 19;
@@ -742,6 +762,7 @@
             this.cboDonVi.Dock = System.Windows.Forms.DockStyle.Top;
             this.cboDonVi.DropDownButtonDisplayStyle = Infragistics.Win.ButtonDisplayStyle.OnMouseEnter;
             this.cboDonVi.DropDownResizeHandleStyle = Infragistics.Win.DropDownResizeHandleStyle.DiagonalResize;
+            this.cboDonVi.DropDownSearchMethod = Infragistics.Win.UltraWinGrid.DropDownSearchMethod.Linear;
             this.cboDonVi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.cboDonVi.Location = new System.Drawing.Point(557, 20);
             this.cboDonVi.Name = "cboDonVi";
@@ -753,9 +774,10 @@
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label12.Location = new System.Drawing.Point(557, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(45, 14);
+            this.label12.Size = new System.Drawing.Size(50, 14);
             this.label12.TabIndex = 2;
             this.label12.Text = "Đơn vị:";
             // 
@@ -849,32 +871,37 @@
             this.cboThuoc.DisplayLayout.ViewStyleBand = Infragistics.Win.UltraWinGrid.ViewStyleBand.OutlookGroupBy;
             this.cboThuoc.Dock = System.Windows.Forms.DockStyle.Top;
             this.cboThuoc.DropDownResizeHandleStyle = Infragistics.Win.DropDownResizeHandleStyle.DiagonalResize;
+            this.cboThuoc.DropDownSearchMethod = Infragistics.Win.UltraWinGrid.DropDownSearchMethod.Linear;
             this.cboThuoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.cboThuoc.Location = new System.Drawing.Point(3, 20);
             this.cboThuoc.Name = "cboThuoc";
-            this.cboThuoc.Size = new System.Drawing.Size(268, 22);
+            this.cboThuoc.Size = new System.Drawing.Size(216, 22);
             this.cboThuoc.TabIndex = 13;
             this.cboThuoc.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.cboThuoc_InitializeLayout);
             this.cboThuoc.AfterDropDown += new System.EventHandler(this.cboThuoc_AfterDropDown);
             this.cboThuoc.AfterCloseUp += new System.EventHandler(this.cboThuoc_AfterCloseUp);
             this.cboThuoc.ValueChanged += new System.EventHandler(this.cboThuoc_ValueChanged);
             this.cboThuoc.EditorButtonClick += new Infragistics.Win.UltraWinEditors.EditorButtonEventHandler(this.cboThuoc_EditorButtonClick);
+            this.cboThuoc.Enter += new System.EventHandler(this.cboThuoc_Enter);
+            this.cboThuoc.Leave += new System.EventHandler(this.cboThuoc_Leave);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label11.Location = new System.Drawing.Point(3, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(71, 14);
+            this.label11.Size = new System.Drawing.Size(76, 14);
             this.label11.TabIndex = 1;
             this.label11.Text = "Tên vật tư:";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label16.Location = new System.Drawing.Point(737, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(52, 14);
+            this.label16.Size = new System.Drawing.Size(58, 14);
             this.label16.TabIndex = 6;
             this.label16.Text = "Đơn giá:";
             // 
@@ -889,10 +916,12 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ColumnHeadersVisible = false;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmNo,
             this.clmTenVatTu,
@@ -962,16 +991,6 @@
             this.clmThanhTien.HeaderText = "Thành Tiền";
             this.clmThanhTien.Name = "clmThanhTien";
             // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.Location = new System.Drawing.Point(1057, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(34, 23);
-            this.button1.TabIndex = 26;
-            this.button1.Text = "+";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // PhieuNhapThuocCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -989,6 +1008,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboPLHoaDon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ultraDataSource1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -1019,7 +1039,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -1062,6 +1081,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDonGia;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmChietKhau;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmThanhTien;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAddRow;
+        private Infragistics.Win.UltraWinEditors.UltraComboEditor cboPLHoaDon;
     }
 }

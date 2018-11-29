@@ -25,5 +25,7 @@ namespace BV.DataModel.Kho
         public string NguoiNhan { get; set; }
         public Nullable<double> TongTien { get; set; }
         public Nullable<double> ThanhTien { get; set; }
+        public string MaPhanLoaiHoaDon { get; set; }
+        public string TenPhanLoaiHoaDon { get; set; }
     }
 }

@@ -60,13 +60,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KhoChung\ChuyenDoiDonViThuoc.cs">
+    <Compile Include="KhoChung\ChuyenDoiDonViHangHoa.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="KhoChung\DonViThuoc.cs">
+    <Compile Include="KhoChung\DinhGiaHangHoa.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="KhoChung\GiaThuoc.cs">
+    <Compile Include="KhoChung\DonViHangHoa.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\HangHoa.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
     <Compile Include="KhoChung\HoTriLieu.cs">
@@ -87,10 +90,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KhoChungModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="KhoChung\LoHang.cs">
+    <Compile Include="KhoChung\KhoChungProvider.cs" />
+    <Compile Include="KhoChung\LoaiGiaHangHoa.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\LoHangHoa.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
     <Compile Include="KhoChung\NhaCungCap.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\PhanLoaiHoaDon.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
     <Compile Include="KhoChung\QuyetDinhThau.cs">
@@ -105,19 +115,16 @@
     <Compile Include="KhoChung\THUOC_6061.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="KhoChung\Thuoc_VatTuYte.cs">
-      <DependentUpon>KhoChungModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="KhoChung\VATTU_YTE_6061.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="KhoChung\v_DonViInfo.cs">
+    <Compile Include="KhoChung\v_ChiTietDonViHangHoa.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="KhoChung\KhoChungProvider.cs" />
     <Compile Include="Kho\ChiTietPhieu.cs">
       <DependentUpon>KhoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Kho\KhoProvider.cs" />
     <Compile Include="Kho\KhoModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

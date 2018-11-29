@@ -12,11 +12,9 @@ namespace BV.DataModel.KhoChung
     using System;
     using System.Collections.Generic;
     
-    public partial class LoHang
+    public partial class PhanLoaiHoaDon
     {
-        public System.Guid ID { get; set; }
-        public string SoLo { get; set; }
-        public Nullable<System.DateTime> HanSuDung { get; set; }
-        public Nullable<System.Guid> ThuocID { get; set; }
+        public int ID { get; set; }
+        public string Ten { get; set; }
     }
 }

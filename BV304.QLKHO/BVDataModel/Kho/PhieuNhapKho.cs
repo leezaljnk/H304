@@ -18,7 +18,7 @@ namespace BV.DataModel.Kho
         public string Ma { get; set; }
         public Nullable<System.DateTime> NgayTao { get; set; }
         public string NguoiTao { get; set; }
-        public Nullable<System.Guid> MaNhaCungCap { get; set; }
+        public System.Guid MaNhaCungCap { get; set; }
         public string NhaCungCap { get; set; }
         public string NguoiCungCap { get; set; }
         public string SoHoaDon { get; set; }
@@ -26,5 +26,7 @@ namespace BV.DataModel.Kho
         public Nullable<double> VAT { get; set; }
         public Nullable<double> TongTien { get; set; }
         public Nullable<double> ThanhTien { get; set; }
+        public string MaPhanLoaiHoaDon { get; set; }
+        public string TenPhanLoaiHoaDon { get; set; }
     }
 }

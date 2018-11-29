@@ -12,14 +12,12 @@ namespace BV.DataModel.KhoChung
     using System;
     using System.Collections.Generic;
     
-    public partial class v_DonViInfo
+    public partial class LoaiGiaHangHoa
     {
         public System.Guid ID { get; set; }
-        public System.Guid ThuocID { get; set; }
-        public System.Guid DonViID { get; set; }
         public string Ten { get; set; }
-        public decimal TiLeChuyenDoi { get; set; }
-        public string MoTa { get; set; }
-        public byte PhuongThucChuyenDoi { get; set; }
+        public string GhiChu { get; set; }
+        public Nullable<bool> IsGiaNhap { get; set; }
+        public string MaDoiTuongThanhToan { get; set; }
     }
 }

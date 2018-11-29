@@ -15,7 +15,7 @@ namespace BV.DataConnector
         {
             try
             {
-                KhoTongProvider provider = new KhoTongProvider();
+                KhoChungProvider provider = new KhoChungProvider();
 
                 if (take > 0)
                 {
@@ -32,11 +32,11 @@ namespace BV.DataConnector
             }
         }
 
-        public static GiaThuoc GetGiaThuoc(Guid thuocID)
+        public static DinhGiaHangHoa GetGiaThuoc(Guid thuocID)
         {
             try
             {
-                return KhoTongProvider.KhoTong.GiaThuoc.FirstOrDefault(t => t.ThuocID == thuocID);
+                return KhoChungProvider.KhoTong.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == thuocID);
             }
             catch (Exception ex)
             {
@@ -45,11 +45,11 @@ namespace BV.DataConnector
             }
         }
 
-        public static List<ChuyenDoiDonViThuoc> GetChuyenDoiDonViThuoc(Guid thuocID)
+        public static List<ChuyenDoiDonViHangHoa> GetChuyenDoiDonViThuoc(Guid hangHoaID)
         {
             try
             {
-                return KhoTongProvider.KhoTong.ChuyenDoiDonViThuoc.Where(t => t.ThuocID == thuocID).ToList();
+                return KhoChungProvider.KhoTong.ChuyenDoiDonViHangHoa.Where(t => t.HangHoaID == hangHoaID).ToList();
             }
             catch (Exception ex)
             {
@@ -58,14 +58,14 @@ namespace BV.DataConnector
             }
         }
 
-        public static void SaveThuoc304(Thuoc_VatTuYte oThuoc, GiaThuoc oGiaThuoc, List<ChuyenDoiDonViThuoc> lstDonVi)
+        public static void SaveThuoc304(HangHoa oThuoc, DinhGiaHangHoa giaThuoc, List<ChuyenDoiDonViHangHoa> lstDonVi)
         {
             try
             {
-                var thuoc = KhoTongProvider.KhoTong.Thuoc_VatTuYte.FirstOrDefault(t => t.ID == oThuoc.ID);
+                var thuoc = KhoChungProvider.KhoTong.HangHoa.FirstOrDefault(t => t.ID == oThuoc.ID);
                 if (thuoc == null)
                 {
-                    KhoTongProvider.KhoTong.Thuoc_VatTuYte.Add(oThuoc);
+                    KhoChungProvider.KhoTong.HangHoa.Add(oThuoc);
                 }
                 else
                 {
@@ -80,36 +80,68 @@ namespace BV.DataConnector
                     thuoc.DonViID = oThuoc.DonViID;
                 }
 
-                var giaThuoc = KhoTongProvider.KhoTong.GiaThuoc.FirstOrDefault(t => t.ThuocID == oGiaThuoc.ThuocID);
-                if (giaThuoc == null)
+                var updateItem = KhoChungProvider.KhoTong.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == giaThuoc.HangHoaID);
+                if (updateItem == null)
                 {
-                    KhoTongProvider.KhoTong.GiaThuoc.Add(oGiaThuoc);
+                    KhoChungProvider.KhoTong.DinhGiaHangHoa.Add(giaThuoc);
                 }
                 else
                 {
-                    giaThuoc.DonViID = oGiaThuoc.DonViID;
-                    giaThuoc.GiaBaoHiem = oGiaThuoc.GiaBaoHiem;
-                    giaThuoc.GiaChinhSach = oGiaThuoc.GiaChinhSach;
-                    giaThuoc.GiaDichVu = oGiaThuoc.GiaDichVu;
-                    giaThuoc.ThuocID = oGiaThuoc.ThuocID;
+                    if (giaThuoc.GiaDichVu != updateItem.GiaDichVu || giaThuoc.GiaBaoHiem != updateItem.GiaBaoHiem)
+                    {
+                        //Save change
+                        giaThuoc.GiaDichVu = updateItem.GiaDichVu;
+                        giaThuoc.GiaBaoHiem = updateItem.GiaBaoHiem;
+                        //giaThuoc.GhiChu = updateItem.GhiChu;
+                        giaThuoc.MaNguoiDinhGia = updateItem.MaNguoiDinhGia;
+                        giaThuoc.TenNguoiDinhGia = updateItem.TenNguoiDinhGia;
+                        giaThuoc.ThoiGianCapNhat = DateTime.Now;
+                    }
                 }
+                //var lstOriginalGiaThuoc = KhoChungProvider.KhoTong.DinhGiaHangHoa.Where(t => t.HangHoaID == oThuoc.ID).ToList();
+                //foreach (var updateItem in lstGiaThuoc)
+                //{
+                //    //var giaThuoc = KhoChungProvider.KhoTong.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == updateItem.HangHoaID && t.LoaiGiaID == updateItem.LoaiGiaID);
+                //    var giaThuoc = lstOriginalGiaThuoc.FirstOrDefault(t => t.HangHoaID == updateItem.HangHoaID && t.LoaiGiaID == updateItem.LoaiGiaID);
+                //    if (giaThuoc == null)
+                //    {
+                //        KhoChungProvider.KhoTong.DinhGiaHangHoa.Add(updateItem);
+                //    }
+                //    else
+                //    {
+                //        lstOriginalGiaThuoc.Remove(giaThuoc);
+                //        if (giaThuoc.GiaTien != updateItem.GiaTien)
+                //        {
+                //            //Save change
+                //            giaThuoc.GiaTien = updateItem.GiaTien;
+                //            giaThuoc.GhiChu = updateItem.GhiChu;
+                //            giaThuoc.MaNguoiDinhGia = updateItem.MaNguoiDinhGia;
+                //            giaThuoc.TenNguoiDinhGia = updateItem.TenNguoiDinhGia;
+                //            giaThuoc.ThoiGianCapNhat = DateTime.Now;
+                //        }
+                //    }
+                //}
+
+                //KhoChungProvider.KhoTong.DinhGiaHangHoa.RemoveRange(lstOriginalGiaThuoc);
+
+
 
                 //Save thông tin các đơn vị thuốc
-                var removeDonvi = KhoTongProvider.KhoTong.ChuyenDoiDonViThuoc.Where(d => d.ThuocID == oThuoc.ID).ToList();
+                var removeDonvi = KhoChungProvider.KhoTong.ChuyenDoiDonViHangHoa.Where(d => d.HangHoaID == oThuoc.ID).ToList();
                 //Don vi chinh
                 {
-                    var donvi = KhoTongProvider.KhoTong.ChuyenDoiDonViThuoc.FirstOrDefault(d => d.DonViID == oThuoc.DonViID && d.ThuocID == oThuoc.ID);
+                    var donvi = KhoChungProvider.KhoTong.ChuyenDoiDonViHangHoa.FirstOrDefault(d => d.DonViID == oThuoc.DonViID && d.HangHoaID == oThuoc.ID);
                     if (donvi == null)
                     {
-                        var dv = new ChuyenDoiDonViThuoc();
+                        var dv = new ChuyenDoiDonViHangHoa();
                         dv.ID = Guid.NewGuid();
-                        dv.ThuocID = oThuoc.ID;
+                        dv.HangHoaID = oThuoc.ID;
                         dv.DonViID = oThuoc.DonViID.Value;
                         dv.TiLeChuyenDoi = 1;
                         dv.PhuongThucChuyenDoi = 1;
                         dv.MoTa = "Đơn vị chính";
 
-                        KhoTongProvider.KhoTong.ChuyenDoiDonViThuoc.Add(dv);
+                        KhoChungProvider.KhoTong.ChuyenDoiDonViHangHoa.Add(dv);
                     }
                     else
                     {
@@ -123,10 +155,10 @@ namespace BV.DataConnector
                 //Đơn vị chuyển đổi
                 foreach (var dv in lstDonVi)
                 {
-                    var donvi = KhoTongProvider.KhoTong.ChuyenDoiDonViThuoc.FirstOrDefault(d => d.ID == dv.ID);
+                    var donvi = KhoChungProvider.KhoTong.ChuyenDoiDonViHangHoa.FirstOrDefault(d => d.ID == dv.ID);
                     if (donvi == null)
                     {   
-                        KhoTongProvider.KhoTong.ChuyenDoiDonViThuoc.Add(dv);
+                        KhoChungProvider.KhoTong.ChuyenDoiDonViHangHoa.Add(dv);
                     }
                     else
                     {
@@ -138,12 +170,13 @@ namespace BV.DataConnector
                     }
                 }
 
-                foreach (var item in removeDonvi)
-                {
-                    KhoTongProvider.KhoTong.ChuyenDoiDonViThuoc.RemoveRange(removeDonvi);
-                }
+                KhoChungProvider.KhoTong.ChuyenDoiDonViHangHoa.RemoveRange(removeDonvi);
+                //foreach (var item in removeDonvi)
+                //{
+                //    KhoChungProvider.KhoTong.ChuyenDoiDonViHangHoa.RemoveRange(removeDonvi);
+                //}
 
-                KhoTongProvider.KhoTong.SaveChanges();
+                KhoChungProvider.KhoTong.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -153,10 +186,10 @@ namespace BV.DataConnector
 
         public static NhaCungCap SaveNhaCungCap(NhaCungCap oEntity)
         {
-            var ncc = KhoTongProvider.KhoTong.NhaCungCap.FirstOrDefault(n => n.NguonNhapID == oEntity.NguonNhapID);
+            var ncc = KhoChungProvider.KhoTong.NhaCungCap.FirstOrDefault(n => n.NguonNhapID == oEntity.NguonNhapID);
             if (ncc == null)
             {
-                ncc = KhoTongProvider.KhoTong.NhaCungCap.Add(oEntity);
+                ncc = KhoChungProvider.KhoTong.NhaCungCap.Add(oEntity);
             }
             else
             {
@@ -171,7 +204,7 @@ namespace BV.DataConnector
                 ncc.WebSite = oEntity.WebSite;
             }
 
-            KhoTongProvider.KhoTong.SaveChanges();
+            KhoChungProvider.KhoTong.SaveChanges();
             return ncc;
         }
     }

@@ -12,7 +12,7 @@ namespace BV.DataModel.KhoChung
     using System;
     using System.Collections.Generic;
     
-    public partial class DonViThuoc
+    public partial class DonViHangHoa
     {
         public System.Guid ID { get; set; }
         public string Ten { get; set; }

@@ -25,18 +25,20 @@ namespace BV.DataModel.KhoChung
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ChuyenDoiDonViThuoc> ChuyenDoiDonViThuoc { get; set; }
-        public virtual DbSet<DonViThuoc> DonViThuoc { get; set; }
-        public virtual DbSet<GiaThuoc> GiaThuoc { get; set; }
-        public virtual DbSet<LoHang> LoHang { get; set; }
+        public virtual DbSet<ChuyenDoiDonViHangHoa> ChuyenDoiDonViHangHoa { get; set; }
+        public virtual DbSet<DonViHangHoa> DonViHangHoa { get; set; }
+        public virtual DbSet<HangHoa> HangHoa { get; set; }
+        public virtual DbSet<LoaiGiaHangHoa> LoaiGiaHangHoa { get; set; }
+        public virtual DbSet<LoHangHoa> LoHangHoa { get; set; }
         public virtual DbSet<NhaCungCap> NhaCungCap { get; set; }
+        public virtual DbSet<PhanLoaiHoaDon> PhanLoaiHoaDon { get; set; }
         public virtual DbSet<QuyetDinhThau> QuyetDinhThau { get; set; }
         public virtual DbSet<QuyetDinhThauChiTiet> QuyetDinhThauChiTiet { get; set; }
         public virtual DbSet<THUOC_6061> THUOC_6061 { get; set; }
-        public virtual DbSet<Thuoc_VatTuYte> Thuoc_VatTuYte { get; set; }
         public virtual DbSet<HoTriLieu> HoTriLieu { get; set; }
         public virtual DbSet<ThuocDuongDung> ThuocDuongDung { get; set; }
         public virtual DbSet<VATTU_YTE_6061> VATTU_YTE_6061 { get; set; }
-        public virtual DbSet<v_DonViInfo> v_DonViInfo { get; set; }
+        public virtual DbSet<DinhGiaHangHoa> DinhGiaHangHoa { get; set; }
+        public virtual DbSet<v_ChiTietDonViHangHoa> v_ChiTietDonViHangHoa { get; set; }
     }
 }
