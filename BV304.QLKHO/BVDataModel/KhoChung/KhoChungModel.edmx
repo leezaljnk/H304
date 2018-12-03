@@ -119,8 +119,10 @@ warning 6002: The table/view 'BV304.dbo.HoTriLieu' does not have a primary key d
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="MaQuyetDinhThau" Type="nvarchar" MaxLength="50" />
-          <Property Name="TenQuyetDinhThau" Type="nvarchar" MaxLength="1024" />
+          <Property Name="Ma" Type="nvarchar" MaxLength="50" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="1024" />
+          <Property Name="NgayQuyetDinh" Type="date" />
+          <Property Name="HieuLuc" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="QuyetDinhThauChiTiet">
           <Key>
@@ -251,7 +253,6 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <EntitySet Name="LoHangHoa" EntityType="BV304Model.LoHangHoa" />
           <EntitySet Name="NhaCungCap" EntityType="BV304Model.NhaCungCap" />
           <EntitySet Name="PhanLoaiHoaDon" EntityType="BV304Model.PhanLoaiHoaDon" />
-          <EntitySet Name="QuyetDinhThau" EntityType="BV304Model.QuyetDinhThau" />
           <EntitySet Name="QuyetDinhThauChiTiet" EntityType="BV304Model.QuyetDinhThauChiTiet" />
           <EntitySet Name="THUOC_6061" EntityType="BV304Model.THUOC_6061" />
           <EntitySet Name="HoTriLieu" EntityType="BV304Model.HoTriLieu" />
@@ -259,6 +260,7 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <EntitySet Name="VATTU_YTE_6061" EntityType="BV304Model.VATTU_YTE_6061" />
           <EntitySet Name="DinhGiaHangHoa" EntityType="BV304Model.DinhGiaHangHoa" />
           <EntitySet Name="v_ChiTietDonViHangHoa" EntityType="BV304Model.v_ChiTietDonViHangHoa" />
+          <EntitySet Name="QuyetDinhThau" EntityType="BV304Model.QuyetDinhThau" />
         </EntityContainer>
         <EntityType Name="ChuyenDoiDonViHangHoa">
           <Key>
@@ -343,14 +345,6 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="QuyetDinhThau">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="MaQuyetDinhThau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TenQuyetDinhThau" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="QuyetDinhThauChiTiet">
           <Key>
@@ -439,6 +433,16 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="TiLeChuyenDoi" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
           <Property Name="MoTa" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="PhuongThucChuyenDoi" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuyetDinhThau">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Ma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="NgayQuyetDinh" Type="DateTime" Precision="0" />
+          <Property Name="HieuLuc" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -537,15 +541,6 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="QuyetDinhThau">
-            <EntityTypeMapping TypeName="BV304Model.QuyetDinhThau">
-              <MappingFragment StoreEntitySet="QuyetDinhThau">
-                <ScalarProperty Name="TenQuyetDinhThau" ColumnName="TenQuyetDinhThau" />
-                <ScalarProperty Name="MaQuyetDinhThau" ColumnName="MaQuyetDinhThau" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="QuyetDinhThauChiTiet">
             <EntityTypeMapping TypeName="BV304Model.QuyetDinhThauChiTiet">
               <MappingFragment StoreEntitySet="QuyetDinhThauChiTiet">
@@ -627,6 +622,17 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
                 <ScalarProperty Name="DonViID" ColumnName="DonViID" />
                 <ScalarProperty Name="TenHangHoa" ColumnName="TenHangHoa" />
                 <ScalarProperty Name="HangHoaID" ColumnName="HangHoaID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuyetDinhThau">
+            <EntityTypeMapping TypeName="BV304Model.QuyetDinhThau">
+              <MappingFragment StoreEntitySet="QuyetDinhThau">
+                <ScalarProperty Name="HieuLuc" ColumnName="HieuLuc" />
+                <ScalarProperty Name="NgayQuyetDinh" ColumnName="NgayQuyetDinh" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="Ma" ColumnName="Ma" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

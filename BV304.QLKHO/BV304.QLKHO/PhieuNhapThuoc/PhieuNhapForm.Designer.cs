@@ -36,9 +36,9 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(915, 472);
+            this.btnSave.Location = new System.Drawing.Point(1067, 508);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.Size = new System.Drawing.Size(87, 25);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Chấp nhận";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -47,9 +47,9 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(996, 472);
+            this.btnCancel.Location = new System.Drawing.Point(1162, 508);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(87, 25);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Huỷ";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -63,17 +63,18 @@
             this.phieuNhapThuocCtrl1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.phieuNhapThuocCtrl1.Location = new System.Drawing.Point(0, 0);
             this.phieuNhapThuocCtrl1.Name = "phieuNhapThuocCtrl1";
-            this.phieuNhapThuocCtrl1.Size = new System.Drawing.Size(1083, 465);
+            this.phieuNhapThuocCtrl1.Size = new System.Drawing.Size(1263, 501);
             this.phieuNhapThuocCtrl1.TabIndex = 0;
             // 
             // PhieuNhapForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1083, 506);
+            this.ClientSize = new System.Drawing.Size(1263, 545);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.phieuNhapThuocCtrl1);
+            this.Font = new System.Drawing.Font("Tahoma", 9F);
             this.Name = "PhieuNhapForm";
             this.ShowInTaskbar = false;
             this.Text = "Phiếu Nhập Kho";

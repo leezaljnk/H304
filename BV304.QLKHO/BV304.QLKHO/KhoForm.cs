@@ -159,5 +159,10 @@ namespace BV.QLKHO
                 HandleException(ex);
             }
         }
+
+        private void danhMucKhoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

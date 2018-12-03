@@ -12,6 +12,8 @@ using BV.QLKHO.THUOC;
 using Infragistics.Win.UltraWinEditors;
 using BV.DataModel.KhoChung;
 using BV.DataModel.Kho;
+using Infragistics.Win.UltraWinGrid;
+using BV.SharedComponent;
 
 namespace BV.QLKHO.PhieuNhapThuoc
 {
@@ -33,6 +35,8 @@ namespace BV.QLKHO.PhieuNhapThuoc
             var lstThuocVTYT = KhoUtil.GetDanhMuc<HangHoa>();
             var lstThuocDetail = KhoUtil.GetDanhMuc<v_ChiTietDonViHangHoa>();
             var lstPhanLoaiHoaDon = KhoUtil.GetDanhMuc<PhanLoaiHoaDon>();
+            var lstLoHang = KhoUtil.GetDanhMuc<LoHangHoa>();
+            var lstQDThau = KhoUtil.GetDanhMuc<QuyetDinhThau>();
         }
 
         public void InitControl(Guid phieuID)
@@ -54,6 +58,11 @@ namespace BV.QLKHO.PhieuNhapThuoc
             cboThuoc.DisplayMember = "Ten";
             cboThuoc.DisplayLayout.PerformAutoResizeColumns(false, Infragistics.Win.UltraWinGrid.PerformAutoSizeType.AllRowsInBand);
 
+            var lstQuyetDinh = KhoUtil.GetDanhMuc<QuyetDinhThau>();
+            cboQDThau.DataSource = lstQuyetDinh;
+            cboQDThau.ValueMember = "Ma";
+            cboQDThau.DisplayMember = "Ma";
+            cboQDThau.DisplayLayout.PerformAutoResizeColumns(false, Infragistics.Win.UltraWinGrid.PerformAutoSizeType.AllRowsInBand);
         }
 
         private void cboNhaCungCap_EditorButtonClick(object sender, Infragistics.Win.UltraWinEditors.EditorButtonEventArgs e)
@@ -72,21 +81,8 @@ namespace BV.QLKHO.PhieuNhapThuoc
             //ultraDataSource1.Rows.Add()
         }
 
-        private void ultraButton1_Click(object sender, EventArgs e)
-        {
-            NhaCungCapForm oForm = new NhaCungCapForm();
-            oForm.InitThongTin(null);
-            oForm.Show(this);
-            //if (oForm.ShowDialog() == DialogResult.OK)
-            //{
-            //    cboNhaCungCap.DataBind();
-            //    cboNhaCungCap.Value = oForm.Entity.NguonNhapID;
-            //}
-        }
-
         private void cboThuoc_EditorButtonClick(object sender, Infragistics.Win.UltraWinEditors.EditorButtonEventArgs e)
         {
-            HangHoa oThuoc = null;
             if (e.Button.Key == "add")
             {
                 ThongTinThuocForm oForm = new ThongTinThuocForm();
@@ -102,7 +98,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
             }
             else if (e.Button.Key == "edit")
             {
-                if (cboThuoc.Value != null)
+                if (cboThuoc.SelectedRow != null)
                 {
                     var itemID = (Guid)cboThuoc.Value;
                     var item = KhoUtil.GetDanhMuc<HangHoa>().FirstOrDefault(t => t.ID == itemID);
@@ -118,12 +114,6 @@ namespace BV.QLKHO.PhieuNhapThuoc
                         cboThuoc.Value = oForm.Entity.ID;
 
                         ShowThuocInfo(oForm.Entity.ID);
-                        //var items = KhoUtil.GetDanhMuc<v_ChiTietDonViHangHoa>().Where(t => t.ThuocID == itemID).ToList();
-
-                        //cboDonVi.DataSource = items;
-                        //cboDonVi.ValueMember = "ID";
-                        //cboDonVi.DisplayMember = "Ten";
-                        //cboDonVi.DataBind();
                     }
                 }
             }
@@ -135,7 +125,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
             if (bComboValueChanged && cboThuoc.SelectedRow != null)
             {
                 ShowThuocInfo((Guid)cboThuoc.Value);
-                bComboValueChanged = true;
+                bComboValueChanged = false;
             }
         }
 
@@ -157,26 +147,35 @@ namespace BV.QLKHO.PhieuNhapThuoc
         {
             KhoUtil.GetDanhMuc<HangHoa>(true);
             KhoUtil.GetDanhMuc<v_ChiTietDonViHangHoa>(true);
-            //KhoUtil.GetDanhMuc<ChuyenDoiDonViThuoc>(true);
         }
 
         private void ShowThuocInfo(Guid itemID)
         {
-            var items = KhoUtil.GetDanhMuc<v_ChiTietDonViHangHoa>().Where(t => t.HangHoaID == itemID).ToList();
+            //Don vi
+            var lstDonVi = KhoUtil.GetDanhMuc<v_ChiTietDonViHangHoa>().Where(t => t.HangHoaID == itemID).ToList();
 
-            cboDonVi.DataSource = items.OrderBy(d => d.TiLeChuyenDoi);
+            //cboDonVi.DataSource = KhoUtil.GetDanhMuc<LoHangHoa>().Where(l => l.ThuocVtytID == itemID).ToList();
+            cboDonVi.DataSource = lstDonVi;//.OrderBy(d => d.TiLeChuyenDoi);
             cboDonVi.ValueMember = "DonViID";
             cboDonVi.DisplayMember = "TenDonVi";
             cboDonVi.DataBind();
+            cboDonVi.Value = null;
+            //So lo
+            var lstLoHang = KhoUtil.GetDanhMuc<LoHangHoa>().Where(l => l.ThuocVtytID == itemID).ToList();
+            cboLoHang.DataSource = lstLoHang;
+            cboLoHang.ValueMember = "ID";
+            cboLoHang.DisplayMember = "SoLo";
+            //cboLoHang.DataBind();
+            cboLoHang.Value = null;
         }
 
         private void PhieuNhapThuocCtrl_Resize(object sender, EventArgs e)
         {
             clmNo.Width = 40;
             clmTenVatTu.Width = cboThuoc.Width - 32;
-            clmSoLo.Width = txtSoLo.Width + 2;
-            clmHSD.Width = dtHSD.Width + 7;
-            clmQDThau.Width = txtQDThau.Width + 7;
+            clmSoLo.Width = cboLoHang.Width + 2;
+            clmHSD.Width = txtHSD.Width + 7;
+            clmQDThau.Width = cboQDThau.Width + 7;
             clmDonVi.Width = cboDonVi.Width + 6;
             clmSoLuong.Width = txtSoLuong.Width + 7;
             clmDonGia.Width = txtDonGia.Width + 6;
@@ -185,9 +184,9 @@ namespace BV.QLKHO.PhieuNhapThuoc
 
         private void cboNhaCungCap_InitializeLayout(object sender, Infragistics.Win.UltraWinGrid.InitializeLayoutEventArgs e)
         {
+            cboNhaCungCap.UltraCommbo_InitializeLayout(sender, e);
             if (e.Layout.Bands.Count > 0)
             {
-                e.Layout.Bands[0].Override.HeaderAppearance.BackColor = Color.DimGray;
                 foreach (var clm in e.Layout.Bands[0].Columns)
                 {
                     if (clm.Key == "Ten")
@@ -211,9 +210,6 @@ namespace BV.QLKHO.PhieuNhapThuoc
             if (e.Layout.Bands.Count > 0)
             {
                 e.Layout.Bands[0].Override.HeaderAppearance.BackColor = Color.DimGray;
-                //e.Layout.Override.ColumnAutoSizeMode = Infragistics.Win.UltraWinGrid.ColumnAutoSizeMode.AllRowsInBand;
-                //e.Layout.BorderStyleCaption = Infragistics.Win.UIElementBorderStyle.TwoColor;
-                //e.Layout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
                 foreach (var clm in e.Layout.Bands[0].Columns)
                 {
                     if (clm.Key == "Ma")
@@ -242,9 +238,10 @@ namespace BV.QLKHO.PhieuNhapThuoc
 
         private void cboDonVi_InitializeLayout(object sender, Infragistics.Win.UltraWinGrid.InitializeLayoutEventArgs e)
         {
+            cboDonVi.UltraCommbo_InitializeLayout(sender, e);
             if (e.Layout.Bands.Count > 0)
             {
-                e.Layout.Bands[0].Override.HeaderAppearance.BackColor = Color.DimGray;
+                var lst = e.Layout.Bands[0];//.Columns;
                 foreach (var clm in e.Layout.Bands[0].Columns)
                 {
                     if (clm.Key == "TenDonVi")
@@ -303,17 +300,185 @@ namespace BV.QLKHO.PhieuNhapThuoc
             MessageBox.Show(this, "Có lỗi xảy ra, vui lòng thử lại hoặc liên hệ với người quản trị. \n Lỗi: " + ex.Message, "Phiếu Nhập Kho", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        private void ShowMessage(string msg)
+        {
+            MessageBox.Show(this, msg, "Phiếu Nhập Kho", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
         private void cboThuoc_Enter(object sender, EventArgs e)
         {
-            foreach (var item in cboThuoc.ButtonsRight)
+            UltraCombo cbo = (UltraCombo)sender;
+            foreach (var item in cbo.ButtonsRight)
             {
                 item.Visible = true;
-            } 
+            }
         }
 
         private void cboThuoc_Leave(object sender, EventArgs e)
         {
-            foreach (var item in cboThuoc.ButtonsRight)
+            UltraCombo cbo = (UltraCombo)sender;
+            foreach (var item in cbo.ButtonsRight)
+            {
+                item.Visible = false;
+            }
+        }
+
+        private void cboLoHang_InitializeLayout(object sender, InitializeLayoutEventArgs e)
+        {
+            cboLoHang.UltraCommbo_InitializeLayout(sender, e);
+            if (e.Layout.Bands.Count > 0)
+            {
+                foreach (var clm in e.Layout.Bands[0].Columns)
+                {
+                    if (clm.Key == "SoLo")
+                    {
+                        clm.Header.Caption = "Số Lô";
+                    }
+                    else if (clm.Key == "HanSuDung")
+                    {
+                        clm.Header.Caption = "Hạn Sử Dụng";
+                    }
+                    else
+                    {
+                        clm.Hidden = true;
+                    }
+                }
+            }
+        }
+
+        private void cboLoHang_EditorButtonClick(object sender, EditorButtonEventArgs e)
+        {
+            try
+            {
+                if (cboThuoc.Value == null)
+                {
+                    ShowMessage("Bạn chưa chọn hàng hóa để nhập");
+                    return;
+                }
+
+                LoHangHoa oSoLo = null;
+                var hanghoaID = (Guid)cboThuoc.Value;
+                var hanghoa = KhoUtil.GetDanhMuc<HangHoa>().FirstOrDefault(t => t.ID == hanghoaID);
+                if (e.Button.Key == "edit")
+                {
+                    if (cboLoHang.Value != null)
+                    {
+                        Guid loID = (Guid)cboLoHang.Value;
+                        oSoLo = KhoUtil.GetDanhMuc<LoHangHoa>().FirstOrDefault(l => l.ID == loID);
+                    }
+                }
+
+                ThongTinLoHangForm oForm = new ThongTinLoHangForm();
+                oForm.InitThongTin(hanghoa, oSoLo);
+                if (oForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    var lstLoHang = KhoUtil.GetDanhMuc<LoHangHoa>().Where(l => l.ThuocVtytID == hanghoaID).ToList();
+                    cboLoHang.DataSource = lstLoHang;
+                    cboLoHang.ValueMember = "ID";
+                    cboLoHang.DisplayMember = "SoLo";
+                    cboLoHang.DataBind();
+                    cboLoHang.DisplayLayout.PerformAutoResizeColumns(false, Infragistics.Win.UltraWinGrid.PerformAutoSizeType.AllRowsInBand);
+                    cboLoHang.Value = oForm.Entity.ID;
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+            
+        }
+
+        private void cboQDThau_InitializeLayout(object sender, InitializeLayoutEventArgs e)
+        {
+            cboQDThau.UltraCommbo_InitializeLayout(sender, e);
+            if (e.Layout.Bands.Count > 0)
+            {
+                foreach (var clm in e.Layout.Bands[0].Columns)
+                {
+                    if (clm.Key == "Ma")
+                    {
+                        clm.Header.Caption = "Quyết Định";
+                    }
+                    else if (clm.Key == "MoTa")
+                    {
+                        clm.Header.Caption = "Mô Tả";
+                    }
+                    else
+                    {
+                        clm.Hidden = true;
+                    }
+                }
+            }
+        }
+
+        private void cboQDThau_EditorButtonClick(object sender, EditorButtonEventArgs e)
+        {
+            try
+            {
+                //LoHangHoa oSoLo = null;
+                //var hanghoaID = (Guid)cboThuoc.Value;
+                //var hanghoa = KhoUtil.GetDanhMuc<HangHoa>().FirstOrDefault(t => t.ID == hanghoaID);
+                //if (e.Button.Key == "edit")
+                //{
+                //    if (cboLoHang.Value != null)
+                //    {
+                //        Guid loID = (Guid)cboLoHang.Value;
+                //        oSoLo = KhoUtil.GetDanhMuc<LoHangHoa>().FirstOrDefault(l => l.ID == loID);
+                //    }
+                //}
+
+                QuyetDinhThauForm oForm = new QuyetDinhThauForm();
+                oForm.InitThongTin(null);
+                if (oForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    var lstQuyetDinh = KhoUtil.GetDanhMuc<QuyetDinhThau>();
+                    cboQDThau.DataSource = lstQuyetDinh;
+                    cboQDThau.ValueMember = "Ma";
+                    cboQDThau.DisplayMember = "Ma";
+                    cboQDThau.DisplayLayout.PerformAutoResizeColumns(false, Infragistics.Win.UltraWinGrid.PerformAutoSizeType.AllRowsInBand);
+                    cboQDThau.Value = oForm.Entity.Ma;
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
+
+        private void cboQDThau_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void cboLoHang_ValueChanged(object sender, EventArgs e)
+        {
+            if (cboLoHang.SelectedRow != null)
+            {
+                var loHang = KhoUtil.GetDanhMuc<LoHangHoa>().FirstOrDefault(l => l.SoLo == cboLoHang.Text);
+                if (loHang == null)
+                {
+                    txtHSD.Text = "";
+                }
+                else
+                {
+                    txtHSD.Text = loHang.HanSuDung.Value.ToString("dd/MM/yyyy");
+                }
+            }
+        }
+
+        private void cboQDThau_Enter(object sender, EventArgs e)
+        {
+            UltraCombo cbo = (UltraCombo)sender;
+            foreach (var item in cbo.ButtonsRight)
+            {
+                item.Visible = true;
+            }
+        }
+
+        private void cboQDThau_Leave(object sender, EventArgs e)
+        {
+            UltraCombo cbo = (UltraCombo)sender;
+            foreach (var item in cbo.ButtonsRight)
             {
                 item.Visible = false;
             }

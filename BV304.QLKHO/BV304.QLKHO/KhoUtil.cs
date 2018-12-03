@@ -59,7 +59,7 @@ namespace BV.QLKHO
                 Func<T, object> selector = t => pInfo.GetValue(t);
 
                 var coll = DanhMucBVCached.GetDanhMuc<T>();
-                coll.RemoveAll(t => pInfo.GetValue(t) == pInfo.GetValue(entity));
+                var count = coll.RemoveAll(t => pInfo.GetValue(t).ToString() == pInfo.GetValue(entity).ToString());
                 coll.Add(entity);
             }
             catch (Exception ex)
@@ -143,6 +143,37 @@ namespace BV.QLKHO
 
                 throw;
             }
+        }
+
+        internal static LoHangHoa SaveThongTinLoHang(LoHangHoa oEntity)
+        {
+            try
+            {
+                return KhoConnector.SaveThongTinLoHang(oEntity);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        internal static QuyetDinhThau SaveThongTinQuyetDinhThau(QuyetDinhThau oEntity)
+        {
+            try
+            {
+                return KhoConnector.SaveThongTinQuyetDinhThau(oEntity);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        internal static T SaveEntity<T>(T entity)
+        {
+            return entity;
         }
     }
 }

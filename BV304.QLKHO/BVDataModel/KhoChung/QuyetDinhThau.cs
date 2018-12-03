@@ -15,7 +15,9 @@ namespace BV.DataModel.KhoChung
     public partial class QuyetDinhThau
     {
         public System.Guid ID { get; set; }
-        public string MaQuyetDinhThau { get; set; }
-        public string TenQuyetDinhThau { get; set; }
+        public string Ma { get; set; }
+        public string MoTa { get; set; }
+        public Nullable<System.DateTime> NgayQuyetDinh { get; set; }
+        public bool HieuLuc { get; set; }
     }
 }

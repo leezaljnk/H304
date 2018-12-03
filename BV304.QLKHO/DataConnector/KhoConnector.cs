@@ -184,6 +184,64 @@ namespace BV.DataConnector
             }
         }
 
+        public static QuyetDinhThau SaveThongTinQuyetDinhThau(QuyetDinhThau oEntity)
+        {
+            QuyetDinhThau oRet = null;
+            if (oEntity.ID == Guid.Empty)
+            {
+                //Add
+                oRet = KhoChungProvider.KhoTong.QuyetDinhThau.FirstOrDefault(l => l.Ma == oEntity.Ma);
+                if (oRet != null)
+                {
+                    throw new Exception("Quyết định đã có trên hệ thống.");
+                }
+                else
+                {
+                    oEntity.ID = Guid.NewGuid();
+                    oRet = KhoChungProvider.KhoTong.QuyetDinhThau.Add(oEntity);
+                }
+            }
+            else
+            {
+                oRet = KhoChungProvider.KhoTong.QuyetDinhThau.FirstOrDefault(l => l.ID == oEntity.ID);
+                oRet.Ma = oEntity.Ma;
+                oRet.MoTa = oEntity.MoTa;
+                oRet.NgayQuyetDinh = oEntity.NgayQuyetDinh;
+                oRet.HieuLuc = oEntity.HieuLuc;
+            }
+
+            KhoChungProvider.KhoTong.SaveChanges();
+            return oRet;
+        }
+
+        public static LoHangHoa SaveThongTinLoHang(LoHangHoa oEntity)
+        {
+            LoHangHoa oRet = null;
+            if (oEntity.ID == Guid.Empty)
+            {
+                //Add
+                oRet = KhoChungProvider.KhoTong.LoHangHoa.FirstOrDefault(l => l.ThuocVtytID == oEntity.ThuocVtytID && l.SoLo == oEntity.SoLo);
+                if (oRet != null)
+                {
+                    throw new Exception("Lô hàng này đã có trên hệ thống.");
+                }
+                else
+                {
+                    oEntity.ID = Guid.NewGuid();
+                    oRet = KhoChungProvider.KhoTong.LoHangHoa.Add(oEntity);
+                }
+            }
+            else
+            {
+                oRet = KhoChungProvider.KhoTong.LoHangHoa.FirstOrDefault(l => l.ID == oEntity.ID);
+                oRet.SoLo = oEntity.SoLo;
+                oRet.HanSuDung = oEntity.HanSuDung;
+            }
+
+            KhoChungProvider.KhoTong.SaveChanges();
+            return oRet;
+        }
+
         public static NhaCungCap SaveNhaCungCap(NhaCungCap oEntity)
         {
             var ncc = KhoChungProvider.KhoTong.NhaCungCap.FirstOrDefault(n => n.NguonNhapID == oEntity.NguonNhapID);

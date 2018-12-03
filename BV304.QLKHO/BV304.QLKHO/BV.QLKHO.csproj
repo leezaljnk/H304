@@ -111,6 +111,18 @@
     <Compile Include="NhaCungCap\NhaCungCapForm.Designer.cs">
       <DependentUpon>NhaCungCapForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="THUOC\QuyetDinhThauForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THUOC\QuyetDinhThauForm.Designer.cs">
+      <DependentUpon>QuyetDinhThauForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THUOC\ThongTinLoHangForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THUOC\ThongTinLoHangForm.Designer.cs">
+      <DependentUpon>ThongTinLoHangForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="THUOC\ThongTinThuocFormTest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +178,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NhaCungCap\NhaCungCapForm.resx">
       <DependentUpon>NhaCungCapForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THUOC\QuyetDinhThauForm.resx">
+      <DependentUpon>QuyetDinhThauForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THUOC\ThongTinLoHangForm.resx">
+      <DependentUpon>ThongTinLoHangForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="THUOC\ThongTinThuocFormTest.resx">
       <DependentUpon>ThongTinThuocFormTest.cs</DependentUpon>

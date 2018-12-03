@@ -32,7 +32,6 @@ namespace BV.DataModel.KhoChung
         public virtual DbSet<LoHangHoa> LoHangHoa { get; set; }
         public virtual DbSet<NhaCungCap> NhaCungCap { get; set; }
         public virtual DbSet<PhanLoaiHoaDon> PhanLoaiHoaDon { get; set; }
-        public virtual DbSet<QuyetDinhThau> QuyetDinhThau { get; set; }
         public virtual DbSet<QuyetDinhThauChiTiet> QuyetDinhThauChiTiet { get; set; }
         public virtual DbSet<THUOC_6061> THUOC_6061 { get; set; }
         public virtual DbSet<HoTriLieu> HoTriLieu { get; set; }
@@ -40,5 +39,6 @@ namespace BV.DataModel.KhoChung
         public virtual DbSet<VATTU_YTE_6061> VATTU_YTE_6061 { get; set; }
         public virtual DbSet<DinhGiaHangHoa> DinhGiaHangHoa { get; set; }
         public virtual DbSet<v_ChiTietDonViHangHoa> v_ChiTietDonViHangHoa { get; set; }
+        public virtual DbSet<QuyetDinhThau> QuyetDinhThau { get; set; }
     }
 }
