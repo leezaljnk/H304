@@ -40,5 +40,22 @@ namespace BV.DataModel.KhoChung
         public virtual DbSet<DinhGiaHangHoa> DinhGiaHangHoa { get; set; }
         public virtual DbSet<v_ChiTietDonViHangHoa> v_ChiTietDonViHangHoa { get; set; }
         public virtual DbSet<QuyetDinhThau> QuyetDinhThau { get; set; }
+        public virtual DbSet<DiaDanh> DiaDanh { get; set; }
+        public virtual DbSet<dm_dichvu_dong> dm_dichvu_dong { get; set; }
+        public virtual DbSet<HS_BHYT> HS_BHYT { get; set; }
+        public virtual DbSet<HS_DoiTuong> HS_DoiTuong { get; set; }
+        public virtual DbSet<Khoa> Khoa { get; set; }
+        public virtual DbSet<KhoaPhong> KhoaPhong { get; set; }
+        public virtual DbSet<NhomKhoa> NhomKhoa { get; set; }
+        public virtual DbSet<PhongKham> PhongKham { get; set; }
+        public virtual DbSet<PhongKham_> PhongKham_ { get; set; }
+        public virtual DbSet<ThongTinBenhVien> ThongTinBenhVien { get; set; }
+        public virtual DbSet<DanToc> DanToc { get; set; }
+        public virtual DbSet<DichVu_> DichVu_ { get; set; }
+        public virtual DbSet<GioiTinh> GioiTinh { get; set; }
+        public virtual DbSet<HS_CaNhan> HS_CaNhan { get; set; }
+        public virtual DbSet<MucHuongBHYT> MucHuongBHYT { get; set; }
+        public virtual DbSet<QuocGia> QuocGia { get; set; }
+        public virtual DbSet<TonGiao> TonGiao { get; set; }
     }
 }

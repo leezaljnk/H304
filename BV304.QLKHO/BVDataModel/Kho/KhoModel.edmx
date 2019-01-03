@@ -14,7 +14,6 @@
           <Property Name="HangHoaID" Type="uniqueidentifier" />
           <Property Name="SoLuong" Type="float" />
           <Property Name="LoHangID" Type="uniqueidentifier" />
-          <Property Name="HanSuDung" Type="date" />
           <Property Name="SoQuyeDinh" Type="nvarchar" MaxLength="50" />
           <Property Name="TenDonVi" Type="nvarchar" MaxLength="50" />
           <Property Name="MaDonVi" Type="uniqueidentifier" />
@@ -114,7 +113,6 @@
           <Property Name="HangHoaID" Type="Guid" />
           <Property Name="SoLuong" Type="Double" />
           <Property Name="LoHangID" Type="Guid" />
-          <Property Name="HanSuDung" Type="DateTime" Precision="0" />
           <Property Name="SoQuyeDinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TenDonVi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MaDonVi" Type="Guid" />
@@ -203,7 +201,6 @@
                 <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
                 <ScalarProperty Name="TenDonVi" ColumnName="TenDonVi" />
                 <ScalarProperty Name="SoQuyeDinh" ColumnName="SoQuyeDinh" />
-                <ScalarProperty Name="HanSuDung" ColumnName="HanSuDung" />
                 <ScalarProperty Name="LoHangID" ColumnName="LoHangID" />
                 <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
                 <ScalarProperty Name="HangHoaID" ColumnName="HangHoaID" />

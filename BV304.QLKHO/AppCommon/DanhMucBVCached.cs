@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BV.AppCommon
 {
     public static class DanhMucBVCached
     {
-        private static Dictionary<string, IList> AllDanhMuc = new Dictionary<string, IList>();
+        private static readonly Dictionary<string, IList> AllDanhMuc = new Dictionary<string, IList>();
 
         public static List<T> GetDanhMuc<T>() where T : class
         {
             var key = typeof(T).FullName;
-            if (AllDanhMuc.ContainsKey(key))
-            {
-                return AllDanhMuc[key] as List<T>;
-            }
+            if (AllDanhMuc.ContainsKey(key)) return AllDanhMuc[key] as List<T>;
 
             return null;
         }
@@ -26,13 +19,9 @@ namespace BV.AppCommon
         {
             var key = typeof(T).FullName;
             if (AllDanhMuc.ContainsKey(key))
-            {
                 AllDanhMuc[key] = collection;
-            }
             else
-            {
                 AllDanhMuc.Add(key, collection);
-            }
         }
     }
 }

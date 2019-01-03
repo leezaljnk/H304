@@ -19,7 +19,6 @@ namespace BV.DataModel.Kho
         public Nullable<System.Guid> HangHoaID { get; set; }
         public Nullable<double> SoLuong { get; set; }
         public Nullable<System.Guid> LoHangID { get; set; }
-        public Nullable<System.DateTime> HanSuDung { get; set; }
         public string SoQuyeDinh { get; set; }
         public string TenDonVi { get; set; }
         public Nullable<System.Guid> MaDonVi { get; set; }

@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="BV304.KHOModel.PhieuDeNghi" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="BV304.KHOModel.PhieuNhapKho" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="BV304.KHOModel.PhieuXuatKho" Width="1.5" PointX="0.75" PointY="5.75" />
-        <EntityTypeShape EntityType="BV304.KHOModel.Thuoc_VatTuYteTonKho" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="BV304.KHOModel.Thuoc_VatTuYteTonKho" Width="1.5" PointX="4.75" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -63,16 +63,46 @@
     <Compile Include="KhoChung\ChuyenDoiDonViHangHoa.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="KhoChung\DanToc.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\DiaDanh.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\DichVu_.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="KhoChung\DinhGiaHangHoa.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="KhoChung\dm_dichvu_dong.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="KhoChung\DonViHangHoa.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\GioiTinh.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
     <Compile Include="KhoChung\HangHoa.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
     <Compile Include="KhoChung\HoTriLieu.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\HS_BHYT.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\HS_CaNhan.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\HS_DoiTuong.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\Khoa.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\KhoaPhong.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
     <Compile Include="KhoChung\KhoChungModel.Context.cs">
@@ -97,10 +127,25 @@
     <Compile Include="KhoChung\LoHangHoa.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="KhoChung\MucHuongBHYT.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="KhoChung\NhaCungCap.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="KhoChung\NhomKhoa.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="KhoChung\PhanLoaiHoaDon.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\PhongKham.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\PhongKham_.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\QuocGia.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
     <Compile Include="KhoChung\QuyetDinhThau.cs">
@@ -109,10 +154,16 @@
     <Compile Include="KhoChung\QuyetDinhThauChiTiet.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="KhoChung\ThongTinBenhVien.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="KhoChung\ThuocDuongDung.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
     <Compile Include="KhoChung\THUOC_6061.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\TonGiao.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
     <Compile Include="KhoChung\VATTU_YTE_6061.cs">
