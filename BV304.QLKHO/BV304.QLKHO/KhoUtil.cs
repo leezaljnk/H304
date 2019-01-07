@@ -175,5 +175,18 @@ namespace BV.QLKHO
         {
             return entity;
         }
+
+        public static Kho SaveDanhMucKho(Kho oEntity)
+        {
+            try
+            {
+                return KhoConnector.SaveDanhMucKho(oEntity);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
     }
 }

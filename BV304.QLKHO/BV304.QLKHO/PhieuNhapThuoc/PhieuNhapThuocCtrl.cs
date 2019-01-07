@@ -11,7 +11,6 @@ using BV.DataModel;
 using BV.QLKHO.THUOC;
 using Infragistics.Win.UltraWinEditors;
 using BV.DataModel.KhoChung;
-using BV.DataModel.Kho;
 using Infragistics.Win.UltraWinGrid;
 using BV.SharedComponent;
 
@@ -46,7 +45,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
             InitData();
 
             cboNhaCungCap.DataSource = KhoUtil.GetDanhMuc<NhaCungCap>();
-            cboNhaCungCap.ValueMember = "NguonNhapID";
+            cboNhaCungCap.ValueMember = "ID";
             cboNhaCungCap.DisplayMember = "Ten";
 
             cboPLHoaDon.DataSource = KhoUtil.GetDanhMuc<PhanLoaiHoaDon>();
@@ -72,7 +71,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
             if (oForm.ShowDialog(this) == DialogResult.OK)
             {
                 cboNhaCungCap.DataBind();
-                cboNhaCungCap.Value = oForm.Entity.NguonNhapID;
+                cboNhaCungCap.Value = oForm.Entity.ID;
             }
         }
 

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BV.DataModel.Kho
+namespace BV.DataModel.KhoChung
 {
     using System;
     using System.Collections.Generic;
@@ -25,7 +25,9 @@ namespace BV.DataModel.Kho
         public string NguoiNhan { get; set; }
         public Nullable<double> TongTien { get; set; }
         public Nullable<double> ThanhTien { get; set; }
-        public string MaPhanLoaiHoaDon { get; set; }
+        public Nullable<int> MaPhanLoaiHoaDon { get; set; }
         public string TenPhanLoaiHoaDon { get; set; }
+    
+        public virtual PhanLoaiHoaDon PhanLoaiHoaDon { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace BV.DataModel.KhoChung
     
     public partial class NhaCungCap
     {
-        public int NguonNhapID { get; set; }
+        public int ID { get; set; }
         public string Ten { get; set; }
         public string DiaChi { get; set; }
         public string TinhThanh { get; set; }

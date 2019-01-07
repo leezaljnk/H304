@@ -12,27 +12,19 @@ namespace BV.DataModel.KhoChung
     using System;
     using System.Collections.Generic;
     
-    public partial class KhoaPhong
+    public partial class LoaiKho
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public KhoaPhong()
+        public LoaiKho()
         {
             this.Kho = new HashSet<Kho>();
         }
     
         public int ID { get; set; }
+        public string Ma { get; set; }
         public string Ten { get; set; }
-        public Nullable<int> Nhom { get; set; }
-        public string MaBYT { get; set; }
-        public string TenBYT { get; set; }
-        public Nullable<int> CreateByID { get; set; }
-        public Nullable<System.DateTime> CreateDate { get; set; }
-        public Nullable<int> ModifyByID { get; set; }
-        public Nullable<System.DateTime> ModifyDate { get; set; }
-        public Nullable<bool> Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Kho> Kho { get; set; }
-        public virtual NhomKhoa NhomKhoa { get; set; }
     }
 }

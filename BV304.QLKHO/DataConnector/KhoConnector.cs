@@ -202,7 +202,7 @@ namespace BV.DataConnector
 
         public static NhaCungCap SaveNhaCungCap(NhaCungCap oEntity)
         {
-            var ncc = KhoChungProvider.KhoTong.NhaCungCap.FirstOrDefault(n => n.NguonNhapID == oEntity.NguonNhapID);
+            var ncc = KhoChungProvider.KhoTong.NhaCungCap.FirstOrDefault(n => n.ID == oEntity.ID);
             if (ncc == null)
             {
                 ncc = KhoChungProvider.KhoTong.NhaCungCap.Add(oEntity);
@@ -222,6 +222,33 @@ namespace BV.DataConnector
 
             KhoChungProvider.KhoTong.SaveChanges();
             return ncc;
+        }
+
+        public static Kho SaveDanhMucKho(Kho oEntity)
+        {
+            var oKho = KhoChungProvider.KhoTong.Kho.FirstOrDefault(n => n.ID == oEntity.ID);
+            if (oKho == null)
+            {
+                oKho = KhoChungProvider.KhoTong.Kho.Add(oEntity);
+            }
+            else
+            {
+                oKho.TenKho = oEntity.TenKho;
+                oKho.KhoaId = oEntity.KhoaId;
+                oKho.LoaiKhoId = oEntity.LoaiKhoId;
+                oKho.MaKho = oEntity.MaKho;
+            }
+
+            KhoChungProvider.KhoTong.SaveChanges();
+            return oKho;
+        }
+
+        public static bool DuyetPhieuDeNghiKhoChan()
+        {
+
+
+
+            return true;
         }
     }
 }

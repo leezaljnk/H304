@@ -12,16 +12,15 @@ namespace BV.DataModel.KhoChung
     using System;
     using System.Collections.Generic;
     
-    public partial class Khoa
+    public partial class Kho
     {
         public System.Guid ID { get; set; }
-        public string Ma { get; set; }
-        public string Ten { get; set; }
-        public Nullable<int> NhomKhoaId { get; set; }
-        public string MoTa { get; set; }
-        public string MaBYT { get; set; }
-        public string TenBYT { get; set; }
+        public Nullable<int> KhoaId { get; set; }
+        public string MaKho { get; set; }
+        public string TenKho { get; set; }
+        public Nullable<int> LoaiKhoId { get; set; }
     
-        public virtual NhomKhoa NhomKhoa { get; set; }
+        public virtual KhoaPhong KhoaPhong { get; set; }
+        public virtual LoaiKho LoaiKho { get; set; }
     }
 }

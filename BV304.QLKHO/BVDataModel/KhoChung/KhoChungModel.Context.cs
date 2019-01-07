@@ -26,36 +26,42 @@ namespace BV.DataModel.KhoChung
         }
     
         public virtual DbSet<ChuyenDoiDonViHangHoa> ChuyenDoiDonViHangHoa { get; set; }
+        public virtual DbSet<DiaDanh> DiaDanh { get; set; }
+        public virtual DbSet<DinhGiaHangHoa> DinhGiaHangHoa { get; set; }
+        public virtual DbSet<dm_dichvu_dong> dm_dichvu_dong { get; set; }
         public virtual DbSet<DonViHangHoa> DonViHangHoa { get; set; }
         public virtual DbSet<HangHoa> HangHoa { get; set; }
+        public virtual DbSet<HS_BHYT> HS_BHYT { get; set; }
+        public virtual DbSet<HS_DoiTuong> HS_DoiTuong { get; set; }
+        public virtual DbSet<KhoaPhong> KhoaPhong { get; set; }
         public virtual DbSet<LoaiGiaHangHoa> LoaiGiaHangHoa { get; set; }
         public virtual DbSet<LoHangHoa> LoHangHoa { get; set; }
         public virtual DbSet<NhaCungCap> NhaCungCap { get; set; }
-        public virtual DbSet<PhanLoaiHoaDon> PhanLoaiHoaDon { get; set; }
-        public virtual DbSet<QuyetDinhThauChiTiet> QuyetDinhThauChiTiet { get; set; }
-        public virtual DbSet<THUOC_6061> THUOC_6061 { get; set; }
-        public virtual DbSet<HoTriLieu> HoTriLieu { get; set; }
-        public virtual DbSet<ThuocDuongDung> ThuocDuongDung { get; set; }
-        public virtual DbSet<VATTU_YTE_6061> VATTU_YTE_6061 { get; set; }
-        public virtual DbSet<DinhGiaHangHoa> DinhGiaHangHoa { get; set; }
-        public virtual DbSet<v_ChiTietDonViHangHoa> v_ChiTietDonViHangHoa { get; set; }
-        public virtual DbSet<QuyetDinhThau> QuyetDinhThau { get; set; }
-        public virtual DbSet<DiaDanh> DiaDanh { get; set; }
-        public virtual DbSet<dm_dichvu_dong> dm_dichvu_dong { get; set; }
-        public virtual DbSet<HS_BHYT> HS_BHYT { get; set; }
-        public virtual DbSet<HS_DoiTuong> HS_DoiTuong { get; set; }
-        public virtual DbSet<Khoa> Khoa { get; set; }
-        public virtual DbSet<KhoaPhong> KhoaPhong { get; set; }
         public virtual DbSet<NhomKhoa> NhomKhoa { get; set; }
+        public virtual DbSet<PhanLoaiHoaDon> PhanLoaiHoaDon { get; set; }
         public virtual DbSet<PhongKham> PhongKham { get; set; }
         public virtual DbSet<PhongKham_> PhongKham_ { get; set; }
+        public virtual DbSet<QuyetDinhThau> QuyetDinhThau { get; set; }
+        public virtual DbSet<QuyetDinhThauChiTiet> QuyetDinhThauChiTiet { get; set; }
         public virtual DbSet<ThongTinBenhVien> ThongTinBenhVien { get; set; }
+        public virtual DbSet<THUOC_6061> THUOC_6061 { get; set; }
+        public virtual DbSet<ChiTietPhieu> ChiTietPhieu { get; set; }
+        public virtual DbSet<Kho> Kho { get; set; }
+        public virtual DbSet<LoaiKho> LoaiKho { get; set; }
+        public virtual DbSet<PhieuDeNghi> PhieuDeNghi { get; set; }
+        public virtual DbSet<PhieuNhapKho> PhieuNhapKho { get; set; }
+        public virtual DbSet<PhieuXuatKho> PhieuXuatKho { get; set; }
+        public virtual DbSet<Thuoc_VatTuYteTonKho> Thuoc_VatTuYteTonKho { get; set; }
         public virtual DbSet<DanToc> DanToc { get; set; }
         public virtual DbSet<DichVu_> DichVu_ { get; set; }
         public virtual DbSet<GioiTinh> GioiTinh { get; set; }
+        public virtual DbSet<HoTriLieu> HoTriLieu { get; set; }
         public virtual DbSet<HS_CaNhan> HS_CaNhan { get; set; }
         public virtual DbSet<MucHuongBHYT> MucHuongBHYT { get; set; }
         public virtual DbSet<QuocGia> QuocGia { get; set; }
+        public virtual DbSet<ThuocDuongDung> ThuocDuongDung { get; set; }
         public virtual DbSet<TonGiao> TonGiao { get; set; }
+        public virtual DbSet<VATTU_YTE_6061> VATTU_YTE_6061 { get; set; }
+        public virtual DbSet<v_ChiTietDonViHangHoa> v_ChiTietDonViHangHoa { get; set; }
     }
 }

@@ -76,6 +76,18 @@
       <DependentUpon>KhoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="KhoUtil.cs" />
+    <Compile Include="Kho\DanhMucKhoCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Kho\DanhMucKhoCtrl.Designer.cs">
+      <DependentUpon>DanhMucKhoCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kho\DanhMucKhoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kho\DanhMucKhoForm.Designer.cs">
+      <DependentUpon>DanhMucKhoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="NhaCungCap\DanhMucNhaCungCapCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -149,6 +161,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KhoForm.resx">
       <DependentUpon>KhoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kho\DanhMucKhoCtrl.resx">
+      <DependentUpon>DanhMucKhoCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kho\DanhMucKhoForm.resx">
+      <DependentUpon>DanhMucKhoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NhaCungCap\DanhMucNhaCungCapCtrl.resx">
       <DependentUpon>DanhMucNhaCungCapCtrl.cs</DependentUpon>

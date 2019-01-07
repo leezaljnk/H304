@@ -60,6 +60,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KhoChung\ChiTietPhieu.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="KhoChung\ChuyenDoiDonViHangHoa.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
@@ -99,7 +102,7 @@
     <Compile Include="KhoChung\HS_DoiTuong.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="KhoChung\Khoa.cs">
+    <Compile Include="KhoChung\Kho.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
     <Compile Include="KhoChung\KhoaPhong.cs">
@@ -124,6 +127,9 @@
     <Compile Include="KhoChung\LoaiGiaHangHoa.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="KhoChung\LoaiKho.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="KhoChung\LoHangHoa.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
@@ -137,6 +143,15 @@
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
     <Compile Include="KhoChung\PhanLoaiHoaDon.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\PhieuDeNghi.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\PhieuNhapKho.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChung\PhieuXuatKho.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
     <Compile Include="KhoChung\PhongKham.cs">
@@ -163,6 +178,9 @@
     <Compile Include="KhoChung\THUOC_6061.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="KhoChung\Thuoc_VatTuYteTonKho.cs">
+      <DependentUpon>KhoChungModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="KhoChung\TonGiao.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
     </Compile>
@@ -171,37 +189,6 @@
     </Compile>
     <Compile Include="KhoChung\v_ChiTietDonViHangHoa.cs">
       <DependentUpon>KhoChungModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Kho\ChiTietPhieu.cs">
-      <DependentUpon>KhoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Kho\KhoProvider.cs" />
-    <Compile Include="Kho\KhoModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>KhoModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Kho\KhoModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>KhoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Kho\KhoModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>KhoModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Kho\PhieuDeNghi.cs">
-      <DependentUpon>KhoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Kho\PhieuNhapKho.cs">
-      <DependentUpon>KhoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Kho\PhieuXuatKho.cs">
-      <DependentUpon>KhoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Kho\Thuoc_VatTuYteTonKho.cs">
-      <DependentUpon>KhoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -213,13 +200,6 @@
     <None Include="App.Config" />
     <None Include="KhoChung\KhoChungModel.edmx.diagram">
       <DependentUpon>KhoChungModel.edmx</DependentUpon>
-    </None>
-    <EntityDeploy Include="Kho\KhoModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>KhoModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Kho\KhoModel.edmx.diagram">
-      <DependentUpon>KhoModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -239,16 +219,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>KhoChungModel.edmx</DependentUpon>
       <LastGenOutput>KhoChungModel.cs</LastGenOutput>
-    </Content>
-    <Content Include="Kho\KhoModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>KhoModel.edmx</DependentUpon>
-      <LastGenOutput>KhoModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Kho\KhoModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>KhoModel.edmx</DependentUpon>
-      <LastGenOutput>KhoModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

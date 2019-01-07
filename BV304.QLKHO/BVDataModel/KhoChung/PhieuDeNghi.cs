@@ -7,26 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BV.DataModel.Kho
+namespace BV.DataModel.KhoChung
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class PhieuNhapKho
+    public partial class PhieuDeNghi
     {
         public System.Guid ID { get; set; }
         public string Ma { get; set; }
+        public Nullable<System.DateTime> NgayDeNghi { get; set; }
+        public string LyDoDeNghi { get; set; }
+        public Nullable<short> TinhTrang { get; set; }
+        public Nullable<System.DateTime> NgayHuy { get; set; }
+        public string LyDoHuy { get; set; }
+        public string NguoiHuy { get; set; }
         public Nullable<System.DateTime> NgayTao { get; set; }
         public string NguoiTao { get; set; }
-        public System.Guid MaNhaCungCap { get; set; }
-        public string NhaCungCap { get; set; }
-        public string NguoiCungCap { get; set; }
-        public string SoHoaDon { get; set; }
-        public Nullable<System.DateTime> NgayHoaDon { get; set; }
-        public Nullable<double> VAT { get; set; }
-        public Nullable<double> TongTien { get; set; }
-        public Nullable<double> ThanhTien { get; set; }
-        public string MaPhanLoaiHoaDon { get; set; }
-        public string TenPhanLoaiHoaDon { get; set; }
+        public Nullable<System.Guid> MaKhoNhap { get; set; }
+        public Nullable<System.Guid> MaKhoXuat { get; set; }
+        public Nullable<short> LoaiPhieu { get; set; }
     }
 }

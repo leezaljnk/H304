@@ -1,35 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using BV.DataConnector;
-using BV.DataModel;
-using BV.SharedComponent;
 using BV.DataModel.KhoChung;
 
-namespace BV.QLKHO.THUOC
+namespace BV.QLKHO.KhoBV
 {
-    public partial class DanhMucNhaCungCapCtrl : UserControl
+    public partial class DanhMucKhoCtrl : UserControl
     {
         public event EventHandler CloseView;
-        private List<NhaCungCap> _DMNhaCungCap;
-
-        public DanhMucNhaCungCapCtrl()
+        private List<Kho> _DMKho;
+        public DanhMucKhoCtrl(List<Kho> inventories)
         {
+            _DMKho = inventories;
             InitializeComponent();
+            InitControlUI(inventories);
         }
-
-        internal void InitControlUI()
+        internal void InitControlUI(List<Kho> inventories)
         {
-            _DMNhaCungCap = KhoUtil.GetDanhMuc<NhaCungCap>();
-            foreach (var t in _DMNhaCungCap)
+            dataGridView1.Rows.Clear();
+            foreach (var t in inventories)
             {
-                var item = new object[] { t.Ten, t.DiaChi, t.TinhThanh, t.DienThoai, t.GhiChu};
+                var item = new object[] { t.MaKho, t.TenKho, t.LoaiKho.Ten, t.KhoaPhong.Ten };
                 int i = dataGridView1.Rows.Add(item);
                 dataGridView1.Rows[i].Tag = t;
             }
@@ -41,12 +33,12 @@ namespace BV.QLKHO.THUOC
             {
                 if (e.ClickedItem.Name == "add")
                 {
-                    NhaCungCapForm oForm = new NhaCungCapForm();
+                    DanhMucKhoForm oForm = new DanhMucKhoForm();
                     oForm.InitThongTin(null);
                     if (oForm.ShowDialog(this) == DialogResult.OK)
                     {
                         var t = oForm.Entity;
-                        var item = new object[] { t.Ten, t.DiaChi, t.TinhThanh, t.DienThoai, t.GhiChu };
+                        var item = new object[] { t.MaKho, t.TenKho, t.LoaiKhoId, t.KhoaId };
                         int i = dataGridView1.Rows.Add(item);
                         dataGridView1.Rows[i].Tag = t;
                     }
@@ -56,17 +48,16 @@ namespace BV.QLKHO.THUOC
                     if (dataGridView1.SelectedRows.Count > 0)
                     {
                         var row = dataGridView1.SelectedRows[0];
-                        NhaCungCap oThuoc = row.Tag as NhaCungCap;
-                        NhaCungCapForm oForm = new NhaCungCapForm();
-                        oForm.InitThongTin(oThuoc);
+                        Kho oKho = row.Tag as Kho;
+                        DanhMucKhoForm oForm = new DanhMucKhoForm();
+                        oForm.InitThongTin(oKho);
                         if (oForm.ShowDialog(this) == DialogResult.OK)
                         {
                             var t = oForm.Entity;
-                            row.Cells[0].Value = t.Ten;
-                            row.Cells[1].Value = t.DiaChi;
-                            row.Cells[2].Value = t.TinhThanh;
-                            row.Cells[3].Value = t.DienThoai;
-                            row.Cells[4].Value = t.GhiChu;
+                            row.Cells[0].Value = t.MaKho;
+                            row.Cells[1].Value = t.TenKho;
+                            row.Cells[2].Value = t.LoaiKho.Ten;
+                            row.Cells[3].Value = t.KhoaPhong.Ten;
                             row.Tag = t;
                         }
                     }
@@ -82,23 +73,22 @@ namespace BV.QLKHO.THUOC
             }
         }
 
-        private void DanhMucNhaCungCapCtrl_CloseView1(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void DanhMucNhaCungCapCtrl_CloseView(object sender, EventArgs e)
-        {
-        }
-
         private void HandleException(Exception ex)
         {
-            MessageBox.Show(this, "Có lỗi xảy ra, vui lòng thử lại hoặc liên hệ với người quản trị hệ thống." + Environment.NewLine + "Lỗi: " + ex.Message, "Quản lý thuốc", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this, @"Có lỗi xảy ra, vui lòng thử lại hoặc liên hệ với người quản trị hệ thống." + Environment.NewLine + @"Lỗi: " + ex.Message, @"Quản lý kho", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            var strSeach = txtTenCSSearch.Text.Trim();
+            if (string.IsNullOrEmpty(strSeach))
+            {
+                InitControlUI(_DMKho);
+                return;
+            }
 
+            var kho = _DMKho.Where(k => k.MaKho.Contains(strSeach) || k.TenKho.Contains(strSeach) || k.LoaiKho.Ten.Contains(strSeach) || k.KhoaPhong.Ten.Contains(strSeach));
+            InitControlUI(kho.ToList());
         }
     }
 }

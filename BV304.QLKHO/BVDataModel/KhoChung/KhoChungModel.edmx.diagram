@@ -5,39 +5,49 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="499dfe7aee3740859b61ac529cc71f32" Name="Diagram1">
-        <EntityTypeShape EntityType="BV304Model.ChuyenDoiDonViHangHoa" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BV304Model.DonViHangHoa" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BV304Model.HangHoa" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="BV304Model.LoaiGiaHangHoa" Width="1.5" PointX="2.75" PointY="4.75" />
-        <EntityTypeShape EntityType="BV304Model.LoHangHoa" Width="1.5" PointX="4.75" PointY="3.75" />
-        <EntityTypeShape EntityType="BV304Model.NhaCungCap" Width="1.5" PointX="6.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BV304Model.PhanLoaiHoaDon" Width="1.5" PointX="6.75" PointY="4.75" />
-        <EntityTypeShape EntityType="BV304Model.QuyetDinhThauChiTiet" Width="1.5" PointX="4.75" PointY="7.75" />
-        <EntityTypeShape EntityType="BV304Model.THUOC_6061" Width="1.5" PointX="6.75" PointY="7.75" />
-        <EntityTypeShape EntityType="BV304Model.HoTriLieu" Width="1.5" PointX="8.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BV304Model.ThuocDuongDung" Width="1.5" PointX="8.75" PointY="3.75" />
-        <EntityTypeShape EntityType="BV304Model.VATTU_YTE_6061" Width="1.5" PointX="8.75" PointY="6.75" />
-        <EntityTypeShape EntityType="BV304Model.DinhGiaHangHoa" Width="1.5" PointX="0.75" PointY="10.75" />
-        <EntityTypeShape EntityType="BV304Model.v_ChiTietDonViHangHoa" Width="1.5" PointX="8.5" PointY="8.75" />
-        <EntityTypeShape EntityType="BV304Model.QuyetDinhThau" Width="1.5" PointX="3.375" PointY="10.75" />
-        <EntityTypeShape EntityType="BV304Model.DiaDanh" Width="1.5" PointX="11.75" PointY="4.75" />
-        <EntityTypeShape EntityType="BV304Model.dm_dichvu_dong" Width="1.5" PointX="5.75" PointY="11.75" />
-        <EntityTypeShape EntityType="BV304Model.HS_BHYT" Width="1.5" PointX="11.75" PointY="8.75" />
-        <EntityTypeShape EntityType="BV304Model.HS_DoiTuong" Width="1.5" PointX="7.75" PointY="12.75" />
-        <EntityTypeShape EntityType="BV304Model.Khoa" Width="1.5" PointX="14" PointY="1" />
-        <EntityTypeShape EntityType="BV304Model.KhoaPhong" Width="1.5" PointX="9.75" PointY="12.75" />
-        <EntityTypeShape EntityType="BV304Model.NhomKhoa" Width="1.5" PointX="11.75" PointY="1" />
-        <EntityTypeShape EntityType="BV304Model.PhongKham" Width="1.5" PointX="11.75" PointY="12.75" />
-        <EntityTypeShape EntityType="BV304Model.PhongKham_" Width="1.5" PointX="13.75" PointY="4.75" />
-        <EntityTypeShape EntityType="BV304Model.ThongTinBenhVien" Width="1.5" PointX="13.75" PointY="10.75" />
-        <EntityTypeShape EntityType="BV304Model.DanToc" Width="1.5" PointX="0.75" PointY="14.75" />
-        <EntityTypeShape EntityType="BV304Model.DichVu_" Width="1.5" PointX="2.75" PointY="14.75" />
-        <EntityTypeShape EntityType="BV304Model.GioiTinh" Width="1.5" PointX="15.75" PointY="4.75" />
-        <EntityTypeShape EntityType="BV304Model.HS_CaNhan" Width="1.5" PointX="15.75" PointY="7.75" />
-        <EntityTypeShape EntityType="BV304Model.MucHuongBHYT" Width="1.5" PointX="13.75" PointY="15.75" />
-        <EntityTypeShape EntityType="BV304Model.QuocGia" Width="1.5" PointX="15.75" PointY="14.75" />
-        <EntityTypeShape EntityType="BV304Model.TonGiao" Width="1.5" PointX="16.75" PointY="0.75" />
-        <AssociationConnector Association="BV304Model.FK_Khoa_NhomKhoa" />
+        <EntityTypeShape EntityType="BV304Model.ChuyenDoiDonViHangHoa" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BV304Model.DiaDanh" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BV304Model.DinhGiaHangHoa" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BV304Model.dm_dichvu_dong" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BV304Model.DonViHangHoa" Width="1.5" PointX="10.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BV304Model.HangHoa" Width="1.5" PointX="10.75" PointY="9.75" />
+        <EntityTypeShape EntityType="BV304Model.HS_BHYT" Width="1.5" PointX="4.75" PointY="11.75" />
+        <EntityTypeShape EntityType="BV304Model.HS_DoiTuong" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BV304Model.KhoaPhong" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="BV304Model.LoaiGiaHangHoa" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="BV304Model.LoHangHoa" Width="1.5" PointX="12.75" PointY="4.75" />
+        <EntityTypeShape EntityType="BV304Model.NhaCungCap" Width="1.5" PointX="12.75" PointY="7.75" />
+        <EntityTypeShape EntityType="BV304Model.NhomKhoa" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="BV304Model.PhanLoaiHoaDon" Width="1.5" PointX="5.75" PointY="8.5" />
+        <EntityTypeShape EntityType="BV304Model.PhongKham" Width="1.5" PointX="12.75" PointY="11.75" />
+        <EntityTypeShape EntityType="BV304Model.PhongKham_" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BV304Model.QuyetDinhThau" Width="1.5" PointX="14.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BV304Model.QuyetDinhThauChiTiet" Width="1.5" PointX="14.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BV304Model.ThongTinBenhVien" Width="1.5" PointX="6.75" PointY="14.75" />
+        <EntityTypeShape EntityType="BV304Model.THUOC_6061" Width="1.5" PointX="14.75" PointY="9.75" />
+        <EntityTypeShape EntityType="BV304Model.ChiTietPhieu" Width="1.5" PointX="14.75" PointY="13.75" />
+        <EntityTypeShape EntityType="BV304Model.Kho" Width="1.5" PointX="5.25" PointY="1.5" />
+        <EntityTypeShape EntityType="BV304Model.LoaiKho" Width="1.5" PointX="3" PointY="5.75" />
+        <EntityTypeShape EntityType="BV304Model.PhieuDeNghi" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="BV304Model.PhieuNhapKho" Width="1.5" PointX="8" PointY="9.75" />
+        <EntityTypeShape EntityType="BV304Model.PhieuXuatKho" Width="1.5" PointX="8" PointY="5.25" />
+        <EntityTypeShape EntityType="BV304Model.Thuoc_VatTuYteTonKho" Width="1.5" PointX="2.75" PointY="15.75" />
+        <EntityTypeShape EntityType="BV304Model.DanToc" Width="1.5" PointX="8.75" PointY="15.75" />
+        <EntityTypeShape EntityType="BV304Model.DichVu_" Width="1.5" PointX="10.75" PointY="15.75" />
+        <EntityTypeShape EntityType="BV304Model.GioiTinh" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BV304Model.HoTriLieu" Width="1.5" PointX="16.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BV304Model.HS_CaNhan" Width="1.5" PointX="16.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BV304Model.MucHuongBHYT" Width="1.5" PointX="16.75" PointY="13.75" />
+        <EntityTypeShape EntityType="BV304Model.QuocGia" Width="1.5" PointX="16.75" PointY="17.75" />
+        <EntityTypeShape EntityType="BV304Model.ThuocDuongDung" Width="1.5" PointX="18.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BV304Model.TonGiao" Width="1.5" PointX="18.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BV304Model.VATTU_YTE_6061" Width="1.5" PointX="18.75" PointY="6.75" />
+        <AssociationConnector Association="BV304Model.FK_Kho_KhoaPhong" />
+        <AssociationConnector Association="BV304Model.FK_KhoaPhong_NhomKhoa" />
+        <AssociationConnector Association="BV304Model.FK_PhieuNhapKho_PhanLoaiHoaDon" />
+        <AssociationConnector Association="BV304Model.FK_PhieuXuatKho_PhanLoaiHoaDon" />
+        <AssociationConnector Association="BV304Model.FK_Kho_LoaiKho" />
+        <EntityTypeShape EntityType="BV304Model.v_ChiTietDonViHangHoa" Width="1.5" PointX="13.375" PointY="18.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

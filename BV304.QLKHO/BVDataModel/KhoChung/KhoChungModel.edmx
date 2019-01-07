@@ -242,25 +242,13 @@ warning 6002: The table/view 'BV304.dbo.HS_CaNhan' does not have a primary key d
           <Property Name="ChucVu" Type="nvarchar" MaxLength="50" />
           <Property Name="ThongTinKhac" Type="nvarchar" MaxLength="225" />
         </EntityType>
-        <EntityType Name="Khoa">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Ma" Type="nvarchar" MaxLength="10" />
-          <Property Name="Ten" Type="nvarchar" MaxLength="255" />
-          <Property Name="NhomKhoaId" Type="int" />
-          <Property Name="MoTa" Type="nvarchar" MaxLength="255" />
-          <Property Name="MaBYT" Type="nvarchar" MaxLength="10" />
-          <Property Name="TenBYT" Type="nvarchar" MaxLength="255" />
-        </EntityType>
         <EntityType Name="KhoaPhong">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ten" Type="nvarchar" MaxLength="500" />
-          <Property Name="Nhom" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nhom" Type="int" />
           <Property Name="MaBYT" Type="varchar" MaxLength="50" />
           <Property Name="TenBYT" Type="nvarchar" MaxLength="400" />
           <Property Name="CreateByID" Type="int" />
@@ -305,9 +293,9 @@ warning 6002: The table/view 'BV304.dbo.MucHuongBHYT' does not have a primary ke
         </EntityType>
         <EntityType Name="NhaCungCap">
           <Key>
-            <PropertyRef Name="NguonNhapID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="NguonNhapID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ten" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DiaChi" Type="nvarchar" MaxLength="255" />
           <Property Name="TinhThanh" Type="nvarchar" MaxLength="50" />
@@ -468,6 +456,111 @@ warning 6002: The table/view 'BV304.dbo.VATTU_YTE_6061' does not have a primary 
           <Property Name="MA_NHOM_VTU" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="DVT" Type="nvarchar" MaxLength="150" />
         </EntityType>
+        <EntityType Name="ChiTietPhieu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PhieuID" Type="uniqueidentifier" />
+          <Property Name="HangHoaID" Type="uniqueidentifier" />
+          <Property Name="SoLuong" Type="float" />
+          <Property Name="LoHangID" Type="uniqueidentifier" />
+          <Property Name="SoQuyeDinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenDonVi" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaDonVi" Type="uniqueidentifier" />
+          <Property Name="DonGia" Type="float" />
+          <Property Name="ChietKhau" Type="float" />
+          <Property Name="LoaiChietKhau" Type="smallint" />
+          <Property Name="ThanhTien" Type="float" />
+        </EntityType>
+        <EntityType Name="Kho">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="KhoaId" Type="int" />
+          <Property Name="MaKho" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenKho" Type="nvarchar" MaxLength="255" />
+          <Property Name="LoaiKhoId" Type="int" />
+        </EntityType>
+        <EntityType Name="LoaiKho">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ma" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PhieuDeNghi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Ma" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayDeNghi" Type="date" />
+          <Property Name="LyDoDeNghi" Type="nvarchar" MaxLength="500" />
+          <Property Name="TinhTrang" Type="smallint" />
+          <Property Name="NgayHuy" Type="date" />
+          <Property Name="LyDoHuy" Type="nvarchar" MaxLength="500" />
+          <Property Name="NguoiHuy" Type="nvarchar" MaxLength="250" />
+          <Property Name="NgayTao" Type="date" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="250" />
+          <Property Name="MaKhoNhap" Type="uniqueidentifier" />
+          <Property Name="MaKhoXuat" Type="uniqueidentifier" />
+          <Property Name="LoaiPhieu" Type="smallint" />
+        </EntityType>
+        <EntityType Name="PhieuNhapKho">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Ma" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="255" />
+          <Property Name="MaNhaCungCap" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NhaCungCap" Type="nvarchar" MaxLength="255" />
+          <Property Name="NguoiCungCap" Type="nvarchar" MaxLength="255" />
+          <Property Name="SoHoaDon" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayHoaDon" Type="datetime" />
+          <Property Name="VAT" Type="float" />
+          <Property Name="TongTien" Type="float" />
+          <Property Name="ThanhTien" Type="float" />
+          <Property Name="MaPhanLoaiHoaDon" Type="int" />
+          <Property Name="TenPhanLoaiHoaDon" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PhieuXuatKho">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Ma" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaPhieuDeNghi" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayTao" Type="date" />
+          <Property Name="NguoiTao" Type="nvarchar" MaxLength="255" />
+          <Property Name="MaKhoNhap" Type="uniqueidentifier" />
+          <Property Name="MaKhoXuat" Type="uniqueidentifier" />
+          <Property Name="NgayXuatKho" Type="date" />
+          <Property Name="NguoiNhan" Type="nvarchar" MaxLength="255" />
+          <Property Name="TongTien" Type="float" />
+          <Property Name="ThanhTien" Type="float" />
+          <Property Name="MaPhanLoaiHoaDon" Type="int" />
+          <Property Name="TenPhanLoaiHoaDon" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Thuoc_VatTuYteTonKho">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ThuocVtytID" Type="uniqueidentifier" />
+          <Property Name="SoQuyetDinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhanLoaiDuocID" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaHoatChat" Type="nvarchar" MaxLength="50" />
+          <Property Name="SoLuongTon" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SoLuongDaNhap" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SoLuongDaXuat" Type="nchar" MaxLength="10" />
+          <Property Name="SoLo" Type="nvarchar" MaxLength="50" />
+          <Property Name="HanSuDung" Type="date" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="v_ChiTietDonViHangHoa">
@@ -489,15 +582,63 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="MoTa" Type="nvarchar" MaxLength="255" />
           <Property Name="PhuongThucChuyenDoi" Type="tinyint" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Khoa_NhomKhoa">
+        <Association Name="FK_Kho_KhoaPhong">
+          <End Role="KhoaPhong" Type="Self.KhoaPhong" Multiplicity="0..1" />
+          <End Role="Kho" Type="Self.Kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhoaPhong">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Kho">
+              <PropertyRef Name="KhoaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kho_LoaiKho">
+          <End Role="LoaiKho" Type="Self.LoaiKho" Multiplicity="0..1" />
+          <End Role="Kho" Type="Self.Kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiKho">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Kho">
+              <PropertyRef Name="LoaiKhoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KhoaPhong_NhomKhoa">
           <End Role="NhomKhoa" Type="Self.NhomKhoa" Multiplicity="0..1" />
-          <End Role="Khoa" Type="Self.Khoa" Multiplicity="*" />
+          <End Role="KhoaPhong" Type="Self.KhoaPhong" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NhomKhoa">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Khoa">
-              <PropertyRef Name="NhomKhoaId" />
+            <Dependent Role="KhoaPhong">
+              <PropertyRef Name="Nhom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuNhapKho_PhanLoaiHoaDon">
+          <End Role="PhanLoaiHoaDon" Type="Self.PhanLoaiHoaDon" Multiplicity="0..1" />
+          <End Role="PhieuNhapKho" Type="Self.PhieuNhapKho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhanLoaiHoaDon">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuNhapKho">
+              <PropertyRef Name="MaPhanLoaiHoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuXuatKho_PhanLoaiHoaDon">
+          <End Role="PhanLoaiHoaDon" Type="Self.PhanLoaiHoaDon" Multiplicity="0..1" />
+          <End Role="PhieuXuatKho" Type="Self.PhieuXuatKho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhanLoaiHoaDon">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuXuatKho">
+              <PropertyRef Name="MaPhanLoaiHoaDon" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -510,7 +651,6 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <EntitySet Name="HangHoa" EntityType="Self.HangHoa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HS_BHYT" EntityType="Self.HS_BHYT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HS_DoiTuong" EntityType="Self.HS_DoiTuong" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Khoa" EntityType="Self.Khoa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KhoaPhong" EntityType="Self.KhoaPhong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiGiaHangHoa" EntityType="Self.LoaiGiaHangHoa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoHangHoa" EntityType="Self.LoHangHoa" Schema="dbo" store:Type="Tables" />
@@ -523,6 +663,13 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <EntitySet Name="QuyetDinhThauChiTiet" EntityType="Self.QuyetDinhThauChiTiet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ThongTinBenhVien" EntityType="Self.ThongTinBenhVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="THUOC_6061" EntityType="Self.THUOC_6061" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChiTietPhieu" EntityType="Self.ChiTietPhieu" Schema="kho" store:Type="Tables" />
+          <EntitySet Name="Kho" EntityType="Self.Kho" Schema="kho" store:Type="Tables" />
+          <EntitySet Name="LoaiKho" EntityType="Self.LoaiKho" Schema="kho" store:Type="Tables" />
+          <EntitySet Name="PhieuDeNghi" EntityType="Self.PhieuDeNghi" Schema="kho" store:Type="Tables" />
+          <EntitySet Name="PhieuNhapKho" EntityType="Self.PhieuNhapKho" Schema="kho" store:Type="Tables" />
+          <EntitySet Name="PhieuXuatKho" EntityType="Self.PhieuXuatKho" Schema="kho" store:Type="Tables" />
+          <EntitySet Name="Thuoc_VatTuYteTonKho" EntityType="Self.Thuoc_VatTuYteTonKho" Schema="kho" store:Type="Tables" />
           <EntitySet Name="DanToc" EntityType="Self.DanToc" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [DanToc].[DAN_TOC_Id] AS [DAN_TOC_Id], 
@@ -654,9 +801,25 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
     [v_ChiTietDonViHangHoa].[PhuongThucChuyenDoi] AS [PhuongThucChuyenDoi]
     FROM [dbo].[v_ChiTietDonViHangHoa] AS [v_ChiTietDonViHangHoa]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_Khoa_NhomKhoa" Association="Self.FK_Khoa_NhomKhoa">
+          <AssociationSet Name="FK_Kho_KhoaPhong" Association="Self.FK_Kho_KhoaPhong">
+            <End Role="KhoaPhong" EntitySet="KhoaPhong" />
+            <End Role="Kho" EntitySet="Kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kho_LoaiKho" Association="Self.FK_Kho_LoaiKho">
+            <End Role="LoaiKho" EntitySet="LoaiKho" />
+            <End Role="Kho" EntitySet="Kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KhoaPhong_NhomKhoa" Association="Self.FK_KhoaPhong_NhomKhoa">
             <End Role="NhomKhoa" EntitySet="NhomKhoa" />
-            <End Role="Khoa" EntitySet="Khoa" />
+            <End Role="KhoaPhong" EntitySet="KhoaPhong" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuNhapKho_PhanLoaiHoaDon" Association="Self.FK_PhieuNhapKho_PhanLoaiHoaDon">
+            <End Role="PhanLoaiHoaDon" EntitySet="PhanLoaiHoaDon" />
+            <End Role="PhieuNhapKho" EntitySet="PhieuNhapKho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuXuatKho_PhanLoaiHoaDon" Association="Self.FK_PhieuXuatKho_PhanLoaiHoaDon">
+            <End Role="PhanLoaiHoaDon" EntitySet="PhanLoaiHoaDon" />
+            <End Role="PhieuXuatKho" EntitySet="PhieuXuatKho" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -665,41 +828,63 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
       <Schema Namespace="BV304Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="KhoChungEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ChuyenDoiDonViHangHoa" EntityType="BV304Model.ChuyenDoiDonViHangHoa" />
+          <EntitySet Name="DiaDanh" EntityType="BV304Model.DiaDanh" />
+          <EntitySet Name="DinhGiaHangHoa" EntityType="BV304Model.DinhGiaHangHoa" />
+          <EntitySet Name="dm_dichvu_dong" EntityType="BV304Model.dm_dichvu_dong" />
           <EntitySet Name="DonViHangHoa" EntityType="BV304Model.DonViHangHoa" />
           <EntitySet Name="HangHoa" EntityType="BV304Model.HangHoa" />
+          <EntitySet Name="HS_BHYT" EntityType="BV304Model.HS_BHYT" />
+          <EntitySet Name="HS_DoiTuong" EntityType="BV304Model.HS_DoiTuong" />
+          <EntitySet Name="KhoaPhong" EntityType="BV304Model.KhoaPhong" />
           <EntitySet Name="LoaiGiaHangHoa" EntityType="BV304Model.LoaiGiaHangHoa" />
           <EntitySet Name="LoHangHoa" EntityType="BV304Model.LoHangHoa" />
           <EntitySet Name="NhaCungCap" EntityType="BV304Model.NhaCungCap" />
-          <EntitySet Name="PhanLoaiHoaDon" EntityType="BV304Model.PhanLoaiHoaDon" />
-          <EntitySet Name="QuyetDinhThauChiTiet" EntityType="BV304Model.QuyetDinhThauChiTiet" />
-          <EntitySet Name="THUOC_6061" EntityType="BV304Model.THUOC_6061" />
-          <EntitySet Name="HoTriLieu" EntityType="BV304Model.HoTriLieu" />
-          <EntitySet Name="ThuocDuongDung" EntityType="BV304Model.ThuocDuongDung" />
-          <EntitySet Name="VATTU_YTE_6061" EntityType="BV304Model.VATTU_YTE_6061" />
-          <EntitySet Name="DinhGiaHangHoa" EntityType="BV304Model.DinhGiaHangHoa" />
-          <EntitySet Name="v_ChiTietDonViHangHoa" EntityType="BV304Model.v_ChiTietDonViHangHoa" />
-          <EntitySet Name="QuyetDinhThau" EntityType="BV304Model.QuyetDinhThau" />
-          <EntitySet Name="DiaDanh" EntityType="BV304Model.DiaDanh" />
-          <EntitySet Name="dm_dichvu_dong" EntityType="BV304Model.dm_dichvu_dong" />
-          <EntitySet Name="HS_BHYT" EntityType="BV304Model.HS_BHYT" />
-          <EntitySet Name="HS_DoiTuong" EntityType="BV304Model.HS_DoiTuong" />
-          <EntitySet Name="Khoa" EntityType="BV304Model.Khoa" />
-          <EntitySet Name="KhoaPhong" EntityType="BV304Model.KhoaPhong" />
           <EntitySet Name="NhomKhoa" EntityType="BV304Model.NhomKhoa" />
+          <EntitySet Name="PhanLoaiHoaDon" EntityType="BV304Model.PhanLoaiHoaDon" />
           <EntitySet Name="PhongKham" EntityType="BV304Model.PhongKham" />
           <EntitySet Name="PhongKham_" EntityType="BV304Model.PhongKham_" />
+          <EntitySet Name="QuyetDinhThau" EntityType="BV304Model.QuyetDinhThau" />
+          <EntitySet Name="QuyetDinhThauChiTiet" EntityType="BV304Model.QuyetDinhThauChiTiet" />
           <EntitySet Name="ThongTinBenhVien" EntityType="BV304Model.ThongTinBenhVien" />
+          <EntitySet Name="THUOC_6061" EntityType="BV304Model.THUOC_6061" />
+          <EntitySet Name="ChiTietPhieu" EntityType="BV304Model.ChiTietPhieu" />
+          <EntitySet Name="Kho" EntityType="BV304Model.Kho" />
+          <EntitySet Name="LoaiKho" EntityType="BV304Model.LoaiKho" />
+          <EntitySet Name="PhieuDeNghi" EntityType="BV304Model.PhieuDeNghi" />
+          <EntitySet Name="PhieuNhapKho" EntityType="BV304Model.PhieuNhapKho" />
+          <EntitySet Name="PhieuXuatKho" EntityType="BV304Model.PhieuXuatKho" />
+          <EntitySet Name="Thuoc_VatTuYteTonKho" EntityType="BV304Model.Thuoc_VatTuYteTonKho" />
           <EntitySet Name="DanToc" EntityType="BV304Model.DanToc" />
           <EntitySet Name="DichVu_" EntityType="BV304Model.DichVu_" />
           <EntitySet Name="GioiTinh" EntityType="BV304Model.GioiTinh" />
+          <EntitySet Name="HoTriLieu" EntityType="BV304Model.HoTriLieu" />
           <EntitySet Name="HS_CaNhan" EntityType="BV304Model.HS_CaNhan" />
           <EntitySet Name="MucHuongBHYT" EntityType="BV304Model.MucHuongBHYT" />
           <EntitySet Name="QuocGia" EntityType="BV304Model.QuocGia" />
+          <EntitySet Name="ThuocDuongDung" EntityType="BV304Model.ThuocDuongDung" />
           <EntitySet Name="TonGiao" EntityType="BV304Model.TonGiao" />
-          <AssociationSet Name="FK_Khoa_NhomKhoa" Association="BV304Model.FK_Khoa_NhomKhoa">
-            <End Role="NhomKhoa" EntitySet="NhomKhoa" />
-            <End Role="Khoa" EntitySet="Khoa" />
+          <EntitySet Name="VATTU_YTE_6061" EntityType="BV304Model.VATTU_YTE_6061" />
+          <AssociationSet Name="FK_Kho_KhoaPhong" Association="BV304Model.FK_Kho_KhoaPhong">
+            <End Role="KhoaPhong" EntitySet="KhoaPhong" />
+            <End Role="Kho" EntitySet="Kho" />
           </AssociationSet>
+          <AssociationSet Name="FK_KhoaPhong_NhomKhoa" Association="BV304Model.FK_KhoaPhong_NhomKhoa">
+            <End Role="NhomKhoa" EntitySet="NhomKhoa" />
+            <End Role="KhoaPhong" EntitySet="KhoaPhong" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuNhapKho_PhanLoaiHoaDon" Association="BV304Model.FK_PhieuNhapKho_PhanLoaiHoaDon">
+            <End Role="PhanLoaiHoaDon" EntitySet="PhanLoaiHoaDon" />
+            <End Role="PhieuNhapKho" EntitySet="PhieuNhapKho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuXuatKho_PhanLoaiHoaDon" Association="BV304Model.FK_PhieuXuatKho_PhanLoaiHoaDon">
+            <End Role="PhanLoaiHoaDon" EntitySet="PhanLoaiHoaDon" />
+            <End Role="PhieuXuatKho" EntitySet="PhieuXuatKho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kho_LoaiKho" Association="BV304Model.FK_Kho_LoaiKho">
+            <End Role="LoaiKho" EntitySet="LoaiKho" />
+            <End Role="Kho" EntitySet="Kho" />
+          </AssociationSet>
+          <EntitySet Name="v_ChiTietDonViHangHoa" EntityType="BV304Model.v_ChiTietDonViHangHoa" />
         </EntityContainer>
         <EntityType Name="ChuyenDoiDonViHangHoa">
           <Key>
@@ -711,6 +896,59 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="TiLeChuyenDoi" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
           <Property Name="MoTa" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="PhuongThucChuyenDoi" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DiaDanh">
+          <Key>
+            <PropertyRef Name="ID_DiaDanh" />
+          </Key>
+          <Property Name="ID_DiaDanh" Type="Int32" Nullable="false" />
+          <Property Name="MaDiaDanh" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="MaTinh" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="TenTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaHuyen" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="TenHuyen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaXa" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="TenXa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenDayDu" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TenNganGon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DinhGiaHangHoa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="HangHoaID" Type="Guid" Nullable="false" />
+          <Property Name="DonViID" Type="Guid" Nullable="false" />
+          <Property Name="GiaDichVu" Type="Decimal" Precision="20" Scale="6" />
+          <Property Name="GiaBaoHiem" Type="Decimal" Precision="20" Scale="6" />
+          <Property Name="MaNguoiDinhGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenNguoiDinhGia" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGianCapNhat" Type="DateTime" Precision="3" />
+          <Property Name="GhiChu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="dm_dichvu_dong">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaDichVu" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MaKhoa" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Nhom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TenDichVu" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GiaThuPhi" Type="Double" />
+          <Property Name="GiaBaoHiem" Type="Double" />
+          <Property Name="TiLeThanhToan" Type="Double" />
+          <Property Name="NhomBHYT_Cu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NhomBHYT" Type="Int32" />
+          <Property Name="MaBYT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TenBYT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NgayHieuLuc" Type="DateTime" Precision="3" />
+          <Property Name="NgayHetHieuLuc" Type="DateTime" Precision="3" />
+          <Property Name="CreateByID" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyID" Type="Int32" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+          <Property Name="Active" Type="Boolean" />
         </EntityType>
         <EntityType Name="DonViHangHoa">
           <Key>
@@ -744,184 +982,6 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="ThanhToanBaoHiem" Type="Boolean" />
           <Property Name="TyLeThanhToanBaoHiem" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
-        <EntityType Name="LoaiGiaHangHoa">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="Ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="GhiChu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="IsGiaNhap" Type="Boolean" />
-          <Property Name="MaDoiTuongThanhToan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="LoHangHoa">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="SoLo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HanSuDung" Type="DateTime" Precision="0" />
-          <Property Name="ThuocVtytID" Type="Guid" />
-        </EntityType>
-        <EntityType Name="NhaCungCap">
-          <Key>
-            <PropertyRef Name="NguonNhapID" />
-          </Key>
-          <Property Name="NguonNhapID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ten" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DiaChi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="TinhThanh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="QuocGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DienThoai" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Fax" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
-          <Property Name="WebSite" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
-        </EntityType>
-        <EntityType Name="PhanLoaiHoaDon">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="QuyetDinhThauChiTiet">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="MaQuyetDinhThau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HangHoaID" Type="Guid" />
-          <Property Name="SoLuong" Type="Double" />
-          <Property Name="TheoTenThuoc" Type="Boolean" />
-          <Property Name="TheoMaHoatChat" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="THUOC_6061">
-          <Key>
-            <PropertyRef Name="THUOC_ID" />
-          </Key>
-          <Property Name="THUOC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SO_DANG_KY" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="TEN_THUOC" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="MA_HOAT_CHAT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="HOAT_CHAT" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
-          <Property Name="MA_DUONG_DUNG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="HAM_LUONG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="DONG_GOI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="LOAI_THUOC" Type="Int32" />
-          <Property Name="MA_NHOM_THUOC" Type="Int32" />
-          <Property Name="NGUY_CO_THUOC" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="HoTriLieu">
-          <Key>
-            <PropertyRef Name="IDhotrilieu" />
-            <PropertyRef Name="Ten" />
-          </Key>
-          <Property Name="IDhotrilieu" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
-          <Property Name="Ten" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="MoTa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="ThuocDuongDung">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="DienGiai" />
-          </Key>
-          <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="DienGiai" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="VATTU_YTE_6061">
-          <Key>
-            <PropertyRef Name="MA_VAT_TU" />
-            <PropertyRef Name="TEN_VAT_TU" />
-            <PropertyRef Name="MA_NHOM_VTU" />
-          </Key>
-          <Property Name="MA_VAT_TU" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TEN_VAT_TU" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="MA_NHOM_VTU" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="DVT" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="DinhGiaHangHoa">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="HangHoaID" Type="Guid" Nullable="false" />
-          <Property Name="DonViID" Type="Guid" Nullable="false" />
-          <Property Name="MaNguoiDinhGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TenNguoiDinhGia" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ThoiGianCapNhat" Type="DateTime" Precision="3" />
-          <Property Name="GiaDichVu" Type="Decimal" Precision="20" Scale="6" />
-          <Property Name="GiaBaoHiem" Type="Decimal" Precision="20" Scale="6" />
-          <Property Name="GhiChu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="v_ChiTietDonViHangHoa">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="HangHoaID" />
-            <PropertyRef Name="TenHangHoa" />
-            <PropertyRef Name="DonViID" />
-            <PropertyRef Name="TenDonVi" />
-            <PropertyRef Name="TiLeChuyenDoi" />
-            <PropertyRef Name="PhuongThucChuyenDoi" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="HangHoaID" Type="Guid" Nullable="false" />
-          <Property Name="TenHangHoa" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="DonViID" Type="Guid" Nullable="false" />
-          <Property Name="TenDonVi" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="TiLeChuyenDoi" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
-          <Property Name="MoTa" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="PhuongThucChuyenDoi" Type="Byte" Nullable="false" />
-        </EntityType>
-        <EntityType Name="QuyetDinhThau">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="Ma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MoTa" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="NgayQuyetDinh" Type="DateTime" Precision="0" />
-          <Property Name="HieuLuc" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="DiaDanh">
-          <Key>
-            <PropertyRef Name="ID_DiaDanh" />
-          </Key>
-          <Property Name="ID_DiaDanh" Type="Int32" Nullable="false" />
-          <Property Name="MaDiaDanh" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
-          <Property Name="MaTinh" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
-          <Property Name="TenTinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MaHuyen" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
-          <Property Name="TenHuyen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MaXa" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
-          <Property Name="TenXa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TenDayDu" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="TenNganGon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="dm_dichvu_dong">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaDichVu" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="MaKhoa" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Nhom" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="TenDichVu" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="GiaThuPhi" Type="Double" />
-          <Property Name="GiaBaoHiem" Type="Double" />
-          <Property Name="TiLeThanhToan" Type="Double" />
-          <Property Name="NhomBHYT_Cu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NhomBHYT" Type="Int32" />
-          <Property Name="MaBYT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TenBYT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="NgayHieuLuc" Type="DateTime" Precision="3" />
-          <Property Name="NgayHetHieuLuc" Type="DateTime" Precision="3" />
-          <Property Name="CreateByID" Type="Int32" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifyID" Type="Int32" />
-          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
-          <Property Name="Active" Type="Boolean" />
-        </EntityType>
         <EntityType Name="HS_BHYT">
           <Key>
             <PropertyRef Name="ID" />
@@ -952,26 +1012,13 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="ChucVu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ThongTinKhac" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Khoa">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="Ma" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Ten" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="NhomKhoaId" Type="Int32" />
-          <Property Name="MoTa" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="MaBYT" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="TenBYT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="NhomKhoa" Relationship="BV304Model.FK_Khoa_NhomKhoa" FromRole="Khoa" ToRole="NhomKhoa" />
-        </EntityType>
         <EntityType Name="KhoaPhong">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ten" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Nhom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nhom" Type="Int32" />
           <Property Name="MaBYT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TenBYT" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
           <Property Name="CreateByID" Type="Int32" />
@@ -979,6 +1026,42 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="ModifyByID" Type="Int32" />
           <Property Name="ModifyDate" Type="DateTime" Precision="3" />
           <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="Kho" Relationship="BV304Model.FK_Kho_KhoaPhong" FromRole="KhoaPhong" ToRole="Kho" />
+          <NavigationProperty Name="NhomKhoa" Relationship="BV304Model.FK_KhoaPhong_NhomKhoa" FromRole="KhoaPhong" ToRole="NhomKhoa" />
+        </EntityType>
+        <EntityType Name="LoaiGiaHangHoa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsGiaNhap" Type="Boolean" />
+          <Property Name="MaDoiTuongThanhToan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LoHangHoa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="SoLo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HanSuDung" Type="DateTime" Precision="0" />
+          <Property Name="ThuocVtytID" Type="Guid" />
+        </EntityType>
+        <EntityType Name="NhaCungCap">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TinhThanh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QuocGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DienThoai" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="WebSite" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="NhomKhoa">
           <Key>
@@ -991,7 +1074,16 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="ModifyByID" Type="Int32" />
           <Property Name="ModifyDate" Type="DateTime" Precision="3" />
           <Property Name="Active" Type="Boolean" />
-          <NavigationProperty Name="Khoa" Relationship="BV304Model.FK_Khoa_NhomKhoa" FromRole="NhomKhoa" ToRole="Khoa" />
+          <NavigationProperty Name="KhoaPhong" Relationship="BV304Model.FK_KhoaPhong_NhomKhoa" FromRole="NhomKhoa" ToRole="KhoaPhong" />
+        </EntityType>
+        <EntityType Name="PhanLoaiHoaDon">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PhieuNhapKho" Relationship="BV304Model.FK_PhieuNhapKho_PhanLoaiHoaDon" FromRole="PhanLoaiHoaDon" ToRole="PhieuNhapKho" />
+          <NavigationProperty Name="PhieuXuatKho" Relationship="BV304Model.FK_PhieuXuatKho_PhanLoaiHoaDon" FromRole="PhanLoaiHoaDon" ToRole="PhieuXuatKho" />
         </EntityType>
         <EntityType Name="PhongKham">
           <Key>
@@ -1015,6 +1107,27 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="MoTa" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="KhoaID" Type="Guid" Nullable="false" />
         </EntityType>
+        <EntityType Name="QuyetDinhThau">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Ma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="NgayQuyetDinh" Type="DateTime" Precision="0" />
+          <Property Name="HieuLuc" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuyetDinhThauChiTiet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="MaQuyetDinhThau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HangHoaID" Type="Guid" />
+          <Property Name="SoLuong" Type="Double" />
+          <Property Name="TheoTenThuoc" Type="Boolean" />
+          <Property Name="TheoMaHoatChat" Type="Boolean" />
+        </EntityType>
         <EntityType Name="ThongTinBenhVien">
           <Key>
             <PropertyRef Name="ID" />
@@ -1032,6 +1145,132 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="TenKhoDuoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DCNhaThuoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MaDKBD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="THUOC_6061">
+          <Key>
+            <PropertyRef Name="THUOC_ID" />
+          </Key>
+          <Property Name="THUOC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SO_DANG_KY" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_THUOC" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="MA_HOAT_CHAT" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HOAT_CHAT" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <Property Name="MA_DUONG_DUNG" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="HAM_LUONG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DONG_GOI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LOAI_THUOC" Type="Int32" />
+          <Property Name="MA_NHOM_THUOC" Type="Int32" />
+          <Property Name="NGUY_CO_THUOC" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ChiTietPhieu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="PhieuID" Type="Guid" />
+          <Property Name="HangHoaID" Type="Guid" />
+          <Property Name="SoLuong" Type="Double" />
+          <Property Name="LoHangID" Type="Guid" />
+          <Property Name="SoQuyeDinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenDonVi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaDonVi" Type="Guid" />
+          <Property Name="DonGia" Type="Double" />
+          <Property Name="ChietKhau" Type="Double" />
+          <Property Name="LoaiChietKhau" Type="Int16" />
+          <Property Name="ThanhTien" Type="Double" />
+        </EntityType>
+        <EntityType Name="Kho">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="KhoaId" Type="Int32" />
+          <Property Name="MaKho" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenKho" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiKhoId" Type="Int32" />
+          <NavigationProperty Name="KhoaPhong" Relationship="BV304Model.FK_Kho_KhoaPhong" FromRole="Kho" ToRole="KhoaPhong" />
+          <NavigationProperty Name="LoaiKho" Relationship="BV304Model.FK_Kho_LoaiKho" FromRole="Kho" ToRole="LoaiKho" />
+        </EntityType>
+        <EntityType Name="LoaiKho">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kho" Relationship="BV304Model.FK_Kho_LoaiKho" FromRole="LoaiKho" ToRole="Kho" />
+        </EntityType>
+        <EntityType Name="PhieuDeNghi">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Ma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayDeNghi" Type="DateTime" Precision="0" />
+          <Property Name="LyDoDeNghi" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TinhTrang" Type="Int16" />
+          <Property Name="NgayHuy" Type="DateTime" Precision="0" />
+          <Property Name="LyDoHuy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiHuy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTao" Type="DateTime" Precision="0" />
+          <Property Name="NguoiTao" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MaKhoNhap" Type="Guid" />
+          <Property Name="MaKhoXuat" Type="Guid" />
+          <Property Name="LoaiPhieu" Type="Int16" />
+        </EntityType>
+        <EntityType Name="PhieuNhapKho">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Ma" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiTao" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MaNhaCungCap" Type="Guid" Nullable="false" />
+          <Property Name="NhaCungCap" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiCungCap" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SoHoaDon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayHoaDon" Type="DateTime" Precision="3" />
+          <Property Name="VAT" Type="Double" />
+          <Property Name="TongTien" Type="Double" />
+          <Property Name="ThanhTien" Type="Double" />
+          <Property Name="MaPhanLoaiHoaDon" Type="Int32" />
+          <Property Name="TenPhanLoaiHoaDon" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PhanLoaiHoaDon" Relationship="BV304Model.FK_PhieuNhapKho_PhanLoaiHoaDon" FromRole="PhieuNhapKho" ToRole="PhanLoaiHoaDon" />
+        </EntityType>
+        <EntityType Name="PhieuXuatKho">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Ma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaPhieuDeNghi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTao" Type="DateTime" Precision="0" />
+          <Property Name="NguoiTao" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MaKhoNhap" Type="Guid" />
+          <Property Name="MaKhoXuat" Type="Guid" />
+          <Property Name="NgayXuatKho" Type="DateTime" Precision="0" />
+          <Property Name="NguoiNhan" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TongTien" Type="Double" />
+          <Property Name="ThanhTien" Type="Double" />
+          <Property Name="MaPhanLoaiHoaDon" Type="Int32" />
+          <Property Name="TenPhanLoaiHoaDon" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PhanLoaiHoaDon" Relationship="BV304Model.FK_PhieuXuatKho_PhanLoaiHoaDon" FromRole="PhieuXuatKho" ToRole="PhanLoaiHoaDon" />
+        </EntityType>
+        <EntityType Name="Thuoc_VatTuYteTonKho">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="ThuocVtytID" Type="Guid" />
+          <Property Name="SoQuyetDinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhanLoaiDuocID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaHoatChat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SoLuongTon" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SoLuongDaNhap" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SoLuongDaXuat" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="SoLo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HanSuDung" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="DanToc">
           <Key>
@@ -1081,6 +1320,15 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           </Key>
           <Property Name="GIOI_TINH_Id" Type="Int32" Nullable="false" />
           <Property Name="TEN_GIOI_TINH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="HoTriLieu">
+          <Key>
+            <PropertyRef Name="IDhotrilieu" />
+            <PropertyRef Name="Ten" />
+          </Key>
+          <Property Name="IDhotrilieu" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Ten" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="HS_CaNhan">
           <Key>
@@ -1135,6 +1383,14 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="ten_qg" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ten_vt" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="ThuocDuongDung">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="DienGiai" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DienGiai" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="TonGiao">
           <Key>
             <PropertyRef Name="TON_GIAO_Id" />
@@ -1143,19 +1399,97 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="TON_GIAO_Id" Type="Int32" Nullable="false" />
           <Property Name="TEN_TON_GIAO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="FK_Khoa_NhomKhoa">
+        <EntityType Name="VATTU_YTE_6061">
+          <Key>
+            <PropertyRef Name="MA_VAT_TU" />
+            <PropertyRef Name="TEN_VAT_TU" />
+            <PropertyRef Name="MA_NHOM_VTU" />
+          </Key>
+          <Property Name="MA_VAT_TU" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TEN_VAT_TU" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="MA_NHOM_VTU" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DVT" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Kho_KhoaPhong">
+          <End Type="BV304Model.KhoaPhong" Role="KhoaPhong" Multiplicity="0..1" />
+          <End Type="BV304Model.Kho" Role="Kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KhoaPhong">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Kho">
+              <PropertyRef Name="KhoaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KhoaPhong_NhomKhoa">
           <End Type="BV304Model.NhomKhoa" Role="NhomKhoa" Multiplicity="0..1" />
-          <End Type="BV304Model.Khoa" Role="Khoa" Multiplicity="*" />
+          <End Type="BV304Model.KhoaPhong" Role="KhoaPhong" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NhomKhoa">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Khoa">
-              <PropertyRef Name="NhomKhoaId" />
+            <Dependent Role="KhoaPhong">
+              <PropertyRef Name="Nhom" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_PhieuNhapKho_PhanLoaiHoaDon">
+          <End Type="BV304Model.PhanLoaiHoaDon" Role="PhanLoaiHoaDon" Multiplicity="0..1" />
+          <End Type="BV304Model.PhieuNhapKho" Role="PhieuNhapKho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhanLoaiHoaDon">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuNhapKho">
+              <PropertyRef Name="MaPhanLoaiHoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuXuatKho_PhanLoaiHoaDon">
+          <End Type="BV304Model.PhanLoaiHoaDon" Role="PhanLoaiHoaDon" Multiplicity="0..1" />
+          <End Type="BV304Model.PhieuXuatKho" Role="PhieuXuatKho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhanLoaiHoaDon">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuXuatKho">
+              <PropertyRef Name="MaPhanLoaiHoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kho_LoaiKho">
+          <End Type="BV304Model.LoaiKho" Role="LoaiKho" Multiplicity="0..1" />
+          <End Type="BV304Model.Kho" Role="Kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiKho">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Kho">
+              <PropertyRef Name="LoaiKhoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="v_ChiTietDonViHangHoa">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="HangHoaID" />
+            <PropertyRef Name="TenHangHoa" />
+            <PropertyRef Name="DonViID" />
+            <PropertyRef Name="TenDonVi" />
+            <PropertyRef Name="TiLeChuyenDoi" />
+            <PropertyRef Name="PhuongThucChuyenDoi" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="HangHoaID" Type="Guid" Nullable="false" />
+          <Property Name="TenHangHoa" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="DonViID" Type="Guid" Nullable="false" />
+          <Property Name="TenDonVi" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TiLeChuyenDoi" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="MoTa" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PhuongThucChuyenDoi" Type="Byte" Nullable="false" />
+        </EntityType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1169,6 +1503,62 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
                 <ScalarProperty Name="TiLeChuyenDoi" ColumnName="TiLeChuyenDoi" />
                 <ScalarProperty Name="DonViID" ColumnName="DonViID" />
                 <ScalarProperty Name="HangHoaID" ColumnName="HangHoaID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiaDanh">
+            <EntityTypeMapping TypeName="BV304Model.DiaDanh">
+              <MappingFragment StoreEntitySet="DiaDanh">
+                <ScalarProperty Name="TenNganGon" ColumnName="TenNganGon" />
+                <ScalarProperty Name="TenDayDu" ColumnName="TenDayDu" />
+                <ScalarProperty Name="TenXa" ColumnName="TenXa" />
+                <ScalarProperty Name="MaXa" ColumnName="MaXa" />
+                <ScalarProperty Name="TenHuyen" ColumnName="TenHuyen" />
+                <ScalarProperty Name="MaHuyen" ColumnName="MaHuyen" />
+                <ScalarProperty Name="TenTinh" ColumnName="TenTinh" />
+                <ScalarProperty Name="MaTinh" ColumnName="MaTinh" />
+                <ScalarProperty Name="MaDiaDanh" ColumnName="MaDiaDanh" />
+                <ScalarProperty Name="ID_DiaDanh" ColumnName="ID_DiaDanh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DinhGiaHangHoa">
+            <EntityTypeMapping TypeName="BV304Model.DinhGiaHangHoa">
+              <MappingFragment StoreEntitySet="DinhGiaHangHoa">
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="ThoiGianCapNhat" ColumnName="ThoiGianCapNhat" />
+                <ScalarProperty Name="TenNguoiDinhGia" ColumnName="TenNguoiDinhGia" />
+                <ScalarProperty Name="MaNguoiDinhGia" ColumnName="MaNguoiDinhGia" />
+                <ScalarProperty Name="GiaBaoHiem" ColumnName="GiaBaoHiem" />
+                <ScalarProperty Name="GiaDichVu" ColumnName="GiaDichVu" />
+                <ScalarProperty Name="DonViID" ColumnName="DonViID" />
+                <ScalarProperty Name="HangHoaID" ColumnName="HangHoaID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dm_dichvu_dong">
+            <EntityTypeMapping TypeName="BV304Model.dm_dichvu_dong">
+              <MappingFragment StoreEntitySet="dm_dichvu_dong">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ModifyID" ColumnName="ModifyID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateByID" ColumnName="CreateByID" />
+                <ScalarProperty Name="NgayHetHieuLuc" ColumnName="NgayHetHieuLuc" />
+                <ScalarProperty Name="NgayHieuLuc" ColumnName="NgayHieuLuc" />
+                <ScalarProperty Name="TenBYT" ColumnName="TenBYT" />
+                <ScalarProperty Name="MaBYT" ColumnName="MaBYT" />
+                <ScalarProperty Name="NhomBHYT" ColumnName="NhomBHYT" />
+                <ScalarProperty Name="NhomBHYT_Cu" ColumnName="NhomBHYT_Cu" />
+                <ScalarProperty Name="TiLeThanhToan" ColumnName="TiLeThanhToan" />
+                <ScalarProperty Name="GiaBaoHiem" ColumnName="GiaBaoHiem" />
+                <ScalarProperty Name="GiaThuPhi" ColumnName="GiaThuPhi" />
+                <ScalarProperty Name="TenDichVu" ColumnName="TenDichVu" />
+                <ScalarProperty Name="Nhom" ColumnName="Nhom" />
+                <ScalarProperty Name="MaKhoa" ColumnName="MaKhoa" />
+                <ScalarProperty Name="MaDichVu" ColumnName="MaDichVu" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1207,6 +1597,54 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="HS_BHYT">
+            <EntityTypeMapping TypeName="BV304Model.HS_BHYT">
+              <MappingFragment StoreEntitySet="HS_BHYT">
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="DIACHI_DKBD" ColumnName="DIACHI_DKBD" />
+                <ScalarProperty Name="MA_DKBD" ColumnName="MA_DKBD" />
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="GT_THE_DEN" ColumnName="GT_THE_DEN" />
+                <ScalarProperty Name="GT_THE_TU" ColumnName="GT_THE_TU" />
+                <ScalarProperty Name="MA_THE" ColumnName="MA_THE" />
+                <ScalarProperty Name="HSCN_ID" ColumnName="HSCN_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HS_DoiTuong">
+            <EntityTypeMapping TypeName="BV304Model.HS_DoiTuong">
+              <MappingFragment StoreEntitySet="HS_DoiTuong">
+                <ScalarProperty Name="ThongTinKhac" ColumnName="ThongTinKhac" />
+                <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+                <ScalarProperty Name="CapBac" ColumnName="CapBac" />
+                <ScalarProperty Name="CoQuan" ColumnName="CoQuan" />
+                <ScalarProperty Name="MaTheBHYT" ColumnName="MaTheBHYT" />
+                <ScalarProperty Name="DoiTuongID" ColumnName="DoiTuongID" />
+                <ScalarProperty Name="HSDieuTriID" ColumnName="HSDieuTriID" />
+                <ScalarProperty Name="HSTiepNhanID" ColumnName="HSTiepNhanID" />
+                <ScalarProperty Name="HSCaNhanID" ColumnName="HSCaNhanID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KhoaPhong">
+            <EntityTypeMapping TypeName="BV304Model.KhoaPhong">
+              <MappingFragment StoreEntitySet="KhoaPhong">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ModifyByID" ColumnName="ModifyByID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateByID" ColumnName="CreateByID" />
+                <ScalarProperty Name="TenBYT" ColumnName="TenBYT" />
+                <ScalarProperty Name="MaBYT" ColumnName="MaBYT" />
+                <ScalarProperty Name="Nhom" ColumnName="Nhom" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="LoaiGiaHangHoa">
             <EntityTypeMapping TypeName="BV304Model.LoaiGiaHangHoa">
               <MappingFragment StoreEntitySet="LoaiGiaHangHoa">
@@ -1240,212 +1678,6 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
                 <ScalarProperty Name="TinhThanh" ColumnName="TinhThanh" />
                 <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
                 <ScalarProperty Name="Ten" ColumnName="Ten" />
-                <ScalarProperty Name="NguonNhapID" ColumnName="NguonNhapID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PhanLoaiHoaDon">
-            <EntityTypeMapping TypeName="BV304Model.PhanLoaiHoaDon">
-              <MappingFragment StoreEntitySet="PhanLoaiHoaDon">
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="QuyetDinhThauChiTiet">
-            <EntityTypeMapping TypeName="BV304Model.QuyetDinhThauChiTiet">
-              <MappingFragment StoreEntitySet="QuyetDinhThauChiTiet">
-                <ScalarProperty Name="TheoMaHoatChat" ColumnName="TheoMaHoatChat" />
-                <ScalarProperty Name="TheoTenThuoc" ColumnName="TheoTenThuoc" />
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-                <ScalarProperty Name="HangHoaID" ColumnName="HangHoaID" />
-                <ScalarProperty Name="MaQuyetDinhThau" ColumnName="MaQuyetDinhThau" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="THUOC_6061">
-            <EntityTypeMapping TypeName="BV304Model.THUOC_6061">
-              <MappingFragment StoreEntitySet="THUOC_6061">
-                <ScalarProperty Name="NGUY_CO_THUOC" ColumnName="NGUY_CO_THUOC" />
-                <ScalarProperty Name="MA_NHOM_THUOC" ColumnName="MA_NHOM_THUOC" />
-                <ScalarProperty Name="LOAI_THUOC" ColumnName="LOAI_THUOC" />
-                <ScalarProperty Name="DONG_GOI" ColumnName="DONG_GOI" />
-                <ScalarProperty Name="HAM_LUONG" ColumnName="HAM_LUONG" />
-                <ScalarProperty Name="MA_DUONG_DUNG" ColumnName="MA_DUONG_DUNG" />
-                <ScalarProperty Name="HOAT_CHAT" ColumnName="HOAT_CHAT" />
-                <ScalarProperty Name="MA_HOAT_CHAT" ColumnName="MA_HOAT_CHAT" />
-                <ScalarProperty Name="TEN_THUOC" ColumnName="TEN_THUOC" />
-                <ScalarProperty Name="SO_DANG_KY" ColumnName="SO_DANG_KY" />
-                <ScalarProperty Name="THUOC_ID" ColumnName="THUOC_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HoTriLieu">
-            <EntityTypeMapping TypeName="BV304Model.HoTriLieu">
-              <MappingFragment StoreEntitySet="HoTriLieu">
-                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
-                <ScalarProperty Name="IDhotrilieu" ColumnName="IDhotrilieu" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ThuocDuongDung">
-            <EntityTypeMapping TypeName="BV304Model.ThuocDuongDung">
-              <MappingFragment StoreEntitySet="ThuocDuongDung">
-                <ScalarProperty Name="DienGiai" ColumnName="DienGiai" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VATTU_YTE_6061">
-            <EntityTypeMapping TypeName="BV304Model.VATTU_YTE_6061">
-              <MappingFragment StoreEntitySet="VATTU_YTE_6061">
-                <ScalarProperty Name="DVT" ColumnName="DVT" />
-                <ScalarProperty Name="MA_NHOM_VTU" ColumnName="MA_NHOM_VTU" />
-                <ScalarProperty Name="TEN_VAT_TU" ColumnName="TEN_VAT_TU" />
-                <ScalarProperty Name="MA_VAT_TU" ColumnName="MA_VAT_TU" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DinhGiaHangHoa">
-            <EntityTypeMapping TypeName="BV304Model.DinhGiaHangHoa">
-              <MappingFragment StoreEntitySet="DinhGiaHangHoa">
-                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
-                <ScalarProperty Name="GiaBaoHiem" ColumnName="GiaBaoHiem" />
-                <ScalarProperty Name="GiaDichVu" ColumnName="GiaDichVu" />
-                <ScalarProperty Name="ThoiGianCapNhat" ColumnName="ThoiGianCapNhat" />
-                <ScalarProperty Name="TenNguoiDinhGia" ColumnName="TenNguoiDinhGia" />
-                <ScalarProperty Name="MaNguoiDinhGia" ColumnName="MaNguoiDinhGia" />
-                <ScalarProperty Name="DonViID" ColumnName="DonViID" />
-                <ScalarProperty Name="HangHoaID" ColumnName="HangHoaID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="v_ChiTietDonViHangHoa">
-            <EntityTypeMapping TypeName="BV304Model.v_ChiTietDonViHangHoa">
-              <MappingFragment StoreEntitySet="v_ChiTietDonViHangHoa">
-                <ScalarProperty Name="PhuongThucChuyenDoi" ColumnName="PhuongThucChuyenDoi" />
-                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
-                <ScalarProperty Name="TiLeChuyenDoi" ColumnName="TiLeChuyenDoi" />
-                <ScalarProperty Name="TenDonVi" ColumnName="TenDonVi" />
-                <ScalarProperty Name="DonViID" ColumnName="DonViID" />
-                <ScalarProperty Name="TenHangHoa" ColumnName="TenHangHoa" />
-                <ScalarProperty Name="HangHoaID" ColumnName="HangHoaID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="QuyetDinhThau">
-            <EntityTypeMapping TypeName="BV304Model.QuyetDinhThau">
-              <MappingFragment StoreEntitySet="QuyetDinhThau">
-                <ScalarProperty Name="HieuLuc" ColumnName="HieuLuc" />
-                <ScalarProperty Name="NgayQuyetDinh" ColumnName="NgayQuyetDinh" />
-                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
-                <ScalarProperty Name="Ma" ColumnName="Ma" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DiaDanh">
-            <EntityTypeMapping TypeName="BV304Model.DiaDanh">
-              <MappingFragment StoreEntitySet="DiaDanh">
-                <ScalarProperty Name="TenNganGon" ColumnName="TenNganGon" />
-                <ScalarProperty Name="TenDayDu" ColumnName="TenDayDu" />
-                <ScalarProperty Name="TenXa" ColumnName="TenXa" />
-                <ScalarProperty Name="MaXa" ColumnName="MaXa" />
-                <ScalarProperty Name="TenHuyen" ColumnName="TenHuyen" />
-                <ScalarProperty Name="MaHuyen" ColumnName="MaHuyen" />
-                <ScalarProperty Name="TenTinh" ColumnName="TenTinh" />
-                <ScalarProperty Name="MaTinh" ColumnName="MaTinh" />
-                <ScalarProperty Name="MaDiaDanh" ColumnName="MaDiaDanh" />
-                <ScalarProperty Name="ID_DiaDanh" ColumnName="ID_DiaDanh" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="dm_dichvu_dong">
-            <EntityTypeMapping TypeName="BV304Model.dm_dichvu_dong">
-              <MappingFragment StoreEntitySet="dm_dichvu_dong">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="ModifyID" ColumnName="ModifyID" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="CreateByID" ColumnName="CreateByID" />
-                <ScalarProperty Name="NgayHetHieuLuc" ColumnName="NgayHetHieuLuc" />
-                <ScalarProperty Name="NgayHieuLuc" ColumnName="NgayHieuLuc" />
-                <ScalarProperty Name="TenBYT" ColumnName="TenBYT" />
-                <ScalarProperty Name="MaBYT" ColumnName="MaBYT" />
-                <ScalarProperty Name="NhomBHYT" ColumnName="NhomBHYT" />
-                <ScalarProperty Name="NhomBHYT_Cu" ColumnName="NhomBHYT_Cu" />
-                <ScalarProperty Name="TiLeThanhToan" ColumnName="TiLeThanhToan" />
-                <ScalarProperty Name="GiaBaoHiem" ColumnName="GiaBaoHiem" />
-                <ScalarProperty Name="GiaThuPhi" ColumnName="GiaThuPhi" />
-                <ScalarProperty Name="TenDichVu" ColumnName="TenDichVu" />
-                <ScalarProperty Name="Nhom" ColumnName="Nhom" />
-                <ScalarProperty Name="MaKhoa" ColumnName="MaKhoa" />
-                <ScalarProperty Name="MaDichVu" ColumnName="MaDichVu" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HS_BHYT">
-            <EntityTypeMapping TypeName="BV304Model.HS_BHYT">
-              <MappingFragment StoreEntitySet="HS_BHYT">
-                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="DIACHI_DKBD" ColumnName="DIACHI_DKBD" />
-                <ScalarProperty Name="MA_DKBD" ColumnName="MA_DKBD" />
-                <ScalarProperty Name="InActive" ColumnName="InActive" />
-                <ScalarProperty Name="GT_THE_DEN" ColumnName="GT_THE_DEN" />
-                <ScalarProperty Name="GT_THE_TU" ColumnName="GT_THE_TU" />
-                <ScalarProperty Name="MA_THE" ColumnName="MA_THE" />
-                <ScalarProperty Name="HSCN_ID" ColumnName="HSCN_ID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HS_DoiTuong">
-            <EntityTypeMapping TypeName="BV304Model.HS_DoiTuong">
-              <MappingFragment StoreEntitySet="HS_DoiTuong">
-                <ScalarProperty Name="ThongTinKhac" ColumnName="ThongTinKhac" />
-                <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
-                <ScalarProperty Name="CapBac" ColumnName="CapBac" />
-                <ScalarProperty Name="CoQuan" ColumnName="CoQuan" />
-                <ScalarProperty Name="MaTheBHYT" ColumnName="MaTheBHYT" />
-                <ScalarProperty Name="DoiTuongID" ColumnName="DoiTuongID" />
-                <ScalarProperty Name="HSDieuTriID" ColumnName="HSDieuTriID" />
-                <ScalarProperty Name="HSTiepNhanID" ColumnName="HSTiepNhanID" />
-                <ScalarProperty Name="HSCaNhanID" ColumnName="HSCaNhanID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Khoa">
-            <EntityTypeMapping TypeName="BV304Model.Khoa">
-              <MappingFragment StoreEntitySet="Khoa">
-                <ScalarProperty Name="TenBYT" ColumnName="TenBYT" />
-                <ScalarProperty Name="MaBYT" ColumnName="MaBYT" />
-                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
-                <ScalarProperty Name="NhomKhoaId" ColumnName="NhomKhoaId" />
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
-                <ScalarProperty Name="Ma" ColumnName="Ma" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="KhoaPhong">
-            <EntityTypeMapping TypeName="BV304Model.KhoaPhong">
-              <MappingFragment StoreEntitySet="KhoaPhong">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="ModifyByID" ColumnName="ModifyByID" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="CreateByID" ColumnName="CreateByID" />
-                <ScalarProperty Name="TenBYT" ColumnName="TenBYT" />
-                <ScalarProperty Name="MaBYT" ColumnName="MaBYT" />
-                <ScalarProperty Name="Nhom" ColumnName="Nhom" />
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1459,6 +1691,14 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="CreateByID" ColumnName="CreateByID" />
                 <ScalarProperty Name="TenNhom" ColumnName="TenNhom" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhanLoaiHoaDon">
+            <EntityTypeMapping TypeName="BV304Model.PhanLoaiHoaDon">
+              <MappingFragment StoreEntitySet="PhanLoaiHoaDon">
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1487,6 +1727,29 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="QuyetDinhThau">
+            <EntityTypeMapping TypeName="BV304Model.QuyetDinhThau">
+              <MappingFragment StoreEntitySet="QuyetDinhThau">
+                <ScalarProperty Name="HieuLuc" ColumnName="HieuLuc" />
+                <ScalarProperty Name="NgayQuyetDinh" ColumnName="NgayQuyetDinh" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="Ma" ColumnName="Ma" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuyetDinhThauChiTiet">
+            <EntityTypeMapping TypeName="BV304Model.QuyetDinhThauChiTiet">
+              <MappingFragment StoreEntitySet="QuyetDinhThauChiTiet">
+                <ScalarProperty Name="TheoMaHoatChat" ColumnName="TheoMaHoatChat" />
+                <ScalarProperty Name="TheoTenThuoc" ColumnName="TheoTenThuoc" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="HangHoaID" ColumnName="HangHoaID" />
+                <ScalarProperty Name="MaQuyetDinhThau" ColumnName="MaQuyetDinhThau" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ThongTinBenhVien">
             <EntityTypeMapping TypeName="BV304Model.ThongTinBenhVien">
               <MappingFragment StoreEntitySet="ThongTinBenhVien">
@@ -1502,6 +1765,135 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
                 <ScalarProperty Name="TenBV" ColumnName="TenBV" />
                 <ScalarProperty Name="CQChuQuan" ColumnName="CQChuQuan" />
                 <ScalarProperty Name="MABV" ColumnName="MABV" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THUOC_6061">
+            <EntityTypeMapping TypeName="BV304Model.THUOC_6061">
+              <MappingFragment StoreEntitySet="THUOC_6061">
+                <ScalarProperty Name="NGUY_CO_THUOC" ColumnName="NGUY_CO_THUOC" />
+                <ScalarProperty Name="MA_NHOM_THUOC" ColumnName="MA_NHOM_THUOC" />
+                <ScalarProperty Name="LOAI_THUOC" ColumnName="LOAI_THUOC" />
+                <ScalarProperty Name="DONG_GOI" ColumnName="DONG_GOI" />
+                <ScalarProperty Name="HAM_LUONG" ColumnName="HAM_LUONG" />
+                <ScalarProperty Name="MA_DUONG_DUNG" ColumnName="MA_DUONG_DUNG" />
+                <ScalarProperty Name="HOAT_CHAT" ColumnName="HOAT_CHAT" />
+                <ScalarProperty Name="MA_HOAT_CHAT" ColumnName="MA_HOAT_CHAT" />
+                <ScalarProperty Name="TEN_THUOC" ColumnName="TEN_THUOC" />
+                <ScalarProperty Name="SO_DANG_KY" ColumnName="SO_DANG_KY" />
+                <ScalarProperty Name="THUOC_ID" ColumnName="THUOC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChiTietPhieu">
+            <EntityTypeMapping TypeName="BV304Model.ChiTietPhieu">
+              <MappingFragment StoreEntitySet="ChiTietPhieu">
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+                <ScalarProperty Name="LoaiChietKhau" ColumnName="LoaiChietKhau" />
+                <ScalarProperty Name="ChietKhau" ColumnName="ChietKhau" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
+                <ScalarProperty Name="TenDonVi" ColumnName="TenDonVi" />
+                <ScalarProperty Name="SoQuyeDinh" ColumnName="SoQuyeDinh" />
+                <ScalarProperty Name="LoHangID" ColumnName="LoHangID" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="HangHoaID" ColumnName="HangHoaID" />
+                <ScalarProperty Name="PhieuID" ColumnName="PhieuID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kho">
+            <EntityTypeMapping TypeName="BV304Model.Kho">
+              <MappingFragment StoreEntitySet="Kho">
+                <ScalarProperty Name="LoaiKhoId" ColumnName="LoaiKhoId" />
+                <ScalarProperty Name="TenKho" ColumnName="TenKho" />
+                <ScalarProperty Name="MaKho" ColumnName="MaKho" />
+                <ScalarProperty Name="KhoaId" ColumnName="KhoaId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiKho">
+            <EntityTypeMapping TypeName="BV304Model.LoaiKho">
+              <MappingFragment StoreEntitySet="LoaiKho">
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Ma" ColumnName="Ma" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhieuDeNghi">
+            <EntityTypeMapping TypeName="BV304Model.PhieuDeNghi">
+              <MappingFragment StoreEntitySet="PhieuDeNghi">
+                <ScalarProperty Name="LoaiPhieu" ColumnName="LoaiPhieu" />
+                <ScalarProperty Name="MaKhoXuat" ColumnName="MaKhoXuat" />
+                <ScalarProperty Name="MaKhoNhap" ColumnName="MaKhoNhap" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="NguoiHuy" ColumnName="NguoiHuy" />
+                <ScalarProperty Name="LyDoHuy" ColumnName="LyDoHuy" />
+                <ScalarProperty Name="NgayHuy" ColumnName="NgayHuy" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="LyDoDeNghi" ColumnName="LyDoDeNghi" />
+                <ScalarProperty Name="NgayDeNghi" ColumnName="NgayDeNghi" />
+                <ScalarProperty Name="Ma" ColumnName="Ma" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhieuNhapKho">
+            <EntityTypeMapping TypeName="BV304Model.PhieuNhapKho">
+              <MappingFragment StoreEntitySet="PhieuNhapKho">
+                <ScalarProperty Name="TenPhanLoaiHoaDon" ColumnName="TenPhanLoaiHoaDon" />
+                <ScalarProperty Name="MaPhanLoaiHoaDon" ColumnName="MaPhanLoaiHoaDon" />
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="VAT" ColumnName="VAT" />
+                <ScalarProperty Name="NgayHoaDon" ColumnName="NgayHoaDon" />
+                <ScalarProperty Name="SoHoaDon" ColumnName="SoHoaDon" />
+                <ScalarProperty Name="NguoiCungCap" ColumnName="NguoiCungCap" />
+                <ScalarProperty Name="NhaCungCap" ColumnName="NhaCungCap" />
+                <ScalarProperty Name="MaNhaCungCap" ColumnName="MaNhaCungCap" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="Ma" ColumnName="Ma" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhieuXuatKho">
+            <EntityTypeMapping TypeName="BV304Model.PhieuXuatKho">
+              <MappingFragment StoreEntitySet="PhieuXuatKho">
+                <ScalarProperty Name="TenPhanLoaiHoaDon" ColumnName="TenPhanLoaiHoaDon" />
+                <ScalarProperty Name="MaPhanLoaiHoaDon" ColumnName="MaPhanLoaiHoaDon" />
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+                <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="NguoiNhan" ColumnName="NguoiNhan" />
+                <ScalarProperty Name="NgayXuatKho" ColumnName="NgayXuatKho" />
+                <ScalarProperty Name="MaKhoXuat" ColumnName="MaKhoXuat" />
+                <ScalarProperty Name="MaKhoNhap" ColumnName="MaKhoNhap" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="MaPhieuDeNghi" ColumnName="MaPhieuDeNghi" />
+                <ScalarProperty Name="Ma" ColumnName="Ma" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Thuoc_VatTuYteTonKho">
+            <EntityTypeMapping TypeName="BV304Model.Thuoc_VatTuYteTonKho">
+              <MappingFragment StoreEntitySet="Thuoc_VatTuYteTonKho">
+                <ScalarProperty Name="HanSuDung" ColumnName="HanSuDung" />
+                <ScalarProperty Name="SoLo" ColumnName="SoLo" />
+                <ScalarProperty Name="SoLuongDaXuat" ColumnName="SoLuongDaXuat" />
+                <ScalarProperty Name="SoLuongDaNhap" ColumnName="SoLuongDaNhap" />
+                <ScalarProperty Name="SoLuongTon" ColumnName="SoLuongTon" />
+                <ScalarProperty Name="MaHoatChat" ColumnName="MaHoatChat" />
+                <ScalarProperty Name="PhanLoaiDuocID" ColumnName="PhanLoaiDuocID" />
+                <ScalarProperty Name="SoQuyetDinh" ColumnName="SoQuyetDinh" />
+                <ScalarProperty Name="ThuocVtytID" ColumnName="ThuocVtytID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1553,6 +1945,15 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
               <MappingFragment StoreEntitySet="GioiTinh">
                 <ScalarProperty Name="TEN_GIOI_TINH" ColumnName="TEN_GIOI_TINH" />
                 <ScalarProperty Name="GIOI_TINH_Id" ColumnName="GIOI_TINH_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HoTriLieu">
+            <EntityTypeMapping TypeName="BV304Model.HoTriLieu">
+              <MappingFragment StoreEntitySet="HoTriLieu">
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="IDhotrilieu" ColumnName="IDhotrilieu" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1610,11 +2011,43 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ThuocDuongDung">
+            <EntityTypeMapping TypeName="BV304Model.ThuocDuongDung">
+              <MappingFragment StoreEntitySet="ThuocDuongDung">
+                <ScalarProperty Name="DienGiai" ColumnName="DienGiai" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TonGiao">
             <EntityTypeMapping TypeName="BV304Model.TonGiao">
               <MappingFragment StoreEntitySet="TonGiao">
                 <ScalarProperty Name="TEN_TON_GIAO" ColumnName="TEN_TON_GIAO" />
                 <ScalarProperty Name="TON_GIAO_Id" ColumnName="TON_GIAO_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VATTU_YTE_6061">
+            <EntityTypeMapping TypeName="BV304Model.VATTU_YTE_6061">
+              <MappingFragment StoreEntitySet="VATTU_YTE_6061">
+                <ScalarProperty Name="DVT" ColumnName="DVT" />
+                <ScalarProperty Name="MA_NHOM_VTU" ColumnName="MA_NHOM_VTU" />
+                <ScalarProperty Name="TEN_VAT_TU" ColumnName="TEN_VAT_TU" />
+                <ScalarProperty Name="MA_VAT_TU" ColumnName="MA_VAT_TU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_ChiTietDonViHangHoa">
+            <EntityTypeMapping TypeName="BV304Model.v_ChiTietDonViHangHoa">
+              <MappingFragment StoreEntitySet="v_ChiTietDonViHangHoa">
+                <ScalarProperty Name="PhuongThucChuyenDoi" ColumnName="PhuongThucChuyenDoi" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="TiLeChuyenDoi" ColumnName="TiLeChuyenDoi" />
+                <ScalarProperty Name="TenDonVi" ColumnName="TenDonVi" />
+                <ScalarProperty Name="DonViID" ColumnName="DonViID" />
+                <ScalarProperty Name="TenHangHoa" ColumnName="TenHangHoa" />
+                <ScalarProperty Name="HangHoaID" ColumnName="HangHoaID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

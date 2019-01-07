@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BV.DataModel.Kho
+namespace BV.DataModel.KhoChung
 {
     using System;
     using System.Collections.Generic;

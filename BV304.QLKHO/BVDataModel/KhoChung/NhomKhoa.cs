@@ -17,7 +17,7 @@ namespace BV.DataModel.KhoChung
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NhomKhoa()
         {
-            this.Khoa = new HashSet<Khoa>();
+            this.KhoaPhong = new HashSet<KhoaPhong>();
         }
     
         public int ID { get; set; }
@@ -29,6 +29,6 @@ namespace BV.DataModel.KhoChung
         public Nullable<bool> Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Khoa> Khoa { get; set; }
+        public virtual ICollection<KhoaPhong> KhoaPhong { get; set; }
     }
 }

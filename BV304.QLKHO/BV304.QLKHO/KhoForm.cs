@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BV.DataModel.KhoChung;
+using BV.QLKHO.KhoBV;
 
 namespace BV.QLKHO
 {
@@ -20,7 +22,7 @@ namespace BV.QLKHO
             InitializeComponent();
         }
 
-        private void thuocVtytToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mnuDanhMucThuocVatTuYTe_Click(object sender, EventArgs e)
         {
             try
             {
@@ -134,14 +136,14 @@ namespace BV.QLKHO
             oForm.ShowDialog(this);
         }
 
-        private void nhậpTừNhàCungCấpToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mnuNhapThuocTuNhaCungCap_Click(object sender, EventArgs e)
         {
             PhieuNhapForm oForm = new PhieuNhapThuoc.PhieuNhapForm();
             oForm.InitData(Guid.Empty);
             oForm.ShowDialog(this); 
         }
 
-        private void nhàCungCấpToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mnuDanhMucNhaCungCap_Click(object sender, EventArgs e)
         {
             try
             {
@@ -160,9 +162,22 @@ namespace BV.QLKHO
             }
         }
 
-        private void danhMucKhoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mnuDanhMucKho_Click(object sender, EventArgs e)
         {
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
 
+                var view = new DanhMucKhoCtrl(KhoUtil.GetDanhMuc<Kho>());
+                view.CloseView += View_CloseView;
+
+                AddUserControl("Danh Mục Kho", view);
+                this.Cursor = Cursors.Default;
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
         }
     }
 }

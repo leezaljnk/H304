@@ -17,11 +17,11 @@ namespace BV.DataModel.KhoChung
         public System.Guid ID { get; set; }
         public System.Guid HangHoaID { get; set; }
         public System.Guid DonViID { get; set; }
+        public Nullable<decimal> GiaDichVu { get; set; }
+        public Nullable<decimal> GiaBaoHiem { get; set; }
         public string MaNguoiDinhGia { get; set; }
         public string TenNguoiDinhGia { get; set; }
         public Nullable<System.DateTime> ThoiGianCapNhat { get; set; }
-        public Nullable<decimal> GiaDichVu { get; set; }
-        public Nullable<decimal> GiaBaoHiem { get; set; }
         public string GhiChu { get; set; }
     }
 }
