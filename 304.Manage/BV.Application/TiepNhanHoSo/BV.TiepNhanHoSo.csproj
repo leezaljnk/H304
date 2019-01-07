@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{92D213FC-ED4E-4619-83D2-3E0521E5DA17}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BV.TiepNhanHoSo</RootNamespace>
+    <AssemblyName>BV.TiepNhanHoSo</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ComboboxReadOnly">
+      <HintPath>..\..\..\..\4C\EHR\WFOM\EHR\Lib\ComboboxReadOnly.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Infragistics4.Shared.v15.1, Version=15.1.20151.2230, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics4.Win.Misc.v15.1, Version=15.1.20151.2230, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics4.Win.UltraWinEditors.v15.1, Version=15.1.20151.2230, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics4.Win.UltraWinGrid.v15.1, Version=15.1.20151.2230, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics4.Win.UltraWinRadialMenu.v15.1, Version=15.1.20151.2230, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics4.Win.v15.1, Version=15.1.20151.2230, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TiepNhan\ctrlThongTinCA.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TiepNhan\ctrlThongTinCA.designer.cs">
+      <DependentUpon>ctrlThongTinCA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TiepNhan\ctrlThongTinBaoHiem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TiepNhan\ctrlThongTinBaoHiem.designer.cs">
+      <DependentUpon>ctrlThongTinBaoHiem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TiepNhan\ctrlThongTinTiepNhanEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TiepNhan\ctrlThongTinTiepNhanEdit.Designer.cs">
+      <DependentUpon>ctrlThongTinTiepNhanEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TiepNhan\ctrPhieuTiepNhan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TiepNhan\ctrPhieuTiepNhan.Designer.cs">
+      <DependentUpon>ctrPhieuTiepNhan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TiepNhan\ctrlThongTinTiepNhan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TiepNhan\ctrlThongTinTiepNhan.Designer.cs">
+      <DependentUpon>ctrlThongTinTiepNhan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormBHYT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBHYT.designer.cs">
+      <DependentUpon>FormBHYT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TiepNhan\ctrlThongTinHanhChinh.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TiepNhan\ctrlThongTinHanhChinh.designer.cs">
+      <DependentUpon>ctrlThongTinHanhChinh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TiepNhan\ThongTinHanhChinhForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TiepNhan\ThongTinHanhChinhForm.Designer.cs">
+      <DependentUpon>ThongTinHanhChinhForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TiepNhan\TiepNhanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TiepNhan\TiepNhanForm.Designer.cs">
+      <DependentUpon>TiepNhanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TiepNhan\ctrlThongTinCA.resx">
+      <DependentUpon>ctrlThongTinCA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TiepNhan\ctrlThongTinBaoHiem.resx">
+      <DependentUpon>ctrlThongTinBaoHiem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TiepNhan\ctrlThongTinTiepNhanEdit.resx">
+      <DependentUpon>ctrlThongTinTiepNhanEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TiepNhan\ctrPhieuTiepNhan.resx">
+      <DependentUpon>ctrPhieuTiepNhan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TiepNhan\ctrlThongTinTiepNhan.resx">
+      <DependentUpon>ctrlThongTinTiepNhan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBHYT.resx">
+      <DependentUpon>FormBHYT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TiepNhan\ctrlThongTinHanhChinh.resx">
+      <DependentUpon>ctrlThongTinHanhChinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="TiepNhan\ThongTinHanhChinhForm.resx">
+      <DependentUpon>ThongTinHanhChinhForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TiepNhan\TiepNhanForm.resx">
+      <DependentUpon>TiepNhanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl1.resx">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\BV.BUS\Bussiness\BV.Bussiness.csproj">
+      <Project>{0EF1F8EA-4C02-4A88-8C10-237D18319F2A}</Project>
+      <Name>BV.Bussiness</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BV.DAO\DataModel\BV.DataModel.csproj">
+      <Project>{BD6DA53F-02B3-490B-957F-1C3A32F871E8}</Project>
+      <Name>BV.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BV.SharedComponent\Common.Winforms\Common.Winforms.csproj">
+      <Project>{7875f61b-e93a-4a90-bca3-ba8a47ad32c3}</Project>
+      <Name>Common.Winforms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BV.SharedComponent\SharedComponent\BV.SharedComponent.csproj">
+      <Project>{5dac15c1-5aec-436e-b8fe-c31a1bb2b105}</Project>
+      <Name>BV.SharedComponent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QLKHO\BV.QLKHO.csproj">
+      <Project>{8B9C74CE-C4D1-4428-968D-0FF8EB82A20A}</Project>
+      <Name>BV.QLKHO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8B9C74CE-C4D1-4428-968D-0FF8EB82A20A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BV.QLKHO</RootNamespace>
+    <AssemblyName>BV304.QLKHO</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Infragistics4.Shared.v15.1, Version=15.1.20151.2230, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics4.Win.Misc.v15.1, Version=15.1.20151.2230, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics4.Win.UltraWinDataSource.v15.1, Version=15.1.20151.2230, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics4.Win.UltraWinEditors.v15.1, Version=15.1.20151.2230, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics4.Win.UltraWinGrid.v15.1, Version=15.1.20151.2230, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics4.Win.v15.1, Version=15.1.20151.2230, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KhoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KhoForm.Designer.cs">
+      <DependentUpon>KhoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NhaCungCap\DanhMucNhaCungCapCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NhaCungCap\DanhMucNhaCungCapCtrl.Designer.cs">
+      <DependentUpon>DanhMucNhaCungCapCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PhieuNhapThuoc\PhieuNhapForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PhieuNhapThuoc\PhieuNhapForm.Designer.cs">
+      <DependentUpon>PhieuNhapForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PhieuNhapThuoc\PhieuNhapThuocCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PhieuNhapThuoc\PhieuNhapThuocCtrl.Designer.cs">
+      <DependentUpon>PhieuNhapThuocCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="THUOC\AutoCompleteTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="THUOC\DanhMucThuocCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="THUOC\DanhMucThuocCtrl.Designer.cs">
+      <DependentUpon>DanhMucThuocCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NhaCungCap\NhaCungCapForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NhaCungCap\NhaCungCapForm.Designer.cs">
+      <DependentUpon>NhaCungCapForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THUOC\QuyetDinhThauForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THUOC\QuyetDinhThauForm.Designer.cs">
+      <DependentUpon>QuyetDinhThauForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THUOC\ThongTinLoHangForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THUOC\ThongTinLoHangForm.Designer.cs">
+      <DependentUpon>ThongTinLoHangForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THUOC\ThongTinThuocFormTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THUOC\ThongTinThuocFormTest.Designer.cs">
+      <DependentUpon>ThongTinThuocFormTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THUOC\ThongTinThuocFormBYT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THUOC\ThongTinThuocFormBYT.Designer.cs">
+      <DependentUpon>ThongTinThuocFormBYT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="THUOC\ThongTinThuocForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="THUOC\ThongTinThuocForm.Designer.cs">
+      <DependentUpon>ThongTinThuocForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KhoForm.resx">
+      <DependentUpon>KhoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NhaCungCap\DanhMucNhaCungCapCtrl.resx">
+      <DependentUpon>DanhMucNhaCungCapCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PhieuNhapThuoc\PhieuNhapForm.resx">
+      <DependentUpon>PhieuNhapForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PhieuNhapThuoc\PhieuNhapThuocCtrl.resx">
+      <DependentUpon>PhieuNhapThuocCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="THUOC\AutoCompleteTextBox.resx">
+      <DependentUpon>AutoCompleteTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THUOC\DanhMucThuocCtrl.resx">
+      <DependentUpon>DanhMucThuocCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NhaCungCap\NhaCungCapForm.resx">
+      <DependentUpon>NhaCungCapForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THUOC\QuyetDinhThauForm.resx">
+      <DependentUpon>QuyetDinhThauForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THUOC\ThongTinLoHangForm.resx">
+      <DependentUpon>ThongTinLoHangForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THUOC\ThongTinThuocFormTest.resx">
+      <DependentUpon>ThongTinThuocFormTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THUOC\ThongTinThuocFormBYT.resx">
+      <DependentUpon>ThongTinThuocFormBYT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="THUOC\ThongTinThuocForm.resx">
+      <DependentUpon>ThongTinThuocForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Styling\Theme 01.isl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\BV.BUS\Bussiness\BV.Bussiness.csproj">
+      <Project>{0ef1f8ea-4c02-4a88-8c10-237d18319f2a}</Project>
+      <Name>BV.Bussiness</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BV.DAO\DataModel\BV.DataModel.csproj">
+      <Project>{BD6DA53F-02B3-490B-957F-1C3A32F871E8}</Project>
+      <Name>BV.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BV.SharedComponent\AppCommon\BV.AppCommon.csproj">
+      <Project>{6C2362E7-7CBA-45DB-9CDE-2149928F0A3D}</Project>
+      <Name>BV.AppCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BV.SharedComponent\Common.Winforms\Common.Winforms.csproj">
+      <Project>{7875f61b-e93a-4a90-bca3-ba8a47ad32c3}</Project>
+      <Name>Common.Winforms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BV.SharedComponent\SharedComponent\BV.SharedComponent.csproj">
+      <Project>{5dac15c1-5aec-436e-b8fe-c31a1bb2b105}</Project>
+      <Name>BV.SharedComponent</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
