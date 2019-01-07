@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace BV.DAO
 {
-    public partial class AppDAO
+    public partial class DAOApp
     {
         private static readonly string connectionString = System.Configuration.ConfigurationManager.AppSettings["ConnectionString"];
         private static BVEntities _bvProvider;

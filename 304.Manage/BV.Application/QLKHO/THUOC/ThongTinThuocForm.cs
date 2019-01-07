@@ -22,16 +22,16 @@ namespace BV.QLKHO.THUOC
         private void InitControl()
         {
             //Đường Dùng
-            var lstDuongDung = AppBus.GetDanhMuc<ThuocDuongDung>();
+            var lstDuongDung = BusApp.GetDanhMuc<ThuocDuongDung>();
             cboDuongDung.DataSource = lstDuongDung;
             cboDuongDung.DisplayMember = "DienGiai";
 
             //Ho tri lieu
-            List<string> lstHoTriLieu = AppBus.GetDanhMuc<HoTriLieu>().Select(h => h.Ten).Distinct().ToList();//.GroupBy(h => h.Ten).ToList();
+            List<string> lstHoTriLieu = BusApp.GetDanhMuc<HoTriLieu>().Select(h => h.Ten).Distinct().ToList();//.GroupBy(h => h.Ten).ToList();
             cboHoTriLieu.DataSource = lstHoTriLieu;
 
             //Don Vi Thuoc
-            var lstDonViThuoc = AppBus.GetDanhMuc<DonViHangHoa>().OrderBy(t => t.Ten).ToList();
+            var lstDonViThuoc = BusApp.GetDanhMuc<DonViHangHoa>().OrderBy(t => t.Ten).ToList();
 
             cboDonVi.DataSource = lstDonViThuoc;
             cboDonVi.DisplayMember = "Ten";
@@ -56,13 +56,13 @@ namespace BV.QLKHO.THUOC
                 return;
             }
 
-            _giaThuoc = AppBus.GetGiaThuoc(Entity.ID);
+            _giaThuoc = BusApp.GetGiaThuoc(Entity.ID);
             if (_giaThuoc == null)
             {
                 _giaThuoc = new DinhGiaHangHoa() { ID = Guid.NewGuid (), HangHoaID = Entity.ID };
             }
 
-            _lstDonVis = AppBus.GetChuyenDoiDonViThuoc(Entity.ID);
+            _lstDonVis = BusApp.GetChuyenDoiDonViThuoc(Entity.ID);
 
             txtTenThuoc.Text = Entity.Ten;
             txtSoDangKy.Text = Entity.Ma;
@@ -77,7 +77,7 @@ namespace BV.QLKHO.THUOC
             txtGiaBH.Text = _giaThuoc.GiaBaoHiem.ToString();
             //txtGiaCB.Text = _giaThuoc.GiaChinhSach.ToString();
 
-            var lstChuyenDoiDonViThuoc = AppBus.GetChuyenDoiDonViThuoc(Entity.ID).OrderBy(d => d.TiLeChuyenDoi).ToList();
+            var lstChuyenDoiDonViThuoc = BusApp.GetChuyenDoiDonViThuoc(Entity.ID).OrderBy(d => d.TiLeChuyenDoi).ToList();
             int i = 0;
             foreach (var item in lstChuyenDoiDonViThuoc)
             {
@@ -144,7 +144,7 @@ namespace BV.QLKHO.THUOC
                     txtSoDangKy.Text = oThuoc.SO_DANG_KY;
                     txtHoatChat.Text = oThuoc.HOAT_CHAT;
                     txtHamLuong.Text = oThuoc.HAM_LUONG;
-                    var lstDuongDung = AppBus.GetDanhMuc<ThuocDuongDung>();
+                    var lstDuongDung = BusApp.GetDanhMuc<ThuocDuongDung>();
                     var item = lstDuongDung.FirstOrDefault(t => t.ID == oThuoc.MA_DUONG_DUNG);
                     cboDuongDung.Text = item?.DienGiai ?? "";
                     txtDongGoi.Text = oThuoc.DONG_GOI;
@@ -170,7 +170,7 @@ namespace BV.QLKHO.THUOC
             var row = dataGridView1.Rows[e.RowIndex];
             if (row.Cells[1].Value != null && row.Cells[2].Value != null && row.Cells[3].Value != null)
             {
-                var tenThuoc = AppBus.GetDanhMuc<DonViHangHoa>().FirstOrDefault(t => t.ID.ToString() == row.Cells[1].Value.ToString());
+                var tenThuoc = BusApp.GetDanhMuc<DonViHangHoa>().FirstOrDefault(t => t.ID.ToString() == row.Cells[1].Value.ToString());
                 var dienGiai = "";
                 if (row.Cells[3].Value.ToString() == "Nhân")
                 {
@@ -291,7 +291,7 @@ namespace BV.QLKHO.THUOC
             }
 
             //Save data
-            AppBus.LuuThongTinHangHoa(oThuoc, oGiaThuoc, lstDonVi);
+            BusApp.LuuThongTinHangHoa(oThuoc, oGiaThuoc, lstDonVi);
 
             AppCached.UpdateDanhMuc<HangHoa>(Entity, oThuoc);
             Entity = oThuoc;

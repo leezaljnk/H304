@@ -64,7 +64,7 @@ namespace EHR.App.DSHoSo
             }
             else
             {
-                return AppBus.UpdateHoSo_BHYT(_entity.HSCN_ID, hs);
+                return BusApp.UpdateHoSo_BHYT(_entity.HSCN_ID, hs);
             }
         }
 

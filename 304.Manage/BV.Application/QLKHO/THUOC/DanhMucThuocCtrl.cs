@@ -19,8 +19,8 @@ namespace BV.QLKHO.THUOC
 
         internal void InitControlUI()
         {
-            _DanhMucThuoc304 = AppBus.GetDanhMuc<HangHoa>();
-            _HoTriLieu = AppBus.GetDanhMuc<HoTriLieu>();
+            _DanhMucThuoc304 = BusApp.GetDanhMuc<HangHoa>();
+            _HoTriLieu = BusApp.GetDanhMuc<HoTriLieu>();
             foreach (var t in _DanhMucThuoc304)
             {
                 var item = new object[] { t.Ma, t.Ten, t.HoatChat, t.HamLuong, t.DongGoi, t.DuongDung, t.HoTriLieu };

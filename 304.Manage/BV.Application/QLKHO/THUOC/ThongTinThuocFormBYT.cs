@@ -20,7 +20,7 @@ namespace BV.QLKHO.THUOC
 
         public void InitData()
         {
-            var _DanhMucThuocBYT = AppBus.GetDanhMuc<THUOC_6061>();
+            var _DanhMucThuocBYT = BusApp.GetDanhMuc<THUOC_6061>();
             ultraCombo1.DataSource = _DanhMucThuocBYT;
             ultraCombo1.DisplayMember = "TEN_THUOC";
             ultraCombo1.ValueMember = "THUOC_ID";
@@ -103,13 +103,13 @@ namespace BV.QLKHO.THUOC
         private void ShowThuocInfo()
         {
             int id = (int)ultraCombo1.Value;
-            var oThuoc = AppBus.GetDanhMuc<THUOC_6061>().FirstOrDefault(t => t.THUOC_ID == id);
+            var oThuoc = BusApp.GetDanhMuc<THUOC_6061>().FirstOrDefault(t => t.THUOC_ID == id);
 
             txtSoDangKy.Text = oThuoc.SO_DANG_KY;
             txtHoatChat.Text = oThuoc.HOAT_CHAT;
             txtHamLuong.Text = oThuoc.HAM_LUONG;
 
-            var lstDuongDung = AppBus.GetDanhMuc<ThuocDuongDung>();
+            var lstDuongDung = BusApp.GetDanhMuc<ThuocDuongDung>();
             var item = lstDuongDung.FirstOrDefault(t => t.ID == oThuoc.MA_DUONG_DUNG);
             txtDuongDung.Text = item?.DienGiai ?? "";
             txtDongGoi.Text = oThuoc.DONG_GOI;

@@ -141,7 +141,7 @@ namespace BV.QLKHO
             oForm.ShowDialog(this); 
         }
 
-        private void nhàCungCấpToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mnuDanhMucNCC_Click(object sender, EventArgs e)
         {
             try
             {

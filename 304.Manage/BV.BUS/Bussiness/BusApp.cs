@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace BV.BUS
 {
-    public class AppBus
+    public class BusApp
     {
         public static List<T> GetDanhMuc<T>(bool bRefresh = false, int take = 0) where T : class
         {
@@ -15,7 +15,7 @@ namespace BV.BUS
                 var coll = AppCached.GetDanhMuc<T>();
                 if (bRefresh || coll == null)
                 {
-                    coll = AppDAO.GetDanhMuc<T>();
+                    coll = DAOApp.GetDanhMuc<T>();
                     AppCached.AddDanhMuc<T>(coll);
                 }
                 return coll;
@@ -35,7 +35,7 @@ namespace BV.BUS
         {
             try
             {
-                return KhoDAO.GetGiaThuoc(thuocID);
+                return DAOKho.GetGiaThuoc(thuocID);
             }
             catch (Exception ex)
             {
@@ -48,7 +48,7 @@ namespace BV.BUS
         {
             try
             {
-                return KhoDAO.GetChuyenDoiDonViThuoc(thuocID);
+                return DAOKho.GetChuyenDoiDonViThuoc(thuocID);
             }
             catch (Exception ex)
             {
@@ -61,7 +61,7 @@ namespace BV.BUS
         {
             try
             {
-                KhoDAO.SaveThuoc304(oThuoc, oGiaThuoc, lstDonVi);
+                DAOKho.SaveThuoc304(oThuoc, oGiaThuoc, lstDonVi);
             }
             catch (Exception ex)
             {
@@ -74,7 +74,7 @@ namespace BV.BUS
         {
             try
             {
-                return KhoDAO.SaveNhaCungCap(oEntity);
+                return DAOKho.SaveNhaCungCap(oEntity);
             }
             catch (Exception ex)
             {
@@ -92,7 +92,7 @@ namespace BV.BUS
         {
             try
             {
-                return KhoDAO.SaveThongTinLoHang(oEntity);
+                return DAOKho.SaveThongTinLoHang(oEntity);
             }
             catch (Exception ex)
             {
@@ -105,7 +105,7 @@ namespace BV.BUS
         {
             try
             {
-                return KhoDAO.SaveThongTinQuyetDinhThau(oEntity);
+                return DAOKho.SaveThongTinQuyetDinhThau(oEntity);
             }
             catch (Exception ex)
             {

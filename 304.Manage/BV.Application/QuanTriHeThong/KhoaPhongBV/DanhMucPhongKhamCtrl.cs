@@ -19,11 +19,11 @@ namespace BV.QLKHO.THUOC
 
         internal void InitControlUI()
         {
-            var lstPhongKham = AppBus.GetDanhMuc<PhongKham>();
+            var lstPhongKham = BusApp.GetDanhMuc<PhongKham>();
             foreach (var t in lstPhongKham)
             {
                 //Get TenKhoa
-                var khoa = AppBus.GetDanhMuc<Khoa>().FirstOrDefault(k => k.ID == t.KhoaID);
+                var khoa = BusApp.GetDanhMuc<Khoa>().FirstOrDefault(k => k.ID == t.KhoaID);
                 var item = new object[] { t.Ma, t.Ten, t.MoTa, khoa?.Ten};
                 int i = dataGridView1.Rows.Add(item);
                 dataGridView1.Rows[i].Tag = t;
@@ -41,7 +41,7 @@ namespace BV.QLKHO.THUOC
                     if (oForm.ShowDialog(this) == DialogResult.OK)
                     {
                         var t = oForm.Entity;
-                        var khoa = AppBus.GetDanhMuc<Khoa>().FirstOrDefault(k => k.ID == t.KhoaID);
+                        var khoa = BusApp.GetDanhMuc<Khoa>().FirstOrDefault(k => k.ID == t.KhoaID);
                         
                         var item = new object[] { t.Ma, t.Ten, t.MoTa, khoa?.Ten };
                         int i = dataGridView1.Rows.Add(item);
@@ -59,7 +59,7 @@ namespace BV.QLKHO.THUOC
                         if (oForm.ShowDialog(this) == DialogResult.OK)
                         {
                             var t = oForm.Entity;
-                            var khoa = AppBus.GetDanhMuc<Khoa>().FirstOrDefault(k => k.ID == t.KhoaID);
+                            var khoa = BusApp.GetDanhMuc<Khoa>().FirstOrDefault(k => k.ID == t.KhoaID);
                             row.Cells[0].Value = t.Ma;
                             row.Cells[1].Value = t.Ten;
                             row.Cells[2].Value = t.MoTa;

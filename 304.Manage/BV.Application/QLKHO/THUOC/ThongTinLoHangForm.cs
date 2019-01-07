@@ -59,7 +59,7 @@ namespace BV.QLKHO.THUOC
             oLo.SoLo = txtSoLo.Text.Trim();
             oLo.HanSuDung = bvDateTimeCtrl1.Value;
 
-            Entity = AppBus.SaveThongTinLoHang(oLo);
+            Entity = BusApp.SaveThongTinLoHang(oLo);
 
             //Update cached
             AppCached.UpdateDanhMuc<LoHangHoa>(Entity, "ID");

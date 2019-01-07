@@ -3,16 +3,16 @@ using BV.DataModel;
 
 namespace BV.BUS
 {
-    public class KhoaPhongBUS
+    public class BUSKhoaPhong
     {
         public static Khoa UpdateKhoa(Khoa k)
         {
-            return KhoaPhongDAO.UpdateKhoa(k);
+            return DAOKhoaPhong.UpdateKhoa(k);
         }
 
         public static PhongKham UpdatePhongKham(PhongKham p)
         {
-            return KhoaPhongDAO.UpdatePhongKham(p);
+            return DAOKhoaPhong.UpdatePhongKham(p);
         }
     }
 }

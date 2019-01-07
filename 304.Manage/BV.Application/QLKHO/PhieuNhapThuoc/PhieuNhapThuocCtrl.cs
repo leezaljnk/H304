@@ -26,12 +26,12 @@ namespace BV.QLKHO.PhieuNhapThuoc
         private void InitData()
         {
             //lấy dữ liệu các danh mục
-            var lstNhaCungCap = AppBus.GetDanhMuc<NhaCungCap>();
-            var lstThuocVTYT = AppBus.GetDanhMuc<HangHoa>();
-            var lstThuocDetail = AppBus.GetDanhMuc<v_ChiTietDonViHangHoa>();
-            var lstPhanLoaiHoaDon = AppBus.GetDanhMuc<PhanLoaiHoaDon>();
-            var lstLoHang = AppBus.GetDanhMuc<LoHangHoa>();
-            var lstQDThau = AppBus.GetDanhMuc<QuyetDinhThau>();
+            var lstNhaCungCap = BusApp.GetDanhMuc<NhaCungCap>();
+            var lstThuocVTYT = BusApp.GetDanhMuc<HangHoa>();
+            var lstThuocDetail = BusApp.GetDanhMuc<v_ChiTietDonViHangHoa>();
+            var lstPhanLoaiHoaDon = BusApp.GetDanhMuc<PhanLoaiHoaDon>();
+            var lstLoHang = BusApp.GetDanhMuc<LoHangHoa>();
+            var lstQDThau = BusApp.GetDanhMuc<QuyetDinhThau>();
         }
 
         public void InitControl(Guid phieuID)
@@ -40,20 +40,20 @@ namespace BV.QLKHO.PhieuNhapThuoc
 
             InitData();
 
-            cboNhaCungCap.DataSource = AppBus.GetDanhMuc<NhaCungCap>();
+            cboNhaCungCap.DataSource = BusApp.GetDanhMuc<NhaCungCap>();
             cboNhaCungCap.ValueMember = "ID";
             cboNhaCungCap.DisplayMember = "Ten";
 
-            cboPLHoaDon.DataSource = AppBus.GetDanhMuc<PhanLoaiHoaDon>();
+            cboPLHoaDon.DataSource = BusApp.GetDanhMuc<PhanLoaiHoaDon>();
             cboPLHoaDon.DisplayMember = "Ten";
             cboPLHoaDon.ValueMember = "ID";
 
-            cboThuoc.DataSource = AppBus.GetDanhMuc<HangHoa>();
+            cboThuoc.DataSource = BusApp.GetDanhMuc<HangHoa>();
             cboThuoc.ValueMember = "ID";
             cboThuoc.DisplayMember = "Ten";
             cboThuoc.DisplayLayout.PerformAutoResizeColumns(false, Infragistics.Win.UltraWinGrid.PerformAutoSizeType.AllRowsInBand);
 
-            var lstQuyetDinh = AppBus.GetDanhMuc<QuyetDinhThau>();
+            var lstQuyetDinh = BusApp.GetDanhMuc<QuyetDinhThau>();
             cboQDThau.DataSource = lstQuyetDinh;
             cboQDThau.ValueMember = "Ma";
             cboQDThau.DisplayMember = "Ma";
@@ -96,7 +96,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
                 if (cboThuoc.SelectedRow != null)
                 {
                     var itemID = (Guid)cboThuoc.Value;
-                    var item = AppBus.GetDanhMuc<HangHoa>().FirstOrDefault(t => t.ID == itemID);
+                    var item = BusApp.GetDanhMuc<HangHoa>().FirstOrDefault(t => t.ID == itemID);
 
                     ThongTinThuocForm oForm = new ThongTinThuocForm();
                     oForm.InitThongTin(item);
@@ -140,14 +140,14 @@ namespace BV.QLKHO.PhieuNhapThuoc
 
         private void UpdateCached()
         {
-            AppBus.GetDanhMuc<HangHoa>(true);
-            AppBus.GetDanhMuc<v_ChiTietDonViHangHoa>(true);
+            BusApp.GetDanhMuc<HangHoa>(true);
+            BusApp.GetDanhMuc<v_ChiTietDonViHangHoa>(true);
         }
 
         private void ShowThuocInfo(Guid itemID)
         {
             //Don vi
-            var lstDonVi = AppBus.GetDanhMuc<v_ChiTietDonViHangHoa>().Where(t => t.HangHoaID == itemID).ToList();
+            var lstDonVi = BusApp.GetDanhMuc<v_ChiTietDonViHangHoa>().Where(t => t.HangHoaID == itemID).ToList();
 
             //cboDonVi.DataSource = KhoUtil.GetDanhMuc<LoHangHoa>().Where(l => l.ThuocVtytID == itemID).ToList();
             cboDonVi.DataSource = lstDonVi;//.OrderBy(d => d.TiLeChuyenDoi);
@@ -156,7 +156,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
             cboDonVi.DataBind();
             cboDonVi.Value = null;
             //So lo
-            var lstLoHang = AppBus.GetDanhMuc<LoHangHoa>().Where(l => l.ThuocVtytID == itemID).ToList();
+            var lstLoHang = BusApp.GetDanhMuc<LoHangHoa>().Where(l => l.ThuocVtytID == itemID).ToList();
             cboLoHang.DataSource = lstLoHang;
             cboLoHang.ValueMember = "ID";
             cboLoHang.DisplayMember = "SoLo";
@@ -354,13 +354,13 @@ namespace BV.QLKHO.PhieuNhapThuoc
 
                 LoHangHoa oSoLo = null;
                 var hanghoaID = (Guid)cboThuoc.Value;
-                var hanghoa = AppBus.GetDanhMuc<HangHoa>().FirstOrDefault(t => t.ID == hanghoaID);
+                var hanghoa = BusApp.GetDanhMuc<HangHoa>().FirstOrDefault(t => t.ID == hanghoaID);
                 if (e.Button.Key == "edit")
                 {
                     if (cboLoHang.Value != null)
                     {
                         Guid loID = (Guid)cboLoHang.Value;
-                        oSoLo = AppBus.GetDanhMuc<LoHangHoa>().FirstOrDefault(l => l.ID == loID);
+                        oSoLo = BusApp.GetDanhMuc<LoHangHoa>().FirstOrDefault(l => l.ID == loID);
                     }
                 }
 
@@ -368,7 +368,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
                 oForm.InitThongTin(hanghoa, oSoLo);
                 if (oForm.ShowDialog(this) == DialogResult.OK)
                 {
-                    var lstLoHang = AppBus.GetDanhMuc<LoHangHoa>().Where(l => l.ThuocVtytID == hanghoaID).ToList();
+                    var lstLoHang = BusApp.GetDanhMuc<LoHangHoa>().Where(l => l.ThuocVtytID == hanghoaID).ToList();
                     cboLoHang.DataSource = lstLoHang;
                     cboLoHang.ValueMember = "ID";
                     cboLoHang.DisplayMember = "SoLo";
@@ -427,7 +427,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
                 oForm.InitThongTin(null);
                 if (oForm.ShowDialog(this) == DialogResult.OK)
                 {
-                    var lstQuyetDinh = AppBus.GetDanhMuc<QuyetDinhThau>();
+                    var lstQuyetDinh = BusApp.GetDanhMuc<QuyetDinhThau>();
                     cboQDThau.DataSource = lstQuyetDinh;
                     cboQDThau.ValueMember = "Ma";
                     cboQDThau.DisplayMember = "Ma";
@@ -449,7 +449,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
         {
             if (cboLoHang.SelectedRow != null)
             {
-                var loHang = AppBus.GetDanhMuc<LoHangHoa>().FirstOrDefault(l => l.SoLo == cboLoHang.Text);
+                var loHang = BusApp.GetDanhMuc<LoHangHoa>().FirstOrDefault(l => l.SoLo == cboLoHang.Text);
                 if (loHang == null)
                 {
                     txtHSD.Text = "";

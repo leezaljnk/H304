@@ -18,7 +18,7 @@ namespace BV.QLKHO.THUOC
 
         internal void InitControlUI()
         {
-            _DMNhaCungCap = AppBus.GetDanhMuc<NhaCungCap>();
+            _DMNhaCungCap = BusApp.GetDanhMuc<NhaCungCap>();
             foreach (var t in _DMNhaCungCap)
             {
                 var item = new object[] { t.Ten, t.DiaChi, t.TinhThanh, t.DienThoai, t.GhiChu};

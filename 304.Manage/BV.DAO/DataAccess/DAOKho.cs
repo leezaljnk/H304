@@ -5,13 +5,13 @@ using System.Linq;
 
 namespace BV.DAO
 {
-    public class KhoDAO
+    public class DAOKho
     {
         public static DinhGiaHangHoa GetGiaThuoc(Guid thuocID)
         {
             try
             {
-                return AppDAO.DbContext.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == thuocID);
+                return DAOApp.DbContext.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == thuocID);
             }
             catch (Exception ex)
             {
@@ -24,7 +24,7 @@ namespace BV.DAO
         {
             try
             {
-                return AppDAO.DbContext.ChuyenDoiDonViHangHoa.Where(t => t.HangHoaID == hangHoaID).ToList();
+                return DAOApp.DbContext.ChuyenDoiDonViHangHoa.Where(t => t.HangHoaID == hangHoaID).ToList();
             }
             catch (Exception ex)
             {
@@ -37,10 +37,10 @@ namespace BV.DAO
         {
             try
             {
-                var thuoc = AppDAO.DbContext.HangHoa.FirstOrDefault(t => t.ID == oThuoc.ID);
+                var thuoc = DAOApp.DbContext.HangHoa.FirstOrDefault(t => t.ID == oThuoc.ID);
                 if (thuoc == null)
                 {
-                    AppDAO.DbContext.HangHoa.Add(oThuoc);
+                    DAOApp.DbContext.HangHoa.Add(oThuoc);
                 }
                 else
                 {
@@ -55,10 +55,10 @@ namespace BV.DAO
                     thuoc.DonViID = oThuoc.DonViID;
                 }
 
-                var updateItem = AppDAO.DbContext.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == giaThuoc.HangHoaID);
+                var updateItem = DAOApp.DbContext.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == giaThuoc.HangHoaID);
                 if (updateItem == null)
                 {
-                    AppDAO.DbContext.DinhGiaHangHoa.Add(giaThuoc);
+                    DAOApp.DbContext.DinhGiaHangHoa.Add(giaThuoc);
                 }
                 else
                 {
@@ -102,10 +102,10 @@ namespace BV.DAO
 
 
                 //Save thông tin các đơn vị thuốc
-                var removeDonvi = AppDAO.DbContext.ChuyenDoiDonViHangHoa.Where(d => d.HangHoaID == oThuoc.ID).ToList();
+                var removeDonvi = DAOApp.DbContext.ChuyenDoiDonViHangHoa.Where(d => d.HangHoaID == oThuoc.ID).ToList();
                 //Don vi chinh
                 {
-                    var donvi = AppDAO.DbContext.ChuyenDoiDonViHangHoa.FirstOrDefault(d => d.DonViID == oThuoc.DonViID && d.HangHoaID == oThuoc.ID);
+                    var donvi = DAOApp.DbContext.ChuyenDoiDonViHangHoa.FirstOrDefault(d => d.DonViID == oThuoc.DonViID && d.HangHoaID == oThuoc.ID);
                     if (donvi == null)
                     {
                         var dv = new ChuyenDoiDonViHangHoa();
@@ -116,7 +116,7 @@ namespace BV.DAO
                         dv.PhuongThucChuyenDoi = 1;
                         dv.MoTa = "Đơn vị chính";
 
-                        AppDAO.DbContext.ChuyenDoiDonViHangHoa.Add(dv);
+                        DAOApp.DbContext.ChuyenDoiDonViHangHoa.Add(dv);
                     }
                     else
                     {
@@ -130,10 +130,10 @@ namespace BV.DAO
                 //Đơn vị chuyển đổi
                 foreach (var dv in lstDonVi)
                 {
-                    var donvi = AppDAO.DbContext.ChuyenDoiDonViHangHoa.FirstOrDefault(d => d.ID == dv.ID);
+                    var donvi = DAOApp.DbContext.ChuyenDoiDonViHangHoa.FirstOrDefault(d => d.ID == dv.ID);
                     if (donvi == null)
                     {   
-                        AppDAO.DbContext.ChuyenDoiDonViHangHoa.Add(dv);
+                        DAOApp.DbContext.ChuyenDoiDonViHangHoa.Add(dv);
                     }
                     else
                     {
@@ -145,13 +145,13 @@ namespace BV.DAO
                     }
                 }
 
-                AppDAO.DbContext.ChuyenDoiDonViHangHoa.RemoveRange(removeDonvi);
+                DAOApp.DbContext.ChuyenDoiDonViHangHoa.RemoveRange(removeDonvi);
                 //foreach (var item in removeDonvi)
                 //{
                 //    KhoChungProvider.KhoTong.ChuyenDoiDonViHangHoa.RemoveRange(removeDonvi);
                 //}
 
-                AppDAO.DbContext.SaveChanges();
+                DAOApp.DbContext.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -165,7 +165,7 @@ namespace BV.DAO
             if (oEntity.ID == Guid.Empty)
             {
                 //Add
-                oRet = AppDAO.DbContext.QuyetDinhThau.FirstOrDefault(l => l.Ma == oEntity.Ma);
+                oRet = DAOApp.DbContext.QuyetDinhThau.FirstOrDefault(l => l.Ma == oEntity.Ma);
                 if (oRet != null)
                 {
                     throw new Exception("Quyết định đã có trên hệ thống.");
@@ -173,19 +173,19 @@ namespace BV.DAO
                 else
                 {
                     oEntity.ID = Guid.NewGuid();
-                    oRet = AppDAO.DbContext.QuyetDinhThau.Add(oEntity);
+                    oRet = DAOApp.DbContext.QuyetDinhThau.Add(oEntity);
                 }
             }
             else
             {
-                oRet = AppDAO.DbContext.QuyetDinhThau.FirstOrDefault(l => l.ID == oEntity.ID);
+                oRet = DAOApp.DbContext.QuyetDinhThau.FirstOrDefault(l => l.ID == oEntity.ID);
                 oRet.Ma = oEntity.Ma;
                 oRet.MoTa = oEntity.MoTa;
                 oRet.NgayQuyetDinh = oEntity.NgayQuyetDinh;
                 oRet.HieuLuc = oEntity.HieuLuc;
             }
 
-            AppDAO.DbContext.SaveChanges();
+            DAOApp.DbContext.SaveChanges();
             return oRet;
         }
 
@@ -195,7 +195,7 @@ namespace BV.DAO
             if (oEntity.ID == Guid.Empty)
             {
                 //Add
-                oRet = AppDAO.DbContext.LoHangHoa.FirstOrDefault(l => l.ThuocVtytID == oEntity.ThuocVtytID && l.SoLo == oEntity.SoLo);
+                oRet = DAOApp.DbContext.LoHangHoa.FirstOrDefault(l => l.ThuocVtytID == oEntity.ThuocVtytID && l.SoLo == oEntity.SoLo);
                 if (oRet != null)
                 {
                     throw new Exception("Lô hàng này đã có trên hệ thống.");
@@ -203,26 +203,26 @@ namespace BV.DAO
                 else
                 {
                     oEntity.ID = Guid.NewGuid();
-                    oRet = AppDAO.DbContext.LoHangHoa.Add(oEntity);
+                    oRet = DAOApp.DbContext.LoHangHoa.Add(oEntity);
                 }
             }
             else
             {
-                oRet = AppDAO.DbContext.LoHangHoa.FirstOrDefault(l => l.ID == oEntity.ID);
+                oRet = DAOApp.DbContext.LoHangHoa.FirstOrDefault(l => l.ID == oEntity.ID);
                 oRet.SoLo = oEntity.SoLo;
                 oRet.HanSuDung = oEntity.HanSuDung;
             }
 
-            AppDAO.DbContext.SaveChanges();
+            DAOApp.DbContext.SaveChanges();
             return oRet;
         }
 
         public static NhaCungCap SaveNhaCungCap(NhaCungCap oEntity)
         {
-            var ncc = AppDAO.DbContext.NhaCungCap.FirstOrDefault(n => n.ID == oEntity.ID);
+            var ncc = DAOApp.DbContext.NhaCungCap.FirstOrDefault(n => n.ID == oEntity.ID);
             if (ncc == null)
             {
-                ncc = AppDAO.DbContext.NhaCungCap.Add(oEntity);
+                ncc = DAOApp.DbContext.NhaCungCap.Add(oEntity);
             }
             else
             {
@@ -237,7 +237,7 @@ namespace BV.DAO
                 ncc.WebSite = oEntity.WebSite;
             }
 
-            AppDAO.DbContext.SaveChanges();
+            DAOApp.DbContext.SaveChanges();
             return ncc;
         }
     }

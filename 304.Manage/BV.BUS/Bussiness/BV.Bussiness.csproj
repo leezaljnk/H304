@@ -49,8 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KhoaPhongBUS.cs" />
-    <Compile Include="AppBus.cs" />
+    <Compile Include="BUSKhoaPhong.cs" />
+    <Compile Include="BusApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

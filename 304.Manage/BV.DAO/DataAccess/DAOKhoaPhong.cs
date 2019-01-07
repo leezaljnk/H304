@@ -7,11 +7,11 @@ using BV.DataModel;
 
 namespace BV.DAO
 {
-    public class KhoaPhongDAO
+    public class DAOKhoaPhong
     {
         public static Khoa UpdateKhoa(Khoa entity)
         {
-            var dbContext = AppDAO.DbContext;
+            var dbContext = DAOApp.DbContext;
 
             var item = dbContext.Khoa.FirstOrDefault(k => k.ID == entity.ID);
             if (item == null)
@@ -47,7 +47,7 @@ namespace BV.DAO
 
         public static PhongKham UpdatePhongKham(PhongKham entity)
         {
-            var dbContext = AppDAO.DbContext;
+            var dbContext = DAOApp.DbContext;
 
             var item = dbContext.PhongKham.FirstOrDefault(k => k.ID == entity.ID);
             if (item == null)

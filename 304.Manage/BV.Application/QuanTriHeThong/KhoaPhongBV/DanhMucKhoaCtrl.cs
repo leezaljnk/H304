@@ -18,7 +18,7 @@ namespace BV.QLKHO.THUOC
 
         internal void InitControlUI()
         {
-            var lstKhoa = AppBus.GetDanhMuc<Khoa>();
+            var lstKhoa = BusApp.GetDanhMuc<Khoa>();
             foreach (var t in lstKhoa)
             {
                 var item = new object[] { t.Ma, t.Ten, t.MoTa, t.MaBYT, t.TenBYT};

@@ -45,7 +45,7 @@ namespace BV.QuanTriHeThong.KhoaPhongBV
             k.TenBYT = txtTenKhoaBYT.Text;
 
             //Save
-            var newK = KhoaPhongBUS.UpdateKhoa(k);
+            var newK = BUSKhoaPhong.UpdateKhoa(k);
 
             //Update cached
             AppCached.UpdateDanhMuc<Khoa>(k, newK);

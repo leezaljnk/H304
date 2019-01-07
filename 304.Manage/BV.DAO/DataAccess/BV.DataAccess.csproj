@@ -50,9 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KhoaPhongDAO.cs" />
-    <Compile Include="KhoDAO.cs" />
-    <Compile Include="AppDAO.cs" />
+    <Compile Include="DAOKhoaPhong.cs" />
+    <Compile Include="DAOKho.cs" />
+    <Compile Include="DAOApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

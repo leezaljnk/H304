@@ -61,7 +61,7 @@ namespace BV.QLKHO.THUOC
             oLo.NgayQuyetDinh = bvDateTimeCtrl1.Value;
             oLo.HieuLuc = chkActive.Checked;
 
-            Entity = AppBus.SaveThongTinQuyetDinhThau(oLo);
+            Entity = BusApp.SaveThongTinQuyetDinhThau(oLo);
 
             //Update cached
             AppCached.UpdateDanhMuc<QuyetDinhThau>(Entity, "ID");

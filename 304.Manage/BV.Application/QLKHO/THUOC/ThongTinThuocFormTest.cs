@@ -17,7 +17,7 @@ namespace BV.QLKHO.THUOC
 
         public void InitData()
         {
-            var _DanhMucThuocBYT = AppBus.GetDanhMuc<NhaCungCap>();
+            var _DanhMucThuocBYT = BusApp.GetDanhMuc<NhaCungCap>();
 
             ultraDropDown1.DisplayLayout.AutoFitStyle = AutoFitStyle.ResizeAllColumns;
             ultraDropDown1.DisplayLayout.Override.CellClickAction = CellClickAction.EditAndSelectText;
@@ -122,13 +122,13 @@ namespace BV.QLKHO.THUOC
         {
             return;
             int id = (int)ultraCombo1.Value;
-            var oThuoc = AppBus.GetDanhMuc<THUOC_6061>().FirstOrDefault(t => t.THUOC_ID == id);
+            var oThuoc = BusApp.GetDanhMuc<THUOC_6061>().FirstOrDefault(t => t.THUOC_ID == id);
 
             txtSoDangKy.Text = oThuoc.SO_DANG_KY;
             txtHoatChat.Text = oThuoc.HOAT_CHAT;
             txtHamLuong.Text = oThuoc.HAM_LUONG;
 
-            var lstDuongDung = AppBus.GetDanhMuc<ThuocDuongDung>();
+            var lstDuongDung = BusApp.GetDanhMuc<ThuocDuongDung>();
             var item = lstDuongDung.FirstOrDefault(t => t.ID == oThuoc.MA_DUONG_DUNG);
             txtDuongDung.Text = item?.DienGiai ?? "";
             txtDongGoi.Text = oThuoc.DONG_GOI;

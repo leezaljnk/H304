@@ -30,17 +30,17 @@ namespace BV.QuanTriHeThong.KhoaPhongBV
         public void InitThongTin(PhongKham p)
         {
             //Get list khoa
-            cboTenKhoa.DataSource = AppBus.GetDanhMuc<Khoa>();
+            cboTenKhoa.DataSource = BusApp.GetDanhMuc<Khoa>();
             cboTenKhoa.DisplayMember = "Ten";
             cboTenKhoa.ValueMember = "ID";
             cboTenKhoa.DisplayLayout.PerformAutoResizeColumns(false, Infragistics.Win.UltraWinGrid.PerformAutoSizeType.AllRowsInBand);
 
-            cboCongKham.DataSource = AppBus.GetDanhMuc<CongKhamBenh>();
+            cboCongKham.DataSource = BusApp.GetDanhMuc<CongKhamBenh>();
             cboCongKham.DisplayMember = "TenDichVu";
             cboCongKham.ValueMember = "ID";
             cboCongKham.DisplayLayout.PerformAutoResizeColumns(false, Infragistics.Win.UltraWinGrid.PerformAutoSizeType.AllRowsInBand);
 
-            cboCongKham.DataSource = AppBus.GetDanhMuc<CongKhamBenh>();
+            cboCongKham.DataSource = BusApp.GetDanhMuc<CongKhamBenh>();
             cboCongKham.DisplayMember = "TenDichVu";
             cboCongKham.ValueMember = "ID";
             cboCongKham.DisplayLayout.PerformAutoResizeColumns(false, Infragistics.Win.UltraWinGrid.PerformAutoSizeType.AllRowsInBand);
@@ -72,7 +72,7 @@ namespace BV.QuanTriHeThong.KhoaPhongBV
             p.CongKhamID = (Guid?)cboCongKham.Value;// == null ? null : (Guid)cboCongKham.Value;
 
             //Save
-            var newK = KhoaPhongBUS.UpdatePhongKham(p);
+            var newK = BUSKhoaPhong.UpdatePhongKham(p);
 
             //Update cached
             AppCached.UpdateDanhMuc<PhongKham>(newK, "ID");

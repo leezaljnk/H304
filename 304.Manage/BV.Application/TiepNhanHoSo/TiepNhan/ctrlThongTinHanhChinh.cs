@@ -42,15 +42,15 @@ namespace EHR.App.HSBenhNhan
 
         private void LoadComboxs()
         {
-            cboTinh.DataSource = AppBus.GetDanhMuc<DiaDanh>().GetTinh();
+            cboTinh.DataSource = BusApp.GetDanhMuc<DiaDanh>().GetTinh();
             cboTinh.DisplayMember = "TenNganGon";
             cboTinh.ValueMember = "MaDiaDanh";
 
-            cboDanToc.DataSource = AppBus.GetDanhMuc<DanToc>();
+            cboDanToc.DataSource = BusApp.GetDanhMuc<DanToc>();
             cboDanToc.DisplayMember = "TEN_DAN_TOC";
             cboDanToc.ValueMember = "DAN_TOC_Id";
 
-            cboQuocTich.DataSource = AppBus.GetDanhMuc<QuocGia>();
+            cboQuocTich.DataSource = BusApp.GetDanhMuc<QuocGia>();
             cboQuocTich.DisplayMember = "ten_qg";
             cboQuocTich.ValueMember = "MA_QGIA";
         }
@@ -66,7 +66,7 @@ namespace EHR.App.HSBenhNhan
                 }
                 else
                 {
-                    _entity = AppBus.GetHoSoCaNhanByID(this._hssk_Id.Value);
+                    _entity = BusApp.GetHoSoCaNhanByID(this._hssk_Id.Value);
                     if (_entity == null)
                         throw new Exception("Không tìm thấy thông tin của hồ sơ");
                     BindValue(this._entity);
@@ -179,7 +179,7 @@ namespace EHR.App.HSBenhNhan
         {
             //Update benh
             var entity = GetDataChanged() as HS_CaNhan;
-            if (AppBus.SaveHS_CaNhan(this._hssk_Id.Value, "0", entity))
+            if (BusApp.SaveHS_CaNhan(this._hssk_Id.Value, "0", entity))
             {
                 _entity = entity;
 
@@ -199,7 +199,7 @@ namespace EHR.App.HSBenhNhan
                 return false;
             }
             //Check trung ma hs suc khoe sau
-            var item = AppBus.GetHoSoCaNhanByMa(txtMaHSSK.Text);
+            var item = BusApp.GetHoSoCaNhanByMa(txtMaHSSK.Text);
             if (item != null && item.ID != _hssk_Id)
             {
                 errorProvider1.SetError(label10, "Nhập mã cá nhân đã tồn tại! Xin hãy kiểm tra lại.");
@@ -294,12 +294,12 @@ namespace EHR.App.HSBenhNhan
                 //tỉnh
                 string maTinh = cboTinh.Value as string;
                  
-                cboHuyen.DataSource = AppBus.GetDanhMuc<DiaDanh>().GetHuyen(maTinh);
+                cboHuyen.DataSource = BusApp.GetDanhMuc<DiaDanh>().GetHuyen(maTinh);
                 cboHuyen.DisplayMember = "TenNganGon";
                 cboHuyen.ValueMember = "MaDiaDanh";
                 cboHuyen.Value = null;
 
-                cboXa.DataSource = AppBus.GetDanhMuc<DiaDanh>().GetXa(maTinh);
+                cboXa.DataSource = BusApp.GetDanhMuc<DiaDanh>().GetXa(maTinh);
                 cboXa.DisplayMember = "TenNganGon";
                 cboXa.ValueMember = "MaDiaDanh";
                 cboXa.Value = null;
@@ -310,7 +310,7 @@ namespace EHR.App.HSBenhNhan
                 string maTinh = cboTinh.Value as string;
                 string maHuyen = cboHuyen.Value as string;
 
-                cboXa.DataSource = AppBus.GetDanhMuc<DiaDanh>().GetXa(maTinh, maHuyen);
+                cboXa.DataSource = BusApp.GetDanhMuc<DiaDanh>().GetXa(maTinh, maHuyen);
                 cboXa.DisplayMember = "TenNganGon";
                 cboXa.ValueMember = "MaDiaDanh";
                 cboXa.Value = null;
@@ -319,7 +319,7 @@ namespace EHR.App.HSBenhNhan
             {
                 //xã
                 string maXa = cboXa.Value as string;
-                var dd = AppBus.GetDanhMuc<DiaDanh>().FirstOrDefault(d => d.MaDiaDanh == maXa);
+                var dd = BusApp.GetDanhMuc<DiaDanh>().FirstOrDefault(d => d.MaDiaDanh == maXa);
                 cboHuyen.Value = dd.MaHuyen;
             }
         }

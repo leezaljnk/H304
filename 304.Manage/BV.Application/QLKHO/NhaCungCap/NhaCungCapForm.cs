@@ -59,7 +59,7 @@ namespace BV.QLKHO.THUOC
             ncc.GhiChu = txtGhiChu.Text;
 
             //Save data
-            ncc = AppBus.SaveNhaCungCap(ncc);
+            ncc = BusApp.SaveNhaCungCap(ncc);
 
             //Update cached
             AppCached.UpdateDanhMuc<NhaCungCap>(ncc, "ID");
