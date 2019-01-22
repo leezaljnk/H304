@@ -33,7 +33,6 @@
         <EntityTypeShape EntityType="BVModel.NhomKhoa" Width="1.5" PointX="5.75" PointY="1.375" />
         <EntityTypeShape EntityType="BVModel.PhanLoaiHoaDon" Width="1.5" PointX="0.75" PointY="4.5" />
         <EntityTypeShape EntityType="BVModel.PhieuDeNghi" Width="1.5" PointX="6.75" PointY="16.75" />
-        <EntityTypeShape EntityType="BVModel.PhieuNhapKho" Width="1.5" PointX="3" PointY="1.25" />
         <EntityTypeShape EntityType="BVModel.PhieuXuatKho" Width="1.5" PointX="3" PointY="5.875" />
         <EntityTypeShape EntityType="BVModel.PhongKham" Width="1.5" PointX="12.75" PointY="16.75" />
         <EntityTypeShape EntityType="BVModel.PhongKham_" Width="1.5" PointX="16.75" PointY="0.75" />
@@ -51,8 +50,11 @@
         <AssociationConnector Association="BVModel.FK_Kho_KhoaPhong" />
         <AssociationConnector Association="BVModel.FK_Kho_LoaiKho" />
         <AssociationConnector Association="BVModel.FK_KhoaPhong_NhomKhoa" />
-        <AssociationConnector Association="BVModel.FK_PhieuNhapKho_PhanLoaiHoaDon" />
         <AssociationConnector Association="BVModel.FK_PhieuXuatKho_PhanLoaiHoaDon" />
+        <EntityTypeShape EntityType="BVModel.NhomDichVuBHYT" Width="1.5" PointX="3.375" PointY="21.25" />
+        <EntityTypeShape EntityType="BVModel.PhieuNhapKho" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="BVModel.FK_PhieuNhapKho_PhanLoaiHoaDon" />
+        <EntityTypeShape EntityType="BVModel.ChiTietPhieuDeNghi" Width="1.5" PointX="20.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,10 +1,4 @@
-﻿using BV.DataModel;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace BV.AppCommon
 {
@@ -12,5 +6,6 @@ namespace BV.AppCommon
     {
         public static string CurrentUserID;
         public static string CurrentMaKho;
+        public static Guid CurrentKhoId = new Guid("091A8248-7B4E-4AD9-A794-7EAB9467320E");
     }
 }

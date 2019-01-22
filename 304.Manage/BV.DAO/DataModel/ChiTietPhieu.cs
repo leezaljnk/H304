@@ -26,5 +26,6 @@ namespace BV.DataModel
         public Nullable<double> ChietKhau { get; set; }
         public Nullable<short> LoaiChietKhau { get; set; }
         public Nullable<double> ThanhTien { get; set; }
+        public Nullable<System.DateTime> HanSuDung { get; set; }
     }
 }

@@ -27,5 +27,6 @@ namespace BV.DataModel
         public Nullable<System.DateTime> NgayHuy { get; set; }
         public string LyDoHuy { get; set; }
         public string NguoiHuy { get; set; }
+        public Nullable<System.Guid> BenhNhanId { get; set; }
     }
 }

@@ -53,7 +53,6 @@ namespace BV.DataModel
         public virtual DbSet<NhomKhoa> NhomKhoa { get; set; }
         public virtual DbSet<PhanLoaiHoaDon> PhanLoaiHoaDon { get; set; }
         public virtual DbSet<PhieuDeNghi> PhieuDeNghi { get; set; }
-        public virtual DbSet<PhieuNhapKho> PhieuNhapKho { get; set; }
         public virtual DbSet<PhieuXuatKho> PhieuXuatKho { get; set; }
         public virtual DbSet<PhongKham> PhongKham { get; set; }
         public virtual DbSet<PhongKham_> PhongKham_ { get; set; }
@@ -68,5 +67,8 @@ namespace BV.DataModel
         public virtual DbSet<VATTU_YTE_6061> VATTU_YTE_6061 { get; set; }
         public virtual DbSet<BYT_DmKhoa> BYT_DmKhoa { get; set; }
         public virtual DbSet<v_ChiTietDonViHangHoa> v_ChiTietDonViHangHoa { get; set; }
+        public virtual DbSet<NhomDichVuBHYT> NhomDichVuBHYT { get; set; }
+        public virtual DbSet<PhieuNhapKho> PhieuNhapKho { get; set; }
+        public virtual DbSet<ChiTietPhieuDeNghi> ChiTietPhieuDeNghi { get; set; }
     }
 }

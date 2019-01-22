@@ -24,7 +24,7 @@ namespace BV.BUS
             {
                 throw;
             }
-        }        
+        }
 
         public static HS_CaNhan GetHoSoCaNhanByID(Guid value)
         {
@@ -132,6 +132,11 @@ namespace BV.BUS
         public static bool SaveHS_CaNhan(Guid value, string v, HS_CaNhan entity)
         {
             throw new NotImplementedException();
+        }
+
+        public static bool SavePhieuNhapKhoTuNhaCungCap(PhieuNhapKhoModel phieuNhap)
+        {
+            return DAOKho.SavePhieuNhapKhoTuNhaCungCap(phieuNhap);
         }
     }
 }

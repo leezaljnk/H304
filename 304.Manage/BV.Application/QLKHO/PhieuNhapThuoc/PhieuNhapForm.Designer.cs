@@ -57,9 +57,7 @@
             // 
             // phieuNhapThuocCtrl1
             // 
-            this.phieuNhapThuocCtrl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.phieuNhapThuocCtrl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.phieuNhapThuocCtrl1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.phieuNhapThuocCtrl1.Location = new System.Drawing.Point(0, 0);
             this.phieuNhapThuocCtrl1.Name = "phieuNhapThuocCtrl1";

@@ -11,6 +11,9 @@ namespace BV.DAO
         {
             try
             {
+                //var giaThuoc = DAOApp.DbContext.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == thuocID);
+                //DAOApp.DbContext.Entry(giaThuoc).State = EntityState.Detached;
+                //return giaThuoc;
                 return DAOApp.DbContext.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == thuocID);
             }
             catch (Exception ex)
@@ -239,6 +242,56 @@ namespace BV.DAO
 
             DAOApp.DbContext.SaveChanges();
             return ncc;
+        }
+
+        public static bool SavePhieuNhapKhoTuNhaCungCap(PhieuNhapKhoModel oEntity)
+        {
+            var phieuNhap = new PhieuNhapKho
+            {
+                ID = Guid.NewGuid(),
+                Ma = oEntity.Ma,
+                MaNhaCungCap = oEntity.MaNhaCungCap,
+                MaPhanLoaiHoaDon = oEntity.MaPhanLoaiHoaDon,
+                NgayHoaDon = oEntity.NgayHoaDon,
+                NgayTao = oEntity.NgayTao,
+                NguoiCungCap = oEntity.NguoiCungCap,
+                NguoiTao = oEntity.NguoiTao,
+                NhaCungCap = oEntity.NhaCungCap,
+                PhanLoaiHoaDon = oEntity.PhanLoaiHoaDon,
+                PhieuDeNghiId = oEntity.PhieuDeNghiId,
+                SoHoaDon = oEntity.SoHoaDon,
+                TenPhanLoaiHoaDon = oEntity.TenPhanLoaiHoaDon,
+                ThanhTien = oEntity.ThanhTien,
+                TongTien = oEntity.TongTien,
+                VAT = oEntity.VAT
+            };
+            DAOApp.DbContext.PhieuNhapKho.Add(phieuNhap);
+            DAOApp.DbContext.SaveChanges();
+
+            foreach (var chiTietPhieu in oEntity.ChiTietPhieus)
+            {
+                var chiTiet = new ChiTietPhieu
+                {
+                    ID = Guid.NewGuid(),
+                    LoaiChietKhau = chiTietPhieu.LoaiChietKhau,
+                    ThanhTien = chiTietPhieu.ThanhTien,
+                    ChietKhau = chiTietPhieu.ChietKhau,
+                    DonGia = chiTietPhieu.DonGia,
+                    HanSuDung = chiTietPhieu.HanSuDung,
+                    HangHoaID = chiTietPhieu.HangHoaID,
+                    LoHangID = chiTietPhieu.LoHangID,
+                    MaDonVi = chiTietPhieu.MaDonVi,
+                    PhieuID = phieuNhap.ID,
+                    SoLuong = chiTietPhieu.SoLuong,
+                    SoQuyeDinh = chiTietPhieu.SoQuyeDinh,
+                    TenDonVi = chiTietPhieu.TenDonVi
+                };
+                DAOApp.DbContext.ChiTietPhieu.Add(chiTiet);
+            }
+            //DAOApp.DbContext.ChiTietPhieu.AddRange(oEntity.ChiTietPhieus);
+            DAOApp.DbContext.SaveChanges();
+           
+            return true;
         }
     }
 }

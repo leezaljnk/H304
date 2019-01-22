@@ -17,16 +17,16 @@ namespace BV.DataModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PhanLoaiHoaDon()
         {
-            this.PhieuNhapKho = new HashSet<PhieuNhapKho>();
             this.PhieuXuatKho = new HashSet<PhieuXuatKho>();
+            this.PhieuNhapKho = new HashSet<PhieuNhapKho>();
         }
     
         public int ID { get; set; }
         public string Ten { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PhieuNhapKho> PhieuNhapKho { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuXuatKho> PhieuXuatKho { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhieuNhapKho> PhieuNhapKho { get; set; }
     }
 }
