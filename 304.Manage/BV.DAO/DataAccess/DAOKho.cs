@@ -268,9 +268,9 @@ namespace BV.DAO
             DAOApp.DbContext.PhieuNhapKho.Add(phieuNhap);
             DAOApp.DbContext.SaveChanges();
 
-            foreach (var chiTietPhieu in oEntity.ChiTietPhieus)
+            foreach (var chiTietPhieu in oEntity.ChiTietPhieuNhaps)
             {
-                var chiTiet = new ChiTietPhieu
+                var chiTiet = new PhieuNhapChiTiet
                 {
                     ID = Guid.NewGuid(),
                     LoaiChietKhau = chiTietPhieu.LoaiChietKhau,
@@ -286,7 +286,7 @@ namespace BV.DAO
                     SoQuyeDinh = chiTietPhieu.SoQuyeDinh,
                     TenDonVi = chiTietPhieu.TenDonVi
                 };
-                DAOApp.DbContext.ChiTietPhieu.Add(chiTiet);
+                DAOApp.DbContext.PhieuNhapChiTiet.Add(chiTiet);
             }
             //DAOApp.DbContext.ChiTietPhieu.AddRange(oEntity.ChiTietPhieus);
             DAOApp.DbContext.SaveChanges();

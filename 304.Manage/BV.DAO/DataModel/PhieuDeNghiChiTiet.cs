@@ -12,10 +12,10 @@ namespace BV.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class ChiTietPhieu
+    public partial class PhieuDeNghiChiTiet
     {
         public System.Guid ID { get; set; }
-        public Nullable<System.Guid> PhieuID { get; set; }
+        public System.Guid PhieuDeNghiID { get; set; }
         public Nullable<System.Guid> HangHoaID { get; set; }
         public Nullable<double> SoLuong { get; set; }
         public Nullable<System.Guid> LoHangID { get; set; }

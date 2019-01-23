@@ -16,7 +16,6 @@ namespace BV.DataModel
     {
         public System.Guid ID { get; set; }
         public string Ma { get; set; }
-        public string MaPhieuDeNghi { get; set; }
         public Nullable<System.DateTime> NgayTao { get; set; }
         public string NguoiTao { get; set; }
         public Nullable<System.Guid> MaKhoNhap { get; set; }
@@ -27,6 +26,8 @@ namespace BV.DataModel
         public Nullable<double> ThanhTien { get; set; }
         public Nullable<int> MaPhanLoaiHoaDon { get; set; }
         public string TenPhanLoaiHoaDon { get; set; }
+        public Nullable<System.Guid> PhieuDeNghiId { get; set; }
+        public Nullable<System.Guid> KhoId { get; set; }
     
         public virtual PhanLoaiHoaDon PhanLoaiHoaDon { get; set; }
     }

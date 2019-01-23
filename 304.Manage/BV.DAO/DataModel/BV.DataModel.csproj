@@ -98,12 +98,6 @@
     <Compile Include="CapBac.cs">
       <DependentUpon>BVDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ChiTietPhieu.cs">
-      <DependentUpon>BVDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ChiTietPhieuDeNghi.cs">
-      <DependentUpon>BVDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="ChucVu.cs">
       <DependentUpon>BVDataModel.tt</DependentUpon>
     </Compile>
@@ -186,7 +180,16 @@
     <Compile Include="PhieuDeNghi.cs">
       <DependentUpon>BVDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PhieuDeNghiChiTiet.cs">
+      <DependentUpon>BVDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PhieuNhapChiTiet.cs">
+      <DependentUpon>BVDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PhieuNhapKho.cs">
+      <DependentUpon>BVDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PhieuXuatChiTiet.cs">
       <DependentUpon>BVDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PhieuXuatKho.cs">

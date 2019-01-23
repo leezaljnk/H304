@@ -4,7 +4,7 @@ namespace BV.DataModel
 {
     public class PhieuNhapKhoModel : PhieuNhapKho
     {
-        public List<ChiTietPhieu> ChiTietPhieus { get; set; }
+        public List<PhieuNhapChiTiet> ChiTietPhieuNhaps { get; set; }
     }
 
     public enum LoaiChietKhau

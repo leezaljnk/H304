@@ -17,7 +17,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
     public partial class PhieuNhapThuocCtrl : UserControl
     {
         //private PhieuNhapKhoModel _phieuNhap { get; set; }
-        private readonly List<ChiTietPhieu> _chiTietPhieus = new List<ChiTietPhieu>();
+        private readonly List<PhieuNhapChiTiet> _chiTietPhieus = new List<PhieuNhapChiTiet>();
         private Guid? _phieuDeNghiId;
 
 
@@ -266,10 +266,10 @@ namespace BV.QLKHO.PhieuNhapThuoc
 
         private void GetChiTietPhieu()
         {
-            var oRow = new ChiTietPhieu();
-            oRow.ID = Guid.NewGuid();
-            oRow.HangHoaID = (Guid) cboThuoc.Value;
-            //oRow.LoHangID
+            //var oRow = new ChiTietPhieu();
+            //oRow.ID = Guid.NewGuid();
+            //oRow.HangHoaID = (Guid) cboThuoc.Value;
+            ////oRow.LoHangID
         }
 
         public void HandleException(Exception ex)
@@ -459,7 +459,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
             try
             {
                 //get chi tiet phieu
-                var phieu = new ChiTietPhieu
+                var phieu = new PhieuNhapChiTiet
                 {
                     ID = Guid.NewGuid(),
                     ChietKhau = Converter.obj2double(txtChietKhau.Text),
@@ -511,7 +511,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
         {
             var phieuNhap = new PhieuNhapKhoModel
             {
-                ChiTietPhieus = _chiTietPhieus,
+                ChiTietPhieuNhaps = _chiTietPhieus,
                 ID = _phieuID,
                 Ma = txtMaPhieu.Text,
                 MaNhaCungCap = Converter.Obj2Int(cboNhaCungCap.Value),

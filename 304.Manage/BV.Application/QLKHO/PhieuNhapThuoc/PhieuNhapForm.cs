@@ -69,7 +69,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
             //Bind data source
             //IList<TongHopBenhAnSource> sources = new List<TongHopBenhAnSource>() { source };
             report.SetDataSource(phieuNhap, ReportConstance.PHIEU_NHAP_KHO_SOURCE);
-            report.SetDataSource(phieuNhap.ChiTietPhieus, ReportConstance.PHIEU_NHAP_KHO_CHI_TIET_SOURCE);
+            report.SetDataSource(phieuNhap.ChiTietPhieuNhaps, ReportConstance.PHIEU_NHAP_KHO_CHI_TIET_SOURCE);
             //report.SetDataSource(source.TongHopLamSang, ReportConstance.TongHopBenhAnLamSangSource);
             //report.SetDataSource(source.TongHopXetNghiem, ReportConstance.TongHopBenhAnXetNghiemSource);
             report.Show();
