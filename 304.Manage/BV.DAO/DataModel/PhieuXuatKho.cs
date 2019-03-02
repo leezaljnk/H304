@@ -14,6 +14,12 @@ namespace BV.DataModel
     
     public partial class PhieuXuatKho
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PhieuXuatKho()
+        {
+            this.PhieuXuatChiTiet = new HashSet<PhieuXuatChiTiet>();
+        }
+    
         public System.Guid ID { get; set; }
         public string Ma { get; set; }
         public Nullable<System.DateTime> NgayTao { get; set; }
@@ -30,5 +36,7 @@ namespace BV.DataModel
         public Nullable<System.Guid> KhoId { get; set; }
     
         public virtual PhanLoaiHoaDon PhanLoaiHoaDon { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhieuXuatChiTiet> PhieuXuatChiTiet { get; set; }
     }
 }

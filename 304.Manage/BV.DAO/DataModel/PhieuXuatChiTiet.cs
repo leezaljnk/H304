@@ -27,5 +27,10 @@ namespace BV.DataModel
         public Nullable<short> LoaiChietKhau { get; set; }
         public Nullable<double> ThanhTien { get; set; }
         public Nullable<System.DateTime> HanSuDung { get; set; }
+    
+        public virtual HangHoa HangHoa { get; set; }
+        public virtual LoHangHoa LoHangHoa { get; set; }
+        public virtual PhieuXuatKho PhieuXuatKho { get; set; }
+        public virtual DonViHangHoa DonViHangHoa { get; set; }
     }
 }

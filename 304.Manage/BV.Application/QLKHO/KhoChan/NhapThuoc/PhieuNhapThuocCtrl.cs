@@ -26,7 +26,7 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
 
         //add hang hoa
         private double? _thanhTien;
-        private LoaiChietKhau _chietKhauHangHoa = LoaiChietKhau.TienMat;
+        private LoaiChietKhauType _chietKhauHangHoa = LoaiChietKhauType.TienMat;
 
         private bool bComboDropDownVisible;
         private bool bComboValueChanged;
@@ -246,13 +246,13 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
                 switch (btn.Text)
                 {
                     case "%":
-                        _chietKhauHangHoa = LoaiChietKhau.PhanTram;
+                        _chietKhauHangHoa = LoaiChietKhauType.PhanTram;
                         break;
                     case @"$":
-                        _chietKhauHangHoa = LoaiChietKhau.TienMat;
+                        _chietKhauHangHoa = LoaiChietKhauType.TienMat;
                         break;
                     default:
-                        _chietKhauHangHoa = LoaiChietKhau.TienMat;
+                        _chietKhauHangHoa = LoaiChietKhauType.TienMat;
                         break;
                 }
             }
@@ -426,7 +426,7 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
         {
             switch (_chietKhauHangHoa)
             {
-                case LoaiChietKhau.PhanTram:
+                case LoaiChietKhauType.PhanTram:
                     if(string.IsNullOrEmpty(txtChietKhau.Text) || Converter.Obj2Int(txtChietKhau.Text.Replace(".", ""))==0)
                     _thanhTien = Converter.Obj2double(txtSoLuong.Text.Replace(".", ""))
                         * Converter.Obj2double(txtDonGia.Text.Replace(".", ""));
@@ -435,7 +435,7 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
                                      * Converter.Obj2double(txtDonGia.Text.Replace(".", ""))
                                      * Converter.Obj2Int(txtChietKhau.Text.Replace(".", "")) / 100;
                     break;
-                case LoaiChietKhau.TienMat:
+                case LoaiChietKhauType.TienMat:
                     _thanhTien = Converter.Obj2double(txtSoLuong.Text.Replace(".", ""))
                         * Converter.Obj2double(txtDonGia.Text.Replace(".", ""))
                         - Converter.Obj2double(txtChietKhau.Text.Replace(".", ""));
@@ -479,7 +479,7 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
                     cboLoHang.Text,//so lo
                     dateHSD.Text,//han su dung
                     txtSoLuong.Text,//so luong
-                    (txtChietKhau.Text + (_chietKhauHangHoa == LoaiChietKhau.PhanTram ?" %":" đ")),//chiet khau
+                    (txtChietKhau.Text + (_chietKhauHangHoa == LoaiChietKhauType.PhanTram ?" %":" đ")),//chiet khau
                     txtDonGia.Text,//don gia
                     //cboDonVi.Text,//ten don vi tinh
                     _thanhTien,// thanh tien
@@ -498,11 +498,11 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
         }
 
 
-        public PhieuNhapKhoModel PhieuNhapData()
+        public PhieuNhapKho PhieuNhapData()
         {
-            var phieuNhap = new PhieuNhapKhoModel
+            var phieuNhap = new PhieuNhapKho
             {
-                ChiTietPhieuNhaps = _chiTietPhieus,
+                PhieuNhapChiTiet = _chiTietPhieus,
                 ID = _phieuID,
                 Ma = txtMaPhieu.Text,
                 MaNhaCungCap = Converter.Obj2Int(cboNhaCungCap.Value),

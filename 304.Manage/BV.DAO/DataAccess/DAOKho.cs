@@ -244,7 +244,7 @@ namespace BV.DAO
             return ncc;
         }
 
-        public static bool SavePhieuNhapKhoTuNhaCungCap(PhieuNhapKhoModel oEntity)
+        public static bool SavePhieuNhapKhoTuNhaCungCap(PhieuNhapKho oEntity)
         {
             var phieuNhap = new PhieuNhapKho
             {
@@ -266,10 +266,10 @@ namespace BV.DAO
                 VAT = oEntity.VAT,
                 KhoId = oEntity.KhoId
             };
-            DAOApp.DbContext.PhieuNhapKho.Add(phieuNhap);
-            DAOApp.DbContext.SaveChanges();
+            //DAOApp.DbContext.PhieuNhapKho.Add(phieuNhap);
+            //DAOApp.DbContext.SaveChanges();
 
-            foreach (var chiTietPhieu in oEntity.ChiTietPhieuNhaps)
+            foreach (var chiTietPhieu in oEntity.PhieuNhapChiTiet)
             {
                 var chiTiet = new PhieuNhapChiTiet
                 {
@@ -282,12 +282,13 @@ namespace BV.DAO
                     HangHoaID = chiTietPhieu.HangHoaID,
                     LoHangID = chiTietPhieu.LoHangID,
                     MaDonVi = chiTietPhieu.MaDonVi,
-                    PhieuID = phieuNhap.ID,
+                    //PhieuID = phieuNhap.ID,
                     SoLuong = chiTietPhieu.SoLuong,
                     SoQuyeDinh = chiTietPhieu.SoQuyeDinh,
                     TenDonVi = chiTietPhieu.TenDonVi
                 };
-                DAOApp.DbContext.PhieuNhapChiTiet.Add(chiTiet);
+                // DAOApp.DbContext.PhieuNhapChiTiet.Add(chiTiet);
+                phieuNhap.PhieuNhapChiTiet.Add(chiTiet);
             }
             //DAOApp.DbContext.ChiTietPhieu.AddRange(oEntity.ChiTietPhieus);
             DAOApp.DbContext.SaveChanges();

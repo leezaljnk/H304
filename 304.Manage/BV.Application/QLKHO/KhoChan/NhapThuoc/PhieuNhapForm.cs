@@ -9,7 +9,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
 {
     public partial class PhieuNhapForm : FormBase
     {
-        public PhieuNhapKhoModel phieuNhap = new PhieuNhapKhoModel();
+        public PhieuNhapKho phieuNhap = new PhieuNhapKho();
 
         public PhieuNhapForm()
         {
@@ -24,7 +24,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
-            phieuNhap = new PhieuNhapKhoModel();
+            phieuNhap = new PhieuNhapKho();
             Close();
         }
 
@@ -38,7 +38,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
                 phieuNhap = phieuNhapThuocCtrl1.PhieuNhapData();
                 //Save data
                 BusApp.SavePhieuNhapKhoTuNhaCungCap(phieuNhap);
-                PrintPhieuNhap();
+                //PrintPhieuNhap();
                 //Close();
                 phieuNhapThuocCtrl1.dataGridView1.Rows.Clear();
             }
@@ -65,7 +65,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
             //Bind data source
             //IList<TongHopBenhAnSource> sources = new List<TongHopBenhAnSource>() { source };
             report.SetDataSource(phieuNhap, ReportConstance.PHIEU_NHAP_KHO_SOURCE);
-            report.SetDataSource(phieuNhap.ChiTietPhieuNhaps, ReportConstance.PHIEU_NHAP_KHO_CHI_TIET_SOURCE);
+            report.SetDataSource(phieuNhap.PhieuNhapChiTiet, ReportConstance.PHIEU_NHAP_KHO_CHI_TIET_SOURCE);
             //report.SetDataSource(source.TongHopLamSang, ReportConstance.TongHopBenhAnLamSangSource);
             //report.SetDataSource(source.TongHopXetNghiem, ReportConstance.TongHopBenhAnXetNghiemSource);
             report.Show();

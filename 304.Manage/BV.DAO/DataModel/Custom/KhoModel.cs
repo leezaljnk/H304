@@ -2,12 +2,12 @@
 
 namespace BV.DataModel
 {
-    public class PhieuNhapKhoModel : PhieuNhapKho
-    {
-        public List<PhieuNhapChiTiet> ChiTietPhieuNhaps { get; set; }
-    }
+    //public class PhieuNhapKhoModel : PhieuNhapKho
+    //{
+    //    public List<PhieuNhapChiTiet> ChiTietPhieuNhaps { get; set; }
+    //}
 
-    public enum LoaiChietKhau
+    public enum LoaiChietKhauType
     {
         PhanTram = 1,
         TienMat = 2
@@ -29,14 +29,14 @@ namespace BV.DataModel
         ChucNang = 5
     }
 
-    public enum PhieuDeNghiTinhTrang
+    public enum PhieuDeNghiTinhTrangType
     {
         ChuaDuyet = 1,
         DaDuyet = 2,
         DaHuy = 3
     }
 
-    public enum PhieuDeNghiLoai
+    public enum PhieuDeNghiLoaiType
     {
         NhapKho = 1,
         XuatKho = 2,

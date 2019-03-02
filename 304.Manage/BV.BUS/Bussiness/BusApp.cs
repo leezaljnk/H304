@@ -134,7 +134,7 @@ namespace BV.BUS
             throw new NotImplementedException();
         }
 
-        public static bool SavePhieuNhapKhoTuNhaCungCap(PhieuNhapKhoModel phieuNhap)
+        public static bool SavePhieuNhapKhoTuNhaCungCap(PhieuNhapKho phieuNhap)
         {
             return DAOKho.SavePhieuNhapKhoTuNhaCungCap(phieuNhap);
         }

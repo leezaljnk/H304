@@ -14,9 +14,27 @@ namespace BV.DataModel
     
     public partial class DonViHangHoa
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DonViHangHoa()
+        {
+            this.HangHoa = new HashSet<HangHoa>();
+            this.PhieuDeNghiChiTiet = new HashSet<PhieuDeNghiChiTiet>();
+            this.PhieuNhapChiTiet = new HashSet<PhieuNhapChiTiet>();
+            this.PhieuXuatChiTiet = new HashSet<PhieuXuatChiTiet>();
+        }
+    
         public System.Guid ID { get; set; }
         public string Ten { get; set; }
         public string MoTa { get; set; }
         public Nullable<bool> InActive { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HangHoa> HangHoa { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhieuDeNghiChiTiet> PhieuDeNghiChiTiet { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhieuNhapChiTiet> PhieuNhapChiTiet { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhieuXuatChiTiet> PhieuXuatChiTiet { get; set; }
     }
 }

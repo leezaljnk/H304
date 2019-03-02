@@ -420,6 +420,13 @@ warning 6002: The table/view 'BV304.dbo.BYT_DmKhoa' does not have a primary key 
           <Property Name="ThanhTien" Type="float" />
           <Property Name="HanSuDung" Type="datetime" />
         </EntityType>
+        <EntityType Name="PhieuDeNghiLoai">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="smallint" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="PhieuNhapChiTiet">
           <Key>
             <PropertyRef Name="ID" />
@@ -649,6 +656,18 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="MoTa" Type="nvarchar" MaxLength="255" />
           <Property Name="PhuongThucChuyenDoi" Type="tinyint" Nullable="false" />
         </EntityType>
+        <Association Name="FK_HangHoa_DonViHangHoa">
+          <End Role="DonViHangHoa" Type="Self.DonViHangHoa" Multiplicity="0..1" />
+          <End Role="HangHoa" Type="Self.HangHoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonViHangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HangHoa">
+              <PropertyRef Name="DonViID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Kho_KhoaPhong">
           <End Role="KhoaPhong" Type="Self.KhoaPhong" Multiplicity="0..1" />
           <End Role="Kho" Type="Self.Kho" Multiplicity="*" />
@@ -685,6 +704,138 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PhieuDeNghi_Kho">
+          <End Role="Kho" Type="Self.Kho" Multiplicity="0..1" />
+          <End Role="PhieuDeNghi" Type="Self.PhieuDeNghi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kho">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuDeNghi">
+              <PropertyRef Name="MaKhoNhap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeNghi_Kho1">
+          <End Role="Kho" Type="Self.Kho" Multiplicity="0..1" />
+          <End Role="PhieuDeNghi" Type="Self.PhieuDeNghi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kho">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuDeNghi">
+              <PropertyRef Name="MaKhoXuat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeNghi_PhieuDeNghiLoai">
+          <End Role="PhieuDeNghiLoai" Type="Self.PhieuDeNghiLoai" Multiplicity="0..1" />
+          <End Role="PhieuDeNghi" Type="Self.PhieuDeNghi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhieuDeNghiLoai">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhieuDeNghi">
+              <PropertyRef Name="LoaiPhieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeNghiChiTiet_DonViHangHoa">
+          <End Role="DonViHangHoa" Type="Self.DonViHangHoa" Multiplicity="0..1" />
+          <End Role="PhieuDeNghiChiTiet" Type="Self.PhieuDeNghiChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonViHangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuDeNghiChiTiet">
+              <PropertyRef Name="MaDonVi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeNghiChiTiet_HangHoa">
+          <End Role="HangHoa" Type="Self.HangHoa" Multiplicity="0..1" />
+          <End Role="PhieuDeNghiChiTiet" Type="Self.PhieuDeNghiChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuDeNghiChiTiet">
+              <PropertyRef Name="HangHoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeNghiChiTiet_LoHangHoa">
+          <End Role="LoHangHoa" Type="Self.LoHangHoa" Multiplicity="0..1" />
+          <End Role="PhieuDeNghiChiTiet" Type="Self.PhieuDeNghiChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoHangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuDeNghiChiTiet">
+              <PropertyRef Name="LoHangID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeNghiChiTiet_PhieuDeNghi">
+          <End Role="PhieuDeNghi" Type="Self.PhieuDeNghi" Multiplicity="1" />
+          <End Role="PhieuDeNghiChiTiet" Type="Self.PhieuDeNghiChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhieuDeNghi">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuDeNghiChiTiet">
+              <PropertyRef Name="PhieuDeNghiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuNhapChiTiet_DonViHangHoa">
+          <End Role="DonViHangHoa" Type="Self.DonViHangHoa" Multiplicity="0..1" />
+          <End Role="PhieuNhapChiTiet" Type="Self.PhieuNhapChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonViHangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuNhapChiTiet">
+              <PropertyRef Name="MaDonVi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuNhapChiTiet_HangHoa">
+          <End Role="HangHoa" Type="Self.HangHoa" Multiplicity="0..1" />
+          <End Role="PhieuNhapChiTiet" Type="Self.PhieuNhapChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuNhapChiTiet">
+              <PropertyRef Name="HangHoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuNhapChiTiet_LoHangHoa">
+          <End Role="LoHangHoa" Type="Self.LoHangHoa" Multiplicity="0..1" />
+          <End Role="PhieuNhapChiTiet" Type="Self.PhieuNhapChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoHangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuNhapChiTiet">
+              <PropertyRef Name="LoHangID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuNhapChiTiet_PhieuNhapKho">
+          <End Role="PhieuNhapKho" Type="Self.PhieuNhapKho" Multiplicity="0..1" />
+          <End Role="PhieuNhapChiTiet" Type="Self.PhieuNhapChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhieuNhapKho">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuNhapChiTiet">
+              <PropertyRef Name="PhieuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PhieuNhapKho_PhanLoaiHoaDon">
           <End Role="PhanLoaiHoaDon" Type="Self.PhanLoaiHoaDon" Multiplicity="0..1" />
           <End Role="PhieuNhapKho" Type="Self.PhieuNhapKho" Multiplicity="*" />
@@ -694,6 +845,54 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
             </Principal>
             <Dependent Role="PhieuNhapKho">
               <PropertyRef Name="MaPhanLoaiHoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuXuatChiTiet_DonViHangHoa">
+          <End Role="DonViHangHoa" Type="Self.DonViHangHoa" Multiplicity="0..1" />
+          <End Role="PhieuXuatChiTiet" Type="Self.PhieuXuatChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonViHangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuXuatChiTiet">
+              <PropertyRef Name="MaDonVi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuXuatChiTiet_HangHoa">
+          <End Role="HangHoa" Type="Self.HangHoa" Multiplicity="0..1" />
+          <End Role="PhieuXuatChiTiet" Type="Self.PhieuXuatChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuXuatChiTiet">
+              <PropertyRef Name="HangHoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuXuatChiTiet_LoHangHoa">
+          <End Role="LoHangHoa" Type="Self.LoHangHoa" Multiplicity="0..1" />
+          <End Role="PhieuXuatChiTiet" Type="Self.PhieuXuatChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoHangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuXuatChiTiet">
+              <PropertyRef Name="LoHangID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuXuatChiTiet_PhieuXuatKho">
+          <End Role="PhieuXuatKho" Type="Self.PhieuXuatKho" Multiplicity="0..1" />
+          <End Role="PhieuXuatChiTiet" Type="Self.PhieuXuatChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhieuXuatKho">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuXuatChiTiet">
+              <PropertyRef Name="PhieuID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -739,6 +938,7 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <EntitySet Name="PhanLoaiHoaDon" EntityType="Self.PhanLoaiHoaDon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhieuDeNghi" EntityType="Self.PhieuDeNghi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhieuDeNghiChiTiet" EntityType="Self.PhieuDeNghiChiTiet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhieuDeNghiLoai" EntityType="Self.PhieuDeNghiLoai" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhieuNhapChiTiet" EntityType="Self.PhieuNhapChiTiet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhieuNhapKho" EntityType="Self.PhieuNhapKho" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhieuXuatChiTiet" EntityType="Self.PhieuXuatChiTiet" Schema="dbo" store:Type="Tables" />
@@ -772,6 +972,10 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
     [v_ChiTietDonViHangHoa].[PhuongThucChuyenDoi] AS [PhuongThucChuyenDoi]
     FROM [dbo].[v_ChiTietDonViHangHoa] AS [v_ChiTietDonViHangHoa]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_HangHoa_DonViHangHoa" Association="Self.FK_HangHoa_DonViHangHoa">
+            <End Role="DonViHangHoa" EntitySet="DonViHangHoa" />
+            <End Role="HangHoa" EntitySet="HangHoa" />
+          </AssociationSet>
           <AssociationSet Name="FK_Kho_KhoaPhong" Association="Self.FK_Kho_KhoaPhong">
             <End Role="KhoaPhong" EntitySet="KhoaPhong" />
             <End Role="Kho" EntitySet="Kho" />
@@ -784,9 +988,69 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
             <End Role="NhomKhoa" EntitySet="NhomKhoa" />
             <End Role="KhoaPhong" EntitySet="KhoaPhong" />
           </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghi_Kho" Association="Self.FK_PhieuDeNghi_Kho">
+            <End Role="Kho" EntitySet="Kho" />
+            <End Role="PhieuDeNghi" EntitySet="PhieuDeNghi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghi_Kho1" Association="Self.FK_PhieuDeNghi_Kho1">
+            <End Role="Kho" EntitySet="Kho" />
+            <End Role="PhieuDeNghi" EntitySet="PhieuDeNghi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghi_PhieuDeNghiLoai" Association="Self.FK_PhieuDeNghi_PhieuDeNghiLoai">
+            <End Role="PhieuDeNghiLoai" EntitySet="PhieuDeNghiLoai" />
+            <End Role="PhieuDeNghi" EntitySet="PhieuDeNghi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghiChiTiet_DonViHangHoa" Association="Self.FK_PhieuDeNghiChiTiet_DonViHangHoa">
+            <End Role="DonViHangHoa" EntitySet="DonViHangHoa" />
+            <End Role="PhieuDeNghiChiTiet" EntitySet="PhieuDeNghiChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghiChiTiet_HangHoa" Association="Self.FK_PhieuDeNghiChiTiet_HangHoa">
+            <End Role="HangHoa" EntitySet="HangHoa" />
+            <End Role="PhieuDeNghiChiTiet" EntitySet="PhieuDeNghiChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghiChiTiet_LoHangHoa" Association="Self.FK_PhieuDeNghiChiTiet_LoHangHoa">
+            <End Role="LoHangHoa" EntitySet="LoHangHoa" />
+            <End Role="PhieuDeNghiChiTiet" EntitySet="PhieuDeNghiChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghiChiTiet_PhieuDeNghi" Association="Self.FK_PhieuDeNghiChiTiet_PhieuDeNghi">
+            <End Role="PhieuDeNghi" EntitySet="PhieuDeNghi" />
+            <End Role="PhieuDeNghiChiTiet" EntitySet="PhieuDeNghiChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuNhapChiTiet_DonViHangHoa" Association="Self.FK_PhieuNhapChiTiet_DonViHangHoa">
+            <End Role="DonViHangHoa" EntitySet="DonViHangHoa" />
+            <End Role="PhieuNhapChiTiet" EntitySet="PhieuNhapChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuNhapChiTiet_HangHoa" Association="Self.FK_PhieuNhapChiTiet_HangHoa">
+            <End Role="HangHoa" EntitySet="HangHoa" />
+            <End Role="PhieuNhapChiTiet" EntitySet="PhieuNhapChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuNhapChiTiet_LoHangHoa" Association="Self.FK_PhieuNhapChiTiet_LoHangHoa">
+            <End Role="LoHangHoa" EntitySet="LoHangHoa" />
+            <End Role="PhieuNhapChiTiet" EntitySet="PhieuNhapChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuNhapChiTiet_PhieuNhapKho" Association="Self.FK_PhieuNhapChiTiet_PhieuNhapKho">
+            <End Role="PhieuNhapKho" EntitySet="PhieuNhapKho" />
+            <End Role="PhieuNhapChiTiet" EntitySet="PhieuNhapChiTiet" />
+          </AssociationSet>
           <AssociationSet Name="FK_PhieuNhapKho_PhanLoaiHoaDon" Association="Self.FK_PhieuNhapKho_PhanLoaiHoaDon">
             <End Role="PhanLoaiHoaDon" EntitySet="PhanLoaiHoaDon" />
             <End Role="PhieuNhapKho" EntitySet="PhieuNhapKho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuXuatChiTiet_DonViHangHoa" Association="Self.FK_PhieuXuatChiTiet_DonViHangHoa">
+            <End Role="DonViHangHoa" EntitySet="DonViHangHoa" />
+            <End Role="PhieuXuatChiTiet" EntitySet="PhieuXuatChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuXuatChiTiet_HangHoa" Association="Self.FK_PhieuXuatChiTiet_HangHoa">
+            <End Role="HangHoa" EntitySet="HangHoa" />
+            <End Role="PhieuXuatChiTiet" EntitySet="PhieuXuatChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuXuatChiTiet_LoHangHoa" Association="Self.FK_PhieuXuatChiTiet_LoHangHoa">
+            <End Role="LoHangHoa" EntitySet="LoHangHoa" />
+            <End Role="PhieuXuatChiTiet" EntitySet="PhieuXuatChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuXuatChiTiet_PhieuXuatKho" Association="Self.FK_PhieuXuatChiTiet_PhieuXuatKho">
+            <End Role="PhieuXuatKho" EntitySet="PhieuXuatKho" />
+            <End Role="PhieuXuatChiTiet" EntitySet="PhieuXuatChiTiet" />
           </AssociationSet>
           <AssociationSet Name="FK_PhieuXuatKho_PhanLoaiHoaDon" Association="Self.FK_PhieuXuatKho_PhanLoaiHoaDon">
             <End Role="PhanLoaiHoaDon" EntitySet="PhanLoaiHoaDon" />
@@ -807,7 +1071,6 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <EntitySet Name="DichVu_" EntityType="BVModel.DichVu_" />
           <EntitySet Name="DinhGiaHangHoa" EntityType="BVModel.DinhGiaHangHoa" />
           <EntitySet Name="dm_dichvu_dong" EntityType="BVModel.dm_dichvu_dong" />
-          <EntitySet Name="DonViHangHoa" EntityType="BVModel.DonViHangHoa" />
           <EntitySet Name="GioiTinh" EntityType="BVModel.GioiTinh" />
           <EntitySet Name="HangHoa" EntityType="BVModel.HangHoa" />
           <EntitySet Name="HoTriLieu" EntityType="BVModel.HoTriLieu" />
@@ -826,7 +1089,7 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <EntitySet Name="NhomKhoa" EntityType="BVModel.NhomKhoa" />
           <EntitySet Name="PhanLoaiHoaDon" EntityType="BVModel.PhanLoaiHoaDon" />
           <EntitySet Name="PhieuDeNghi" EntityType="BVModel.PhieuDeNghi" />
-          <EntitySet Name="PhieuDeNghiChiTiet" EntityType="BVModel.PhieuDeNghiChiTiet" />
+          <EntitySet Name="PhieuDeNghiLoai" EntityType="BVModel.PhieuDeNghiLoai" />
           <EntitySet Name="PhieuNhapChiTiet" EntityType="BVModel.PhieuNhapChiTiet" />
           <EntitySet Name="PhieuNhapKho" EntityType="BVModel.PhieuNhapKho" />
           <EntitySet Name="PhieuXuatChiTiet" EntityType="BVModel.PhieuXuatChiTiet" />
@@ -844,6 +1107,14 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <EntitySet Name="VATTU_YTE_6061" EntityType="BVModel.VATTU_YTE_6061" />
           <EntitySet Name="BYT_DmKhoa" EntityType="BVModel.BYT_DmKhoa" />
           <EntitySet Name="v_ChiTietDonViHangHoa" EntityType="BVModel.v_ChiTietDonViHangHoa" />
+          <AssociationSet Name="FK_PhieuNhapChiTiet_HangHoa" Association="BVModel.FK_PhieuNhapChiTiet_HangHoa">
+            <End Role="HangHoa" EntitySet="HangHoa" />
+            <End Role="PhieuNhapChiTiet" EntitySet="PhieuNhapChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuXuatChiTiet_HangHoa" Association="BVModel.FK_PhieuXuatChiTiet_HangHoa">
+            <End Role="HangHoa" EntitySet="HangHoa" />
+            <End Role="PhieuXuatChiTiet" EntitySet="PhieuXuatChiTiet" />
+          </AssociationSet>
           <AssociationSet Name="FK_Kho_KhoaPhong" Association="BVModel.FK_Kho_KhoaPhong">
             <End Role="KhoaPhong" EntitySet="KhoaPhong" />
             <End Role="Kho" EntitySet="Kho" />
@@ -852,9 +1123,25 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
             <End Role="LoaiKho" EntitySet="LoaiKho" />
             <End Role="Kho" EntitySet="Kho" />
           </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghi_Kho" Association="BVModel.FK_PhieuDeNghi_Kho">
+            <End Role="Kho" EntitySet="Kho" />
+            <End Role="PhieuDeNghi" EntitySet="PhieuDeNghi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghi_Kho1" Association="BVModel.FK_PhieuDeNghi_Kho1">
+            <End Role="Kho" EntitySet="Kho" />
+            <End Role="PhieuDeNghi" EntitySet="PhieuDeNghi" />
+          </AssociationSet>
           <AssociationSet Name="FK_KhoaPhong_NhomKhoa" Association="BVModel.FK_KhoaPhong_NhomKhoa">
             <End Role="NhomKhoa" EntitySet="NhomKhoa" />
             <End Role="KhoaPhong" EntitySet="KhoaPhong" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuNhapChiTiet_LoHangHoa" Association="BVModel.FK_PhieuNhapChiTiet_LoHangHoa">
+            <End Role="LoHangHoa" EntitySet="LoHangHoa" />
+            <End Role="PhieuNhapChiTiet" EntitySet="PhieuNhapChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuXuatChiTiet_LoHangHoa" Association="BVModel.FK_PhieuXuatChiTiet_LoHangHoa">
+            <End Role="LoHangHoa" EntitySet="LoHangHoa" />
+            <End Role="PhieuXuatChiTiet" EntitySet="PhieuXuatChiTiet" />
           </AssociationSet>
           <AssociationSet Name="FK_PhieuNhapKho_PhanLoaiHoaDon" Association="BVModel.FK_PhieuNhapKho_PhanLoaiHoaDon">
             <End Role="PhanLoaiHoaDon" EntitySet="PhanLoaiHoaDon" />
@@ -863,6 +1150,48 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <AssociationSet Name="FK_PhieuXuatKho_PhanLoaiHoaDon" Association="BVModel.FK_PhieuXuatKho_PhanLoaiHoaDon">
             <End Role="PhanLoaiHoaDon" EntitySet="PhanLoaiHoaDon" />
             <End Role="PhieuXuatKho" EntitySet="PhieuXuatKho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghi_PhieuDeNghiLoai" Association="BVModel.FK_PhieuDeNghi_PhieuDeNghiLoai">
+            <End Role="PhieuDeNghiLoai" EntitySet="PhieuDeNghiLoai" />
+            <End Role="PhieuDeNghi" EntitySet="PhieuDeNghi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuNhapChiTiet_PhieuNhapKho" Association="BVModel.FK_PhieuNhapChiTiet_PhieuNhapKho">
+            <End Role="PhieuNhapKho" EntitySet="PhieuNhapKho" />
+            <End Role="PhieuNhapChiTiet" EntitySet="PhieuNhapChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuXuatChiTiet_PhieuXuatKho" Association="BVModel.FK_PhieuXuatChiTiet_PhieuXuatKho">
+            <End Role="PhieuXuatKho" EntitySet="PhieuXuatKho" />
+            <End Role="PhieuXuatChiTiet" EntitySet="PhieuXuatChiTiet" />
+          </AssociationSet>
+          <EntitySet Name="DonViHangHoa" EntityType="BVModel.DonViHangHoa" />
+          <EntitySet Name="PhieuDeNghiChiTiet" EntityType="BVModel.PhieuDeNghiChiTiet" />
+          <AssociationSet Name="FK_HangHoa_DonViHangHoa" Association="BVModel.FK_HangHoa_DonViHangHoa">
+            <End Role="DonViHangHoa" EntitySet="DonViHangHoa" />
+            <End Role="HangHoa" EntitySet="HangHoa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghiChiTiet_DonViHangHoa" Association="BVModel.FK_PhieuDeNghiChiTiet_DonViHangHoa">
+            <End Role="DonViHangHoa" EntitySet="DonViHangHoa" />
+            <End Role="PhieuDeNghiChiTiet" EntitySet="PhieuDeNghiChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuNhapChiTiet_DonViHangHoa" Association="BVModel.FK_PhieuNhapChiTiet_DonViHangHoa">
+            <End Role="DonViHangHoa" EntitySet="DonViHangHoa" />
+            <End Role="PhieuNhapChiTiet" EntitySet="PhieuNhapChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuXuatChiTiet_DonViHangHoa" Association="BVModel.FK_PhieuXuatChiTiet_DonViHangHoa">
+            <End Role="DonViHangHoa" EntitySet="DonViHangHoa" />
+            <End Role="PhieuXuatChiTiet" EntitySet="PhieuXuatChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghiChiTiet_HangHoa" Association="BVModel.FK_PhieuDeNghiChiTiet_HangHoa">
+            <End Role="HangHoa" EntitySet="HangHoa" />
+            <End Role="PhieuDeNghiChiTiet" EntitySet="PhieuDeNghiChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghiChiTiet_LoHangHoa" Association="BVModel.FK_PhieuDeNghiChiTiet_LoHangHoa">
+            <End Role="LoHangHoa" EntitySet="LoHangHoa" />
+            <End Role="PhieuDeNghiChiTiet" EntitySet="PhieuDeNghiChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuDeNghiChiTiet_PhieuDeNghi" Association="BVModel.FK_PhieuDeNghiChiTiet_PhieuDeNghi">
+            <End Role="PhieuDeNghi" EntitySet="PhieuDeNghi" />
+            <End Role="PhieuDeNghiChiTiet" EntitySet="PhieuDeNghiChiTiet" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="CapBac">
@@ -1002,15 +1331,6 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="ModifyDate" Type="DateTime" Precision="3" />
           <Property Name="Active" Type="Boolean" />
         </EntityType>
-        <EntityType Name="DonViHangHoa">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="Ten" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="MoTa" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
-          <Property Name="InActive" Type="Boolean" />
-        </EntityType>
         <EntityType Name="GioiTinh">
           <Key>
             <PropertyRef Name="GIOI_TINH_Id" />
@@ -1040,6 +1360,10 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="MaNhomBaoHiem" Type="Int32" />
           <Property Name="ThanhToanBaoHiem" Type="Boolean" />
           <Property Name="TyLeThanhToanBaoHiem" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="PhieuNhapChiTiet" Relationship="BVModel.FK_PhieuNhapChiTiet_HangHoa" FromRole="HangHoa" ToRole="PhieuNhapChiTiet" />
+          <NavigationProperty Name="PhieuXuatChiTiet" Relationship="BVModel.FK_PhieuXuatChiTiet_HangHoa" FromRole="HangHoa" ToRole="PhieuXuatChiTiet" />
+          <NavigationProperty Name="DonViHangHoa" Relationship="BVModel.FK_HangHoa_DonViHangHoa" FromRole="HangHoa" ToRole="DonViHangHoa" />
+          <NavigationProperty Name="PhieuDeNghiChiTiet" Relationship="BVModel.FK_PhieuDeNghiChiTiet_HangHoa" FromRole="HangHoa" ToRole="PhieuDeNghiChiTiet" />
         </EntityType>
         <EntityType Name="HoTriLieu">
           <Key>
@@ -1122,6 +1446,8 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="LoaiKhoId" Type="Int32" />
           <NavigationProperty Name="KhoaPhong" Relationship="BVModel.FK_Kho_KhoaPhong" FromRole="Kho" ToRole="KhoaPhong" />
           <NavigationProperty Name="LoaiKho" Relationship="BVModel.FK_Kho_LoaiKho" FromRole="Kho" ToRole="LoaiKho" />
+          <NavigationProperty Name="PhieuDeNghi" Relationship="BVModel.FK_PhieuDeNghi_Kho" FromRole="Kho" ToRole="PhieuDeNghi" />
+          <NavigationProperty Name="PhieuDeNghi1" Relationship="BVModel.FK_PhieuDeNghi_Kho1" FromRole="Kho" ToRole="PhieuDeNghi" />
         </EntityType>
         <EntityType Name="Khoa">
           <Key>
@@ -1179,6 +1505,9 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="SoLo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HanSuDung" Type="DateTime" Precision="0" />
           <Property Name="ThuocVtytID" Type="Guid" />
+          <NavigationProperty Name="PhieuNhapChiTiet" Relationship="BVModel.FK_PhieuNhapChiTiet_LoHangHoa" FromRole="LoHangHoa" ToRole="PhieuNhapChiTiet" />
+          <NavigationProperty Name="PhieuXuatChiTiet" Relationship="BVModel.FK_PhieuXuatChiTiet_LoHangHoa" FromRole="LoHangHoa" ToRole="PhieuXuatChiTiet" />
+          <NavigationProperty Name="PhieuDeNghiChiTiet" Relationship="BVModel.FK_PhieuDeNghiChiTiet_LoHangHoa" FromRole="LoHangHoa" ToRole="PhieuDeNghiChiTiet" />
         </EntityType>
         <EntityType Name="MucHuongBHYT">
           <Key>
@@ -1259,24 +1588,18 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="LyDoHuy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="NguoiHuy" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="BenhNhanId" Type="Guid" />
+          <NavigationProperty Name="Kho" Relationship="BVModel.FK_PhieuDeNghi_Kho" FromRole="PhieuDeNghi" ToRole="Kho" />
+          <NavigationProperty Name="Kho1" Relationship="BVModel.FK_PhieuDeNghi_Kho1" FromRole="PhieuDeNghi" ToRole="Kho" />
+          <NavigationProperty Name="PhieuDeNghiLoai" Relationship="BVModel.FK_PhieuDeNghi_PhieuDeNghiLoai" FromRole="PhieuDeNghi" ToRole="PhieuDeNghiLoai" />
+          <NavigationProperty Name="PhieuDeNghiChiTiet" Relationship="BVModel.FK_PhieuDeNghiChiTiet_PhieuDeNghi" FromRole="PhieuDeNghi" ToRole="PhieuDeNghiChiTiet" />
         </EntityType>
-        <EntityType Name="PhieuDeNghiChiTiet">
+        <EntityType Name="PhieuDeNghiLoai">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="PhieuDeNghiID" Type="Guid" Nullable="false" />
-          <Property Name="HangHoaID" Type="Guid" />
-          <Property Name="SoLuong" Type="Double" />
-          <Property Name="LoHangID" Type="Guid" />
-          <Property Name="SoQuyeDinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TenDonVi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MaDonVi" Type="Guid" />
-          <Property Name="DonGia" Type="Double" />
-          <Property Name="ChietKhau" Type="Double" />
-          <Property Name="LoaiChietKhau" Type="Int16" />
-          <Property Name="ThanhTien" Type="Double" />
-          <Property Name="HanSuDung" Type="DateTime" Precision="3" />
+          <Property Name="Id" Type="Int16" Nullable="false" />
+          <Property Name="Ten" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PhieuDeNghi" Relationship="BVModel.FK_PhieuDeNghi_PhieuDeNghiLoai" FromRole="PhieuDeNghiLoai" ToRole="PhieuDeNghi" />
         </EntityType>
         <EntityType Name="PhieuNhapChiTiet">
           <Key>
@@ -1295,6 +1618,10 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="LoaiChietKhau" Type="Int16" />
           <Property Name="ThanhTien" Type="Double" />
           <Property Name="HanSuDung" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="HangHoa" Relationship="BVModel.FK_PhieuNhapChiTiet_HangHoa" FromRole="PhieuNhapChiTiet" ToRole="HangHoa" />
+          <NavigationProperty Name="LoHangHoa" Relationship="BVModel.FK_PhieuNhapChiTiet_LoHangHoa" FromRole="PhieuNhapChiTiet" ToRole="LoHangHoa" />
+          <NavigationProperty Name="PhieuNhapKho" Relationship="BVModel.FK_PhieuNhapChiTiet_PhieuNhapKho" FromRole="PhieuNhapChiTiet" ToRole="PhieuNhapKho" />
+          <NavigationProperty Name="DonViHangHoa" Relationship="BVModel.FK_PhieuNhapChiTiet_DonViHangHoa" FromRole="PhieuNhapChiTiet" ToRole="DonViHangHoa" />
         </EntityType>
         <EntityType Name="PhieuNhapKho">
           <Key>
@@ -1317,6 +1644,7 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="PhieuDeNghiId" Type="Guid" />
           <Property Name="KhoId" Type="Guid" />
           <NavigationProperty Name="PhanLoaiHoaDon" Relationship="BVModel.FK_PhieuNhapKho_PhanLoaiHoaDon" FromRole="PhieuNhapKho" ToRole="PhanLoaiHoaDon" />
+          <NavigationProperty Name="PhieuNhapChiTiet" Relationship="BVModel.FK_PhieuNhapChiTiet_PhieuNhapKho" FromRole="PhieuNhapKho" ToRole="PhieuNhapChiTiet" />
         </EntityType>
         <EntityType Name="PhieuXuatChiTiet">
           <Key>
@@ -1335,6 +1663,10 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="LoaiChietKhau" Type="Int16" />
           <Property Name="ThanhTien" Type="Double" />
           <Property Name="HanSuDung" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="HangHoa" Relationship="BVModel.FK_PhieuXuatChiTiet_HangHoa" FromRole="PhieuXuatChiTiet" ToRole="HangHoa" />
+          <NavigationProperty Name="LoHangHoa" Relationship="BVModel.FK_PhieuXuatChiTiet_LoHangHoa" FromRole="PhieuXuatChiTiet" ToRole="LoHangHoa" />
+          <NavigationProperty Name="PhieuXuatKho" Relationship="BVModel.FK_PhieuXuatChiTiet_PhieuXuatKho" FromRole="PhieuXuatChiTiet" ToRole="PhieuXuatKho" />
+          <NavigationProperty Name="DonViHangHoa" Relationship="BVModel.FK_PhieuXuatChiTiet_DonViHangHoa" FromRole="PhieuXuatChiTiet" ToRole="DonViHangHoa" />
         </EntityType>
         <EntityType Name="PhieuXuatKho">
           <Key>
@@ -1355,6 +1687,7 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="PhieuDeNghiId" Type="Guid" />
           <Property Name="KhoId" Type="Guid" />
           <NavigationProperty Name="PhanLoaiHoaDon" Relationship="BVModel.FK_PhieuXuatKho_PhanLoaiHoaDon" FromRole="PhieuXuatKho" ToRole="PhanLoaiHoaDon" />
+          <NavigationProperty Name="PhieuXuatChiTiet" Relationship="BVModel.FK_PhieuXuatChiTiet_PhieuXuatKho" FromRole="PhieuXuatKho" ToRole="PhieuXuatChiTiet" />
         </EntityType>
         <EntityType Name="PhongKham">
           <Key>
@@ -1515,6 +1848,30 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="MoTa" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="PhuongThucChuyenDoi" Type="Byte" Nullable="false" />
         </EntityType>
+        <Association Name="FK_PhieuNhapChiTiet_HangHoa">
+          <End Type="BVModel.HangHoa" Role="HangHoa" Multiplicity="0..1" />
+          <End Type="BVModel.PhieuNhapChiTiet" Role="PhieuNhapChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuNhapChiTiet">
+              <PropertyRef Name="HangHoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuXuatChiTiet_HangHoa">
+          <End Type="BVModel.HangHoa" Role="HangHoa" Multiplicity="0..1" />
+          <End Type="BVModel.PhieuXuatChiTiet" Role="PhieuXuatChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuXuatChiTiet">
+              <PropertyRef Name="HangHoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Kho_KhoaPhong">
           <End Type="BVModel.KhoaPhong" Role="KhoaPhong" Multiplicity="0..1" />
           <End Type="BVModel.Kho" Role="Kho" Multiplicity="*" />
@@ -1539,6 +1896,30 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PhieuDeNghi_Kho">
+          <End Type="BVModel.Kho" Role="Kho" Multiplicity="0..1" />
+          <End Type="BVModel.PhieuDeNghi" Role="PhieuDeNghi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kho">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuDeNghi">
+              <PropertyRef Name="MaKhoNhap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeNghi_Kho1">
+          <End Type="BVModel.Kho" Role="Kho" Multiplicity="0..1" />
+          <End Type="BVModel.PhieuDeNghi" Role="PhieuDeNghi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kho">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuDeNghi">
+              <PropertyRef Name="MaKhoXuat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_KhoaPhong_NhomKhoa">
           <End Type="BVModel.NhomKhoa" Role="NhomKhoa" Multiplicity="0..1" />
           <End Type="BVModel.KhoaPhong" Role="KhoaPhong" Multiplicity="*" />
@@ -1548,6 +1929,30 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
             </Principal>
             <Dependent Role="KhoaPhong">
               <PropertyRef Name="Nhom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuNhapChiTiet_LoHangHoa">
+          <End Type="BVModel.LoHangHoa" Role="LoHangHoa" Multiplicity="0..1" />
+          <End Type="BVModel.PhieuNhapChiTiet" Role="PhieuNhapChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoHangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuNhapChiTiet">
+              <PropertyRef Name="LoHangID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuXuatChiTiet_LoHangHoa">
+          <End Type="BVModel.LoHangHoa" Role="LoHangHoa" Multiplicity="0..1" />
+          <End Type="BVModel.PhieuXuatChiTiet" Role="PhieuXuatChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoHangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuXuatChiTiet">
+              <PropertyRef Name="LoHangID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1572,6 +1977,161 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
             </Principal>
             <Dependent Role="PhieuXuatKho">
               <PropertyRef Name="MaPhanLoaiHoaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeNghi_PhieuDeNghiLoai">
+          <End Type="BVModel.PhieuDeNghiLoai" Role="PhieuDeNghiLoai" Multiplicity="0..1" />
+          <End Type="BVModel.PhieuDeNghi" Role="PhieuDeNghi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhieuDeNghiLoai">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PhieuDeNghi">
+              <PropertyRef Name="LoaiPhieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuNhapChiTiet_PhieuNhapKho">
+          <End Type="BVModel.PhieuNhapKho" Role="PhieuNhapKho" Multiplicity="0..1" />
+          <End Type="BVModel.PhieuNhapChiTiet" Role="PhieuNhapChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhieuNhapKho">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuNhapChiTiet">
+              <PropertyRef Name="PhieuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuXuatChiTiet_PhieuXuatKho">
+          <End Type="BVModel.PhieuXuatKho" Role="PhieuXuatKho" Multiplicity="0..1" />
+          <End Type="BVModel.PhieuXuatChiTiet" Role="PhieuXuatChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhieuXuatKho">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuXuatChiTiet">
+              <PropertyRef Name="PhieuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DonViHangHoa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Ten" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Name="InActive" Type="Boolean" />
+          <NavigationProperty Name="HangHoa" Relationship="BVModel.FK_HangHoa_DonViHangHoa" FromRole="DonViHangHoa" ToRole="HangHoa" />
+          <NavigationProperty Name="PhieuDeNghiChiTiet" Relationship="BVModel.FK_PhieuDeNghiChiTiet_DonViHangHoa" FromRole="DonViHangHoa" ToRole="PhieuDeNghiChiTiet" />
+          <NavigationProperty Name="PhieuNhapChiTiet" Relationship="BVModel.FK_PhieuNhapChiTiet_DonViHangHoa" FromRole="DonViHangHoa" ToRole="PhieuNhapChiTiet" />
+          <NavigationProperty Name="PhieuXuatChiTiet" Relationship="BVModel.FK_PhieuXuatChiTiet_DonViHangHoa" FromRole="DonViHangHoa" ToRole="PhieuXuatChiTiet" />
+        </EntityType>
+        <EntityType Name="PhieuDeNghiChiTiet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="PhieuDeNghiID" Type="Guid" Nullable="false" />
+          <Property Name="HangHoaID" Type="Guid" />
+          <Property Name="SoLuong" Type="Double" />
+          <Property Name="LoHangID" Type="Guid" />
+          <Property Name="SoQuyeDinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenDonVi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaDonVi" Type="Guid" />
+          <Property Name="DonGia" Type="Double" />
+          <Property Name="ChietKhau" Type="Double" />
+          <Property Name="LoaiChietKhau" Type="Int16" />
+          <Property Name="ThanhTien" Type="Double" />
+          <Property Name="HanSuDung" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DonViHangHoa" Relationship="BVModel.FK_PhieuDeNghiChiTiet_DonViHangHoa" FromRole="PhieuDeNghiChiTiet" ToRole="DonViHangHoa" />
+          <NavigationProperty Name="HangHoa" Relationship="BVModel.FK_PhieuDeNghiChiTiet_HangHoa" FromRole="PhieuDeNghiChiTiet" ToRole="HangHoa" />
+          <NavigationProperty Name="LoHangHoa" Relationship="BVModel.FK_PhieuDeNghiChiTiet_LoHangHoa" FromRole="PhieuDeNghiChiTiet" ToRole="LoHangHoa" />
+          <NavigationProperty Name="PhieuDeNghi" Relationship="BVModel.FK_PhieuDeNghiChiTiet_PhieuDeNghi" FromRole="PhieuDeNghiChiTiet" ToRole="PhieuDeNghi" />
+        </EntityType>
+        <Association Name="FK_HangHoa_DonViHangHoa">
+          <End Type="BVModel.DonViHangHoa" Role="DonViHangHoa" Multiplicity="0..1" />
+          <End Type="BVModel.HangHoa" Role="HangHoa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonViHangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HangHoa">
+              <PropertyRef Name="DonViID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeNghiChiTiet_DonViHangHoa">
+          <End Type="BVModel.DonViHangHoa" Role="DonViHangHoa" Multiplicity="0..1" />
+          <End Type="BVModel.PhieuDeNghiChiTiet" Role="PhieuDeNghiChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonViHangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuDeNghiChiTiet">
+              <PropertyRef Name="MaDonVi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuNhapChiTiet_DonViHangHoa">
+          <End Type="BVModel.DonViHangHoa" Role="DonViHangHoa" Multiplicity="0..1" />
+          <End Type="BVModel.PhieuNhapChiTiet" Role="PhieuNhapChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonViHangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuNhapChiTiet">
+              <PropertyRef Name="MaDonVi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuXuatChiTiet_DonViHangHoa">
+          <End Type="BVModel.DonViHangHoa" Role="DonViHangHoa" Multiplicity="0..1" />
+          <End Type="BVModel.PhieuXuatChiTiet" Role="PhieuXuatChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonViHangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuXuatChiTiet">
+              <PropertyRef Name="MaDonVi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeNghiChiTiet_HangHoa">
+          <End Type="BVModel.HangHoa" Role="HangHoa" Multiplicity="0..1" />
+          <End Type="BVModel.PhieuDeNghiChiTiet" Role="PhieuDeNghiChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuDeNghiChiTiet">
+              <PropertyRef Name="HangHoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeNghiChiTiet_LoHangHoa">
+          <End Type="BVModel.LoHangHoa" Role="LoHangHoa" Multiplicity="0..1" />
+          <End Type="BVModel.PhieuDeNghiChiTiet" Role="PhieuDeNghiChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoHangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuDeNghiChiTiet">
+              <PropertyRef Name="LoHangID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuDeNghiChiTiet_PhieuDeNghi">
+          <End Type="BVModel.PhieuDeNghi" Role="PhieuDeNghi" Multiplicity="1" />
+          <End Type="BVModel.PhieuDeNghiChiTiet" Role="PhieuDeNghiChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhieuDeNghi">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuDeNghiChiTiet">
+              <PropertyRef Name="PhieuDeNghiID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1721,16 +2281,6 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
                 <ScalarProperty Name="Nhom" ColumnName="Nhom" />
                 <ScalarProperty Name="MaKhoa" ColumnName="MaKhoa" />
                 <ScalarProperty Name="MaDichVu" ColumnName="MaDichVu" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DonViHangHoa">
-            <EntityTypeMapping TypeName="BVModel.DonViHangHoa">
-              <MappingFragment StoreEntitySet="DonViHangHoa">
-                <ScalarProperty Name="InActive" ColumnName="InActive" />
-                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
-                <ScalarProperty Name="Ten" ColumnName="Ten" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1992,22 +2542,11 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PhieuDeNghiChiTiet">
-            <EntityTypeMapping TypeName="BVModel.PhieuDeNghiChiTiet">
-              <MappingFragment StoreEntitySet="PhieuDeNghiChiTiet">
-                <ScalarProperty Name="HanSuDung" ColumnName="HanSuDung" />
-                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
-                <ScalarProperty Name="LoaiChietKhau" ColumnName="LoaiChietKhau" />
-                <ScalarProperty Name="ChietKhau" ColumnName="ChietKhau" />
-                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
-                <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
-                <ScalarProperty Name="TenDonVi" ColumnName="TenDonVi" />
-                <ScalarProperty Name="SoQuyeDinh" ColumnName="SoQuyeDinh" />
-                <ScalarProperty Name="LoHangID" ColumnName="LoHangID" />
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-                <ScalarProperty Name="HangHoaID" ColumnName="HangHoaID" />
-                <ScalarProperty Name="PhieuDeNghiID" ColumnName="PhieuDeNghiID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
+          <EntitySetMapping Name="PhieuDeNghiLoai">
+            <EntityTypeMapping TypeName="BVModel.PhieuDeNghiLoai">
+              <MappingFragment StoreEntitySet="PhieuDeNghiLoai">
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2247,6 +2786,35 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
                 <ScalarProperty Name="DonViID" ColumnName="DonViID" />
                 <ScalarProperty Name="TenHangHoa" ColumnName="TenHangHoa" />
                 <ScalarProperty Name="HangHoaID" ColumnName="HangHoaID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DonViHangHoa">
+            <EntityTypeMapping TypeName="BVModel.DonViHangHoa">
+              <MappingFragment StoreEntitySet="DonViHangHoa">
+                <ScalarProperty Name="InActive" ColumnName="InActive" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhieuDeNghiChiTiet">
+            <EntityTypeMapping TypeName="BVModel.PhieuDeNghiChiTiet">
+              <MappingFragment StoreEntitySet="PhieuDeNghiChiTiet">
+                <ScalarProperty Name="HanSuDung" ColumnName="HanSuDung" />
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+                <ScalarProperty Name="LoaiChietKhau" ColumnName="LoaiChietKhau" />
+                <ScalarProperty Name="ChietKhau" ColumnName="ChietKhau" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="MaDonVi" ColumnName="MaDonVi" />
+                <ScalarProperty Name="TenDonVi" ColumnName="TenDonVi" />
+                <ScalarProperty Name="SoQuyeDinh" ColumnName="SoQuyeDinh" />
+                <ScalarProperty Name="LoHangID" ColumnName="LoHangID" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="HangHoaID" ColumnName="HangHoaID" />
+                <ScalarProperty Name="PhieuDeNghiID" ColumnName="PhieuDeNghiID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

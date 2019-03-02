@@ -12,26 +12,18 @@ namespace BV.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Kho
+    public partial class PhieuDeNghiLoai
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Kho()
+        public PhieuDeNghiLoai()
         {
             this.PhieuDeNghi = new HashSet<PhieuDeNghi>();
-            this.PhieuDeNghi1 = new HashSet<PhieuDeNghi>();
         }
     
-        public System.Guid ID { get; set; }
-        public string MaKho { get; set; }
-        public string TenKho { get; set; }
-        public Nullable<int> KhoaId { get; set; }
-        public Nullable<int> LoaiKhoId { get; set; }
+        public short Id { get; set; }
+        public string Ten { get; set; }
     
-        public virtual KhoaPhong KhoaPhong { get; set; }
-        public virtual LoaiKho LoaiKho { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuDeNghi> PhieuDeNghi { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PhieuDeNghi> PhieuDeNghi1 { get; set; }
     }
 }

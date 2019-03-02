@@ -183,6 +183,9 @@
     <Compile Include="PhieuDeNghiChiTiet.cs">
       <DependentUpon>BVDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PhieuDeNghiLoai.cs">
+      <DependentUpon>BVDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PhieuNhapChiTiet.cs">
       <DependentUpon>BVDataModel.tt</DependentUpon>
     </Compile>
