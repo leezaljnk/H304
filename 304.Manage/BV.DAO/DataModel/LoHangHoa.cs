@@ -17,9 +17,9 @@ namespace BV.DataModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LoHangHoa()
         {
+            this.PhieuDeNghiChiTiet = new HashSet<PhieuDeNghiChiTiet>();
             this.PhieuNhapChiTiet = new HashSet<PhieuNhapChiTiet>();
             this.PhieuXuatChiTiet = new HashSet<PhieuXuatChiTiet>();
-            this.PhieuDeNghiChiTiet = new HashSet<PhieuDeNghiChiTiet>();
         }
     
         public System.Guid ID { get; set; }
@@ -28,10 +28,10 @@ namespace BV.DataModel
         public Nullable<System.Guid> ThuocVtytID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhieuDeNghiChiTiet> PhieuDeNghiChiTiet { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuNhapChiTiet> PhieuNhapChiTiet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuXuatChiTiet> PhieuXuatChiTiet { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PhieuDeNghiChiTiet> PhieuDeNghiChiTiet { get; set; }
     }
 }

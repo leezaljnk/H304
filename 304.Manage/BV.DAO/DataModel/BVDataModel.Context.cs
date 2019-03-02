@@ -34,6 +34,7 @@ namespace BV.DataModel
         public virtual DbSet<DichVu_> DichVu_ { get; set; }
         public virtual DbSet<DinhGiaHangHoa> DinhGiaHangHoa { get; set; }
         public virtual DbSet<dm_dichvu_dong> dm_dichvu_dong { get; set; }
+        public virtual DbSet<DonViHangHoa> DonViHangHoa { get; set; }
         public virtual DbSet<GioiTinh> GioiTinh { get; set; }
         public virtual DbSet<HangHoa> HangHoa { get; set; }
         public virtual DbSet<HoTriLieu> HoTriLieu { get; set; }
@@ -52,6 +53,7 @@ namespace BV.DataModel
         public virtual DbSet<NhomKhoa> NhomKhoa { get; set; }
         public virtual DbSet<PhanLoaiHoaDon> PhanLoaiHoaDon { get; set; }
         public virtual DbSet<PhieuDeNghi> PhieuDeNghi { get; set; }
+        public virtual DbSet<PhieuDeNghiChiTiet> PhieuDeNghiChiTiet { get; set; }
         public virtual DbSet<PhieuDeNghiLoai> PhieuDeNghiLoai { get; set; }
         public virtual DbSet<PhieuNhapChiTiet> PhieuNhapChiTiet { get; set; }
         public virtual DbSet<PhieuNhapKho> PhieuNhapKho { get; set; }
@@ -62,6 +64,7 @@ namespace BV.DataModel
         public virtual DbSet<QuocGia> QuocGia { get; set; }
         public virtual DbSet<QuyetDinhThau> QuyetDinhThau { get; set; }
         public virtual DbSet<QuyetDinhThauChiTiet> QuyetDinhThauChiTiet { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<ThongTinBenhVien> ThongTinBenhVien { get; set; }
         public virtual DbSet<THUOC_6061> THUOC_6061 { get; set; }
         public virtual DbSet<Thuoc_VatTuYteTonKho> Thuoc_VatTuYteTonKho { get; set; }
@@ -70,7 +73,5 @@ namespace BV.DataModel
         public virtual DbSet<VATTU_YTE_6061> VATTU_YTE_6061 { get; set; }
         public virtual DbSet<BYT_DmKhoa> BYT_DmKhoa { get; set; }
         public virtual DbSet<v_ChiTietDonViHangHoa> v_ChiTietDonViHangHoa { get; set; }
-        public virtual DbSet<DonViHangHoa> DonViHangHoa { get; set; }
-        public virtual DbSet<PhieuDeNghiChiTiet> PhieuDeNghiChiTiet { get; set; }
     }
 }

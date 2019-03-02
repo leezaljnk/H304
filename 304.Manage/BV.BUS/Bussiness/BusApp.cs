@@ -8,6 +8,10 @@ namespace BV.BUS
 {
     public class BusApp
     {
+        public static int CountRecords<T>() where T : class
+        {
+            return DAOApp.CountRecords<T>();
+        }
         public static List<T> GetDanhMuc<T>(bool bRefresh = false, int take = 0) where T : class
         {
             try
@@ -22,7 +26,7 @@ namespace BV.BUS
             }
             catch (Exception ex)
             {
-                throw;
+                return null;
             }
         }
 
@@ -134,9 +138,5 @@ namespace BV.BUS
             throw new NotImplementedException();
         }
 
-        public static bool SavePhieuNhapKhoTuNhaCungCap(PhieuNhapKho phieuNhap)
-        {
-            return DAOKho.SavePhieuNhapKhoTuNhaCungCap(phieuNhap);
-        }
     }
 }

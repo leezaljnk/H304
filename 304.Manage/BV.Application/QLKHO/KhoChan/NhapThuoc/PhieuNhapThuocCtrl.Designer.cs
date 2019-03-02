@@ -117,21 +117,21 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtVat = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.dateNgayNhap = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtSoHoaDon = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dateNgayNhap = new System.Windows.Forms.DateTimePicker();
+            this.cboPLHoaDon = new Infragistics.Win.UltraWinEditors.UltraComboEditor();
+            this.label17 = new System.Windows.Forms.Label();
             this.rdAllTypes = new System.Windows.Forms.RadioButton();
             this.rdChePhamMau = new System.Windows.Forms.RadioButton();
             this.rdVTYT = new System.Windows.Forms.RadioButton();
             this.rdThuocDocAB = new System.Windows.Forms.RadioButton();
             this.rdThuocTamThan = new System.Windows.Forms.RadioButton();
             this.rdThuocGayNghien = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cboPLHoaDon = new Infragistics.Win.UltraWinEditors.UltraComboEditor();
-            this.label17 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.cboQDThau = new Infragistics.Win.UltraWinGrid.UltraCombo();
             this.btnAddRow = new System.Windows.Forms.Button();
@@ -268,8 +268,10 @@
             // 
             // txtMaPhieu
             // 
+            this.txtMaPhieu.BackColor = System.Drawing.Color.White;
             this.txtMaPhieu.Location = new System.Drawing.Point(121, 26);
             this.txtMaPhieu.Name = "txtMaPhieu";
+            this.txtMaPhieu.ReadOnly = true;
             this.txtMaPhieu.Size = new System.Drawing.Size(114, 22);
             this.txtMaPhieu.TabIndex = 1;
             this.txtMaPhieu.Text = "PN201811031038";
@@ -369,15 +371,6 @@
             this.label7.TabIndex = 4;
             this.label7.Text = "VAT:";
             // 
-            // dateNgayNhap
-            // 
-            this.dateNgayNhap.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateNgayNhap.Location = new System.Drawing.Point(105, 54);
-            this.dateNgayNhap.Name = "dateNgayNhap";
-            this.dateNgayNhap.Size = new System.Drawing.Size(200, 22);
-            this.dateNgayNhap.TabIndex = 3;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -393,7 +386,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSoHoaDon.Location = new System.Drawing.Point(105, 25);
             this.txtSoHoaDon.Name = "txtSoHoaDon";
-            this.txtSoHoaDon.Size = new System.Drawing.Size(200, 22);
+            this.txtSoHoaDon.Size = new System.Drawing.Size(167, 22);
             this.txtSoHoaDon.TabIndex = 1;
             // 
             // label9
@@ -411,7 +404,7 @@
             this.label10.Location = new System.Drawing.Point(21, 118);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(79, 14);
-            this.label10.TabIndex = 7;
+            this.label10.TabIndex = 6;
             this.label10.Text = "Phân loại HĐ:";
             // 
             // groupBox1
@@ -442,6 +435,54 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông Tin Chung";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dateNgayNhap);
+            this.groupBox2.Controls.Add(this.cboPLHoaDon);
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Controls.Add(this.txtSoHoaDon);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.txtVat);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox2.Location = new System.Drawing.Point(780, 18);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(314, 140);
+            this.groupBox2.TabIndex = 18;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Hóa Đơn Đỏ";
+            // 
+            // dateNgayNhap
+            // 
+            this.dateNgayNhap.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateNgayNhap.Location = new System.Drawing.Point(106, 54);
+            this.dateNgayNhap.Name = "dateNgayNhap";
+            this.dateNgayNhap.Size = new System.Drawing.Size(166, 22);
+            this.dateNgayNhap.TabIndex = 3;
+            // 
+            // cboPLHoaDon
+            // 
+            this.cboPLHoaDon.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboPLHoaDon.DropDownButtonDisplayStyle = Infragistics.Win.ButtonDisplayStyle.OnMouseEnter;
+            this.cboPLHoaDon.DropDownStyle = Infragistics.Win.DropDownStyle.DropDownList;
+            this.cboPLHoaDon.Location = new System.Drawing.Point(106, 112);
+            this.cboPLHoaDon.Name = "cboPLHoaDon";
+            this.cboPLHoaDon.Size = new System.Drawing.Size(199, 23);
+            this.cboPLHoaDon.TabIndex = 7;
+            // 
+            // label17
+            // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(275, 86);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(19, 14);
+            this.label17.TabIndex = 8;
+            this.label17.Text = "%";
             // 
             // rdAllTypes
             // 
@@ -504,46 +545,6 @@
             this.rdThuocGayNghien.TabIndex = 12;
             this.rdThuocGayNghien.Text = "T. gây nghiện";
             this.rdThuocGayNghien.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.cboPLHoaDon);
-            this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Controls.Add(this.txtSoHoaDon);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.dateNgayNhap);
-            this.groupBox2.Controls.Add(this.txtVat);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox2.Location = new System.Drawing.Point(780, 18);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(314, 140);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Hóa Đơn Đỏ";
-            // 
-            // cboPLHoaDon
-            // 
-            this.cboPLHoaDon.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboPLHoaDon.DropDownButtonDisplayStyle = Infragistics.Win.ButtonDisplayStyle.OnMouseEnter;
-            this.cboPLHoaDon.DropDownStyle = Infragistics.Win.DropDownStyle.DropDownList;
-            this.cboPLHoaDon.Location = new System.Drawing.Point(106, 112);
-            this.cboPLHoaDon.Name = "cboPLHoaDon";
-            this.cboPLHoaDon.Size = new System.Drawing.Size(199, 23);
-            this.cboPLHoaDon.TabIndex = 8;
-            // 
-            // label17
-            // 
-            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(275, 86);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(19, 14);
-            this.label17.TabIndex = 6;
-            this.label17.Text = "%";
             // 
             // tableLayoutPanel1
             // 
@@ -1205,7 +1206,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtVat;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox dateNgayNhap;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtSoHoaDon;
         private System.Windows.Forms.Label label9;
@@ -1254,5 +1254,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDonGia;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmThanhTien;
         public System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DateTimePicker dateNgayNhap;
     }
 }

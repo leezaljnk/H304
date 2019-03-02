@@ -15,6 +15,11 @@ namespace BV.DAO
             return take == 0 ? DbContext.Set<TEntity>().AsNoTracking().ToList() : DbContext.Set<TEntity>().AsNoTracking().Take<TEntity>(take).ToList();
         }
 
+        public static int CountRecords<TEntity>() where TEntity : class
+        {
+            return DbContext.Set<TEntity>().AsNoTracking().Count();
+        }
+
         private static BVEntities InitConnection( )
         {
             var ct = new BVEntities();

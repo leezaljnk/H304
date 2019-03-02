@@ -17,12 +17,13 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
 {
     public partial class PhieuNhapThuocCtrl : UserControlBase
     {
-        //private PhieuNhapKhoModel _phieuNhap { get; set; }
-        private readonly List<PhieuNhapChiTiet> _chiTietPhieus = new List<PhieuNhapChiTiet>();
+        private List<PhieuNhapChiTiet> _chiTietPhieus = new List<PhieuNhapChiTiet>();
         private Guid? _phieuDeNghiId;
+        private List<HangHoa> _hangHoas = BusApp.GetDanhMuc<HangHoa>();
+        private List<LoHangHoa> _loHangHoas = BusApp.GetDanhMuc<LoHangHoa>();
 
 
-        private Guid _phieuID = Guid.Empty;
+        private Guid _phieuId = Guid.Empty;
 
         //add hang hoa
         private double? _thanhTien;
@@ -40,18 +41,17 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
 
         private void InitData()
         {
+            txtMaPhieu.Text = BusKho.InitMaPhieuNhap();
             //lấy dữ liệu các danh mục
             BusApp.GetDanhMuc<NhaCungCap>();
-            BusApp.GetDanhMuc<HangHoa>();
             BusApp.GetDanhMuc<v_ChiTietDonViHangHoa>();
             BusApp.GetDanhMuc<PhanLoaiHoaDon>();
-            BusApp.GetDanhMuc<LoHangHoa>();
             BusApp.GetDanhMuc<QuyetDinhThau>();
         }
 
         public void InitControl(Guid phieuId)
         {
-            _phieuID = phieuId;
+            _phieuId = phieuId;
 
             InitData();
 
@@ -63,7 +63,7 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
             cboPLHoaDon.DisplayMember = "Ten";
             cboPLHoaDon.ValueMember = "ID";
 
-            cboThuoc.DataSource = BusApp.GetDanhMuc<HangHoa>();
+            cboThuoc.DataSource = _hangHoas;//BusApp.GetDanhMuc<HangHoa>();
             cboThuoc.ValueMember = "ID";
             cboThuoc.DisplayMember = "Ten";
             cboThuoc.DisplayLayout.PerformAutoResizeColumns(false, PerformAutoSizeType.AllRowsInBand);
@@ -111,7 +111,7 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
                 if (cboThuoc.SelectedRow != null)
                 {
                     var itemId = (Guid) cboThuoc.Value;
-                    var item = BusApp.GetDanhMuc<HangHoa>().FirstOrDefault(t => t.ID == itemId);
+                    var item = _hangHoas.FirstOrDefault(t => t.ID == itemId);
 
                     var oForm = new ThongTinThuocForm();
                     oForm.InitThongTin(item);
@@ -161,14 +161,13 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
             //Don vi
             var lstDonVi = BusApp.GetDanhMuc<v_ChiTietDonViHangHoa>().Where(t => t.HangHoaID == itemId).ToList();
 
-            //cboDonVi.DataSource = KhoUtil.GetDanhMuc<LoHangHoa>().Where(l => l.ThuocVtytID == itemID).ToList();
-            cboDonVi.DataSource = lstDonVi; //.OrderBy(d => d.TiLeChuyenDoi);
+            cboDonVi.DataSource = lstDonVi;
             cboDonVi.ValueMember = "DonViID";
             cboDonVi.DisplayMember = "TenDonVi";
             cboDonVi.DataBind();
             cboDonVi.Value = null;
             //So lo
-            var lstLoHang = BusApp.GetDanhMuc<LoHangHoa>().Where(l => l.ThuocVtytID == itemId).ToList();
+            var lstLoHang = _loHangHoas.Where(l => l.ThuocVtytID == itemId).ToList();
             cboLoHang.DataSource = lstLoHang;
             cboLoHang.ValueMember = "ID";
             cboLoHang.DisplayMember = "SoLo";
@@ -316,19 +315,19 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
 
                 LoHangHoa oSoLo = null;
                 var hanghoaId = (Guid) cboThuoc.Value;
-                var hanghoa = BusApp.GetDanhMuc<HangHoa>().FirstOrDefault(t => t.ID == hanghoaId);
+                var hanghoa = _hangHoas.FirstOrDefault(t => t.ID == hanghoaId);
                 if (e.Button.Key == "edit")
                     if (cboLoHang.Value != null)
                     {
                         var loId = (Guid) cboLoHang.Value;
-                        oSoLo = BusApp.GetDanhMuc<LoHangHoa>().FirstOrDefault(l => l.ID == loId);
+                        oSoLo = _loHangHoas.FirstOrDefault(l => l.ID == loId);
                     }
 
                 var oForm = new ThongTinLoHangForm();
                 oForm.InitThongTin(hanghoa, oSoLo);
                 if (oForm.ShowDialog(this) == DialogResult.OK)
                 {
-                    var lstLoHang = BusApp.GetDanhMuc<LoHangHoa>().Where(l => l.ThuocVtytID == hanghoaId).ToList();
+                    var lstLoHang = _loHangHoas.Where(l => l.ThuocVtytID == hanghoaId).ToList();
                     cboLoHang.DataSource = lstLoHang;
                     cboLoHang.ValueMember = "ID";
                     cboLoHang.DisplayMember = "SoLo";
@@ -360,18 +359,6 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
         {
             try
             {
-                //LoHangHoa oSoLo = null;
-                //var hanghoaID = (Guid)cboThuoc.Value;
-                //var hanghoa = KhoUtil.GetDanhMuc<HangHoa>().FirstOrDefault(t => t.ID == hanghoaID);
-                //if (e.Button.Key == "edit")
-                //{
-                //    if (cboLoHang.Value != null)
-                //    {
-                //        Guid loID = (Guid)cboLoHang.Value;
-                //        oSoLo = KhoUtil.GetDanhMuc<LoHangHoa>().FirstOrDefault(l => l.ID == loID);
-                //    }
-                //}
-
                 var oForm = new QuyetDinhThauForm();
                 oForm.InitThongTin(null);
                 if (oForm.ShowDialog(this) == DialogResult.OK)
@@ -398,7 +385,7 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
         {
             if (cboLoHang.SelectedRow != null)
             {
-                var loHang = BusApp.GetDanhMuc<LoHangHoa>().FirstOrDefault(l => l.SoLo == cboLoHang.Text);
+                var loHang = _loHangHoas.FirstOrDefault(l => l.SoLo == cboLoHang.Text);
                 if (loHang == null)
                     dateHSD.Text = "";
                 else if (loHang.HanSuDung != null) dateHSD.Text = loHang.HanSuDung.Value.ToString("dd/MM/yyyy");
@@ -450,28 +437,32 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
             try
             {
                 //get chi tiet phieu
+                var hangHoaId = Converter.Obj2Guid(cboThuoc.Value);
+                var loHangHoaId = Converter.obj2Guid(cboLoHang.Value);
                 var phieu = new PhieuNhapChiTiet
                 {
                     ID = Guid.NewGuid(),
                     ChietKhau = Converter.obj2double(txtChietKhau.Text),
                     DonGia = Converter.obj2double(txtDonGia.Text),
-                    HangHoaID = Converter.obj2Guid(cboThuoc.Value),
-                    LoHangID = Converter.obj2Guid(cboLoHang.Value),
+                    HangHoaID = hangHoaId,
+                    LoHangID = loHangHoaId,
                     LoaiChietKhau = Converter.obj2Short(_chietKhauHangHoa),
                     MaDonVi = Converter.obj2Guid(cboDonVi.Value),
-                    PhieuID = _phieuID,
+                    PhieuID = _phieuId,
                     SoLuong = Converter.obj2double(txtSoLuong.Text),
                     SoQuyeDinh = Converter.obj2String(cboQDThau.Value),
                     TenDonVi = Converter.obj2String(cboDonVi.Text),
                     ThanhTien = _thanhTien,
-                    HanSuDung = Converter.Obj2Date(dateHSD.Text)
+                    HanSuDung = Converter.Obj2Date(dateHSD.Text),
+                    HangHoa = _hangHoas.FirstOrDefault(t => t.ID == hangHoaId),
+                    LoHangHoa = _loHangHoas.FirstOrDefault(t=>t.ID == loHangHoaId)
                 };
 
                 _chiTietPhieus.Add(phieu);
                 //add item to grid
                 var newItem = new object[] {
                      Guid.NewGuid(),//id
-                    _phieuID,//ma phieu
+                    _phieuId,//ma phieu
                     _chiTietPhieus.Count, //STT
                     cboThuoc.Text,//ten thuoc
                     cboDonVi.Text,//don vi tinh
@@ -503,7 +494,7 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
             var phieuNhap = new PhieuNhapKho
             {
                 PhieuNhapChiTiet = _chiTietPhieus,
-                ID = _phieuID,
+                ID = _phieuId,
                 Ma = txtMaPhieu.Text,
                 MaNhaCungCap = Converter.Obj2Int(cboNhaCungCap.Value),
                 MaPhanLoaiHoaDon = Converter.obj2Int(cboPLHoaDon.Value),
@@ -512,13 +503,13 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
                 NguoiCungCap = txtNguoiGiao.Text,
                 NguoiTao = txtNguoiTao.Text,
                 NhaCungCap = cboNhaCungCap.Text,
-                //PhanLoaiHoaDon = cboPLHoaDon.Text,
                 PhieuDeNghiId = _phieuDeNghiId,
                 SoHoaDon = txtSoHoaDon.Text,
                 TenPhanLoaiHoaDon = cboPLHoaDon.Text,
                 TongTien = _chiTietPhieus.Sum(e => e.ThanhTien ?? 0),
                 VAT = Converter.obj2double(txtVat.Text),
-                KhoId = PublicVariable.CurrentKhoId
+                KhoId = PublicVariable.CurrentKhoId,
+                GhiChu = txtGhiChu.Text
             };
             if (phieuNhap.VAT != null)
                 phieuNhap.ThanhTien = phieuNhap.TongTien * phieuNhap.VAT / 100;
@@ -562,6 +553,26 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
             //{
             //    this.Cursor = Cursors.Default;
             //}
+        }
+
+        public void ClearForm()
+        {
+            txtMaPhieu.Text = BusKho.InitMaPhieuNhap();
+            dataGridView1.Rows.Clear();
+            _chiTietPhieus = new List<PhieuNhapChiTiet>();
+            _phieuId = Guid.Empty;
+            _phieuDeNghiId = null;
+            txtSoHoaDon.Text = "";
+            txtVat.Text = "";
+            txtGhiChu.Text = "";
+            cboThuoc.Text = "";
+            cboLoHang.Text = "";
+            cboQDThau.Text = "";
+            cboDonVi.Text = "";
+            txtSoLuong.Text = "0";
+            txtDonGia.Text = "0";
+            txtChietKhau.Text = "0";
+            txtThanhTien.Text = "0";
         }
     }
 }

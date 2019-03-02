@@ -34,6 +34,7 @@ namespace BV.DataModel
         public string LyDoHuy { get; set; }
         public string NguoiHuy { get; set; }
         public Nullable<System.Guid> BenhNhanId { get; set; }
+        public string GhiChu { get; set; }
     
         public virtual Kho Kho { get; set; }
         public virtual Kho Kho1 { get; set; }

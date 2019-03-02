@@ -214,6 +214,9 @@
     <Compile Include="QuyetDinhThauChiTiet.cs">
       <DependentUpon>BVDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>BVDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ThongTinBenhVien.cs">
       <DependentUpon>BVDataModel.tt</DependentUpon>
     </Compile>

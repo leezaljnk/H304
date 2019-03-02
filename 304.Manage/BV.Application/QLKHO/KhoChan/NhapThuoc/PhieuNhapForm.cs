@@ -16,9 +16,9 @@ namespace BV.QLKHO.PhieuNhapThuoc
             InitializeComponent();
         }
 
-        public void InitData(Guid phieuID)
+        public void InitData(Guid phieuId)
         {
-            phieuNhapThuocCtrl1.InitControl(phieuID);
+            phieuNhapThuocCtrl1.InitControl(phieuId);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -30,26 +30,8 @@ namespace BV.QLKHO.PhieuNhapThuoc
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            try
-            {
-                
-                Cursor = Cursors.WaitCursor;
-                DialogResult = DialogResult.OK;
-                phieuNhap = phieuNhapThuocCtrl1.PhieuNhapData();
-                //Save data
-                BusApp.SavePhieuNhapKhoTuNhaCungCap(phieuNhap);
-                //PrintPhieuNhap();
-                //Close();
-                phieuNhapThuocCtrl1.dataGridView1.Rows.Clear();
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-            }
-            finally
-            {
-                Cursor = Cursors.Default;
-            }
+            //SavePhieuNhapNCC();
+            DialogResult = DialogResult.OK;
         }
         
         private void PrintPhieuNhap()
@@ -70,5 +52,34 @@ namespace BV.QLKHO.PhieuNhapThuoc
             //report.SetDataSource(source.TongHopXetNghiem, ReportConstance.TongHopBenhAnXetNghiemSource);
             report.Show();
         }
+
+        private void btnSaveContinue_Click(object sender, EventArgs e)
+        {
+            //SavePhieuNhapNCC();
+            phieuNhapThuocCtrl1.ClearForm();
+        }
+
+        private void SavePhieuNhapNCC()
+        {
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                
+                phieuNhap = phieuNhapThuocCtrl1.PhieuNhapData();
+                //Save data
+                BusKho.SavePhieuNhapKhoTuNhaCungCap(phieuNhap);
+                //PrintPhieuNhap();
+               
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
     }
 }

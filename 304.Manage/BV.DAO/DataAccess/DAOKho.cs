@@ -1,45 +1,42 @@
 ﻿using BV.DataModel;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using Common.Winforms;
 
 namespace BV.DAO
 {
     public class DAOKho
     {
+        public static int GetMaxNumberPhieuNhap()
+        {
+            return DAOApp.DbContext.PhieuNhapKho.Count();
+        }
+
+        public static Thuoc_VatTuYteTonKho GetThuocTonKho(Guid thuocId)
+        {
+            return DAOApp.DbContext.Thuoc_VatTuYteTonKho.FirstOrDefault(t => t.ThuocVtytID == thuocId);
+        }
+
         public static DinhGiaHangHoa GetGiaThuoc(Guid thuocID)
         {
-            try
-            {
+           
                 //var giaThuoc = DAOApp.DbContext.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == thuocID);
                 //DAOApp.DbContext.Entry(giaThuoc).State = EntityState.Detached;
                 //return giaThuoc;
                 return DAOApp.DbContext.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == thuocID);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+           
         }
 
         public static List<ChuyenDoiDonViHangHoa> GetChuyenDoiDonViThuoc(Guid hangHoaID)
         {
-            try
-            {
-                return DAOApp.DbContext.ChuyenDoiDonViHangHoa.Where(t => t.HangHoaID == hangHoaID).ToList();
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            return DAOApp.DbContext.ChuyenDoiDonViHangHoa.Where(t => t.HangHoaID == hangHoaID).ToList();
         }
 
         public static void SaveThuoc304(HangHoa oThuoc, DinhGiaHangHoa giaThuoc, List<ChuyenDoiDonViHangHoa> lstDonVi)
         {
-            try
-            {
+           
                 var thuoc = DAOApp.DbContext.HangHoa.FirstOrDefault(t => t.ID == oThuoc.ID);
                 if (thuoc == null)
                 {
@@ -155,11 +152,7 @@ namespace BV.DAO
                 //}
 
                 DAOApp.DbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
+            
         }
 
         public static QuyetDinhThau SaveThongTinQuyetDinhThau(QuyetDinhThau oEntity)
@@ -243,9 +236,14 @@ namespace BV.DAO
             DAOApp.DbContext.SaveChanges();
             return ncc;
         }
-
+        /// <summary>
+        /// Insert into PhieuNhapKho and Thuoc_VatTuYteTonKho
+        /// </summary>
+        /// <param name="oEntity"></param>
+        /// <returns></returns>
         public static bool SavePhieuNhapKhoTuNhaCungCap(PhieuNhapKho oEntity)
         {
+
             var phieuNhap = new PhieuNhapKho
             {
                 ID = Guid.NewGuid(),
@@ -264,7 +262,8 @@ namespace BV.DAO
                 ThanhTien = oEntity.ThanhTien,
                 TongTien = oEntity.TongTien,
                 VAT = oEntity.VAT,
-                KhoId = oEntity.KhoId
+                KhoId = oEntity.KhoId,
+                GhiChu = oEntity.GhiChu
             };
             //DAOApp.DbContext.PhieuNhapKho.Add(phieuNhap);
             //DAOApp.DbContext.SaveChanges();
@@ -288,6 +287,40 @@ namespace BV.DAO
                     TenDonVi = chiTietPhieu.TenDonVi
                 };
                 // DAOApp.DbContext.PhieuNhapChiTiet.Add(chiTiet);
+                var thuocTonKho = GetThuocTonKho(chiTiet.HangHoaID);
+                if (thuocTonKho == null)
+                {
+                    var tonKho = new Thuoc_VatTuYteTonKho
+                    {
+                        ID = Guid.NewGuid(),
+                        HanSuDung = chiTietPhieu.HanSuDung,
+                        MaHoatChat = chiTietPhieu.HangHoa?.HoatChat,
+                        PhanLoaiDuocID = chiTietPhieu.HangHoa?.PhanLoaiDuocID,
+                        SoLo = chiTietPhieu.LoHangHoa?.SoLo,
+                        SoLuongDaNhap = Converter.Obj2decimal(chiTietPhieu.SoLuong),
+                        SoLuongDaXuat = 0,
+                        SoLuongTon = Converter.Obj2decimal(chiTietPhieu.SoLuong),
+                        SoQuyetDinh = chiTietPhieu.SoQuyeDinh,
+                        ThuocVtytID = chiTietPhieu.HangHoaID
+                    };
+                    DAOApp.DbContext.Thuoc_VatTuYteTonKho.Add(tonKho);
+                }
+                else
+                {
+                    thuocTonKho.HanSuDung = chiTietPhieu.HanSuDung;
+                    thuocTonKho.MaHoatChat = chiTietPhieu.HangHoa?.HoatChat;
+                    thuocTonKho.PhanLoaiDuocID = chiTietPhieu.HangHoa?.PhanLoaiDuocID;
+                    thuocTonKho.SoLo = chiTietPhieu.LoHangHoa?.SoLo;
+                    thuocTonKho.SoLuongDaNhap = thuocTonKho.SoLuongDaNhap + Converter.Obj2decimal(chiTietPhieu.SoLuong);
+                    thuocTonKho.SoLuongDaXuat = thuocTonKho.SoLuongDaXuat;
+                    thuocTonKho.SoLuongTon = thuocTonKho.SoLuongTon + Converter.Obj2decimal(chiTietPhieu.SoLuong);
+                    thuocTonKho.SoQuyetDinh = chiTietPhieu.SoQuyeDinh;
+                    thuocTonKho.ThuocVtytID = chiTietPhieu.HangHoaID;
+                    if (DAOApp.DbContext.Entry(thuocTonKho).State == EntityState.Detached)
+                        DAOApp.DbContext.Thuoc_VatTuYteTonKho.Attach(thuocTonKho);
+                    DAOApp.DbContext.Entry(thuocTonKho).State = EntityState.Modified;
+                }
+                
                 phieuNhap.PhieuNhapChiTiet.Add(chiTiet);
             }
             //DAOApp.DbContext.ChiTietPhieu.AddRange(oEntity.ChiTietPhieus);

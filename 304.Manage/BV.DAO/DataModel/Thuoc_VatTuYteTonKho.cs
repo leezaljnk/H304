@@ -15,13 +15,13 @@ namespace BV.DataModel
     public partial class Thuoc_VatTuYteTonKho
     {
         public System.Guid ID { get; set; }
-        public Nullable<System.Guid> ThuocVtytID { get; set; }
+        public System.Guid ThuocVtytID { get; set; }
         public string SoQuyetDinh { get; set; }
         public string PhanLoaiDuocID { get; set; }
         public string MaHoatChat { get; set; }
-        public Nullable<decimal> SoLuongTon { get; set; }
-        public Nullable<decimal> SoLuongDaNhap { get; set; }
-        public string SoLuongDaXuat { get; set; }
+        public decimal SoLuongTon { get; set; }
+        public decimal SoLuongDaNhap { get; set; }
+        public decimal SoLuongDaXuat { get; set; }
         public string SoLo { get; set; }
         public Nullable<System.DateTime> HanSuDung { get; set; }
     }

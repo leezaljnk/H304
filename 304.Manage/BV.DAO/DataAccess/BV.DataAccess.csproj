@@ -77,6 +77,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BV.SharedComponent\AppCommon\BV.AppCommon.csproj">
+      <Project>{6c2362e7-7cba-45db-9cde-2149928f0a3d}</Project>
+      <Name>BV.AppCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BV.SharedComponent\Common.Winforms\Common.Winforms.csproj">
+      <Project>{7875F61B-E93A-4A90-BCA3-BA8A47AD32C3}</Project>
+      <Name>Common.Winforms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataModel\BV.DataModel.csproj">
       <Project>{bd6da53f-02b3-490b-957f-1c3a32f871e8}</Project>
       <Name>BV.DataModel</Name>

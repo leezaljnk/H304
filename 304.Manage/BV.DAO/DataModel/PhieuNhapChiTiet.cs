@@ -15,8 +15,8 @@ namespace BV.DataModel
     public partial class PhieuNhapChiTiet
     {
         public System.Guid ID { get; set; }
-        public Nullable<System.Guid> PhieuID { get; set; }
-        public Nullable<System.Guid> HangHoaID { get; set; }
+        public System.Guid PhieuID { get; set; }
+        public System.Guid HangHoaID { get; set; }
         public Nullable<double> SoLuong { get; set; }
         public Nullable<System.Guid> LoHangID { get; set; }
         public string SoQuyeDinh { get; set; }
@@ -28,9 +28,9 @@ namespace BV.DataModel
         public Nullable<double> ThanhTien { get; set; }
         public Nullable<System.DateTime> HanSuDung { get; set; }
     
+        public virtual DonViHangHoa DonViHangHoa { get; set; }
         public virtual HangHoa HangHoa { get; set; }
         public virtual LoHangHoa LoHangHoa { get; set; }
         public virtual PhieuNhapKho PhieuNhapKho { get; set; }
-        public virtual DonViHangHoa DonViHangHoa { get; set; }
     }
 }
