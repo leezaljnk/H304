@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Windows.Forms;
-using Common.Winforms.Properties;
 
 namespace Common.Winforms.UserControls
 {
-    public partial class FormBase : Form
+    public partial class UserControlBase : UserControl
     {
-        public FormBase()
+        public delegate void CloseView(string viewName);
+
+        public CloseView OnCloseView;
+
+        public UserControlBase()
         {
             InitializeComponent();
-            Icon = Resources.logo;
         }
 
         public event KeyEventHandler KeyPreviewEventHandler;
@@ -42,9 +44,8 @@ namespace Common.Winforms.UserControls
         public void HandleException(Exception ex)
         {
             Cursor = Cursors.Default;
-            //TODO: ghi log client vào đây
-            CommonFunction.WriteLog(ex.Message);
-            MessageBox.Show(this, Text + @": " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            CommonFunction.WriteLog(Text+": "+ex.Message);
+            MessageBox.Show(this, ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         public void HandleException(string message)

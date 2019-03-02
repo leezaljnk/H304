@@ -83,17 +83,17 @@
     <Reference Include="UIAutomationTypes" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="KhoChan\XuatThuoc\XuatThuocBenhNhanForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="KhoChan\XuatThuoc\XuatThuocBenhNhanForm.Designer.cs">
+      <DependentUpon>XuatThuocBenhNhanForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
-      <SubType>Form</SubType>
+    <Compile Include="KhoChan\XuatThuoc\XuatThuocBNCtrl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="KhoChan\XuatThuoc\XuatThuocBNCtrl.Designer.cs">
+      <DependentUpon>XuatThuocBNCtrl.cs</DependentUpon>
     </Compile>
     <Compile Include="KhoForm.cs">
       <SubType>Form</SubType>
@@ -107,16 +107,16 @@
     <Compile Include="NhaCungCap\DanhMucNhaCungCapCtrl.Designer.cs">
       <DependentUpon>DanhMucNhaCungCapCtrl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PhieuNhapThuoc\PhieuNhapForm.cs">
+    <Compile Include="KhoChan\NhapThuoc\PhieuNhapForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PhieuNhapThuoc\PhieuNhapForm.Designer.cs">
+    <Compile Include="KhoChan\NhapThuoc\PhieuNhapForm.Designer.cs">
       <DependentUpon>PhieuNhapForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PhieuNhapThuoc\PhieuNhapThuocCtrl.cs">
+    <Compile Include="KhoChan\NhapThuoc\PhieuNhapThuocCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PhieuNhapThuoc\PhieuNhapThuocCtrl.Designer.cs">
+    <Compile Include="KhoChan\NhapThuoc\PhieuNhapThuocCtrl.Designer.cs">
       <DependentUpon>PhieuNhapThuocCtrl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -166,11 +166,11 @@
     <Compile Include="THUOC\ThongTinThuocForm.Designer.cs">
       <DependentUpon>ThongTinThuocForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="KhoChan\XuatThuoc\XuatThuocBenhNhanForm.resx">
+      <DependentUpon>XuatThuocBenhNhanForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="KhoChan\XuatThuoc\XuatThuocBNCtrl.resx">
+      <DependentUpon>XuatThuocBNCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KhoForm.resx">
       <DependentUpon>KhoForm.cs</DependentUpon>
@@ -178,10 +178,10 @@
     <EmbeddedResource Include="NhaCungCap\DanhMucNhaCungCapCtrl.resx">
       <DependentUpon>DanhMucNhaCungCapCtrl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PhieuNhapThuoc\PhieuNhapForm.resx">
+    <EmbeddedResource Include="KhoChan\NhapThuoc\PhieuNhapForm.resx">
       <DependentUpon>PhieuNhapForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PhieuNhapThuoc\PhieuNhapThuocCtrl.resx">
+    <EmbeddedResource Include="KhoChan\NhapThuoc\PhieuNhapThuocCtrl.resx">
       <DependentUpon>PhieuNhapThuocCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -269,6 +269,11 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\" />
+    <Folder Include="KhoLe\" />
+    <Folder Include="PhieuNhapThuoc\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

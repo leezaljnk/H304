@@ -107,7 +107,7 @@
     <Compile Include="CongKhamBenh.cs">
       <DependentUpon>BVDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Custom\PhieuNhapKhoModel.cs" />
+    <Compile Include="Custom\KhoModel.cs" />
     <Compile Include="DanToc.cs">
       <DependentUpon>BVDataModel.tt</DependentUpon>
     </Compile>

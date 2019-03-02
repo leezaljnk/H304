@@ -1,4 +1,6 @@
-﻿namespace BV.QLKHO.PhieuNhapThuoc
+﻿using BV.QLKHO.KhoChan.NhapThuoc;
+
+namespace BV.QLKHO.PhieuNhapThuoc
 {
     partial class PhieuNhapForm
     {
@@ -30,7 +32,7 @@
         {
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.phieuNhapThuocCtrl1 = new BV.QLKHO.PhieuNhapThuoc.PhieuNhapThuocCtrl();
+            this.phieuNhapThuocCtrl1 = new PhieuNhapThuocCtrl();
             this.SuspendLayout();
             // 
             // btnSave

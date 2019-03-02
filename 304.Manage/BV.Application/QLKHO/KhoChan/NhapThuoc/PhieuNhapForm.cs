@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
-using BV.AppCommon;
 using BV.BUS;
 using BV.DataModel;
 using BV.Reporting;
+using Common.Winforms.UserControls;
 
 namespace BV.QLKHO.PhieuNhapThuoc
 {
-    public partial class PhieuNhapForm : Form
+    public partial class PhieuNhapForm : FormBase
     {
         public PhieuNhapKhoModel phieuNhap = new PhieuNhapKhoModel();
 
@@ -51,11 +51,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
                 Cursor = Cursors.Default;
             }
         }
-        public void HandleException(Exception ex)
-        {
-            Cursor = Cursors.Default;
-            MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+        
         private void PrintPhieuNhap()
         {
             //TongHopBenhAnSource source = GetTongHopBenhAn();

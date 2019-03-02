@@ -1,4 +1,4 @@
-﻿namespace BV.QLKHO.PhieuNhapThuoc
+﻿namespace BV.QLKHO.KhoChan.NhapThuoc
 {
     partial class PhieuNhapThuocCtrl
     {

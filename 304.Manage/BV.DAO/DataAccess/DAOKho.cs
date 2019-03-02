@@ -47,7 +47,7 @@ namespace BV.DAO
                 }
                 else
                 {
-                    thuoc.Ten= oThuoc.Ten;
+                    thuoc.Ten = oThuoc.Ten;
                     thuoc.TenKhac = oThuoc.TenKhac;
                     thuoc.Ma = oThuoc.Ma;
                     thuoc.HoatChat = oThuoc.HoatChat;
@@ -135,7 +135,7 @@ namespace BV.DAO
                 {
                     var donvi = DAOApp.DbContext.ChuyenDoiDonViHangHoa.FirstOrDefault(d => d.ID == dv.ID);
                     if (donvi == null)
-                    {   
+                    {
                         DAOApp.DbContext.ChuyenDoiDonViHangHoa.Add(dv);
                     }
                     else
@@ -263,7 +263,8 @@ namespace BV.DAO
                 TenPhanLoaiHoaDon = oEntity.TenPhanLoaiHoaDon,
                 ThanhTien = oEntity.ThanhTien,
                 TongTien = oEntity.TongTien,
-                VAT = oEntity.VAT
+                VAT = oEntity.VAT,
+                KhoId = oEntity.KhoId
             };
             DAOApp.DbContext.PhieuNhapKho.Add(phieuNhap);
             DAOApp.DbContext.SaveChanges();
@@ -290,7 +291,7 @@ namespace BV.DAO
             }
             //DAOApp.DbContext.ChiTietPhieu.AddRange(oEntity.ChiTietPhieus);
             DAOApp.DbContext.SaveChanges();
-           
+
             return true;
         }
     }

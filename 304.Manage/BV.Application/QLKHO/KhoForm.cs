@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using BV.DataModel;
+using BV.QLKHO.KhoChan.XuatThuoc;
 using BV.QLKHO.PhieuNhapThuoc;
 using BV.QLKHO.THUOC;
 
@@ -101,13 +103,7 @@ namespace BV.QLKHO
             oForm.ShowDialog(this);
         }
 
-        private void mnuNhapKhoTuNhaCungCap_Click(object sender, EventArgs e)
-        {
-            var oForm = new PhieuNhapForm();
-            oForm.InitData(Guid.Empty);
-            oForm.ShowDialog(this);
-        }
-
+ 
         private void mnuDanhMucNCC_Click(object sender, EventArgs e)
         {
             try
@@ -125,6 +121,37 @@ namespace BV.QLKHO
             {
                 HandleException(ex);
             }
+        }
+
+        private void mnuKhoChan_NhapTuNCC_Click(object sender, EventArgs e)
+        {
+            var oForm = new PhieuNhapForm();
+            oForm.InitData(Guid.Empty);
+            oForm.ShowDialog(this);
+        }
+
+        private void mnuKhoChan_ThuHoiTuTruc_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mnuKhoChan_XuatThuocTuThien_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mnuKhoChan_XuatBNNoiTru_Click(object sender, EventArgs e)
+        {
+            var oForm = new XuatThuocBenhNhanForm();
+            oForm.InitData(LoaiKhoType.KhoChan);
+            oForm.ShowDialog(this);
+        }
+
+        private void mnuKhoChan_XuatBNNgoaiTru_Click(object sender, EventArgs e)
+        {
+            var oForm = new XuatThuocBenhNhanForm();
+            oForm.InitData(LoaiKhoType.KhoLe);
+            oForm.ShowDialog(this);
         }
     }
 }

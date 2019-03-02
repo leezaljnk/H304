@@ -191,6 +191,12 @@
     <Compile Include="UserControls\ToolTipCtl\ToolTipCtl.Designer.cs">
       <DependentUpon>ToolTipCtl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UserControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UserControlBase.Designer.cs">
+      <DependentUpon>UserControlBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\WaitingControl\ISplashProcess.cs" />
     <Compile Include="UserControls\WaitingControl\UCWaiting.cs">
       <SubType>Form</SubType>
