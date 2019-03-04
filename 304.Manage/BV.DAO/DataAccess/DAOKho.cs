@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using Common.Winforms;
 
@@ -9,10 +10,6 @@ namespace BV.DAO
 {
     public class DAOKho
     {
-        public static int GetMaxNumberPhieuNhap()
-        {
-            return DAOApp.DbContext.PhieuNhapKho.Count();
-        }
 
         public static Thuoc_VatTuYteTonKho GetThuocTonKho(Guid thuocId)
         {
@@ -21,12 +18,12 @@ namespace BV.DAO
 
         public static DinhGiaHangHoa GetGiaThuoc(Guid thuocID)
         {
-           
-                //var giaThuoc = DAOApp.DbContext.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == thuocID);
-                //DAOApp.DbContext.Entry(giaThuoc).State = EntityState.Detached;
-                //return giaThuoc;
-                return DAOApp.DbContext.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == thuocID);
-           
+
+            //var giaThuoc = DAOApp.DbContext.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == thuocID);
+            //DAOApp.DbContext.Entry(giaThuoc).State = EntityState.Detached;
+            //return giaThuoc;
+            return DAOApp.DbContext.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == thuocID);
+
         }
 
         public static List<ChuyenDoiDonViHangHoa> GetChuyenDoiDonViThuoc(Guid hangHoaID)
@@ -36,123 +33,123 @@ namespace BV.DAO
 
         public static void SaveThuoc304(HangHoa oThuoc, DinhGiaHangHoa giaThuoc, List<ChuyenDoiDonViHangHoa> lstDonVi)
         {
-           
-                var thuoc = DAOApp.DbContext.HangHoa.FirstOrDefault(t => t.ID == oThuoc.ID);
-                if (thuoc == null)
+
+            var thuoc = DAOApp.DbContext.HangHoa.FirstOrDefault(t => t.ID == oThuoc.ID);
+            if (thuoc == null)
+            {
+                DAOApp.DbContext.HangHoa.Add(oThuoc);
+            }
+            else
+            {
+                thuoc.Ten = oThuoc.Ten;
+                thuoc.TenKhac = oThuoc.TenKhac;
+                thuoc.Ma = oThuoc.Ma;
+                thuoc.HoatChat = oThuoc.HoatChat;
+                thuoc.HamLuong = oThuoc.HamLuong;
+                thuoc.DuongDung = oThuoc.DuongDung;
+                thuoc.DongGoi = oThuoc.DongGoi;
+                thuoc.HoTriLieu = oThuoc.HoTriLieu;
+                thuoc.DonViID = oThuoc.DonViID;
+            }
+
+            var updateItem = DAOApp.DbContext.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == giaThuoc.HangHoaID);
+            if (updateItem == null)
+            {
+                DAOApp.DbContext.DinhGiaHangHoa.Add(giaThuoc);
+            }
+            else
+            {
+                if (giaThuoc.GiaDichVu != updateItem.GiaDichVu || giaThuoc.GiaBaoHiem != updateItem.GiaBaoHiem)
                 {
-                    DAOApp.DbContext.HangHoa.Add(oThuoc);
+                    //Save change
+                    giaThuoc.GiaDichVu = updateItem.GiaDichVu;
+                    giaThuoc.GiaBaoHiem = updateItem.GiaBaoHiem;
+                    //giaThuoc.GhiChu = updateItem.GhiChu;
+                    giaThuoc.MaNguoiDinhGia = updateItem.MaNguoiDinhGia;
+                    giaThuoc.TenNguoiDinhGia = updateItem.TenNguoiDinhGia;
+                    giaThuoc.ThoiGianCapNhat = DateTime.Now;
+                }
+            }
+            //var lstOriginalGiaThuoc = KhoChungProvider.KhoTong.DinhGiaHangHoa.Where(t => t.HangHoaID == oThuoc.ID).ToList();
+            //foreach (var updateItem in lstGiaThuoc)
+            //{
+            //    //var giaThuoc = KhoChungProvider.KhoTong.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == updateItem.HangHoaID && t.LoaiGiaID == updateItem.LoaiGiaID);
+            //    var giaThuoc = lstOriginalGiaThuoc.FirstOrDefault(t => t.HangHoaID == updateItem.HangHoaID && t.LoaiGiaID == updateItem.LoaiGiaID);
+            //    if (giaThuoc == null)
+            //    {
+            //        KhoChungProvider.KhoTong.DinhGiaHangHoa.Add(updateItem);
+            //    }
+            //    else
+            //    {
+            //        lstOriginalGiaThuoc.Remove(giaThuoc);
+            //        if (giaThuoc.GiaTien != updateItem.GiaTien)
+            //        {
+            //            //Save change
+            //            giaThuoc.GiaTien = updateItem.GiaTien;
+            //            giaThuoc.GhiChu = updateItem.GhiChu;
+            //            giaThuoc.MaNguoiDinhGia = updateItem.MaNguoiDinhGia;
+            //            giaThuoc.TenNguoiDinhGia = updateItem.TenNguoiDinhGia;
+            //            giaThuoc.ThoiGianCapNhat = DateTime.Now;
+            //        }
+            //    }
+            //}
+
+            //KhoChungProvider.KhoTong.DinhGiaHangHoa.RemoveRange(lstOriginalGiaThuoc);
+
+
+
+            //Save thông tin các đơn vị thuốc
+            var removeDonvi = DAOApp.DbContext.ChuyenDoiDonViHangHoa.Where(d => d.HangHoaID == oThuoc.ID).ToList();
+            //Don vi chinh
+            {
+                var donvi = DAOApp.DbContext.ChuyenDoiDonViHangHoa.FirstOrDefault(d => d.DonViID == oThuoc.DonViID && d.HangHoaID == oThuoc.ID);
+                if (donvi == null)
+                {
+                    var dv = new ChuyenDoiDonViHangHoa();
+                    dv.ID = Guid.NewGuid();
+                    dv.HangHoaID = oThuoc.ID;
+                    dv.DonViID = oThuoc.DonViID.Value;
+                    dv.TiLeChuyenDoi = 1;
+                    dv.PhuongThucChuyenDoi = 1;
+                    dv.MoTa = "Đơn vị chính";
+
+                    DAOApp.DbContext.ChuyenDoiDonViHangHoa.Add(dv);
                 }
                 else
                 {
-                    thuoc.Ten = oThuoc.Ten;
-                    thuoc.TenKhac = oThuoc.TenKhac;
-                    thuoc.Ma = oThuoc.Ma;
-                    thuoc.HoatChat = oThuoc.HoatChat;
-                    thuoc.HamLuong = oThuoc.HamLuong;
-                    thuoc.DuongDung = oThuoc.DuongDung;
-                    thuoc.DongGoi = oThuoc.DongGoi;
-                    thuoc.HoTriLieu = oThuoc.HoTriLieu;
-                    thuoc.DonViID = oThuoc.DonViID;
+                    removeDonvi.RemoveAll(d => d.ID == oThuoc.ID);
+                    donvi.TiLeChuyenDoi = 1;
+                    donvi.PhuongThucChuyenDoi = 1;
+                    donvi.MoTa = "Đơn vị chính";
                 }
+            }
 
-                var updateItem = DAOApp.DbContext.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == giaThuoc.HangHoaID);
-                if (updateItem == null)
+            //Đơn vị chuyển đổi
+            foreach (var dv in lstDonVi)
+            {
+                var donvi = DAOApp.DbContext.ChuyenDoiDonViHangHoa.FirstOrDefault(d => d.ID == dv.ID);
+                if (donvi == null)
                 {
-                    DAOApp.DbContext.DinhGiaHangHoa.Add(giaThuoc);
+                    DAOApp.DbContext.ChuyenDoiDonViHangHoa.Add(dv);
                 }
                 else
                 {
-                    if (giaThuoc.GiaDichVu != updateItem.GiaDichVu || giaThuoc.GiaBaoHiem != updateItem.GiaBaoHiem)
-                    {
-                        //Save change
-                        giaThuoc.GiaDichVu = updateItem.GiaDichVu;
-                        giaThuoc.GiaBaoHiem = updateItem.GiaBaoHiem;
-                        //giaThuoc.GhiChu = updateItem.GhiChu;
-                        giaThuoc.MaNguoiDinhGia = updateItem.MaNguoiDinhGia;
-                        giaThuoc.TenNguoiDinhGia = updateItem.TenNguoiDinhGia;
-                        giaThuoc.ThoiGianCapNhat = DateTime.Now;
-                    }
+                    removeDonvi.RemoveAll(d => d.ID == dv.ID);
+                    donvi.DonViID = dv.DonViID;
+                    donvi.TiLeChuyenDoi = dv.TiLeChuyenDoi;
+                    donvi.PhuongThucChuyenDoi = dv.PhuongThucChuyenDoi;
+                    donvi.MoTa = dv.MoTa;
                 }
-                //var lstOriginalGiaThuoc = KhoChungProvider.KhoTong.DinhGiaHangHoa.Where(t => t.HangHoaID == oThuoc.ID).ToList();
-                //foreach (var updateItem in lstGiaThuoc)
-                //{
-                //    //var giaThuoc = KhoChungProvider.KhoTong.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == updateItem.HangHoaID && t.LoaiGiaID == updateItem.LoaiGiaID);
-                //    var giaThuoc = lstOriginalGiaThuoc.FirstOrDefault(t => t.HangHoaID == updateItem.HangHoaID && t.LoaiGiaID == updateItem.LoaiGiaID);
-                //    if (giaThuoc == null)
-                //    {
-                //        KhoChungProvider.KhoTong.DinhGiaHangHoa.Add(updateItem);
-                //    }
-                //    else
-                //    {
-                //        lstOriginalGiaThuoc.Remove(giaThuoc);
-                //        if (giaThuoc.GiaTien != updateItem.GiaTien)
-                //        {
-                //            //Save change
-                //            giaThuoc.GiaTien = updateItem.GiaTien;
-                //            giaThuoc.GhiChu = updateItem.GhiChu;
-                //            giaThuoc.MaNguoiDinhGia = updateItem.MaNguoiDinhGia;
-                //            giaThuoc.TenNguoiDinhGia = updateItem.TenNguoiDinhGia;
-                //            giaThuoc.ThoiGianCapNhat = DateTime.Now;
-                //        }
-                //    }
-                //}
+            }
 
-                //KhoChungProvider.KhoTong.DinhGiaHangHoa.RemoveRange(lstOriginalGiaThuoc);
+            DAOApp.DbContext.ChuyenDoiDonViHangHoa.RemoveRange(removeDonvi);
+            //foreach (var item in removeDonvi)
+            //{
+            //    KhoChungProvider.KhoTong.ChuyenDoiDonViHangHoa.RemoveRange(removeDonvi);
+            //}
 
+            DAOApp.DbContext.SaveChanges();
 
-
-                //Save thông tin các đơn vị thuốc
-                var removeDonvi = DAOApp.DbContext.ChuyenDoiDonViHangHoa.Where(d => d.HangHoaID == oThuoc.ID).ToList();
-                //Don vi chinh
-                {
-                    var donvi = DAOApp.DbContext.ChuyenDoiDonViHangHoa.FirstOrDefault(d => d.DonViID == oThuoc.DonViID && d.HangHoaID == oThuoc.ID);
-                    if (donvi == null)
-                    {
-                        var dv = new ChuyenDoiDonViHangHoa();
-                        dv.ID = Guid.NewGuid();
-                        dv.HangHoaID = oThuoc.ID;
-                        dv.DonViID = oThuoc.DonViID.Value;
-                        dv.TiLeChuyenDoi = 1;
-                        dv.PhuongThucChuyenDoi = 1;
-                        dv.MoTa = "Đơn vị chính";
-
-                        DAOApp.DbContext.ChuyenDoiDonViHangHoa.Add(dv);
-                    }
-                    else
-                    {
-                        removeDonvi.RemoveAll(d => d.ID == oThuoc.ID);
-                        donvi.TiLeChuyenDoi = 1;
-                        donvi.PhuongThucChuyenDoi = 1;
-                        donvi.MoTa = "Đơn vị chính";
-                    }
-                }
-
-                //Đơn vị chuyển đổi
-                foreach (var dv in lstDonVi)
-                {
-                    var donvi = DAOApp.DbContext.ChuyenDoiDonViHangHoa.FirstOrDefault(d => d.ID == dv.ID);
-                    if (donvi == null)
-                    {
-                        DAOApp.DbContext.ChuyenDoiDonViHangHoa.Add(dv);
-                    }
-                    else
-                    {
-                        removeDonvi.RemoveAll(d => d.ID == dv.ID);
-                        donvi.DonViID = dv.DonViID;
-                        donvi.TiLeChuyenDoi = dv.TiLeChuyenDoi;
-                        donvi.PhuongThucChuyenDoi = dv.PhuongThucChuyenDoi;
-                        donvi.MoTa = dv.MoTa;
-                    }
-                }
-
-                DAOApp.DbContext.ChuyenDoiDonViHangHoa.RemoveRange(removeDonvi);
-                //foreach (var item in removeDonvi)
-                //{
-                //    KhoChungProvider.KhoTong.ChuyenDoiDonViHangHoa.RemoveRange(removeDonvi);
-                //}
-
-                DAOApp.DbContext.SaveChanges();
-            
         }
 
         public static QuyetDinhThau SaveThongTinQuyetDinhThau(QuyetDinhThau oEntity)
@@ -320,7 +317,7 @@ namespace BV.DAO
                         DAOApp.DbContext.Thuoc_VatTuYteTonKho.Attach(thuocTonKho);
                     DAOApp.DbContext.Entry(thuocTonKho).State = EntityState.Modified;
                 }
-                
+
                 phieuNhap.PhieuNhapChiTiet.Add(chiTiet);
             }
             //DAOApp.DbContext.ChiTietPhieu.AddRange(oEntity.ChiTietPhieus);
@@ -328,5 +325,27 @@ namespace BV.DAO
 
             return true;
         }
+
+
+        #region Tra thuoc
+
+        public static IQueryable<PhieuTraThuoc> GetPhieuTraThuoc(string maPhieu, DateTime? tuNgay, DateTime? denNgay)
+        {
+            //IQueryable<PhieuTraThuoc> phieuTra;
+            if (!string.IsNullOrEmpty(maPhieu))
+               return DAOApp.DbContext.PhieuTraThuoc.Where(m => m.MaPhieuTra == maPhieu);
+            else if (string.IsNullOrEmpty(maPhieu) && tuNgay != null)
+            {
+                return DAOApp.DbContext.PhieuTraThuoc.Where(m => m.NgayLap >= tuNgay && m.NgayLap <= denNgay);
+            }
+            else if (!string.IsNullOrEmpty(maPhieu) && tuNgay != null)
+            {
+                return DAOApp.DbContext.PhieuTraThuoc.Where(m => m.MaPhieuTra == maPhieu && m.NgayLap >= tuNgay && m.NgayLap <= denNgay);
+            }
+            
+            return null;
+        }
+
+        #endregion
     }
 }

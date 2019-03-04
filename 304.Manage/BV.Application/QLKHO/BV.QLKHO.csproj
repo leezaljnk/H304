@@ -83,6 +83,24 @@
     <Reference Include="UIAutomationTypes" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KhoChan\ThuHoiThuoc\ThuHoiThuocCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KhoChan\ThuHoiThuoc\ThuHoiThuocCtrl.Designer.cs">
+      <DependentUpon>ThuHoiThuocCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChan\ThuHoiThuoc\ThuHoiThuocForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KhoChan\ThuHoiThuoc\ThuHoiThuocForm.Designer.cs">
+      <DependentUpon>ThuHoiThuocForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChan\ThuHoiThuoc\ThuHoiThuocSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KhoChan\ThuHoiThuoc\ThuHoiThuocSearchForm.Designer.cs">
+      <DependentUpon>ThuHoiThuocSearchForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="KhoChan\XuatThuoc\XuatThuocBenhNhanForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +184,15 @@
     <Compile Include="THUOC\ThongTinThuocForm.Designer.cs">
       <DependentUpon>ThongTinThuocForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="KhoChan\ThuHoiThuoc\ThuHoiThuocCtrl.resx">
+      <DependentUpon>ThuHoiThuocCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KhoChan\ThuHoiThuoc\ThuHoiThuocForm.resx">
+      <DependentUpon>ThuHoiThuocForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KhoChan\ThuHoiThuoc\ThuHoiThuocSearchForm.resx">
+      <DependentUpon>ThuHoiThuocSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="KhoChan\XuatThuoc\XuatThuocBenhNhanForm.resx">
       <DependentUpon>XuatThuocBenhNhanForm.cs</DependentUpon>
     </EmbeddedResource>

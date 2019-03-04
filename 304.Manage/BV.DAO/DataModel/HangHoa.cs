@@ -19,7 +19,9 @@ namespace BV.DataModel
         {
             this.PhieuDeNghiChiTiet = new HashSet<PhieuDeNghiChiTiet>();
             this.PhieuNhapChiTiet = new HashSet<PhieuNhapChiTiet>();
+            this.PhieuTraThuocChiTiet = new HashSet<PhieuTraThuocChiTiet>();
             this.PhieuXuatChiTiet = new HashSet<PhieuXuatChiTiet>();
+            this.XuatTraChiTiet = new HashSet<XuatTraChiTiet>();
         }
     
         public System.Guid ID { get; set; }
@@ -47,6 +49,10 @@ namespace BV.DataModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuNhapChiTiet> PhieuNhapChiTiet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhieuTraThuocChiTiet> PhieuTraThuocChiTiet { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuXuatChiTiet> PhieuXuatChiTiet { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<XuatTraChiTiet> XuatTraChiTiet { get; set; }
     }
 }

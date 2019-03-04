@@ -3,6 +3,7 @@ using BV.DAO;
 using BV.DataModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BV.BUS
 {
@@ -20,6 +21,9 @@ namespace BV.BUS
             return DAOKho.SavePhieuNhapKhoTuNhaCungCap(phieuNhap);
         }
 
-
+        public  static IQueryable<PhieuTraThuoc> GetPhieuTraThuoc(string maPhieu, DateTime? tuNgay, DateTime? denNgay)
+        {
+            return DAOKho.GetPhieuTraThuoc(maPhieu, tuNgay, denNgay);
+        }
     }
 }

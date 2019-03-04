@@ -192,6 +192,12 @@
     <Compile Include="PhieuNhapKho.cs">
       <DependentUpon>BVDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PhieuTraThuoc.cs">
+      <DependentUpon>BVDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PhieuTraThuocChiTiet.cs">
+      <DependentUpon>BVDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PhieuXuatChiTiet.cs">
       <DependentUpon>BVDataModel.tt</DependentUpon>
     </Compile>
@@ -236,6 +242,12 @@
       <DependentUpon>BVDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="v_ChiTietDonViHangHoa.cs">
+      <DependentUpon>BVDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="XuatTra.cs">
+      <DependentUpon>BVDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="XuatTraChiTiet.cs">
       <DependentUpon>BVDataModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

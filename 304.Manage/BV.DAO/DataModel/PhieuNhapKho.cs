@@ -38,7 +38,9 @@ namespace BV.DataModel
         public Nullable<System.Guid> KhoId { get; set; }
         public string GhiChu { get; set; }
     
+        public virtual Kho Kho { get; set; }
         public virtual PhanLoaiHoaDon PhanLoaiHoaDon { get; set; }
+        public virtual PhieuDeNghi PhieuDeNghi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuNhapChiTiet> PhieuNhapChiTiet { get; set; }
     }

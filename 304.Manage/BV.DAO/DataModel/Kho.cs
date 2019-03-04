@@ -19,6 +19,11 @@ namespace BV.DataModel
         {
             this.PhieuDeNghi = new HashSet<PhieuDeNghi>();
             this.PhieuDeNghi1 = new HashSet<PhieuDeNghi>();
+            this.PhieuNhapKho = new HashSet<PhieuNhapKho>();
+            this.PhieuTraThuoc = new HashSet<PhieuTraThuoc>();
+            this.PhieuXuatKho = new HashSet<PhieuXuatKho>();
+            this.PhieuXuatKho1 = new HashSet<PhieuXuatKho>();
+            this.XuatTra = new HashSet<XuatTra>();
         }
     
         public System.Guid ID { get; set; }
@@ -33,5 +38,15 @@ namespace BV.DataModel
         public virtual ICollection<PhieuDeNghi> PhieuDeNghi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuDeNghi> PhieuDeNghi1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhieuNhapKho> PhieuNhapKho { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhieuTraThuoc> PhieuTraThuoc { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhieuXuatKho> PhieuXuatKho { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhieuXuatKho> PhieuXuatKho1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<XuatTra> XuatTra { get; set; }
     }
 }

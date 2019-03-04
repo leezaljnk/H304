@@ -12,37 +12,28 @@ namespace BV.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class PhieuXuatKho
+    public partial class PhieuTraThuoc
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PhieuXuatKho()
+        public PhieuTraThuoc()
         {
             this.PhieuTraThuocChiTiet = new HashSet<PhieuTraThuocChiTiet>();
-            this.PhieuXuatChiTiet = new HashSet<PhieuXuatChiTiet>();
+            this.XuatTra = new HashSet<XuatTra>();
         }
     
         public System.Guid ID { get; set; }
-        public string Ma { get; set; }
-        public Nullable<System.DateTime> NgayTao { get; set; }
-        public string NguoiTao { get; set; }
-        public Nullable<System.Guid> MaKhoNhap { get; set; }
-        public Nullable<System.Guid> MaKhoXuat { get; set; }
-        public Nullable<System.DateTime> NgayXuatKho { get; set; }
-        public string NguoiNhan { get; set; }
-        public Nullable<double> TongTien { get; set; }
-        public Nullable<double> ThanhTien { get; set; }
-        public Nullable<int> MaPhanLoaiHoaDon { get; set; }
-        public string TenPhanLoaiHoaDon { get; set; }
-        public Nullable<System.Guid> PhieuDeNghiId { get; set; }
-        public Nullable<System.Guid> KhoId { get; set; }
+        public System.Guid KhoId { get; set; }
+        public string MaPhieuTra { get; set; }
+        public System.DateTime NgayLap { get; set; }
+        public Nullable<System.Guid> NguoiLap { get; set; }
         public string GhiChu { get; set; }
+        public short TinhTrang { get; set; }
+        public string LyDoLuuThuHoi { get; set; }
     
         public virtual Kho Kho { get; set; }
-        public virtual Kho Kho1 { get; set; }
-        public virtual PhanLoaiHoaDon PhanLoaiHoaDon { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuTraThuocChiTiet> PhieuTraThuocChiTiet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PhieuXuatChiTiet> PhieuXuatChiTiet { get; set; }
+        public virtual ICollection<XuatTra> XuatTra { get; set; }
     }
 }

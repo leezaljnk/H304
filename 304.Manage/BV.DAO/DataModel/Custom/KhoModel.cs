@@ -42,6 +42,13 @@ namespace BV.DataModel
         XuatKho = 2,
         XuatBNNoiTru = 3,
         XuatBNBanTru = 4,
-        XuatTuThien =5
+        XuatTuThien = 5
+    }
+
+    public enum PhieuTraThuocType
+    {
+        ChuaDuyet = 1,
+        DaDuyet = 2,
+        Huy = 3
     }
 }

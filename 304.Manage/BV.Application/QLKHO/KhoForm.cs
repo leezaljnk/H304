@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using BV.DataModel;
+using BV.QLKHO.KhoChan.ThuHoiThuoc;
 using BV.QLKHO.KhoChan.XuatThuoc;
 using BV.QLKHO.PhieuNhapThuoc;
 using BV.QLKHO.THUOC;
@@ -132,7 +133,8 @@ namespace BV.QLKHO
 
         private void mnuKhoChan_ThuHoiTuTruc_Click(object sender, EventArgs e)
         {
-
+            var oForm = new ThuHoiThuocForm();
+            oForm.ShowDialog(this);
         }
 
         private void mnuKhoChan_XuatThuocTuThien_Click(object sender, EventArgs e)
