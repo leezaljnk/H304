@@ -8,10 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Common.Winforms.UserControls;
 
 namespace BV.TiepNhanHoSo
 {
-    public partial class MainForm : Form
+    public partial class MainForm : FormBase
     {
         public MainForm()
         {
@@ -96,14 +97,6 @@ namespace BV.TiepNhanHoSo
         private void Ctrl_CloseView(object sender, EventArgs e)
         {
             throw new NotImplementedException();
-        }
-
-        public void HandleException(Exception ex)
-        {
-            this.Cursor = Cursors.Default;
-            //TODO: ghi log client vào đây
-            //CommonFunction.WriteLog(ex.Message);
-            MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void textBox1_Enter(object sender, EventArgs e)

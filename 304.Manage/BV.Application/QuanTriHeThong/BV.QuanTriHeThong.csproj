@@ -214,6 +214,10 @@
       <Project>{6C2362E7-7CBA-45DB-9CDE-2149928F0A3D}</Project>
       <Name>BV.AppCommon</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\BV.SharedComponent\Common.Winforms\Common.Winforms.csproj">
+      <Project>{7875F61B-E93A-4A90-BCA3-BA8A47AD32C3}</Project>
+      <Name>Common.Winforms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BV.SharedComponent\SharedComponent\BV.SharedComponent.csproj">
       <Project>{5dac15c1-5aec-436e-b8fe-c31a1bb2b105}</Project>
       <Name>BV.SharedComponent</Name>

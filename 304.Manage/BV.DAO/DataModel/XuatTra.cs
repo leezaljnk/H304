@@ -21,7 +21,7 @@ namespace BV.DataModel
         }
     
         public System.Guid ID { get; set; }
-        public string UserName { get; set; }
+        public Nullable<System.Guid> NguoiLap { get; set; }
         public Nullable<System.DateTime> Ngay { get; set; }
         public Nullable<System.Guid> KhoId { get; set; }
         public string LyDo { get; set; }

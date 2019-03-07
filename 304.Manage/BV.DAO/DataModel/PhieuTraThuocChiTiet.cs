@@ -21,8 +21,12 @@ namespace BV.DataModel
         public System.Guid HangHoaID { get; set; }
         public double SoLuongTra { get; set; }
         public Nullable<double> DonGia { get; set; }
+        public Nullable<System.Guid> LoHangID { get; set; }
+        public Nullable<System.DateTime> HanSuDung { get; set; }
+        public Nullable<double> ChietKhau { get; set; }
     
         public virtual HangHoa HangHoa { get; set; }
+        public virtual LoHangHoa LoHangHoa { get; set; }
         public virtual PhieuTraThuoc PhieuTraThuoc { get; set; }
         public virtual PhieuXuatKho PhieuXuatKho { get; set; }
     }

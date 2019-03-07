@@ -1,17 +1,11 @@
 ﻿using BV.QLKHO.THUOC;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Common.Winforms.UserControls;
 
 namespace BV.QuanTriHeThong
 {
-    public partial class KhoForm : Form
+    public partial class KhoForm : FormBase
     {
         public KhoForm()
         {
@@ -98,13 +92,6 @@ namespace BV.QuanTriHeThong
             throw new NotImplementedException();
         }
 
-        public void HandleException(Exception ex)
-        {
-            this.Cursor = Cursors.Default;
-            //TODO: ghi log client vào đây
-            //CommonFunction.WriteLog(ex.Message);
-            MessageBox.Show(this, ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
 
         private void textBox1_Enter(object sender, EventArgs e)
         {

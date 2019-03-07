@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BV.BUS;
+using BV.DataModel;
 using Common.Winforms;
 using Common.Winforms.UserControls;
 
@@ -31,40 +25,54 @@ namespace BV.QLKHO.KhoChan.ThuHoiThuoc
             dateDenNgay.Checked = true;
             dateDenNgay.CustomFormat = dateDenNgay.CustomFormat;
             dateDenNgay.Value = DateTime.Now;
-        }
 
+            var button = new DataGridViewButtonColumn();
+            {
+                button.Name = "coPreview";
+                button.HeaderText = @"Xem phiếu";
+                button.Text = "Xem";
+                button.UseColumnTextForButtonValue = true; //dont forget this line
+                dataGridView1.Columns.Add(button);
+            }
+            dataGridView1.CellClick += dataGridView1_CellClick;
+        }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1 != null && e.ColumnIndex == dataGridView1.Columns["coPreview"].Index)
+            {
+                int rowIndex = e.RowIndex;
+                var data = (PhieuTraThuoc)dataGridView1.Rows[rowIndex].Tag;
+
+                var oForm = new ThuHoiThuocSearchForm();
+                oForm.InitData(data);
+                oForm.ShowDialog(this);
+
+                //var x = (PhieuTraThuoc)data;
+                //MessageBox.Show(x.MaPhieuTra);
+            }
+        }
         private void btnSearch_Click(object sender, EventArgs e)
         {
             var phieuTra = BusKho.GetPhieuTraThuoc(txtMaPhieu.Text, Converter.Obj2Date(dateTuNgay.Text),
                 Converter.Obj2Date(dateDenNgay.Text));
 
+            foreach (var phieu in phieuTra)
+            {
+                //add item to grid
+                var newItem = new object[] {
+                    phieu.ID,//id
+                    phieu.NguoiLap,
+                    phieu.KhoId,
+                    phieu.MaPhieuTra,
+                    phieu.NgayLap.ToString("dd/MM/yyyy"),
+                    phieu.Kho.TenKho,
+                    phieu.NguoiLap,
+                    phieu.GhiChu
+                };
 
-            //add item to grid
-            var newItem = new object[] {
-                Guid.NewGuid(),//id
-                _phieuId,//ma phieu
-                _chiTietPhieus.Count, //STT
-                cboThuoc.Text,//ten thuoc
-                cboDonVi.Text,//don vi tinh
-                cboQDThau.Text,//quyet dinh thau
-                cboLoHang.Text,//so lo
-                dateHSD.Text,//han su dung
-                txtSoLuong.Text,//so luong
-                (txtChietKhau.Text + (_chietKhauHangHoa == LoaiChietKhauType.PhanTram ?" %":" đ")),//chiet khau
-                txtDonGia.Text,//don gia
-                //cboDonVi.Text,//ten don vi tinh
-                _thanhTien,// thanh tien
-                //_chietKhauHangHoa,//loai chiet khau
-            };
-
-            var newIdx = dataGridView1.Rows.Add(newItem);
-            dataGridView1.Rows[newIdx].Tag = phieu;
-            DataGridViewRow row = dataGridView1.Rows[newIdx];
-            row.DefaultCellStyle.ForeColor = Color.Red;
-
-            //var oForm = new PhieuNhapForm();
-            //oForm.InitData(Guid.Empty);
-            //oForm.ShowDialog(this);
+                var newIdx = dataGridView1.Rows.Add(newItem);
+                dataGridView1.Rows[newIdx].Tag = phieu;
+            }
         }
     }
 }

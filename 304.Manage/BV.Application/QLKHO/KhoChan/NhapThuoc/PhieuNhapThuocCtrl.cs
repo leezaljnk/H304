@@ -264,13 +264,13 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
         }
 
 
-        private void GetChiTietPhieu()
-        {
-            //var oRow = new ChiTietPhieu();
-            //oRow.ID = Guid.NewGuid();
-            //oRow.HangHoaID = (Guid) cboThuoc.Value;
-            ////oRow.LoHangID
-        }
+        //private void GetChiTietPhieu()
+        //{
+        //    //var oRow = new ChiTietPhieu();
+        //    //oRow.ID = Guid.NewGuid();
+        //    //oRow.HangHoaID = (Guid) cboThuoc.Value;
+        //    ////oRow.LoHangID
+        //}
 
         private void ShowMessage(string msg)
         {
@@ -569,10 +569,10 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
             cboLoHang.Text = "";
             cboQDThau.Text = "";
             cboDonVi.Text = "";
-            txtSoLuong.Text = "0";
-            txtDonGia.Text = "0";
-            txtChietKhau.Text = "0";
-            txtThanhTien.Text = "0";
+            txtSoLuong.Text = @"0";
+            txtDonGia.Text = @"0";
+            txtChietKhau.Text = @"0";
+            txtThanhTien.Text = @"0";
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using BV.QLKHO.KhoChan.NhapThuoc;
-
-namespace BV.QLKHO.PhieuNhapThuoc
+﻿namespace BV.QLKHO.KhoChan.NhapThuoc
 {
     partial class PhieuNhapForm
     {

@@ -2,10 +2,10 @@
 using System.Windows.Forms;
 using BV.BUS;
 using BV.DataModel;
-using BV.Reporting;
+//using BV.Reporting;
 using Common.Winforms.UserControls;
 
-namespace BV.QLKHO.PhieuNhapThuoc
+namespace BV.QLKHO.KhoChan.NhapThuoc
 {
     public partial class PhieuNhapForm : FormBase
     {
@@ -30,32 +30,32 @@ namespace BV.QLKHO.PhieuNhapThuoc
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //SavePhieuNhapNCC();
+            SavePhieuNhapNCC();
             DialogResult = DialogResult.OK;
         }
         
         private void PrintPhieuNhap()
         {
-            //TongHopBenhAnSource source = GetTongHopBenhAn();
-            //if (source == null) return;
-            var report = new FReportView
-            {
-                WindowState = FormWindowState.Maximized,
-                ReportPath = ReportConstance.PHIEU_NHAP_KHO_TEMPLATE
-            };
+            ////TongHopBenhAnSource source = GetTongHopBenhAn();
+            ////if (source == null) return;
+            //var report = new FReportView
+            //{
+            //    WindowState = FormWindowState.Maximized,
+            //    ReportPath = ReportConstance.PHIEU_NHAP_KHO_TEMPLATE
+            //};
 
-            //Bind data source
-            //IList<TongHopBenhAnSource> sources = new List<TongHopBenhAnSource>() { source };
-            report.SetDataSource(phieuNhap, ReportConstance.PHIEU_NHAP_KHO_SOURCE);
-            report.SetDataSource(phieuNhap.PhieuNhapChiTiet, ReportConstance.PHIEU_NHAP_KHO_CHI_TIET_SOURCE);
-            //report.SetDataSource(source.TongHopLamSang, ReportConstance.TongHopBenhAnLamSangSource);
-            //report.SetDataSource(source.TongHopXetNghiem, ReportConstance.TongHopBenhAnXetNghiemSource);
-            report.Show();
+            ////Bind data source
+            ////IList<TongHopBenhAnSource> sources = new List<TongHopBenhAnSource>() { source };
+            //report.SetDataSource(phieuNhap, ReportConstance.PHIEU_NHAP_KHO_SOURCE);
+            //report.SetDataSource(phieuNhap.PhieuNhapChiTiet, ReportConstance.PHIEU_NHAP_KHO_CHI_TIET_SOURCE);
+            ////report.SetDataSource(source.TongHopLamSang, ReportConstance.TongHopBenhAnLamSangSource);
+            ////report.SetDataSource(source.TongHopXetNghiem, ReportConstance.TongHopBenhAnXetNghiemSource);
+            //report.Show();
         }
 
         private void btnSaveContinue_Click(object sender, EventArgs e)
         {
-            //SavePhieuNhapNCC();
+            SavePhieuNhapNCC();
             phieuNhapThuocCtrl1.ClearForm();
         }
 
@@ -68,7 +68,7 @@ namespace BV.QLKHO.PhieuNhapThuoc
                 phieuNhap = phieuNhapThuocCtrl1.PhieuNhapData();
                 //Save data
                 BusKho.SavePhieuNhapKhoTuNhaCungCap(phieuNhap);
-                //PrintPhieuNhap();
+                PrintPhieuNhap();
                
             }
             catch (Exception ex)

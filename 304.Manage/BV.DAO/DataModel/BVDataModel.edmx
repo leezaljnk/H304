@@ -492,6 +492,9 @@ warning 6002: The table/view 'BV304.dbo.BYT_DmKhoa' does not have a primary key 
           <Property Name="HangHoaID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="SoLuongTra" Type="float" Nullable="false" />
           <Property Name="DonGia" Type="float" />
+          <Property Name="LoHangID" Type="uniqueidentifier" />
+          <Property Name="HanSuDung" Type="datetime" />
+          <Property Name="ChietKhau" Type="float" />
         </EntityType>
         <EntityType Name="PhieuXuatChiTiet">
           <Key>
@@ -678,7 +681,7 @@ warning 6002: The table/view 'BV304.dbo.BYT_DmKhoa' does not have a primary key 
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="20" />
+          <Property Name="NguoiLap" Type="uniqueidentifier" />
           <Property Name="Ngay" Type="datetime" />
           <Property Name="KhoId" Type="uniqueidentifier" />
           <Property Name="LyDo" Type="nvarchar" MaxLength="200" />
@@ -696,6 +699,7 @@ warning 6002: The table/view 'BV304.dbo.BYT_DmKhoa' does not have a primary key 
           <Property Name="Gia" Type="money" />
           <Property Name="HoaDonID" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="XuaTraId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LoHangID" Type="uniqueidentifier" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -955,6 +959,18 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
             </Principal>
             <Dependent Role="PhieuTraThuocChiTiet">
               <PropertyRef Name="HangHoaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuTraThuocChiTiet_LoHangHoa">
+          <End Role="LoHangHoa" Type="Self.LoHangHoa" Multiplicity="0..1" />
+          <End Role="PhieuTraThuocChiTiet" Type="Self.PhieuTraThuocChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoHangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuTraThuocChiTiet">
+              <PropertyRef Name="LoHangID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1263,6 +1279,10 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
             <End Role="HangHoa" EntitySet="HangHoa" />
             <End Role="PhieuTraThuocChiTiet" EntitySet="PhieuTraThuocChiTiet" />
           </AssociationSet>
+          <AssociationSet Name="FK_PhieuTraThuocChiTiet_LoHangHoa" Association="Self.FK_PhieuTraThuocChiTiet_LoHangHoa">
+            <End Role="LoHangHoa" EntitySet="LoHangHoa" />
+            <End Role="PhieuTraThuocChiTiet" EntitySet="PhieuTraThuocChiTiet" />
+          </AssociationSet>
           <AssociationSet Name="FK_PhieuTraThuocChiTiet_PhieuTraThuoc" Association="Self.FK_PhieuTraThuocChiTiet_PhieuTraThuoc">
             <End Role="PhieuTraThuoc" EntitySet="PhieuTraThuoc" />
             <End Role="PhieuTraThuocChiTiet" EntitySet="PhieuTraThuocChiTiet" />
@@ -1456,6 +1476,10 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <AssociationSet Name="FK_PhieuNhapChiTiet_LoHangHoa" Association="BVModel.FK_PhieuNhapChiTiet_LoHangHoa">
             <End Role="LoHangHoa" EntitySet="LoHangHoa" />
             <End Role="PhieuNhapChiTiet" EntitySet="PhieuNhapChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhieuTraThuocChiTiet_LoHangHoa" Association="BVModel.FK_PhieuTraThuocChiTiet_LoHangHoa">
+            <End Role="LoHangHoa" EntitySet="LoHangHoa" />
+            <End Role="PhieuTraThuocChiTiet" EntitySet="PhieuTraThuocChiTiet" />
           </AssociationSet>
           <AssociationSet Name="FK_PhieuXuatChiTiet_LoHangHoa" Association="BVModel.FK_PhieuXuatChiTiet_LoHangHoa">
             <End Role="LoHangHoa" EntitySet="LoHangHoa" />
@@ -1839,6 +1863,7 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="ThuocVtytID" Type="Guid" />
           <NavigationProperty Name="PhieuDeNghiChiTiet" Relationship="BVModel.FK_PhieuDeNghiChiTiet_LoHangHoa" FromRole="LoHangHoa" ToRole="PhieuDeNghiChiTiet" />
           <NavigationProperty Name="PhieuNhapChiTiet" Relationship="BVModel.FK_PhieuNhapChiTiet_LoHangHoa" FromRole="LoHangHoa" ToRole="PhieuNhapChiTiet" />
+          <NavigationProperty Name="PhieuTraThuocChiTiet" Relationship="BVModel.FK_PhieuTraThuocChiTiet_LoHangHoa" FromRole="LoHangHoa" ToRole="PhieuTraThuocChiTiet" />
           <NavigationProperty Name="PhieuXuatChiTiet" Relationship="BVModel.FK_PhieuXuatChiTiet_LoHangHoa" FromRole="LoHangHoa" ToRole="PhieuXuatChiTiet" />
         </EntityType>
         <EntityType Name="MucHuongBHYT">
@@ -2032,7 +2057,11 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="HangHoaID" Type="Guid" Nullable="false" />
           <Property Name="SoLuongTra" Type="Double" Nullable="false" />
           <Property Name="DonGia" Type="Double" />
+          <Property Name="LoHangID" Type="Guid" />
+          <Property Name="HanSuDung" Type="DateTime" Precision="3" />
+          <Property Name="ChietKhau" Type="Double" />
           <NavigationProperty Name="HangHoa" Relationship="BVModel.FK_PhieuTraThuocChiTiet_HangHoa" FromRole="PhieuTraThuocChiTiet" ToRole="HangHoa" />
+          <NavigationProperty Name="LoHangHoa" Relationship="BVModel.FK_PhieuTraThuocChiTiet_LoHangHoa" FromRole="PhieuTraThuocChiTiet" ToRole="LoHangHoa" />
           <NavigationProperty Name="PhieuTraThuoc" Relationship="BVModel.FK_PhieuTraThuocChiTiet_PhieuTraThuoc" FromRole="PhieuTraThuocChiTiet" ToRole="PhieuTraThuoc" />
           <NavigationProperty Name="PhieuXuatKho" Relationship="BVModel.FK_PhieuTraThuocChiTiet_PhieuXuatKho" FromRole="PhieuTraThuocChiTiet" ToRole="PhieuXuatKho" />
         </EntityType>
@@ -2230,7 +2259,7 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiLap" Type="Guid" />
           <Property Name="Ngay" Type="DateTime" Precision="3" />
           <Property Name="KhoId" Type="Guid" />
           <Property Name="LyDo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -2251,6 +2280,7 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <Property Name="Gia" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="HoaDonID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="XuaTraId" Type="Guid" Nullable="false" />
+          <Property Name="LoHangID" Type="Guid" />
           <NavigationProperty Name="HangHoa" Relationship="BVModel.FK_XuatTraChiTiet_HangHoa" FromRole="XuatTraChiTiet" ToRole="HangHoa" />
           <NavigationProperty Name="XuatTra" Relationship="BVModel.FK_XuatTraChiTiet_XuatTra" FromRole="XuatTraChiTiet" ToRole="XuatTra" />
         </EntityType>
@@ -2529,6 +2559,18 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="PhieuNhapChiTiet">
+              <PropertyRef Name="LoHangID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhieuTraThuocChiTiet_LoHangHoa">
+          <End Type="BVModel.LoHangHoa" Role="LoHangHoa" Multiplicity="0..1" />
+          <End Type="BVModel.PhieuTraThuocChiTiet" Role="PhieuTraThuocChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoHangHoa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PhieuTraThuocChiTiet">
               <PropertyRef Name="LoHangID" />
             </Dependent>
           </ReferentialConstraint>
@@ -3181,6 +3223,9 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <EntitySetMapping Name="PhieuTraThuocChiTiet">
             <EntityTypeMapping TypeName="BVModel.PhieuTraThuocChiTiet">
               <MappingFragment StoreEntitySet="PhieuTraThuocChiTiet">
+                <ScalarProperty Name="ChietKhau" ColumnName="ChietKhau" />
+                <ScalarProperty Name="HanSuDung" ColumnName="HanSuDung" />
+                <ScalarProperty Name="LoHangID" ColumnName="LoHangID" />
                 <ScalarProperty Name="DonGia" ColumnName="DonGia" />
                 <ScalarProperty Name="SoLuongTra" ColumnName="SoLuongTra" />
                 <ScalarProperty Name="HangHoaID" ColumnName="HangHoaID" />
@@ -3387,7 +3432,7 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
                 <ScalarProperty Name="LyDo" ColumnName="LyDo" />
                 <ScalarProperty Name="KhoId" ColumnName="KhoId" />
                 <ScalarProperty Name="Ngay" ColumnName="Ngay" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="NguoiLap" ColumnName="NguoiLap" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3395,6 +3440,7 @@ warning 6002: The table/view 'BV304.dbo.v_ChiTietDonViHangHoa' does not have a p
           <EntitySetMapping Name="XuatTraChiTiet">
             <EntityTypeMapping TypeName="BVModel.XuatTraChiTiet">
               <MappingFragment StoreEntitySet="XuatTraChiTiet">
+                <ScalarProperty Name="LoHangID" ColumnName="LoHangID" />
                 <ScalarProperty Name="XuaTraId" ColumnName="XuaTraId" />
                 <ScalarProperty Name="HoaDonID" ColumnName="HoaDonID" />
                 <ScalarProperty Name="Gia" ColumnName="Gia" />

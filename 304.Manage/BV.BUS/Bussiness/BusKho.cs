@@ -25,5 +25,11 @@ namespace BV.BUS
         {
             return DAOKho.GetPhieuTraThuoc(maPhieu, tuNgay, denNgay);
         }
+
+        //tra thuoc
+        public static bool SaveXuatTraThuoc(PhieuTraThuoc phieuTra)
+        {
+            return DAOKho.SaveXuatTraThuoc(phieuTra, InitMaPhieuNhap());
+        }
     }
 }

@@ -2,14 +2,15 @@
 using System.Drawing;
 using System.Windows.Forms;
 using BV.DataModel;
+using BV.QLKHO.KhoChan.NhapThuoc;
 using BV.QLKHO.KhoChan.ThuHoiThuoc;
 using BV.QLKHO.KhoChan.XuatThuoc;
-using BV.QLKHO.PhieuNhapThuoc;
 using BV.QLKHO.THUOC;
+using Common.Winforms.UserControls;
 
 namespace BV.QLKHO
 {
-    public partial class KhoForm : Form
+    public partial class KhoForm : FormBase
     {
         public KhoForm()
         {
@@ -85,15 +86,6 @@ namespace BV.QLKHO
             }
 
             tabMain.SelectedTab = newTabPage;
-        }
-
-
-        public void HandleException(Exception ex)
-        {
-            Cursor = Cursors.Default;
-            //TODO: ghi log client vào đây
-            //CommonFunction.WriteLog(ex.Message);
-            MessageBox.Show(this, ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
 

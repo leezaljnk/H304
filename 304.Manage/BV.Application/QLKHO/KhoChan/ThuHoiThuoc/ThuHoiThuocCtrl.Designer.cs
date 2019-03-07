@@ -34,10 +34,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtMaPhieu = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dateTuNgay = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.dateDenNgay = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dateTuNgay = new System.Windows.Forms.DateTimePicker();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +53,6 @@
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMaNguoiTra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KhoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmChon = new System.Windows.Forms.DataGridViewButtonColumn();
             this.clmMa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNgayTra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTenKho = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,7 +70,6 @@
             this.ID,
             this.clmMaNguoiTra,
             this.KhoId,
-            this.clmChon,
             this.clmMa,
             this.clmNgayTra,
             this.clmTenKho,
@@ -138,23 +136,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chọn phiếu hoàn trả";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(251, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Từ ngày:";
-            // 
-            // dateTuNgay
-            // 
-            this.dateTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTuNgay.Location = new System.Drawing.Point(306, 26);
-            this.dateTuNgay.Name = "dateTuNgay";
-            this.dateTuNgay.Size = new System.Drawing.Size(96, 20);
-            this.dateTuNgay.TabIndex = 7;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -171,6 +152,23 @@
             this.dateDenNgay.Name = "dateDenNgay";
             this.dateDenNgay.Size = new System.Drawing.Size(96, 20);
             this.dateDenNgay.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(251, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Từ ngày:";
+            // 
+            // dateTuNgay
+            // 
+            this.dateTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTuNgay.Location = new System.Drawing.Point(306, 26);
+            this.dateTuNgay.Name = "dateTuNgay";
+            this.dateTuNgay.Size = new System.Drawing.Size(96, 20);
+            this.dateTuNgay.TabIndex = 7;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -256,11 +254,6 @@
             this.KhoId.ReadOnly = true;
             this.KhoId.Visible = false;
             // 
-            // clmChon
-            // 
-            this.clmChon.HeaderText = "Chọn";
-            this.clmChon.Name = "clmChon";
-            // 
             // clmMa
             // 
             this.clmMa.HeaderText = "Mã hoàn trả";
@@ -331,7 +324,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMaNguoiTra;
         private System.Windows.Forms.DataGridViewTextBoxColumn KhoId;
-        private System.Windows.Forms.DataGridViewButtonColumn clmChon;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMa;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNgayTra;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTenKho;

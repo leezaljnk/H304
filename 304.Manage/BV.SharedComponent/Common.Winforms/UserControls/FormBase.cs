@@ -39,10 +39,9 @@ namespace Common.Winforms.UserControls
             return base.ProcessKeyPreview(ref m);
         }
 
-        public void HandleException(Exception ex)
+        protected void HandleException(Exception ex)
         {
             Cursor = Cursors.Default;
-            //TODO: ghi log client vào đây
             CommonFunction.WriteLog(ex.Message);
             MessageBox.Show(this, Text + @": " + ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }

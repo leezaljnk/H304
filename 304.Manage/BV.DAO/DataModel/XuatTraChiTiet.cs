@@ -22,6 +22,7 @@ namespace BV.DataModel
         public Nullable<decimal> Gia { get; set; }
         public string HoaDonID { get; set; }
         public System.Guid XuaTraId { get; set; }
+        public Nullable<System.Guid> LoHangID { get; set; }
     
         public virtual HangHoa HangHoa { get; set; }
         public virtual XuatTra XuatTra { get; set; }
