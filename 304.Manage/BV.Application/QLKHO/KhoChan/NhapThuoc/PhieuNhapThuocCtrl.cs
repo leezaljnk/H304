@@ -17,17 +17,17 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
 {
     public partial class PhieuNhapThuocCtrl : UserControlBase
     {
+        private LoaiChietKhauType _chietKhauHangHoa = LoaiChietKhauType.TienMat;
         private List<PhieuNhapChiTiet> _chiTietPhieus = new List<PhieuNhapChiTiet>();
+        private readonly List<HangHoa> _hangHoas = BusApp.GetDanhMuc<HangHoa>();
+        private readonly List<LoHangHoa> _loHangHoas = BusApp.GetDanhMuc<LoHangHoa>();
         private Guid? _phieuDeNghiId;
-        private List<HangHoa> _hangHoas = BusApp.GetDanhMuc<HangHoa>();
-        private List<LoHangHoa> _loHangHoas = BusApp.GetDanhMuc<LoHangHoa>();
 
 
         private Guid _phieuId = Guid.Empty;
 
         //add hang hoa
         private double? _thanhTien;
-        private LoaiChietKhauType _chietKhauHangHoa = LoaiChietKhauType.TienMat;
 
         private bool bComboDropDownVisible;
         private bool bComboValueChanged;
@@ -63,7 +63,7 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
             cboPLHoaDon.DisplayMember = "Ten";
             cboPLHoaDon.ValueMember = "ID";
 
-            cboThuoc.DataSource = _hangHoas;//BusApp.GetDanhMuc<HangHoa>();
+            cboThuoc.DataSource = _hangHoas; //BusApp.GetDanhMuc<HangHoa>();
             cboThuoc.ValueMember = "ID";
             cboThuoc.DisplayMember = "Ten";
             cboThuoc.DisplayLayout.PerformAutoResizeColumns(false, PerformAutoSizeType.AllRowsInBand);
@@ -224,8 +224,6 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
         {
             cboDonVi.UltraCommbo_InitializeLayout(sender, e);
             if (e.Layout.Bands.Count > 0)
-            {
-                //var lst = e.Layout.Bands[0]; //.Columns;
                 foreach (var clm in e.Layout.Bands[0].Columns)
                     if (clm.Key == "TenDonVi")
                         clm.Header.Caption = @"Đơn Vị";
@@ -233,7 +231,6 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
                         clm.Header.Caption = @"Mô Tả";
                     else
                         clm.Hidden = true;
-            }
         }
 
         private void txtChietKhau_EditorButtonClick(object sender, EditorButtonEventArgs e)
@@ -414,9 +411,10 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
             switch (_chietKhauHangHoa)
             {
                 case LoaiChietKhauType.PhanTram:
-                    if(string.IsNullOrEmpty(txtChietKhau.Text) || Converter.Obj2Int(txtChietKhau.Text.Replace(".", ""))==0)
-                    _thanhTien = Converter.Obj2double(txtSoLuong.Text.Replace(".", ""))
-                        * Converter.Obj2double(txtDonGia.Text.Replace(".", ""));
+                    if (string.IsNullOrEmpty(txtChietKhau.Text) ||
+                        Converter.Obj2Int(txtChietKhau.Text.Replace(".", "")) == 0)
+                        _thanhTien = Converter.Obj2double(txtSoLuong.Text.Replace(".", ""))
+                                     * Converter.Obj2double(txtDonGia.Text.Replace(".", ""));
                     else
                         _thanhTien = Converter.Obj2double(txtSoLuong.Text.Replace(".", ""))
                                      * Converter.Obj2double(txtDonGia.Text.Replace(".", ""))
@@ -424,8 +422,8 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
                     break;
                 case LoaiChietKhauType.TienMat:
                     _thanhTien = Converter.Obj2double(txtSoLuong.Text.Replace(".", ""))
-                        * Converter.Obj2double(txtDonGia.Text.Replace(".", ""))
-                        - Converter.Obj2double(txtChietKhau.Text.Replace(".", ""));
+                                 * Converter.Obj2double(txtDonGia.Text.Replace(".", ""))
+                                 - Converter.Obj2double(txtChietKhau.Text.Replace(".", ""));
                     break;
             }
 
@@ -455,31 +453,32 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
                     ThanhTien = _thanhTien,
                     HanSuDung = Converter.Obj2Date(dateHSD.Text),
                     HangHoa = _hangHoas.FirstOrDefault(t => t.ID == hangHoaId),
-                    LoHangHoa = _loHangHoas.FirstOrDefault(t=>t.ID == loHangHoaId)
+                    LoHangHoa = _loHangHoas.FirstOrDefault(t => t.ID == loHangHoaId)
                 };
 
                 _chiTietPhieus.Add(phieu);
                 //add item to grid
-                var newItem = new object[] {
-                     Guid.NewGuid(),//id
-                    _phieuId,//ma phieu
+                var newItem = new object[]
+                {
+                    Guid.NewGuid(), //id
+                    _phieuId, //ma phieu
                     _chiTietPhieus.Count, //STT
-                    cboThuoc.Text,//ten thuoc
-                    cboDonVi.Text,//don vi tinh
-                    cboQDThau.Text,//quyet dinh thau
-                    cboLoHang.Text,//so lo
-                    dateHSD.Text,//han su dung
-                    txtSoLuong.Text,//so luong
-                    (txtChietKhau.Text + (_chietKhauHangHoa == LoaiChietKhauType.PhanTram ?" %":" đ")),//chiet khau
-                    txtDonGia.Text,//don gia
+                    cboThuoc.Text, //ten thuoc
+                    cboDonVi.Text, //don vi tinh
+                    cboQDThau.Text, //quyet dinh thau
+                    cboLoHang.Text, //so lo
+                    dateHSD.Text, //han su dung
+                    txtSoLuong.Text, //so luong
+                    txtChietKhau.Text + (_chietKhauHangHoa == LoaiChietKhauType.PhanTram ? " %" : " đ"), //chiet khau
+                    txtDonGia.Text, //don gia
                     //cboDonVi.Text,//ten don vi tinh
-                    _thanhTien,// thanh tien
+                    _thanhTien // thanh tien
                     //_chietKhauHangHoa,//loai chiet khau
                 };
 
                 var newIdx = dataGridView1.Rows.Add(newItem);
                 dataGridView1.Rows[newIdx].Tag = phieu;
-                DataGridViewRow row = dataGridView1.Rows[newIdx];
+                var row = dataGridView1.Rows[newIdx];
                 row.DefaultCellStyle.ForeColor = Color.Red;
             }
             catch (Exception ex)

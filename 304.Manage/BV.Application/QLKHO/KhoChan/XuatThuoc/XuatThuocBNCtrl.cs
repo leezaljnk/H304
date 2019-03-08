@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BV.BUS;
 using BV.DataModel;
@@ -17,6 +11,7 @@ namespace BV.QLKHO.KhoChan.XuatThuoc
     public partial class XuatThuocBNCtrl : UserControl
     {
         private int _loaiKho;
+
         public XuatThuocBNCtrl()
         {
             InitializeComponent();
@@ -24,8 +19,8 @@ namespace BV.QLKHO.KhoChan.XuatThuoc
 
         public void InitControl(LoaiKhoType loaiKho)
         {
-            _loaiKho = (int)loaiKho;
-            var lstKho = BusApp.GetDanhMuc<Kho>().Where(k=>k.LoaiKhoId == _loaiKho).ToList();
+            _loaiKho = (int) loaiKho;
+            var lstKho = BusApp.GetDanhMuc<Kho>().Where(k => k.LoaiKhoId == _loaiKho).ToList();
             cboKho.DataSource = lstKho;
             cboKho.ValueMember = "MaKho";
             cboKho.DisplayMember = "TenKho";
@@ -48,7 +43,6 @@ namespace BV.QLKHO.KhoChan.XuatThuoc
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

@@ -1,19 +1,21 @@
-﻿using System.Windows.Forms;
-using BV.DataModel;
-using System;
-using BV.BUS;
+﻿using System;
+using System.Windows.Forms;
 using BV.AppCommon;
+using BV.BUS;
+using BV.DataModel;
 
 namespace BV.QuanTriHeThong.KhoaPhongBV
 {
     public partial class ctrlThongTinKhoa : UserControl
     {
-        private Khoa _entity = null;
-        public event EventHandler SettingChanged;
+        private Khoa _entity;
+
         public ctrlThongTinKhoa()
         {
             InitializeComponent();
         }
+
+        public event EventHandler SettingChanged;
 
         public void InitThongTin(Khoa k)
         {
@@ -28,10 +30,7 @@ namespace BV.QuanTriHeThong.KhoaPhongBV
                 txtTenKhoaBYT.Text = k.TenBYT;
             }
 
-            if (_entity == null)
-            {
-                _entity = new Khoa() { ID = Guid.NewGuid() };
-            }
+            if (_entity == null) _entity = new Khoa {ID = Guid.NewGuid()};
         }
 
         public Khoa SaveEntity()
@@ -48,18 +47,18 @@ namespace BV.QuanTriHeThong.KhoaPhongBV
             var newK = BUSKhoaPhong.UpdateKhoa(k);
 
             //Update cached
-            AppCached.UpdateDanhMuc<Khoa>(k, newK);
+            AppCached.UpdateDanhMuc(k, newK);
 
             return k;
         }
 
         public bool ValidateData()
         {
-            bool bRet = true;
+            var bRet = true;
             if (string.IsNullOrEmpty(txtMaKhoa.Text))
             {
                 bRet = false;
-                errorProvider1.SetError(txtMaKhoa, "dữ liệu không được để trống");                
+                errorProvider1.SetError(txtMaKhoa, "dữ liệu không được để trống");
             }
 
             //if (string.IsNullOrEmpty(cboLoaiKhoa.Text))
@@ -85,12 +84,13 @@ namespace BV.QuanTriHeThong.KhoaPhongBV
                 bRet = false;
                 errorProvider1.SetError(txtTenKhoaBYT, "dữ liệu không được để trống");
             }
+
             return bRet;
         }
 
-        private void txtMaKhoa_TextChanged(object sender, System.EventArgs e)
+        private void txtMaKhoa_TextChanged(object sender, EventArgs e)
         {
-            Control ctrl = sender as Control;
+            var ctrl = sender as Control;
             errorProvider1.SetError(ctrl, "");
 
             SettingChanged?.Invoke(sender, e);

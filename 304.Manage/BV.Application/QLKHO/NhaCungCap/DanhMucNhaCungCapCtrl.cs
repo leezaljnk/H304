@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using BV.DataModel;
 using BV.BUS;
+using BV.DataModel;
 
 namespace BV.QLKHO.THUOC
 {
     public partial class DanhMucNhaCungCapCtrl : UserControl
     {
-        public event EventHandler CloseView;
         private List<NhaCungCap> _DMNhaCungCap;
 
         public DanhMucNhaCungCapCtrl()
@@ -16,13 +15,15 @@ namespace BV.QLKHO.THUOC
             InitializeComponent();
         }
 
+        public event EventHandler CloseView;
+
         internal void InitControlUI()
         {
             _DMNhaCungCap = BusApp.GetDanhMuc<NhaCungCap>();
             foreach (var t in _DMNhaCungCap)
             {
-                var item = new object[] { t.Ten, t.DiaChi, t.TinhThanh, t.DienThoai, t.GhiChu};
-                int i = dataGridView1.Rows.Add(item);
+                var item = new object[] {t.Ten, t.DiaChi, t.TinhThanh, t.DienThoai, t.GhiChu};
+                var i = dataGridView1.Rows.Add(item);
                 dataGridView1.Rows[i].Tag = t;
             }
         }
@@ -33,13 +34,13 @@ namespace BV.QLKHO.THUOC
             {
                 if (e.ClickedItem.Name == "add")
                 {
-                    NhaCungCapForm oForm = new NhaCungCapForm();
+                    var oForm = new NhaCungCapForm();
                     oForm.InitThongTin(null);
                     if (oForm.ShowDialog(this) == DialogResult.OK)
                     {
                         var t = oForm.Entity;
-                        var item = new object[] { t.Ten, t.DiaChi, t.TinhThanh, t.DienThoai, t.GhiChu };
-                        int i = dataGridView1.Rows.Add(item);
+                        var item = new object[] {t.Ten, t.DiaChi, t.TinhThanh, t.DienThoai, t.GhiChu};
+                        var i = dataGridView1.Rows.Add(item);
                         dataGridView1.Rows[i].Tag = t;
                     }
                 }
@@ -48,8 +49,8 @@ namespace BV.QLKHO.THUOC
                     if (dataGridView1.SelectedRows.Count > 0)
                     {
                         var row = dataGridView1.SelectedRows[0];
-                        NhaCungCap oThuoc = row.Tag as NhaCungCap;
-                        NhaCungCapForm oForm = new NhaCungCapForm();
+                        var oThuoc = row.Tag as NhaCungCap;
+                        var oForm = new NhaCungCapForm();
                         oForm.InitThongTin(oThuoc);
                         if (oForm.ShowDialog(this) == DialogResult.OK)
                         {
@@ -85,7 +86,9 @@ namespace BV.QLKHO.THUOC
 
         private void HandleException(Exception ex)
         {
-            MessageBox.Show(this, "Có lỗi xảy ra, vui lòng thử lại hoặc liên hệ với người quản trị hệ thống." + Environment.NewLine + "Lỗi: " + ex.Message, "Quản lý thuốc", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this,
+                "Có lỗi xảy ra, vui lòng thử lại hoặc liên hệ với người quản trị hệ thống." + Environment.NewLine +
+                "Lỗi: " + ex.Message, "Quản lý thuốc", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

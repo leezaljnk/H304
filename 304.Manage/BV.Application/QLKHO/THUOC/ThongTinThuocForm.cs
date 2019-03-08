@@ -1,23 +1,26 @@
-﻿using BV.AppCommon;
-using BV.BUS;
-using BV.DataModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using BV.AppCommon;
+using BV.BUS;
+using BV.DataModel;
+using Infragistics.Win.UltraWinEditors;
+using Infragistics.Win.UltraWinGrid;
 
 namespace BV.QLKHO.THUOC
 {
     public partial class ThongTinThuocForm : Form
     {
-        public HangHoa Entity { get; internal set; }
         private DinhGiaHangHoa _giaThuoc;
         private List<ChuyenDoiDonViHangHoa> _lstDonVis = new List<ChuyenDoiDonViHangHoa>();
+
         public ThongTinThuocForm()
         {
             InitializeComponent();
         }
+
+        public HangHoa Entity { get; internal set; }
 
         private void InitControl()
         {
@@ -27,7 +30,8 @@ namespace BV.QLKHO.THUOC
             cboDuongDung.DisplayMember = "DienGiai";
 
             //Ho tri lieu
-            List<string> lstHoTriLieu = BusApp.GetDanhMuc<HoTriLieu>().Select(h => h.Ten).Distinct().ToList();//.GroupBy(h => h.Ten).ToList();
+            var lstHoTriLieu =
+                BusApp.GetDanhMuc<HoTriLieu>().Select(h => h.Ten).Distinct().ToList(); //.GroupBy(h => h.Ten).ToList();
             cboHoTriLieu.DataSource = lstHoTriLieu;
 
             //Don Vi Thuoc
@@ -47,20 +51,17 @@ namespace BV.QLKHO.THUOC
             //btnAddFromDmByt.Enabled = oThuoc != null;
             InitControl();
 
-            this.Entity = oThuoc;
+            Entity = oThuoc;
             if (Entity == null)
             {
-                Entity = new HangHoa() { ID = Guid.NewGuid() };
-                _giaThuoc = new DinhGiaHangHoa() { ID = Guid.NewGuid(), HangHoaID = Entity.ID };
+                Entity = new HangHoa {ID = Guid.NewGuid()};
+                _giaThuoc = new DinhGiaHangHoa {ID = Guid.NewGuid(), HangHoaID = Entity.ID};
 
                 return;
             }
 
             _giaThuoc = BusApp.GetGiaThuoc(Entity.ID);
-            if (_giaThuoc == null)
-            {
-                _giaThuoc = new DinhGiaHangHoa() { ID = Guid.NewGuid (), HangHoaID = Entity.ID };
-            }
+            if (_giaThuoc == null) _giaThuoc = new DinhGiaHangHoa {ID = Guid.NewGuid(), HangHoaID = Entity.ID};
 
             _lstDonVis = BusApp.GetChuyenDoiDonViThuoc(Entity.ID);
 
@@ -77,13 +78,18 @@ namespace BV.QLKHO.THUOC
             txtGiaBH.Text = _giaThuoc.GiaBaoHiem.ToString();
             //txtGiaCB.Text = _giaThuoc.GiaChinhSach.ToString();
 
-            var lstChuyenDoiDonViThuoc = BusApp.GetChuyenDoiDonViThuoc(Entity.ID).OrderBy(d => d.TiLeChuyenDoi).ToList();
-            int i = 0;
+            var lstChuyenDoiDonViThuoc =
+                BusApp.GetChuyenDoiDonViThuoc(Entity.ID).OrderBy(d => d.TiLeChuyenDoi).ToList();
+            var i = 0;
             foreach (var item in lstChuyenDoiDonViThuoc)
             {
                 i++;
-                object[] arr = new object[] { i.ToString(), item.DonViID, item.TiLeChuyenDoi.ToString("0.0"), item.PhuongThucChuyenDoi == 0? "Chia" : "Nhân", item.MoTa };
-                int index = dataGridView1.Rows.Add(arr);
+                object[] arr =
+                {
+                    i.ToString(), item.DonViID, item.TiLeChuyenDoi.ToString("0.0"),
+                    item.PhuongThucChuyenDoi == 0 ? "Chia" : "Nhân", item.MoTa
+                };
+                var index = dataGridView1.Rows.Add(arr);
                 dataGridView1.Rows[index].Tag = item;
             }
         }
@@ -93,10 +99,9 @@ namespace BV.QLKHO.THUOC
             dataGridView1.Rows.Add();
         }
 
-        private void ultraCombo1_InitializeLayout(object sender, Infragistics.Win.UltraWinGrid.InitializeLayoutEventArgs e)
+        private void ultraCombo1_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {
             if (e.Layout.Bands.Count > 0)
-            {
                 foreach (var clm in e.Layout.Bands[0].Columns)
                 {
                     //if (clm.Key == "TEN_THUOC")
@@ -126,7 +131,6 @@ namespace BV.QLKHO.THUOC
                     //    clm.Hidden = true;
                     //}
                 }
-            }
         }
 
         private void btnAddFromDmByt_Click(object sender, EventArgs e)
@@ -134,7 +138,7 @@ namespace BV.QLKHO.THUOC
             try
             {
                 Cursor = Cursors.WaitCursor;
-                ThongTinThuocFormBYT oForm = new ThongTinThuocFormBYT();
+                var oForm = new ThongTinThuocFormBYT();
                 oForm.InitData();
                 Cursor = Cursors.Default;
                 if (oForm.ShowDialog(this) == DialogResult.OK)
@@ -170,16 +174,13 @@ namespace BV.QLKHO.THUOC
             var row = dataGridView1.Rows[e.RowIndex];
             if (row.Cells[1].Value != null && row.Cells[2].Value != null && row.Cells[3].Value != null)
             {
-                var tenThuoc = BusApp.GetDanhMuc<DonViHangHoa>().FirstOrDefault(t => t.ID.ToString() == row.Cells[1].Value.ToString());
+                var tenThuoc = BusApp.GetDanhMuc<DonViHangHoa>()
+                    .FirstOrDefault(t => t.ID.ToString() == row.Cells[1].Value.ToString());
                 var dienGiai = "";
                 if (row.Cells[3].Value.ToString() == "Nhân")
-                {
                     dienGiai = $"1 {tenThuoc.Ten} = {row.Cells[2].Value} {cboDonVi.Text}";
-                }
                 else
-                {
                     dienGiai = $"1 {tenThuoc.Ten} = 1/{row.Cells[2].Value} {cboDonVi.Text}";
-                }
 
                 row.Cells[4].Value = dienGiai;
             }
@@ -187,12 +188,12 @@ namespace BV.QLKHO.THUOC
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private bool ValidateEntity()
         {
-            bool bRet = true;
+            var bRet = true;
             if (string.IsNullOrWhiteSpace(txtTenThuoc.Text))
             {
                 errorProvider1.SetError(txtTenThuoc, "thông tin không được bỏ trống");
@@ -212,7 +213,7 @@ namespace BV.QLKHO.THUOC
             }
 
             //kiem tra gia thuoc
-            int giaThuoc = 0;
+            var giaThuoc = 0;
             if (!int.TryParse(txtGiaDichVu.Text.Trim(), out giaThuoc))
             {
                 errorProvider1.SetError(txtGiaDichVu, "phải là số");
@@ -232,16 +233,16 @@ namespace BV.QLKHO.THUOC
             }
 
             //kiem tra chuyen doi don vi
-            
+
 
             return bRet;
         }
 
         private void SaveEntity()
         {
-            HangHoa oThuoc = new HangHoa();
+            var oThuoc = new HangHoa();
             oThuoc.ID = Entity.ID;
-            oThuoc.Ten= txtTenThuoc.Text;
+            oThuoc.Ten = txtTenThuoc.Text;
             oThuoc.TenKhac = txtTenThuoc.Text;
             oThuoc.Ma = txtSoDangKy.Text;
             oThuoc.HoatChat = txtHoatChat.Text;
@@ -249,9 +250,9 @@ namespace BV.QLKHO.THUOC
             oThuoc.DuongDung = cboDuongDung.Text;
             oThuoc.DongGoi = txtDongGoi.Text;
             oThuoc.HoTriLieu = cboHoTriLieu.Text;
-            oThuoc.DonViID = (Guid)cboDonVi.Value;
+            oThuoc.DonViID = (Guid) cboDonVi.Value;
 
-            DinhGiaHangHoa oGiaThuoc = new DinhGiaHangHoa();
+            var oGiaThuoc = new DinhGiaHangHoa();
             if (_giaThuoc.ID == Guid.Empty)
             {
                 _giaThuoc.ID = Guid.NewGuid();
@@ -260,14 +261,14 @@ namespace BV.QLKHO.THUOC
 
             oGiaThuoc.ID = _giaThuoc.ID;
             oGiaThuoc.HangHoaID = oThuoc.ID;
-            oGiaThuoc.DonViID = (Guid)cboDonVi.Value;
+            oGiaThuoc.DonViID = (Guid) cboDonVi.Value;
             oGiaThuoc.GiaDichVu = decimal.Parse(txtGiaDichVu.Text);
             oGiaThuoc.GiaBaoHiem = decimal.Parse(txtGiaBH.Text);
             //oGiaThuoc.GiaChinhSach = decimal.Parse(txtGiaCB.Text);
 
             //Don vi chuyen doi
-            List<ChuyenDoiDonViHangHoa> lstDonVi = new List<ChuyenDoiDonViHangHoa>();
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            var lstDonVi = new List<ChuyenDoiDonViHangHoa>();
+            for (var i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 ChuyenDoiDonViHangHoa oDonVi = null;
                 var row = dataGridView1.Rows[i];
@@ -282,9 +283,9 @@ namespace BV.QLKHO.THUOC
                 }
 
                 oDonVi.HangHoaID = oThuoc.ID;
-                oDonVi.DonViID = (Guid)row.Cells[1].Value;
+                oDonVi.DonViID = (Guid) row.Cells[1].Value;
                 oDonVi.TiLeChuyenDoi = decimal.Parse(row.Cells[2].Value.ToString());
-                oDonVi.PhuongThucChuyenDoi = row.Cells[3].Value.ToString() == "Chia" ? (byte)0 : (byte)1;
+                oDonVi.PhuongThucChuyenDoi = row.Cells[3].Value.ToString() == "Chia" ? (byte) 0 : (byte) 1;
                 oDonVi.MoTa = row.Cells[4].Value.ToString();
 
                 lstDonVi.Add(oDonVi);
@@ -293,7 +294,7 @@ namespace BV.QLKHO.THUOC
             //Save data
             BusApp.LuuThongTinHangHoa(oThuoc, oGiaThuoc, lstDonVi);
 
-            AppCached.UpdateDanhMuc<HangHoa>(Entity, oThuoc);
+            AppCached.UpdateDanhMuc(Entity, oThuoc);
             Entity = oThuoc;
             //Update cached
             //var item = KhoUtil.GetDanhMuc<Thuoc_VatTuYte>().FirstOrDefault(t => t.ID == oThuoc.ID);
@@ -309,7 +310,9 @@ namespace BV.QLKHO.THUOC
 
         private void HandleException(Exception ex)
         {
-            MessageBox.Show(this, "Có lỗi xảy ra, vui lòng thử lại hoặc liên hệ với người quản trị hệ thống." + Environment.NewLine + "Lỗi: " + ex.Message, "Quản lý thuốc", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this,
+                "Có lỗi xảy ra, vui lòng thử lại hoặc liên hệ với người quản trị hệ thống." + Environment.NewLine +
+                "Lỗi: " + ex.Message, "Quản lý thuốc", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -318,8 +321,8 @@ namespace BV.QLKHO.THUOC
             {
                 dataGridView1.CommitEdit(DataGridViewDataErrorContexts.CurrentCellChange);
                 SaveEntity();
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception ex)
             {
@@ -327,7 +330,7 @@ namespace BV.QLKHO.THUOC
             }
         }
 
-        private void utxtTenThuoc_EditorButtonClick(object sender, Infragistics.Win.UltraWinEditors.EditorButtonEventArgs e)
+        private void utxtTenThuoc_EditorButtonClick(object sender, EditorButtonEventArgs e)
         {
             btnAddFromDmByt_Click(null, null);
         }

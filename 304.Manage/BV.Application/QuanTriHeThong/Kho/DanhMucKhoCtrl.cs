@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using BV.QLKHO;
-using BV.DataModel;
 using BV.BUS;
+using BV.DataModel;
 
 namespace BV.QuanTriHeThong.Kho
 {
     public partial class DanhMucKhoCtrl : UserControl
     {
-        public event EventHandler CloseView;
         private List<HangHoa> _DanhMucThuoc304;
         private List<HoTriLieu> _HoTriLieu;
 
@@ -18,14 +16,16 @@ namespace BV.QuanTriHeThong.Kho
             InitializeComponent();
         }
 
+        public event EventHandler CloseView;
+
         internal void InitControlUI()
         {
             _DanhMucThuoc304 = BusApp.GetDanhMuc<HangHoa>();
             _HoTriLieu = BusApp.GetDanhMuc<HoTriLieu>();
             foreach (var t in _DanhMucThuoc304)
             {
-                var item = new object[] { t.Ma, t.Ten, t.HoatChat, t.HamLuong, t.DongGoi, t.DuongDung, t.HoTriLieu };
-                int i = dataGridView1.Rows.Add(item);
+                var item = new object[] {t.Ma, t.Ten, t.HoatChat, t.HamLuong, t.DongGoi, t.DuongDung, t.HoTriLieu};
+                var i = dataGridView1.Rows.Add(item);
                 dataGridView1.Rows[i].Tag = t;
             }
         }
@@ -36,7 +36,7 @@ namespace BV.QuanTriHeThong.Kho
             {
                 if (e.ClickedItem.Name == "add")
                 {
-                    ThongTinKhoForm oForm = new ThongTinKhoForm();
+                    var oForm = new ThongTinKhoForm();
                     oForm.InitThongTin(null);
                     if (oForm.ShowDialog(this) == DialogResult.OK)
                     {
@@ -67,7 +67,7 @@ namespace BV.QuanTriHeThong.Kho
                     //    }
                     //}
                 }
-                else if(e.ClickedItem.Name == "exit")
+                else if (e.ClickedItem.Name == "exit")
                 {
                     CloseView?.Invoke(this, e);
                 }
@@ -80,7 +80,9 @@ namespace BV.QuanTriHeThong.Kho
 
         private void HandleException(Exception ex)
         {
-            MessageBox.Show(this, "Có lỗi xảy ra, vui lòng thử lại hoặc liên hệ với người quản trị hệ thống." + Environment.NewLine + "Lỗi: " + ex.Message, "Quản lý thuốc", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this,
+                "Có lỗi xảy ra, vui lòng thử lại hoặc liên hệ với người quản trị hệ thống." + Environment.NewLine +
+                "Lỗi: " + ex.Message, "Quản lý thuốc", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

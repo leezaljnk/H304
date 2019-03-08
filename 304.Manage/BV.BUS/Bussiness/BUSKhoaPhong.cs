@@ -1,5 +1,5 @@
-﻿using BV.DAO;
-using BV.DataModel;
+﻿using BV.DataModel;
+using BV.DAO;
 
 namespace BV.BUS
 {

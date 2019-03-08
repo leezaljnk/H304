@@ -8,6 +8,5 @@ namespace BV.QLKHO.KhoChan.ThuHoiThuoc
         {
             InitializeComponent();
         }
-
     }
 }

@@ -1,6 +1,7 @@
-﻿using BV.QLKHO.THUOC;
-using System;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
+using BV.QLKHO.THUOC;
 using Common.Winforms.UserControls;
 
 namespace BV.QuanTriHeThong
@@ -16,14 +17,14 @@ namespace BV.QuanTriHeThong
         {
             try
             {
-                this.Cursor = Cursors.WaitCursor;
+                Cursor = Cursors.WaitCursor;
 
                 //var view = new DanhMucThuocCtrl();
                 //view.CloseView += View_CloseView;
                 //view.InitControlUI();
 
                 //AddUserControl("Danh Mục Thuốc", view);
-                this.Cursor = Cursors.Default;
+                Cursor = Cursors.Default;
             }
             catch (Exception ex)
             {
@@ -33,7 +34,7 @@ namespace BV.QuanTriHeThong
 
         private void View_CloseView(object sender, EventArgs e)
         {
-            UserControl ctrl = sender as UserControl;
+            var ctrl = sender as UserControl;
             var removeTabPage = CheckTabPage(ctrl.Name);
             if (removeTabPage != null)
             {
@@ -46,44 +47,43 @@ namespace BV.QuanTriHeThong
         private TabPage CheckTabPage(string tabName)
         {
             foreach (TabPage item in tabMain.TabPages)
-            {
-                if (item.Name == tabName) return item;
-            }
+                if (item.Name == tabName)
+                    return item;
             return null;
         }
 
         private void AddUserControl(string tabName, UserControl ctrl)
         {
-            TabPage newTabPage = CheckTabPage(tabName);
+            var newTabPage = CheckTabPage(tabName);
             if (newTabPage == null)
             {
-                newTabPage = new System.Windows.Forms.TabPage();
+                newTabPage = new TabPage();
 
                 tabMain.SuspendLayout();
                 newTabPage.SuspendLayout();
 
-                
+
                 newTabPage.Controls.Add(ctrl);
-                newTabPage.Location = new System.Drawing.Point(4, 22);
+                newTabPage.Location = new Point(4, 22);
                 newTabPage.Name = ctrl.Name;
-                newTabPage.Padding = new System.Windows.Forms.Padding(3);
-                newTabPage.Size = new System.Drawing.Size(515, 309);
+                newTabPage.Padding = new Padding(3);
+                newTabPage.Size = new Size(515, 309);
                 newTabPage.TabIndex = 0;
                 newTabPage.Text = tabName;
                 newTabPage.UseVisualStyleBackColor = true;
 
-                ctrl.Dock = System.Windows.Forms.DockStyle.Fill;
-                ctrl.Location = new System.Drawing.Point(3, 3);
+                ctrl.Dock = DockStyle.Fill;
+                ctrl.Location = new Point(3, 3);
                 ctrl.Name = ctrl.Name;
-                ctrl.Size = new System.Drawing.Size(688, 367);
+                ctrl.Size = new Size(688, 367);
                 ctrl.TabIndex = 0;
 
                 tabMain.Controls.Add(newTabPage);
 
                 newTabPage.ResumeLayout();
                 tabMain.ResumeLayout(true);
-
             }
+
             tabMain.SelectedTab = newTabPage;
         }
 
@@ -121,7 +121,6 @@ namespace BV.QuanTriHeThong
 
         private void nhậpTừNhàCungCấpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
         }
 
         private void nhàCungCấpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -132,14 +131,14 @@ namespace BV.QuanTriHeThong
         {
             try
             {
-                this.Cursor = Cursors.WaitCursor;
+                Cursor = Cursors.WaitCursor;
 
                 var view = new DanhMucKhoaCtrl();
                 view.CloseView += View_CloseView;
                 view.InitControlUI();
 
                 AddUserControl("Danh Mục Khoa", view);
-                this.Cursor = Cursors.Default;
+                Cursor = Cursors.Default;
             }
             catch (Exception ex)
             {
@@ -151,14 +150,14 @@ namespace BV.QuanTriHeThong
         {
             try
             {
-                this.Cursor = Cursors.WaitCursor;
+                Cursor = Cursors.WaitCursor;
 
                 var view = new DanhMucPhongKhamCtrl();
                 view.CloseView += View_CloseView;
                 view.InitControlUI();
 
                 AddUserControl("Danh Mục Phòng Khám", view);
-                this.Cursor = Cursors.Default;
+                Cursor = Cursors.Default;
             }
             catch (Exception ex)
             {

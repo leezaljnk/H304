@@ -28,7 +28,7 @@ namespace BV.QLKHO.KhoChan.ThuHoiThuoc
 
             var button = new DataGridViewButtonColumn();
             {
-                button.Name = "coPreview";
+                button.Name = "colDel";
                 button.HeaderText = @"Xem phiếu";
                 button.Text = "Xem";
                 button.UseColumnTextForButtonValue = true; //dont forget this line
@@ -36,21 +36,24 @@ namespace BV.QLKHO.KhoChan.ThuHoiThuoc
             }
             dataGridView1.CellClick += dataGridView1_CellClick;
         }
+
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView1 != null && e.ColumnIndex == dataGridView1.Columns["coPreview"].Index)
+            if (dataGridView1 != null && e.ColumnIndex == dataGridView1.Columns[$"colDel"].Index)
             {
-                int rowIndex = e.RowIndex;
-                var data = (PhieuTraThuoc)dataGridView1.Rows[rowIndex].Tag;
+                var rowIndex = e.RowIndex;
+                var phieuTraRow = dataGridView1.Rows[rowIndex];
+                var data = (PhieuTraThuoc)phieuTraRow.Tag;
 
                 var oForm = new ThuHoiThuocSearchForm();
                 oForm.InitData(data);
                 oForm.ShowDialog(this);
 
-                //var x = (PhieuTraThuoc)data;
-                //MessageBox.Show(x.MaPhieuTra);
+                if(oForm._action)
+                    dataGridView1.Rows.Remove(phieuTraRow);
             }
         }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             var phieuTra = BusKho.GetPhieuTraThuoc(txtMaPhieu.Text, Converter.Obj2Date(dateTuNgay.Text),
@@ -59,8 +62,9 @@ namespace BV.QLKHO.KhoChan.ThuHoiThuoc
             foreach (var phieu in phieuTra)
             {
                 //add item to grid
-                var newItem = new object[] {
-                    phieu.ID,//id
+                var newItem = new object[]
+                {
+                    phieu.ID, //id
                     phieu.NguoiLap,
                     phieu.KhoId,
                     phieu.MaPhieuTra,

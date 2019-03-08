@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using BV.DataModel;
 using BV.BUS;
+using BV.DataModel;
+using Infragistics.Win.UltraWinGrid;
 
 namespace BV.QLKHO.THUOC
 {
     public partial class DanhMucThuocCtrl : UserControl
     {
-        public event EventHandler CloseView;
         private List<HangHoa> _DanhMucThuoc304;
         private List<HoTriLieu> _HoTriLieu;
 
@@ -17,14 +17,16 @@ namespace BV.QLKHO.THUOC
             InitializeComponent();
         }
 
+        public event EventHandler CloseView;
+
         internal void InitControlUI()
         {
             _DanhMucThuoc304 = BusApp.GetDanhMuc<HangHoa>();
             _HoTriLieu = BusApp.GetDanhMuc<HoTriLieu>();
             foreach (var t in _DanhMucThuoc304)
             {
-                var item = new object[] { t.Ma, t.Ten, t.HoatChat, t.HamLuong, t.DongGoi, t.DuongDung, t.HoTriLieu };
-                int i = dataGridView1.Rows.Add(item);
+                var item = new object[] {t.Ma, t.Ten, t.HoatChat, t.HamLuong, t.DongGoi, t.DuongDung, t.HoTriLieu};
+                var i = dataGridView1.Rows.Add(item);
                 dataGridView1.Rows[i].Tag = t;
             }
         }
@@ -35,13 +37,14 @@ namespace BV.QLKHO.THUOC
             {
                 if (e.ClickedItem.Name == "add")
                 {
-                    ThongTinThuocForm oForm = new ThongTinThuocForm();
+                    var oForm = new ThongTinThuocForm();
                     oForm.InitThongTin(null);
                     if (oForm.ShowDialog(this) == DialogResult.OK)
                     {
                         var t = oForm.Entity;
-                        var item = new object[] { t.Ma, t.Ten, t.HoatChat, t.HamLuong, t.DongGoi, t.DuongDung, t.HoTriLieu };
-                        int i = dataGridView1.Rows.Add(item);
+                        var item = new object[]
+                            {t.Ma, t.Ten, t.HoatChat, t.HamLuong, t.DongGoi, t.DuongDung, t.HoTriLieu};
+                        var i = dataGridView1.Rows.Add(item);
                         dataGridView1.Rows[i].Tag = t;
                     }
                 }
@@ -50,8 +53,8 @@ namespace BV.QLKHO.THUOC
                     if (dataGridView1.SelectedRows.Count > 0)
                     {
                         var row = dataGridView1.SelectedRows[0];
-                        HangHoa oThuoc = row.Tag as HangHoa;
-                        ThongTinThuocForm oForm = new ThongTinThuocForm();
+                        var oThuoc = row.Tag as HangHoa;
+                        var oForm = new ThongTinThuocForm();
                         oForm.InitThongTin(oThuoc);
                         if (oForm.ShowDialog(this) == DialogResult.OK)
                         {
@@ -66,7 +69,7 @@ namespace BV.QLKHO.THUOC
                         }
                     }
                 }
-                else if(e.ClickedItem.Name == "exit")
+                else if (e.ClickedItem.Name == "exit")
                 {
                     CloseView?.Invoke(this, e);
                 }
@@ -77,36 +80,31 @@ namespace BV.QLKHO.THUOC
             }
         }
 
-        private void ultraCombo1_InitializeLayout(object sender, Infragistics.Win.UltraWinGrid.InitializeLayoutEventArgs e)
+        private void ultraCombo1_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {
-            if(e.Layout.Bands.Count > 0)
-            {
+            if (e.Layout.Bands.Count > 0)
                 foreach (var clm in e.Layout.Bands[0].Columns)
-                {
                     if (clm.Key == "TEN_THUOC")
-                    {
                         clm.Header.Caption = "Tên Thuốc";
-                        //clm.Width = ultraCombo1.Width;
-                    }
-                    //else if (clm.Key == "HAM_LUONG")
-                    //{
-                    //    clm.Header.Caption = "Hàm Lượng";
-                    //}
-                    //else if (clm.Key == "DONG_GOI")
-                    //{
-                    //    clm.Header.Caption = "Đóng Gói";
-                    //}
-                    //else
-                    //{
-                    //    clm.Hidden = true;
-                    //}
-                } 
-            }
+                //else if (clm.Key == "HAM_LUONG")
+                //{
+                //    clm.Header.Caption = "Hàm Lượng";
+                //}
+                //else if (clm.Key == "DONG_GOI")
+                //{
+                //    clm.Header.Caption = "Đóng Gói";
+                //}
+                //else
+                //{
+                //    clm.Hidden = true;
+                //}
         }
 
         private void HandleException(Exception ex)
         {
-            MessageBox.Show(this, "Có lỗi xảy ra, vui lòng thử lại hoặc liên hệ với người quản trị hệ thống." + Environment.NewLine + "Lỗi: " + ex.Message, "Quản lý thuốc", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this,
+                "Có lỗi xảy ra, vui lòng thử lại hoặc liên hệ với người quản trị hệ thống." + Environment.NewLine +
+                "Lỗi: " + ex.Message, "Quản lý thuốc", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

@@ -1,20 +1,24 @@
-﻿using Common.Winforms;
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using BV.QLKHO;
-using System.Drawing;
-using Infragistics.Win.UltraWinGrid;
-using BV.SharedComponent;
-using BV.DataModel;
 using BV.BUS;
+using BV.DataModel;
+using BV.SharedComponent;
+using Common.Winforms;
+using Infragistics.Win.UltraWinGrid;
 
 namespace EHR.App.HSBenhNhan
 {
     public partial class ctrlThongTinHanhChinh : UserControl
     {
-        bool bComboValueChanged = false;
-        bool bComboDropDownVisible = false;
+        private bool _isNewHoso;
+        private bool bComboDropDownVisible;
+        private bool bComboValueChanged;
+
+        public ctrlThongTinHanhChinh()
+        {
+            InitializeComponent();
+        }
 
         public Guid? _hssk_Id { get; set; }
         public HS_CaNhan _entity { get; set; }
@@ -22,17 +26,10 @@ namespace EHR.App.HSBenhNhan
         public bool SettingChanged { get; set; }
         public object DBCommandUtils { get; private set; }
 
-        bool _isNewHoso = false;
-
         public bool VisibleTitleExt
         {
-            set { uTitleExt1.Visible = value; }
-            get { return uTitleExt1.Visible; }
-        }
-
-        public ctrlThongTinHanhChinh()
-        {
-            InitializeComponent();
+            set => uTitleExt1.Visible = value;
+            get => uTitleExt1.Visible;
         }
 
         public void SetNewHoSo()
@@ -59,23 +56,18 @@ namespace EHR.App.HSBenhNhan
         {
             try
             {
-                this._hssk_Id = hosoID.Value;
+                _hssk_Id = hosoID.Value;
                 if (_isNewHoso)
                 {
-                    _entity = new HS_CaNhan() { ID = _hssk_Id.Value };
+                    _entity = new HS_CaNhan {ID = _hssk_Id.Value};
                 }
                 else
                 {
-                    _entity = BusApp.GetHoSoCaNhanByID(this._hssk_Id.Value);
+                    _entity = BusApp.GetHoSoCaNhanByID(_hssk_Id.Value);
                     if (_entity == null)
                         throw new Exception("Không tìm thấy thông tin của hồ sơ");
-                    BindValue(this._entity);
+                    BindValue(_entity);
                 }
-            }
-            catch (Exception)
-            {
-
-                throw;
             }
             finally
             {
@@ -131,9 +123,9 @@ namespace EHR.App.HSBenhNhan
         {
             try
             {
-                HS_CaNhan item = new HS_CaNhan();
-                string hovaten = txtHoTen.Text.ToTitleCase();
-                string ten = string.Empty;
+                var item = new HS_CaNhan();
+                var hovaten = txtHoTen.Text.ToTitleCase();
+                var ten = string.Empty;
                 item.ID = _entity.ID;
                 item.HO_TEN = hovaten;
                 item.TEN = CommonFunction.TachHoVaTen(hovaten, out ten);
@@ -179,25 +171,27 @@ namespace EHR.App.HSBenhNhan
         {
             //Update benh
             var entity = GetDataChanged() as HS_CaNhan;
-            if (BusApp.SaveHS_CaNhan(this._hssk_Id.Value, "0", entity))
+            if (BusApp.SaveHS_CaNhan(_hssk_Id.Value, "0", entity))
             {
                 _entity = entity;
 
                 _isNewHoso = false;
                 return true;
             }
+
             return false;
         }
 
         public bool ValidateData()
         {
-            bool bRet = true;
+            var bRet = true;
             errorProvider1.Clear();
             if (string.IsNullOrWhiteSpace(txtMaHSSK.Text))
             {
                 errorProvider1.SetError(label10, "Xin hãy nhập mã cá nhân!");
                 return false;
             }
+
             //Check trung ma hs suc khoe sau
             var item = BusApp.GetHoSoCaNhanByMa(txtMaHSSK.Text);
             if (item != null && item.ID != _hssk_Id)
@@ -205,65 +199,59 @@ namespace EHR.App.HSBenhNhan
                 errorProvider1.SetError(label10, "Nhập mã cá nhân đã tồn tại! Xin hãy kiểm tra lại.");
                 return false;
             }
+
             if (string.IsNullOrWhiteSpace(txtHoTen.Text))
             {
                 errorProvider1.SetError(txtHoTen, "Xin hãy nhập họ và tên!");
                 return false;
             }
-            string ngaysinh = datNgaySinh.Text.Replace("-", "/");
+
+            var ngaysinh = datNgaySinh.Text.Replace("-", "/");
             var arrString = ngaysinh.Split('/');
             if (arrString.Length == 1 || string.IsNullOrWhiteSpace(arrString[2]))
             {
                 errorProvider1.SetError(datNgaySinh, "Phải có thông tin năm sinh!");
                 return false;
             }
-            else if (DateTime.Today.Year < Converter.Obj2Int(arrString[2]))
+
+            if (DateTime.Today.Year < Converter.Obj2Int(arrString[2]))
             {
                 errorProvider1.SetError(datNgaySinh, "Năm sinh không hợp lệ! Xin hãy kiểm tra lại.");
                 return false;
             }
+
             return bRet;
         }
 
         private void Tb_TextChanged(object sender, EventArgs e)
         {
-            if (((Control)sender).Name == txtMaHSSK.Name)
-            {
+            if (((Control) sender).Name == txtMaHSSK.Name)
                 errorProvider1.SetError(label10, "");
-            }
             else
-                errorProvider1.SetError((Control)sender, "");
-            this.SettingChanged = true;
+                errorProvider1.SetError((Control) sender, "");
+            SettingChanged = true;
         }
 
         private void cbGioiTinh_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.SettingChanged = true;
+            SettingChanged = true;
         }
 
-        private void cboTinh_InitializeLayout(object sender, Infragistics.Win.UltraWinGrid.InitializeLayoutEventArgs e)
+        private void cboTinh_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {
-            UltraCombo cbo = (UltraCombo)sender;
+            var cbo = (UltraCombo) sender;
             cbo.UltraCommbo_InitializeLayout(sender, e);
             if (e.Layout.Bands.Count > 0)
-            {
                 foreach (var clm in e.Layout.Bands[0].Columns)
-                {
                     if (clm.Key == "TenNganGon")
-                    {
                         clm.Header.Caption = "Tỉnh/TP";
-                    }
                     else
-                    {
                         clm.Hidden = true;
-                    }
-                }
-            }
         }
 
         private void cboTinh_AfterCloseUp(object sender, EventArgs e)
         {
-            UltraCombo cbo = (UltraCombo)sender;
+            var cbo = (UltraCombo) sender;
             bComboDropDownVisible = false;
             if (bComboValueChanged && cbo.SelectedRow != null)
             {
@@ -280,11 +268,8 @@ namespace EHR.App.HSBenhNhan
         private void cboTinh_ValueChanged(object sender, EventArgs e)
         {
             bComboValueChanged = true;
-            UltraCombo cbo = (UltraCombo)sender;
-            if (cbo.SelectedRow != null && !bComboDropDownVisible)
-            {
-                UltraComboValueChanged(cbo);
-            }
+            var cbo = (UltraCombo) sender;
+            if (cbo.SelectedRow != null && !bComboDropDownVisible) UltraComboValueChanged(cbo);
         }
 
         private void UltraComboValueChanged(UltraCombo cbo)
@@ -292,8 +277,8 @@ namespace EHR.App.HSBenhNhan
             if (cbo == cboTinh)
             {
                 //tỉnh
-                string maTinh = cboTinh.Value as string;
-                 
+                var maTinh = cboTinh.Value as string;
+
                 cboHuyen.DataSource = BusApp.GetDanhMuc<DiaDanh>().GetHuyen(maTinh);
                 cboHuyen.DisplayMember = "TenNganGon";
                 cboHuyen.ValueMember = "MaDiaDanh";
@@ -307,8 +292,8 @@ namespace EHR.App.HSBenhNhan
             else if (cbo == cboHuyen)
             {
                 //huyện
-                string maTinh = cboTinh.Value as string;
-                string maHuyen = cboHuyen.Value as string;
+                var maTinh = cboTinh.Value as string;
+                var maHuyen = cboHuyen.Value as string;
 
                 cboXa.DataSource = BusApp.GetDanhMuc<DiaDanh>().GetXa(maTinh, maHuyen);
                 cboXa.DisplayMember = "TenNganGon";
@@ -318,7 +303,7 @@ namespace EHR.App.HSBenhNhan
             else
             {
                 //xã
-                string maXa = cboXa.Value as string;
+                var maXa = cboXa.Value as string;
                 var dd = BusApp.GetDanhMuc<DiaDanh>().FirstOrDefault(d => d.MaDiaDanh == maXa);
                 cboHuyen.Value = dd.MaHuyen;
             }
@@ -326,42 +311,26 @@ namespace EHR.App.HSBenhNhan
 
         private void cboQuocTich_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {
-            UltraCombo cbo = (UltraCombo)sender;
+            var cbo = (UltraCombo) sender;
             cbo.UltraCommbo_InitializeLayout(sender, e);
             if (e.Layout.Bands.Count > 0)
-            {
                 foreach (var clm in e.Layout.Bands[0].Columns)
-                {
                     if (clm.Key == "ten_qg")
-                    {
                         clm.Header.Caption = "Quốc Gia";
-                    }
                     else
-                    {
                         clm.Hidden = true;
-                    }
-                }
-            }
         }
 
         private void cboDanToc_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {
-            UltraCombo cbo = (UltraCombo)sender;
+            var cbo = (UltraCombo) sender;
             cbo.UltraCommbo_InitializeLayout(sender, e);
             if (e.Layout.Bands.Count > 0)
-            {
                 foreach (var clm in e.Layout.Bands[0].Columns)
-                {
                     if (clm.Key == "TEN_DAN_TOC")
-                    {
                         clm.Header.Caption = "Dân Tộc";
-                    }
                     else
-                    {
                         clm.Hidden = true;
-                    }
-                }
-            }
         }
     }
 }

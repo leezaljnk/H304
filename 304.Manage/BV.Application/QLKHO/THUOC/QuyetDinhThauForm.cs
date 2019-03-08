@@ -1,15 +1,16 @@
-﻿using BV.AppCommon;
+﻿using System;
+using System.Windows.Forms;
+using BV.AppCommon;
 using BV.BUS;
 using BV.DataModel;
 using BV.SharedComponent;
-using System;
-using System.Windows.Forms;
 
 namespace BV.QLKHO.THUOC
 {
     public partial class QuyetDinhThauForm : Form
     {
-        public QuyetDinhThau Entity = null;
+        public QuyetDinhThau Entity;
+
         public QuyetDinhThauForm()
         {
             InitializeComponent();
@@ -17,35 +18,30 @@ namespace BV.QLKHO.THUOC
 
         public void InitThongTin(QuyetDinhThau oEntity)
         {
-            if (oEntity == null)
-            {
-                oEntity = new QuyetDinhThau() { ID = Guid.Empty };
-            }
+            if (oEntity == null) oEntity = new QuyetDinhThau {ID = Guid.Empty};
 
             Entity = oEntity;
             txtMa.Text = oEntity.Ma;
             txtMoTa.Text = oEntity.MoTa;
             bvDateTimeCtrl1.Value = oEntity.NgayQuyetDinh;
-            chkActive.Checked = true;// oEntity.HieuLuc;
+            chkActive.Checked = true; // oEntity.HieuLuc;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-
             try
             {
                 if (ValidateControl())
                 {
                     SaveEntity();
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    DialogResult = DialogResult.OK;
+                    Close();
                 }
-                
             }
             catch (Exception ex)
             {
@@ -55,7 +51,7 @@ namespace BV.QLKHO.THUOC
 
         private void SaveEntity()
         {
-            QuyetDinhThau oLo = new QuyetDinhThau() { ID = Entity.ID };
+            var oLo = new QuyetDinhThau {ID = Entity.ID};
             oLo.Ma = txtMa.Text;
             oLo.MoTa = txtMoTa.Text;
             oLo.NgayQuyetDinh = bvDateTimeCtrl1.Value;
@@ -64,12 +60,12 @@ namespace BV.QLKHO.THUOC
             Entity = BusApp.SaveThongTinQuyetDinhThau(oLo);
 
             //Update cached
-            AppCached.UpdateDanhMuc<QuyetDinhThau>(Entity, "ID");
+            AppCached.UpdateDanhMuc(Entity, "ID");
         }
 
         private bool ValidateControl()
         {
-            bool bRet = true;
+            var bRet = true;
             if (string.IsNullOrWhiteSpace(txtMa.Text))
             {
                 errorProvider1.SetError(txtMa, "không được để trống!");

@@ -1,15 +1,12 @@
-﻿using BV.AppCommon;
-using BV.DAO;
-using BV.DataModel;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
+using BV.DataModel;
+using BV.DAO;
 
 namespace BV.BUS
 {
     public class BusKho
     {
-
         public static string InitMaPhieuNhap()
         {
             var phieuCount = BusApp.CountRecords<PhieuNhapKho>();
@@ -21,7 +18,7 @@ namespace BV.BUS
             return DAOKho.SavePhieuNhapKhoTuNhaCungCap(phieuNhap);
         }
 
-        public  static IQueryable<PhieuTraThuoc> GetPhieuTraThuoc(string maPhieu, DateTime? tuNgay, DateTime? denNgay)
+        public static IQueryable<PhieuTraThuoc> GetPhieuTraThuoc(string maPhieu, DateTime? tuNgay, DateTime? denNgay)
         {
             return DAOKho.GetPhieuTraThuoc(maPhieu, tuNgay, denNgay);
         }

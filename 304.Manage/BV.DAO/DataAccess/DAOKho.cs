@@ -1,17 +1,15 @@
-﻿using BV.DataModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Core.Objects;
 using System.Linq;
 using BV.AppCommon;
+using BV.DataModel;
 using Common.Winforms;
 
 namespace BV.DAO
 {
     public class DAOKho
     {
-
         public static Thuoc_VatTuYteTonKho GetThuocTonKho(Guid thuocId)
         {
             return DAOApp.DbContext.Thuoc_VatTuYteTonKho.FirstOrDefault(t => t.ThuocVtytID == thuocId);
@@ -19,12 +17,10 @@ namespace BV.DAO
 
         public static DinhGiaHangHoa GetGiaThuoc(Guid thuocID)
         {
-
             //var giaThuoc = DAOApp.DbContext.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == thuocID);
             //DAOApp.DbContext.Entry(giaThuoc).State = EntityState.Detached;
             //return giaThuoc;
             return DAOApp.DbContext.DinhGiaHangHoa.FirstOrDefault(t => t.HangHoaID == thuocID);
-
         }
 
         public static List<ChuyenDoiDonViHangHoa> GetChuyenDoiDonViThuoc(Guid hangHoaID)
@@ -34,7 +30,6 @@ namespace BV.DAO
 
         public static void SaveThuoc304(HangHoa oThuoc, DinhGiaHangHoa giaThuoc, List<ChuyenDoiDonViHangHoa> lstDonVi)
         {
-
             var thuoc = DAOApp.DbContext.HangHoa.FirstOrDefault(t => t.ID == oThuoc.ID);
             if (thuoc == null)
             {
@@ -98,12 +93,12 @@ namespace BV.DAO
             //KhoChungProvider.KhoTong.DinhGiaHangHoa.RemoveRange(lstOriginalGiaThuoc);
 
 
-
             //Save thông tin các đơn vị thuốc
             var removeDonvi = DAOApp.DbContext.ChuyenDoiDonViHangHoa.Where(d => d.HangHoaID == oThuoc.ID).ToList();
             //Don vi chinh
             {
-                var donvi = DAOApp.DbContext.ChuyenDoiDonViHangHoa.FirstOrDefault(d => d.DonViID == oThuoc.DonViID && d.HangHoaID == oThuoc.ID);
+                var donvi = DAOApp.DbContext.ChuyenDoiDonViHangHoa.FirstOrDefault(d =>
+                    d.DonViID == oThuoc.DonViID && d.HangHoaID == oThuoc.ID);
                 if (donvi == null)
                 {
                     var dv = new ChuyenDoiDonViHangHoa();
@@ -150,7 +145,6 @@ namespace BV.DAO
             //}
 
             DAOApp.DbContext.SaveChanges();
-
         }
 
         public static QuyetDinhThau SaveThongTinQuyetDinhThau(QuyetDinhThau oEntity)
@@ -160,15 +154,10 @@ namespace BV.DAO
             {
                 //Add
                 oRet = DAOApp.DbContext.QuyetDinhThau.FirstOrDefault(l => l.Ma == oEntity.Ma);
-                if (oRet != null)
-                {
-                    throw new Exception("Quyết định đã có trên hệ thống.");
-                }
-                else
-                {
-                    oEntity.ID = Guid.NewGuid();
-                    oRet = DAOApp.DbContext.QuyetDinhThau.Add(oEntity);
-                }
+                if (oRet != null) throw new Exception("Quyết định đã có trên hệ thống.");
+
+                oEntity.ID = Guid.NewGuid();
+                oRet = DAOApp.DbContext.QuyetDinhThau.Add(oEntity);
             }
             else
             {
@@ -189,16 +178,12 @@ namespace BV.DAO
             if (oEntity.ID == Guid.Empty)
             {
                 //Add
-                oRet = DAOApp.DbContext.LoHangHoa.FirstOrDefault(l => l.ThuocVtytID == oEntity.ThuocVtytID && l.SoLo == oEntity.SoLo);
-                if (oRet != null)
-                {
-                    throw new Exception("Lô hàng này đã có trên hệ thống.");
-                }
-                else
-                {
-                    oEntity.ID = Guid.NewGuid();
-                    oRet = DAOApp.DbContext.LoHangHoa.Add(oEntity);
-                }
+                oRet = DAOApp.DbContext.LoHangHoa.FirstOrDefault(l =>
+                    l.ThuocVtytID == oEntity.ThuocVtytID && l.SoLo == oEntity.SoLo);
+                if (oRet != null) throw new Exception("Lô hàng này đã có trên hệ thống.");
+
+                oEntity.ID = Guid.NewGuid();
+                oRet = DAOApp.DbContext.LoHangHoa.Add(oEntity);
             }
             else
             {
@@ -234,14 +219,14 @@ namespace BV.DAO
             DAOApp.DbContext.SaveChanges();
             return ncc;
         }
+
         /// <summary>
-        /// Insert into PhieuNhapKho and Thuoc_VatTuYteTonKho
+        ///     Insert into PhieuNhapKho and Thuoc_VatTuYteTonKho
         /// </summary>
         /// <param name="oEntity"></param>
         /// <returns></returns>
         public static bool SavePhieuNhapKhoTuNhaCungCap(PhieuNhapKho oEntity)
         {
-
             var phieuNhap = new PhieuNhapKho
             {
                 ID = Guid.NewGuid(),
@@ -321,6 +306,7 @@ namespace BV.DAO
 
                 phieuNhap.PhieuNhapChiTiet.Add(chiTiet);
             }
+
             //DAOApp.DbContext.ChiTietPhieu.AddRange(oEntity.ChiTietPhieus);
             DAOApp.DbContext.SaveChanges();
 
@@ -335,24 +321,22 @@ namespace BV.DAO
             //IQueryable<PhieuTraThuoc> phieuTra;
             if (!string.IsNullOrEmpty(maPhieu))
                 return DAOApp.DbContext.PhieuTraThuoc.Where(m => m.MaPhieuTra == maPhieu);
-            else if (string.IsNullOrEmpty(maPhieu) && tuNgay != null)
-            {
+            if (string.IsNullOrEmpty(maPhieu) && tuNgay != null)
                 return DAOApp.DbContext.PhieuTraThuoc.Where(m => m.NgayLap >= tuNgay && m.NgayLap <= denNgay);
-            }
-            else if (!string.IsNullOrEmpty(maPhieu) && tuNgay != null)
-            {
-                return DAOApp.DbContext.PhieuTraThuoc.Where(m => m.MaPhieuTra == maPhieu && m.NgayLap >= tuNgay && m.NgayLap <= denNgay);
-            }
+            if (!string.IsNullOrEmpty(maPhieu) && tuNgay != null)
+                return DAOApp.DbContext.PhieuTraThuoc.Where(m =>
+                    m.MaPhieuTra == maPhieu && m.NgayLap >= tuNgay && m.NgayLap <= denNgay);
 
             return null;
         }
 
         #endregion
+
         //TODO: Need more debug and fix Save Tra Thuoc
         public static bool SaveXuatTraThuoc(PhieuTraThuoc phieuTra, string maPhieuNhap)
         {
             // update phieu tra
-            phieuTra.TinhTrang = (int)PhieuTraThuocType.DaDuyet;
+            phieuTra.TinhTrang = (int) PhieuTraThuocType.DaDuyet;
             if (DAOApp.DbContext.Entry(phieuTra).State == EntityState.Detached)
                 DAOApp.DbContext.PhieuTraThuoc.Attach(phieuTra);
             DAOApp.DbContext.Entry(phieuTra).State = EntityState.Modified;
@@ -397,14 +381,13 @@ namespace BV.DAO
                 {
                     ID = Guid.NewGuid(),
                     HangHoa = phieuTraChiTiet.HangHoa,
-                    SoLuong = (int)phieuTraChiTiet.SoLuongTra,
+                    SoLuong = (int) phieuTraChiTiet.SoLuongTra,
                     SoLo = phieuTraChiTiet.LoHangHoa.SoLo,
                     Gia = Converter.obj2decimal(phieuTraChiTiet.DonGia),
                     HoaDonID = "Hoa don Id",
                     PhieuNhapID = Converter.Obj2Guid("Phieu nhap ID")
                 };
                 xuatTra.XuatTraChiTiet.Add(xuatTraChiTiet);
-
 
 
                 var chiTiet = new PhieuNhapChiTiet
@@ -437,7 +420,7 @@ namespace BV.DAO
                         SoLuongDaNhap = Converter.Obj2decimal(phieuTraChiTiet.SoLuongTra),
                         SoLuongDaXuat = 0,
                         SoLuongTon = Converter.Obj2decimal(phieuTraChiTiet.SoLuongTra),
-                        SoQuyetDinh = "",//phieuTraChiTiet.SoQuyeDinh,
+                        SoQuyetDinh = "", //phieuTraChiTiet.SoQuyeDinh,
                         ThuocVtytID = phieuTraChiTiet.HangHoaID
                     };
                     DAOApp.DbContext.Thuoc_VatTuYteTonKho.Add(tonKho);
@@ -448,10 +431,11 @@ namespace BV.DAO
                     thuocTonKho.MaHoatChat = phieuTraChiTiet.HangHoa?.HoatChat;
                     thuocTonKho.PhanLoaiDuocID = phieuTraChiTiet.HangHoa?.PhanLoaiDuocID;
                     thuocTonKho.SoLo = phieuTraChiTiet.LoHangHoa?.SoLo;
-                    thuocTonKho.SoLuongDaNhap = thuocTonKho.SoLuongDaNhap + Converter.Obj2decimal(phieuTraChiTiet.SoLuongTra);
+                    thuocTonKho.SoLuongDaNhap =
+                        thuocTonKho.SoLuongDaNhap + Converter.Obj2decimal(phieuTraChiTiet.SoLuongTra);
                     thuocTonKho.SoLuongDaXuat = thuocTonKho.SoLuongDaXuat;
                     thuocTonKho.SoLuongTon = thuocTonKho.SoLuongTon + Converter.Obj2decimal(phieuTraChiTiet.SoLuongTra);
-                    thuocTonKho.SoQuyetDinh = "";// chiTietPhieu.SoQuyeDinh;
+                    thuocTonKho.SoQuyetDinh = ""; // chiTietPhieu.SoQuyeDinh;
                     thuocTonKho.ThuocVtytID = phieuTraChiTiet.HangHoaID;
                     if (DAOApp.DbContext.Entry(thuocTonKho).State == EntityState.Detached)
                         DAOApp.DbContext.Thuoc_VatTuYteTonKho.Attach(thuocTonKho);
@@ -459,11 +443,8 @@ namespace BV.DAO
                 }
 
                 phieuNhap.PhieuNhapChiTiet.Add(chiTiet);
-
-
-
-
             }
+
             DAOApp.DbContext.XuatTra.Add(xuatTra);
             DAOApp.DbContext.PhieuNhapKho.Add(phieuNhap);
 

@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Windows.Forms;
-using BV.QLKHO;
-using BV.DataModel;
 using BV.BUS;
+using BV.DataModel;
 
 namespace EHR.App.DSHoSo
 {
     public partial class ctrlThongTinCA : UserControl
     {
         private HS_BHYT _entity;
-        public event EventHandler EventSettingChanged;
+
         public ctrlThongTinCA()
         {
             InitializeComponent();
         }
+
+        public event EventHandler EventSettingChanged;
 
         public void InitGUI(HS_BHYT source)
         {
@@ -33,7 +34,7 @@ namespace EHR.App.DSHoSo
 
         public bool ValidateSetting()
         {
-            bool bRet = true;
+            var bRet = true;
             if (string.IsNullOrWhiteSpace(txtCoQuan.Text))
             {
                 errorProvider1.SetError(txtCoQuan, "không được để trống");
@@ -45,27 +46,22 @@ namespace EHR.App.DSHoSo
                 errorProvider1.SetError(txtCapBac, "không được để trống");
                 bRet = false;
             }
-            
+
             return bRet;
         }
 
         public HS_BHYT SaveSetting()
         {
-            var hs = new HS_BHYT()
+            var hs = new HS_BHYT
             {
                 ID = _entity.ID,
                 HSCN_ID = _entity.HSCN_ID,
-                MA_THE = txtCoQuan.Text,
+                MA_THE = txtCoQuan.Text
             };
 
             if (hs.HSCN_ID == Guid.Empty)
-            {
                 return hs;
-            }
-            else
-            {
-                return BusApp.UpdateHoSo_BHYT(_entity.HSCN_ID, hs);
-            }
+            return BusApp.UpdateHoSo_BHYT(_entity.HSCN_ID, hs);
         }
 
         private void txtMaCSBD_TextChanged(object sender, EventArgs e)

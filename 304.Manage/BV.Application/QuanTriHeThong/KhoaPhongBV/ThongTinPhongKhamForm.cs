@@ -1,32 +1,22 @@
-﻿using BV.DataModel;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
+using BV.DataModel;
 
 namespace BV.QuanTriHeThong.KhoaPhongBV
 {
     public partial class ThongTinPhongKhamForm : Form
     {
-        public PhongKham Entity { get; internal set; }
-
         public ThongTinPhongKhamForm()
         {
             InitializeComponent();
         }
 
+        public PhongKham Entity { get; internal set; }
+
         public void InitThongTin(PhongKham k)
         {
             Entity = k;
-            if (Entity == null)
-            {
-                Entity = new PhongKham() { ID = Guid.NewGuid() };
-            }
+            if (Entity == null) Entity = new PhongKham {ID = Guid.NewGuid()};
 
             ctrlThongTinPhongKham1.InitThongTin(Entity);
 
@@ -43,15 +33,15 @@ namespace BV.QuanTriHeThong.KhoaPhongBV
             if (ctrlThongTinPhongKham1.ValidateData())
             {
                 Entity = ctrlThongTinPhongKham1.SaveEntity();
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                DialogResult = DialogResult.OK;
+                Close();
             }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

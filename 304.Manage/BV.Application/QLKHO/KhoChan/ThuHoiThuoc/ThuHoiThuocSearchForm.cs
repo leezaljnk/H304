@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using BV.BUS;
 using BV.DataModel;
 using Common.Winforms.UserControls;
 
@@ -8,6 +9,7 @@ namespace BV.QLKHO.KhoChan.ThuHoiThuoc
     public partial class ThuHoiThuocSearchForm : FormBase
     {
         public bool _action = true;
+        private PhieuTraThuoc _phieuTra;
         public ThuHoiThuocSearchForm()
         {
             InitializeComponent();
@@ -15,7 +17,8 @@ namespace BV.QLKHO.KhoChan.ThuHoiThuoc
 
         internal void InitData(PhieuTraThuoc phieuTraThuoc)
         {
-            var index = 1;
+            _phieuTra = phieuTraThuoc;
+               var index = 1;
             foreach (var phieu in phieuTraThuoc.PhieuTraThuocChiTiet)
             {
                 //add item to grid
@@ -42,13 +45,21 @@ namespace BV.QLKHO.KhoChan.ThuHoiThuoc
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            _action = true;
-            DialogResult = DialogResult.OK;
+            try
+            {
+                BusKho.SaveXuatTraThuoc(_phieuTra);
+                _action = true;
+                DialogResult = DialogResult.OK;
+            }
+            catch (Exception exception)
+            {
+                HandleException(exception);
+            }
+           
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

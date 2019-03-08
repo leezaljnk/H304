@@ -1,28 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using BV.DataModel;
 using BV.BUS;
+using BV.DataModel;
 using BV.QuanTriHeThong.KhoaPhongBV;
 
 namespace BV.QLKHO.THUOC
 {
     public partial class DanhMucKhoaCtrl : UserControl
     {
-        public event EventHandler CloseView;
-
         public DanhMucKhoaCtrl()
         {
             InitializeComponent();
         }
+
+        public event EventHandler CloseView;
 
         internal void InitControlUI()
         {
             var lstKhoa = BusApp.GetDanhMuc<Khoa>();
             foreach (var t in lstKhoa)
             {
-                var item = new object[] { t.Ma, t.Ten, t.MoTa, t.MaBYT, t.TenBYT};
-                int i = dataGridView1.Rows.Add(item);
+                var item = new object[] {t.Ma, t.Ten, t.MoTa, t.MaBYT, t.TenBYT};
+                var i = dataGridView1.Rows.Add(item);
                 dataGridView1.Rows[i].Tag = t;
             }
         }
@@ -33,13 +32,13 @@ namespace BV.QLKHO.THUOC
             {
                 if (e.ClickedItem.Name == "add")
                 {
-                    ThongTinKhoaForm oForm = new ThongTinKhoaForm();
+                    var oForm = new ThongTinKhoaForm();
                     oForm.InitThongTin(null);
                     if (oForm.ShowDialog(this) == DialogResult.OK)
                     {
                         var t = oForm.Entity;
-                        var item = new object[] { t.Ma, t.Ten, t.MoTa, t.MaBYT, t.TenBYT };
-                        int i = dataGridView1.Rows.Add(item);
+                        var item = new object[] {t.Ma, t.Ten, t.MoTa, t.MaBYT, t.TenBYT};
+                        var i = dataGridView1.Rows.Add(item);
                         dataGridView1.Rows[i].Tag = t;
                     }
                 }
@@ -48,8 +47,8 @@ namespace BV.QLKHO.THUOC
                     if (dataGridView1.SelectedRows.Count > 0)
                     {
                         var row = dataGridView1.SelectedRows[0];
-                        Khoa oThuoc = row.Tag as Khoa;
-                        ThongTinKhoaForm oForm = new ThongTinKhoaForm();
+                        var oThuoc = row.Tag as Khoa;
+                        var oForm = new ThongTinKhoaForm();
                         oForm.InitThongTin(oThuoc);
                         if (oForm.ShowDialog(this) == DialogResult.OK)
                         {
@@ -64,7 +63,7 @@ namespace BV.QLKHO.THUOC
                         }
                     }
                 }
-                else if(e.ClickedItem.Name == "exit")
+                else if (e.ClickedItem.Name == "exit")
                 {
                     CloseView?.Invoke(this, e);
                 }
@@ -77,7 +76,9 @@ namespace BV.QLKHO.THUOC
 
         private void HandleException(Exception ex)
         {
-            MessageBox.Show(this, "Có lỗi xảy ra, vui lòng thử lại hoặc liên hệ với người quản trị hệ thống." + Environment.NewLine + "Lỗi: " + ex.Message, "Quản lý thuốc", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this,
+                "Có lỗi xảy ra, vui lòng thử lại hoặc liên hệ với người quản trị hệ thống." + Environment.NewLine +
+                "Lỗi: " + ex.Message, "Quản lý thuốc", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

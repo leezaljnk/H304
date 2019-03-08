@@ -13,19 +13,17 @@ namespace BV.Reporting
 
         public string ReportPath
         {
-            get { return reportViewer1.LocalReport.ReportPath; }
-            set
-            {
-                reportViewer1.LocalReport.ReportEmbeddedResource = value;
-            }
+            get => reportViewer1.LocalReport.ReportPath;
+            set => reportViewer1.LocalReport.ReportEmbeddedResource = value;
         }
 
         public void SetDataSource(object source, string sourceName)
         {
             var reportDataSource = new ReportDataSource
-                { Name = sourceName, Value = source};
+                {Name = sourceName, Value = source};
             reportViewer1.LocalReport.DataSources.Add(reportDataSource);
         }
+
         private void FReportView_Load(object sender, EventArgs e)
         {
             try
@@ -37,7 +35,8 @@ namespace BV.Reporting
             }
             catch (Exception ex)
             {
-                MessageBox.Show($@"Có lỗi xẩy ra! Xin hãy kiểm tra lại dữ liệu {ex.Message}", @"THÔNG BÁO!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                MessageBox.Show($@"Có lỗi xẩy ra! Xin hãy kiểm tra lại dữ liệu {ex.Message}", @"THÔNG BÁO!",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             }
         }
 

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BV.DataModel;
 
 namespace BV.DAO
@@ -18,10 +15,7 @@ namespace BV.DAO
             {
                 //Insert
                 item = dbContext.Khoa.FirstOrDefault(k => k.Ma == entity.Ma);
-                if (item != null)
-                {
-                    throw new Exception("Mã khoa trùng lặp với khoa khác");
-                }
+                if (item != null) throw new Exception("Mã khoa trùng lặp với khoa khác");
 
                 dbContext.Khoa.Add(entity);
             }
@@ -29,10 +23,7 @@ namespace BV.DAO
             {
                 //Update
                 var checkItem = dbContext.Khoa.FirstOrDefault(k => k.ID != entity.ID && k.Ma == entity.Ma);
-                if (checkItem != null)
-                {
-                    throw new Exception("Mã khoa trùng lặp với khoa khác");
-                }
+                if (checkItem != null) throw new Exception("Mã khoa trùng lặp với khoa khác");
 
                 item.Ma = entity.Ma;
                 item.Ten = entity.Ten;
@@ -54,10 +45,7 @@ namespace BV.DAO
             {
                 //Insert
                 item = dbContext.PhongKham.FirstOrDefault(k => k.Ma == entity.Ma);
-                if (item != null)
-                {
-                    throw new Exception("Mã phòng khám trùng lặp với phòng khám khác");
-                }
+                if (item != null) throw new Exception("Mã phòng khám trùng lặp với phòng khám khác");
 
                 dbContext.PhongKham.Add(entity);
             }
@@ -65,10 +53,7 @@ namespace BV.DAO
             {
                 //Update
                 var checkItem = dbContext.PhongKham.FirstOrDefault(k => k.ID != entity.ID && k.Ma == entity.Ma);
-                if (checkItem != null)
-                {
-                    throw new Exception("Mã phòng khám trùng lặp với phòng khám khác");
-                }
+                if (checkItem != null) throw new Exception("Mã phòng khám trùng lặp với phòng khám khác");
 
                 item.KhoaID = entity.KhoaID;
                 item.Ma = entity.Ma;

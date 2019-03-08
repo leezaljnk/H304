@@ -96,7 +96,7 @@ namespace BV.QLKHO
             oForm.ShowDialog(this);
         }
 
- 
+
         private void mnuDanhMucNCC_Click(object sender, EventArgs e)
         {
             try
@@ -131,7 +131,6 @@ namespace BV.QLKHO
 
         private void mnuKhoChan_XuatThuocTuThien_Click(object sender, EventArgs e)
         {
-
         }
 
         private void mnuKhoChan_XuatBNNoiTru_Click(object sender, EventArgs e)

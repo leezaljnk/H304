@@ -2,8 +2,8 @@
 using System.Windows.Forms;
 using BV.BUS;
 using BV.DataModel;
-//using BV.Reporting;
 using Common.Winforms.UserControls;
+//using BV.Reporting;
 
 namespace BV.QLKHO.KhoChan.NhapThuoc
 {
@@ -33,7 +33,7 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
             SavePhieuNhapNCC();
             DialogResult = DialogResult.OK;
         }
-        
+
         private void PrintPhieuNhap()
         {
             ////TongHopBenhAnSource source = GetTongHopBenhAn();
@@ -64,12 +64,11 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
             try
             {
                 Cursor = Cursors.WaitCursor;
-                
+
                 phieuNhap = phieuNhapThuocCtrl1.PhieuNhapData();
                 //Save data
                 BusKho.SavePhieuNhapKhoTuNhaCungCap(phieuNhap);
                 PrintPhieuNhap();
-               
             }
             catch (Exception ex)
             {
@@ -80,6 +79,5 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
                 Cursor = Cursors.Default;
             }
         }
-
     }
 }

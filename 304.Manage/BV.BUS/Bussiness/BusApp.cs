@@ -1,8 +1,8 @@
-﻿using BV.AppCommon;
-using BV.DAO;
-using BV.DataModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using BV.AppCommon;
+using BV.DataModel;
+using BV.DAO;
 
 namespace BV.BUS
 {
@@ -12,6 +12,7 @@ namespace BV.BUS
         {
             return DAOApp.CountRecords<T>();
         }
+
         public static List<T> GetDanhMuc<T>(bool bRefresh = false, int take = 0) where T : class
         {
             try
@@ -20,8 +21,9 @@ namespace BV.BUS
                 if (bRefresh || coll == null)
                 {
                     coll = DAOApp.GetDanhMuc<T>();
-                    AppCached.AddDanhMuc<T>(coll);
+                    AppCached.AddDanhMuc(coll);
                 }
+
                 return coll;
             }
             catch (Exception ex)
@@ -37,54 +39,23 @@ namespace BV.BUS
 
         public static DinhGiaHangHoa GetGiaThuoc(Guid thuocID)
         {
-            try
-            {
-                return DAOKho.GetGiaThuoc(thuocID);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            return DAOKho.GetGiaThuoc(thuocID);
         }
 
         public static List<ChuyenDoiDonViHangHoa> GetChuyenDoiDonViThuoc(Guid thuocID)
         {
-            try
-            {
-                return DAOKho.GetChuyenDoiDonViThuoc(thuocID);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            return DAOKho.GetChuyenDoiDonViThuoc(thuocID);
         }
 
-        public static void LuuThongTinHangHoa(HangHoa oThuoc, DinhGiaHangHoa oGiaThuoc, List<ChuyenDoiDonViHangHoa> lstDonVi)
+        public static void LuuThongTinHangHoa(HangHoa oThuoc, DinhGiaHangHoa oGiaThuoc,
+            List<ChuyenDoiDonViHangHoa> lstDonVi)
         {
-            try
-            {
-                DAOKho.SaveThuoc304(oThuoc, oGiaThuoc, lstDonVi);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            DAOKho.SaveThuoc304(oThuoc, oGiaThuoc, lstDonVi);
         }
 
         public static NhaCungCap SaveNhaCungCap(NhaCungCap oEntity)
         {
-            try
-            {
-                return DAOKho.SaveNhaCungCap(oEntity);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            return DAOKho.SaveNhaCungCap(oEntity);
         }
 
         public static HS_BHYT GetSoBHYT(Guid value)
@@ -94,28 +65,12 @@ namespace BV.BUS
 
         public static LoHangHoa SaveThongTinLoHang(LoHangHoa oEntity)
         {
-            try
-            {
-                return DAOKho.SaveThongTinLoHang(oEntity);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            return DAOKho.SaveThongTinLoHang(oEntity);
         }
 
         public static QuyetDinhThau SaveThongTinQuyetDinhThau(QuyetDinhThau oEntity)
         {
-            try
-            {
-                return DAOKho.SaveThongTinQuyetDinhThau(oEntity);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            return DAOKho.SaveThongTinQuyetDinhThau(oEntity);
         }
 
         public static T SaveEntity<T>(T entity)
@@ -137,6 +92,5 @@ namespace BV.BUS
         {
             throw new NotImplementedException();
         }
-
     }
 }

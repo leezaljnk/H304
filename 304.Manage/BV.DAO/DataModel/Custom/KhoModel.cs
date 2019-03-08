@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace BV.DataModel
+﻿namespace BV.DataModel
 {
     //public class PhieuNhapKhoModel : PhieuNhapKho
     //{

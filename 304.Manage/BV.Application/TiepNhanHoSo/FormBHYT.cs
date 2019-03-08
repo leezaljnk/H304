@@ -1,13 +1,14 @@
-﻿using BV.DataModel;
-using Common.Winforms.UserControls;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using BV.DataModel;
+using Common.Winforms.UserControls;
 
 namespace EHR.App.HSBenhNhan
 {
     public partial class FormBHYT : FormBase
     {
-        public HS_BHYT Entity = null;
+        public HS_BHYT Entity;
+
         public FormBHYT()
         {
             InitializeComponent();
@@ -25,26 +26,29 @@ namespace EHR.App.HSBenhNhan
             {
                 if (ctrlThongTinBaoHiem1.ValidateSetting())
                 {
-                    this.Cursor = Cursors.WaitCursor;
+                    Cursor = Cursors.WaitCursor;
                     Entity = ctrlThongTinBaoHiem1.SaveSetting();
-                    this.Cursor = Cursors.Default;
+                    Cursor = Cursors.Default;
                 }
                 else
+                {
                     return;
+                }
 
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception ex)
             {
-                this.Cursor = Cursors.Default;
-                MessageBox.Show(this, "Lỗi khi cập nhật thông tin về Bảo hiểm y tế. Nội dung: " + ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Cursor = Cursors.Default;
+                MessageBox.Show(this, "Lỗi khi cập nhật thông tin về Bảo hiểm y tế. Nội dung: " + ex.Message, Text,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel;
         }
 
         private void ctrlThongTinBaoHiem1_EventSettingChanged(object sender, EventArgs e)

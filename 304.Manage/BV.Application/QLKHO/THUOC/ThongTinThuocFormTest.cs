@@ -1,15 +1,19 @@
-﻿using BV.BUS;
-using BV.DataModel;
-using Infragistics.Win.UltraWinGrid;
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using BV.BUS;
+using BV.DataModel;
+using Infragistics.Win.UltraWinGrid;
 
 namespace BV.QLKHO.THUOC
 {
     public partial class ThongTinThuocFormTest : Form
     {
+        private bool bComboDropDownVisible;
+
+        private bool bComboValueChanged;
         public THUOC_6061 Entity;
+
         public ThongTinThuocFormTest()
         {
             InitializeComponent();
@@ -31,7 +35,6 @@ namespace BV.QLKHO.THUOC
             //ultraDropDown1.ValueMember = "THUOC_ID";
 
 
-
             //this.ultraGrid1.DisplayLayout.Bands[0].Columns[2].AutoSuggestFilterMode = Infragistics.Win.AutoSuggestFilterMode.Contains;
             //this.ultraGrid1.DisplayLayout.Bands[0].Columns[2].EditorComponent = this.ultraCombo1;
 
@@ -40,12 +43,10 @@ namespace BV.QLKHO.THUOC
             //ultraCombo1.ValueMember = "NguonNhapID";
         }
 
-        private void ultraCombo1_InitializeLayout(object sender, Infragistics.Win.UltraWinGrid.InitializeLayoutEventArgs e)
+        private void ultraCombo1_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {
             if (e.Layout.Bands.Count > 0)
-            {
                 foreach (var clm in e.Layout.Bands[0].Columns)
-                {
                     if (clm.Key == "SO_DANG_KY")
                     {
                         clm.Header.Caption = "Số Đăng Ký";
@@ -67,25 +68,13 @@ namespace BV.QLKHO.THUOC
                     {
                         clm.Header.Caption = "Đóng Gói";
                     }
-                    else
-                    {
-                        //clm.Hidden = true;
-                    }
-                }
-            }
         }
-
-        bool bComboValueChanged = false;
-        bool bComboDropDownVisible = false;
 
 
         private void ultraCombo1_ValueChanged(object sender, EventArgs e)
         {
             bComboValueChanged = true;
-            if (ultraCombo1.SelectedRow != null && !bComboDropDownVisible)
-            {
-                ShowThuocInfo();                
-            }
+            if (ultraCombo1.SelectedRow != null && !bComboDropDownVisible) ShowThuocInfo();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -96,11 +85,10 @@ namespace BV.QLKHO.THUOC
             }
             else
             {
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                DialogResult = DialogResult.OK;
+                Close();
             }
         }
-
 
 
         private void ultraCombo1_AfterCloseUp(object sender, EventArgs e)
@@ -121,7 +109,7 @@ namespace BV.QLKHO.THUOC
         private void ShowThuocInfo()
         {
             return;
-            int id = (int)ultraCombo1.Value;
+            var id = (int) ultraCombo1.Value;
             var oThuoc = BusApp.GetDanhMuc<THUOC_6061>().FirstOrDefault(t => t.THUOC_ID == id);
 
             txtSoDangKy.Text = oThuoc.SO_DANG_KY;
@@ -138,7 +126,7 @@ namespace BV.QLKHO.THUOC
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void ultraCombo1_TextChanged(object sender, EventArgs e)
@@ -146,7 +134,7 @@ namespace BV.QLKHO.THUOC
             errorProvider1.SetError(ultraCombo1, "");
         }
 
-        private void ultraGrid1_InitializeLayout(object sender, Infragistics.Win.UltraWinGrid.InitializeLayoutEventArgs e)
+        private void ultraGrid1_InitializeLayout(object sender, InitializeLayoutEventArgs e)
         {
             e.Layout.AutoFitStyle = AutoFitStyle.ResizeAllColumns;
             e.Layout.Override.CellClickAction = CellClickAction.EditAndSelectText;

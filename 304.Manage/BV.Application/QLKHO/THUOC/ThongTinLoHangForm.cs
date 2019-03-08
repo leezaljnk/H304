@@ -1,15 +1,16 @@
-﻿using BV.AppCommon;
+﻿using System;
+using System.Windows.Forms;
+using BV.AppCommon;
 using BV.BUS;
 using BV.DataModel;
 using BV.SharedComponent;
-using System;
-using System.Windows.Forms;
 
 namespace BV.QLKHO.THUOC
 {
     public partial class ThongTinLoHangForm : Form
     {
-        public LoHangHoa Entity = null;
+        public LoHangHoa Entity;
+
         public ThongTinLoHangForm()
         {
             InitializeComponent();
@@ -19,9 +20,7 @@ namespace BV.QLKHO.THUOC
         {
             txtTenThuoc.Text = hanghoa.Ten;
             if (oLoHang == null)
-            {
-                oLoHang = new LoHangHoa() { ID = Guid.Empty, ThuocVtytID = hanghoa.ID, HanSuDung = DateTime.Now };
-            }
+                oLoHang = new LoHangHoa {ID = Guid.Empty, ThuocVtytID = hanghoa.ID, HanSuDung = DateTime.Now};
 
             Entity = oLoHang;
 
@@ -31,21 +30,19 @@ namespace BV.QLKHO.THUOC
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-
             try
             {
                 if (ValidateControl())
                 {
                     SaveEntity();
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    DialogResult = DialogResult.OK;
+                    Close();
                 }
-                
             }
             catch (Exception ex)
             {
@@ -55,19 +52,19 @@ namespace BV.QLKHO.THUOC
 
         private void SaveEntity()
         {
-            LoHangHoa oLo = new LoHangHoa() { ID = Entity.ID, ThuocVtytID = Entity.ThuocVtytID };
+            var oLo = new LoHangHoa {ID = Entity.ID, ThuocVtytID = Entity.ThuocVtytID};
             oLo.SoLo = txtSoLo.Text.Trim();
             oLo.HanSuDung = bvDateTimeCtrl1.Value;
 
             Entity = BusApp.SaveThongTinLoHang(oLo);
 
             //Update cached
-            AppCached.UpdateDanhMuc<LoHangHoa>(Entity, "ID");
+            AppCached.UpdateDanhMuc(Entity, "ID");
         }
 
         private bool ValidateControl()
         {
-            bool bRet = true;
+            var bRet = true;
             if (string.IsNullOrWhiteSpace(txtSoLo.Text))
             {
                 errorProvider1.SetError(txtSoLo, "không được để trống!");
