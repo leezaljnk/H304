@@ -83,6 +83,12 @@
     <Reference Include="UIAutomationTypes" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KhoChan\HuyPhieuDeNghiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KhoChan\HuyPhieuDeNghiForm.Designer.cs">
+      <DependentUpon>HuyPhieuDeNghiForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="KhoChan\ThuHoiThuoc\ThuHoiThuocCtrl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -106,6 +112,12 @@
     </Compile>
     <Compile Include="KhoChan\ThuHoiThuoc\ThuHoiThuocSearchForm.Designer.cs">
       <DependentUpon>ThuHoiThuocSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChan\TimKiemPhieuDeNghiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KhoChan\TimKiemPhieuDeNghiForm.Designer.cs">
+      <DependentUpon>TimKiemPhieuDeNghiForm.cs</DependentUpon>
     </Compile>
     <Compile Include="KhoChan\XuatThuocBNNgoaiTru\XuatThuocBNNgoaiTruCtrl.cs">
       <SubType>UserControl</SubType>
@@ -250,6 +262,9 @@
     <Compile Include="THUOC\ThongTinThuocForm.Designer.cs">
       <DependentUpon>ThongTinThuocForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="KhoChan\HuyPhieuDeNghiForm.resx">
+      <DependentUpon>HuyPhieuDeNghiForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="KhoChan\ThuHoiThuoc\ThuHoiThuocCtrl.resx">
       <DependentUpon>ThuHoiThuocCtrl.cs</DependentUpon>
     </EmbeddedResource>
@@ -261,6 +276,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KhoChan\ThuHoiThuoc\ThuHoiThuocSearchForm.resx">
       <DependentUpon>ThuHoiThuocSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KhoChan\TimKiemPhieuDeNghiForm.resx">
+      <DependentUpon>TimKiemPhieuDeNghiForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KhoChan\XuatThuocToiKho\XuatThuocToiKhoCtrl.resx">
+      <DependentUpon>XuatThuocToiKhoCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KhoChan\XuatThuocToiKho\XuatThuocToiKhoForm.resx">
+      <DependentUpon>XuatThuocToiKhoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KhoChan\XuatThuocTuThien\XuatThuocTuThienCtrl.resx">
+      <DependentUpon>XuatThuocTuThienCtrl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KhoChan\XuatThuoc\XuatThuocBenhNhanForm.resx">
       <DependentUpon>XuatThuocBenhNhanForm.cs</DependentUpon>

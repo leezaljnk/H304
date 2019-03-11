@@ -37,6 +37,7 @@
             this.mnuKhoChanNhapKho = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuKhoChan_NhapTuNCC = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuKhoChan_ThuHoiTuTruc = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuKhoChan_DanhSachThuHoiTuTruc = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuKhoChanXuatKho = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuKhoChan_XuatTuThien = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuKhoChan_XuatToiKho = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,7 +114,6 @@
             this.gridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabPageHome = new System.Windows.Forms.TabPage();
-            this.mnuKhoChan_DanhSachThuHoiTuTruc = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.SuspendLayout();
@@ -193,6 +193,13 @@
             this.mnuKhoChan_ThuHoiTuTruc.Text = "Thu hồi tủ trực";
             this.mnuKhoChan_ThuHoiTuTruc.Click += new System.EventHandler(this.mnuKhoChan_ThuHoiTuTruc_Click);
             // 
+            // mnuKhoChan_DanhSachThuHoiTuTruc
+            // 
+            this.mnuKhoChan_DanhSachThuHoiTuTruc.Name = "mnuKhoChan_DanhSachThuHoiTuTruc";
+            this.mnuKhoChan_DanhSachThuHoiTuTruc.Size = new System.Drawing.Size(192, 22);
+            this.mnuKhoChan_DanhSachThuHoiTuTruc.Text = "Danh sách thu hồi";
+            this.mnuKhoChan_DanhSachThuHoiTuTruc.Click += new System.EventHandler(this.mnuKhoChan_DanhSachThuHoiTuTruc_Click);
+            // 
             // mnuKhoChanXuatKho
             // 
             this.mnuKhoChanXuatKho.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -218,6 +225,7 @@
             this.mnuKhoChan_XuatToiKho.Name = "mnuKhoChan_XuatToiKho";
             this.mnuKhoChan_XuatToiKho.Size = new System.Drawing.Size(241, 22);
             this.mnuKhoChan_XuatToiKho.Text = "Xuất thuốc tới kho";
+            this.mnuKhoChan_XuatToiKho.Click += new System.EventHandler(this.mnuKhoChan_XuatToiKho_Click);
             // 
             // mnuKhoChan_XuatBNNoiTru
             // 
@@ -745,13 +753,6 @@
             this.tabPageHome.TabIndex = 2;
             this.tabPageHome.Text = "Thống kê";
             this.tabPageHome.UseVisualStyleBackColor = true;
-            // 
-            // mnuKhoChan_DanhSachThuHoiTuTruc
-            // 
-            this.mnuKhoChan_DanhSachThuHoiTuTruc.Name = "mnuKhoChan_DanhSachThuHoiTuTruc";
-            this.mnuKhoChan_DanhSachThuHoiTuTruc.Size = new System.Drawing.Size(192, 22);
-            this.mnuKhoChan_DanhSachThuHoiTuTruc.Text = "Danh sách thu hồi";
-            this.mnuKhoChan_DanhSachThuHoiTuTruc.Click += new System.EventHandler(this.mnuKhoChan_DanhSachThuHoiTuTruc_Click);
             // 
             // KhoForm
             // 

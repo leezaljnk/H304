@@ -17,5 +17,6 @@ namespace BV.QLKHO.KhoChan.XuatThuocTuThien
         {
             InitializeComponent();
         }
+
     }
 }

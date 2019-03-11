@@ -40,5 +40,28 @@ namespace BV.BUS
         {
             return DAOKho.GetXuatTra(tuNgay, denNgay, nguoiLap);
         }
+
+        public static IQueryable<PhieuDeNghi> GetPhieuDeNghi(DateTime? tuNgay, DateTime? denNgay, Guid? khoId, PhieuDeNghiLoaiType phieuDeNghiLoai, PhieuDeNghiTinhTrangType tinhTrang)
+        {
+            return DAOKho.GetPhieuDeNghi(tuNgay, denNgay, khoId, phieuDeNghiLoai,tinhTrang);
+        }
+        public static PhieuDeNghi GetPhieuDeNghi(string maPhieu)
+        {
+            return DAOKho.GetPhieuDeNghi(maPhieu);
+        }
+        public static void HuyPhieuDeNghi(Guid phieuDeNghiId, string lyDoHuy)
+        {
+            DAOKho.HuyPhieuDenghi(phieuDeNghiId, lyDoHuy);
+        }
+
+        public static bool DuyetPhieuDeNghi(PhieuDeNghi phieuDeNghi)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static IEnumerable<Thuoc_VatTuYteTonKho> GetThuocTonKho(IEnumerable<Guid?> thuocIds)
+        {
+            return DAOKho.GetThuocTonKhoByIds(thuocIds);
+        }
     }
 }

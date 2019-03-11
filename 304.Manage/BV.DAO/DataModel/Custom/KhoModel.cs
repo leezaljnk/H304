@@ -14,8 +14,10 @@
     public enum LoaiKhoType
     {
         KhoChan = 1,
-        KhoLe = 2,
-        TuTruc = 3
+        KhoLeNgoaiTru = 2,
+        KhoLeNoiTru = 3,
+        KhoDongY = 4,
+        TuTruc = 5
     }
 
     public enum LoaiKhoaType

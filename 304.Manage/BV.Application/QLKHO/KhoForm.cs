@@ -5,6 +5,7 @@ using BV.DataModel;
 using BV.QLKHO.KhoChan.NhapThuoc;
 using BV.QLKHO.KhoChan.ThuHoiThuoc;
 using BV.QLKHO.KhoChan.XuatThuoc;
+using BV.QLKHO.KhoChan.XuatThuocToiKho;
 using BV.QLKHO.THUOC;
 using Common.Winforms.UserControls;
 
@@ -150,6 +151,12 @@ namespace BV.QLKHO
         private void mnuKhoChan_DanhSachThuHoiTuTruc_Click(object sender, EventArgs e)
         {
             var oForm = new ThuHoiThuocDanhSachForm();
+            oForm.ShowDialog(this);
+        }
+
+        private void mnuKhoChan_XuatToiKho_Click(object sender, EventArgs e)
+        {
+            var oForm = new XuatThuocToiKhoForm();
             oForm.ShowDialog(this);
         }
     }

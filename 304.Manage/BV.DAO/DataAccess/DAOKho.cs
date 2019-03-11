@@ -362,13 +362,13 @@ namespace BV.DAO
                 //MaPhanLoaiHoaDon = oEntity.MaPhanLoaiHoaDon,
                 NgayHoaDon = DateTime.Today,
                 NgayTao = DateTime.Today,
-                NguoiCungCap = "",
+                NguoiCungCap = "nguoi cung cap",
                 NguoiTao = xuatTra.NguoiLap.ToString(),
                 //NhaCungCap = oEntity.NhaCungCap,
                 //PhanLoaiHoaDon = oEntity.PhanLoaiHoaDon,
                 //PhieuDeNghiId = oEntity.PhieuDeNghiId,
-                SoHoaDon = "",
-                TenPhanLoaiHoaDon = "",
+                SoHoaDon = "so hoa don",
+                TenPhanLoaiHoaDon = "ten phan loai hoa don",
                 //ThanhTien = oEntity.ThanhTien,
                 TongTien = Converter.obj2double(xuatTra.XuatTraChiTiet.Sum(e => e.Gia * e.SoLuong)),
                 VAT = 0,
@@ -378,7 +378,7 @@ namespace BV.DAO
             //chi tiet phieu xuat tra va phieu nhap chi tiet
             foreach (var phieuTraChiTiet in phieuTra.PhieuTraThuocChiTiet)
             {
-                
+
                 var chiTiet = new PhieuNhapChiTiet
                 {
                     ID = Guid.NewGuid(),
@@ -392,7 +392,7 @@ namespace BV.DAO
                     MaDonVi = phieuTraChiTiet.HangHoa?.DonViID,
                     //PhieuID = phieuNhap.ID,
                     SoLuong = phieuTraChiTiet.SoLuongTra,
-                    SoQuyeDinh = "",
+                    SoQuyeDinh = "SoQuyetDinh",
                     TenDonVi = phieuTraChiTiet.HangHoa.DonViHangHoa.Ten
                 };
 
@@ -422,7 +422,7 @@ namespace BV.DAO
                         SoLuongDaNhap = Converter.Obj2decimal(phieuTraChiTiet.SoLuongTra),
                         SoLuongDaXuat = 0,
                         SoLuongTon = Converter.Obj2decimal(phieuTraChiTiet.SoLuongTra),
-                        SoQuyetDinh = "", //phieuTraChiTiet.SoQuyeDinh,
+                        SoQuyetDinh = "SoQuyetDinh", //phieuTraChiTiet.SoQuyeDinh,
                         ThuocVtytID = phieuTraChiTiet.HangHoaID
                     };
                     DAOApp.DbContext.Thuoc_VatTuYteTonKho.Add(tonKho);
@@ -437,7 +437,7 @@ namespace BV.DAO
                         thuocTonKho.SoLuongDaNhap + Converter.Obj2decimal(phieuTraChiTiet.SoLuongTra);
                     thuocTonKho.SoLuongDaXuat = thuocTonKho.SoLuongDaXuat;
                     thuocTonKho.SoLuongTon = thuocTonKho.SoLuongTon + Converter.Obj2decimal(phieuTraChiTiet.SoLuongTra);
-                    thuocTonKho.SoQuyetDinh = ""; // chiTietPhieu.SoQuyeDinh;
+                    thuocTonKho.SoQuyetDinh = "SoQuyetDinh"; // chiTietPhieu.SoQuyeDinh;
                     thuocTonKho.ThuocVtytID = phieuTraChiTiet.HangHoaID;
                     if (DAOApp.DbContext.Entry(thuocTonKho).State == EntityState.Detached)
                         DAOApp.DbContext.Thuoc_VatTuYteTonKho.Attach(thuocTonKho);
@@ -463,6 +463,44 @@ namespace BV.DAO
 
             return DAOApp.DbContext.XuatTra.Where(m =>
                 m.NguoiLap == nguoiLap && m.Ngay >= tuNgay && m.Ngay <= denNgay);
+        }
+
+        public static IQueryable<PhieuDeNghi> GetPhieuDeNghi(DateTime? tuNgay, DateTime? denNgay, Guid? khoId, PhieuDeNghiLoaiType phieuDeNghiLoai, PhieuDeNghiTinhTrangType tinhTrang)
+        {
+            if (tuNgay == null && khoId == null)
+                return null;
+            var loai = (int)phieuDeNghiLoai;
+            var tTrang = (int)tinhTrang;
+            if (tuNgay != null && khoId == null)
+                return DAOApp.DbContext.PhieuDeNghi.Where(d => d.NgayDeNghi >= tuNgay && d.NgayDeNghi <= denNgay && d.LoaiPhieu == loai && d.TinhTrang == tTrang);
+            if (tuNgay != null && khoId != null)
+                return DAOApp.DbContext.PhieuDeNghi.Where(d => d.NgayDeNghi >= tuNgay && d.NgayDeNghi <= denNgay && d.MaKhoNhap == khoId && d.LoaiPhieu == loai && d.TinhTrang == tTrang);
+            if (tuNgay == null && khoId != null)
+                return DAOApp.DbContext.PhieuDeNghi.Where(d => d.MaKhoNhap == khoId && d.LoaiPhieu == loai && d.TinhTrang == tTrang);
+            return null;
+        }
+
+        public static PhieuDeNghi GetPhieuDeNghi(string maPhieu)
+        {
+            return DAOApp.DbContext.PhieuDeNghi.FirstOrDefault(d => d.Ma == maPhieu);
+        }
+
+        public static void HuyPhieuDenghi(Guid phieuDeNghiId, string lyDoHuy)
+        {
+            var phieuDeNghi = DAOApp.DbContext.PhieuDeNghi.AsNoTracking().FirstOrDefault(e => e.ID == phieuDeNghiId);
+            phieuDeNghi.TinhTrang = (int)PhieuDeNghiTinhTrangType.DaHuy;
+            phieuDeNghi.LyDoHuy = lyDoHuy;
+            phieuDeNghi.NgayHuy = DateTime.Today;
+            phieuDeNghi.NguoiHuy = "Nguoi Huy";
+            //if (DAOApp.DbContext.Entry(phieuDeNghi).State == EntityState.Detached)
+            //DAOApp.DbContext.PhieuDeNghi.Attach(phieuDeNghi);
+            //DAOApp.DbContext.Entry(phieuDeNghi).State = EntityState.Modified;
+            DAOApp.DbContext.SaveChanges();
+        }
+
+        public static IEnumerable<Thuoc_VatTuYteTonKho> GetThuocTonKhoByIds(IEnumerable<Guid?> thuocIds)
+        {
+            return DAOApp.DbContext.Thuoc_VatTuYteTonKho.AsNoTracking().Where(e => thuocIds.Contains(e.ThuocVtytID));
         }
     }
 }

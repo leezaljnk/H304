@@ -28,12 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.xuatThuocToiKhoCtrl1 = new BV.QLKHO.KhoChan.XuatThuocToiKho.XuatThuocToiKhoCtrl();
+            this.SuspendLayout();
+            // 
+            // xuatThuocToiKhoCtrl1
+            // 
+            this.xuatThuocToiKhoCtrl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xuatThuocToiKhoCtrl1.Location = new System.Drawing.Point(0, 0);
+            this.xuatThuocToiKhoCtrl1.Name = "xuatThuocToiKhoCtrl1";
+            this.xuatThuocToiKhoCtrl1.Size = new System.Drawing.Size(1314, 733);
+            this.xuatThuocToiKhoCtrl1.TabIndex = 0;
+            // 
+            // XuatThuocToiKhoForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1314, 733);
+            this.Controls.Add(this.xuatThuocToiKhoCtrl1);
+            this.Name = "XuatThuocToiKhoForm";
             this.Text = "XuatThuocToiKhoForm";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private XuatThuocToiKhoCtrl xuatThuocToiKhoCtrl1;
     }
 }
