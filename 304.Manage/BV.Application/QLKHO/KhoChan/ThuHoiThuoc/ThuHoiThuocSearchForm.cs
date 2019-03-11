@@ -29,7 +29,7 @@ namespace BV.QLKHO.KhoChan.ThuHoiThuoc
                     index,
                     phieu.HangHoa.Ten,
                     phieu.HangHoa.DonViHangHoa.Ten,
-                    phieu.LoHangHoa.SoLo,
+                    phieu.LoHangHoa?.SoLo,
                     phieu.HanSuDung,
                     phieu.SoLuongTra,
                     phieu.ChietKhau,

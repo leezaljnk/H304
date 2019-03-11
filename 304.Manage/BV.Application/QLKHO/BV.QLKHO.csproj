@@ -89,6 +89,12 @@
     <Compile Include="KhoChan\ThuHoiThuoc\ThuHoiThuocCtrl.Designer.cs">
       <DependentUpon>ThuHoiThuocCtrl.cs</DependentUpon>
     </Compile>
+    <Compile Include="KhoChan\ThuHoiThuoc\ThuHoiThuocDanhSachForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KhoChan\ThuHoiThuoc\ThuHoiThuocDanhSachForm.Designer.cs">
+      <DependentUpon>ThuHoiThuocDanhSachForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="KhoChan\ThuHoiThuoc\ThuHoiThuocForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +106,66 @@
     </Compile>
     <Compile Include="KhoChan\ThuHoiThuoc\ThuHoiThuocSearchForm.Designer.cs">
       <DependentUpon>ThuHoiThuocSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocBNNgoaiTru\XuatThuocBNNgoaiTruCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocBNNgoaiTru\XuatThuocBNNgoaiTruCtrl.Designer.cs">
+      <DependentUpon>XuatThuocBNNgoaiTruCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocBNNgoaiTru\XuatThuocBNNgoaiTruDanhSachForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocBNNgoaiTru\XuatThuocBNNgoaiTruDanhSachForm.Designer.cs">
+      <DependentUpon>XuatThuocBNNgoaiTruDanhSachForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocBNNgoaiTru\XuatThuocBNNgoaiTruForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocBNNgoaiTru\XuatThuocBNNgoaiTruForm.Designer.cs">
+      <DependentUpon>XuatThuocBNNgoaiTruForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocBNNoiTru\XuatThuocBNNoiTruCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocBNNoiTru\XuatThuocBNNoiTruCtrl.Designer.cs">
+      <DependentUpon>XuatThuocBNNoiTruCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocBNNoiTru\XuatThuocBNNoiTruDanhSachForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocBNNoiTru\XuatThuocBNNoiTruDanhSachForm.Designer.cs">
+      <DependentUpon>XuatThuocBNNoiTruDanhSachForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocBNNoiTru\XuatThuocBNNoiTruForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocBNNoiTru\XuatThuocBNNoiTruForm.Designer.cs">
+      <DependentUpon>XuatThuocBNNoiTruForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocToiKho\XuatThuocToiKhoCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocToiKho\XuatThuocToiKhoCtrl.Designer.cs">
+      <DependentUpon>XuatThuocToiKhoCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocToiKho\XuatThuocToiKhoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocToiKho\XuatThuocToiKhoForm.Designer.cs">
+      <DependentUpon>XuatThuocToiKhoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocTuThien\XuatThuocTuThienCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocTuThien\XuatThuocTuThienCtrl.Designer.cs">
+      <DependentUpon>XuatThuocTuThienCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocTuThien\XuatThuocTuThienForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KhoChan\XuatThuocTuThien\XuatThuocTuThienForm.Designer.cs">
+      <DependentUpon>XuatThuocTuThienForm.cs</DependentUpon>
     </Compile>
     <Compile Include="KhoChan\XuatThuoc\XuatThuocBenhNhanForm.cs">
       <SubType>Form</SubType>
@@ -186,6 +252,9 @@
     </Compile>
     <EmbeddedResource Include="KhoChan\ThuHoiThuoc\ThuHoiThuocCtrl.resx">
       <DependentUpon>ThuHoiThuocCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KhoChan\ThuHoiThuoc\ThuHoiThuocDanhSachForm.resx">
+      <DependentUpon>ThuHoiThuocDanhSachForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KhoChan\ThuHoiThuoc\ThuHoiThuocForm.resx">
       <DependentUpon>ThuHoiThuocForm.cs</DependentUpon>

@@ -53,7 +53,6 @@
         <EntityTypeShape EntityType="BVModel.ThuocDuongDung" Width="1.5" PointX="6.75" PointY="20.75" />
         <EntityTypeShape EntityType="BVModel.TonGiao" Width="1.5" PointX="20.75" PointY="13.75" />
         <EntityTypeShape EntityType="BVModel.VATTU_YTE_6061" Width="1.5" PointX="19.75" PointY="20.75" />
-        <EntityTypeShape EntityType="BVModel.XuatTra" Width="1.5" PointX="9.75" PointY="18.125" />
         <EntityTypeShape EntityType="BVModel.XuatTraChiTiet" Width="1.5" PointX="15" PointY="18" />
         <EntityTypeShape EntityType="BVModel.BYT_DmKhoa" Width="1.5" PointX="21.75" PointY="0.75" />
         <EntityTypeShape EntityType="BVModel.v_ChiTietDonViHangHoa" Width="1.5" PointX="21.75" PointY="3.75" />
@@ -74,7 +73,6 @@
         <AssociationConnector Association="BVModel.FK_PhieuTraThuoc_Kho" />
         <AssociationConnector Association="BVModel.FK_PhieuXuatKho_Kho" />
         <AssociationConnector Association="BVModel.FK_PhieuXuatKho_Kho1" />
-        <AssociationConnector Association="BVModel.FK_XuatTra_Kho" />
         <AssociationConnector Association="BVModel.FK_KhoaPhong_NhomKhoa" />
         <AssociationConnector Association="BVModel.FK_PhieuDeNghiChiTiet_LoHangHoa" />
         <AssociationConnector Association="BVModel.FK_PhieuNhapChiTiet_LoHangHoa" />
@@ -87,9 +85,11 @@
         <AssociationConnector Association="BVModel.FK_PhieuNhapKho_PhieuDeNghi" />
         <AssociationConnector Association="BVModel.FK_PhieuNhapChiTiet_PhieuNhapKho" />
         <AssociationConnector Association="BVModel.FK_PhieuTraThuocChiTiet_PhieuTraThuoc" />
-        <AssociationConnector Association="BVModel.FK_XuatTra_PhieuTraThuoc" />
         <AssociationConnector Association="BVModel.FK_PhieuTraThuocChiTiet_PhieuXuatKho" />
         <AssociationConnector Association="BVModel.FK_PhieuXuatChiTiet_PhieuXuatKho" />
+        <EntityTypeShape EntityType="BVModel.XuatTra" Width="1.5" PointX="9.75" PointY="18.125" />
+        <AssociationConnector Association="BVModel.FK_XuatTra_Kho" />
+        <AssociationConnector Association="BVModel.FK_XuatTra_PhieuTraThuoc" />
         <AssociationConnector Association="BVModel.FK_XuatTraChiTiet_XuatTra" />
       </Diagram>
     </edmx:Diagrams>

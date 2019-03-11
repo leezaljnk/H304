@@ -4,11 +4,12 @@ using System.Windows.Forms;
 using BV.BUS;
 using BV.DataModel;
 using BV.SharedComponent;
+using Common.Winforms.UserControls;
 using Infragistics.Win.UltraWinGrid;
 
 namespace BV.QLKHO.KhoChan.XuatThuoc
 {
-    public partial class XuatThuocBNCtrl : UserControl
+    public partial class XuatThuocBNCtrl : UserControlBase
     {
         private int _loaiKho;
 

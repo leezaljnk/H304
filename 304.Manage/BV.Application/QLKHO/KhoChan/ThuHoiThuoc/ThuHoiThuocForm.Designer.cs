@@ -46,7 +46,7 @@
             this.ClientSize = new System.Drawing.Size(1472, 624);
             this.Controls.Add(this.thuHoiThuocCtrl1);
             this.Name = "ThuHoiThuocForm";
-            this.Text = "ThuHoiThuocForm";
+            this.Text = "Phiếu hoàn trả";
             this.ResumeLayout(false);
 
         }

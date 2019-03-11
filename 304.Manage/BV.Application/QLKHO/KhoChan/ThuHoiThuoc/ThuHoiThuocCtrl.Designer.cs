@@ -29,7 +29,14 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnSaveContinue = new System.Windows.Forms.Button();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMaNguoiTra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KhoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmMa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNgayTra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTenKho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNguoiTra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmGhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtMaPhieu = new System.Windows.Forms.TextBox();
@@ -50,14 +57,6 @@
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmMaNguoiTra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.KhoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmMa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNgayTra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTenKho = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNguoiTra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmGhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -81,18 +80,57 @@
             this.dataGridView1.Size = new System.Drawing.Size(1258, 484);
             this.dataGridView1.TabIndex = 6;
             // 
-            // btnSaveContinue
+            // ID
             // 
-            this.btnSaveContinue.Location = new System.Drawing.Point(595, 21);
-            this.btnSaveContinue.Name = "btnSaveContinue";
-            this.btnSaveContinue.Size = new System.Drawing.Size(117, 25);
-            this.btnSaveContinue.TabIndex = 5;
-            this.btnSaveContinue.Text = "Xem thông tin";
-            this.btnSaveContinue.UseVisualStyleBackColor = true;
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.Visible = false;
+            // 
+            // clmMaNguoiTra
+            // 
+            this.clmMaNguoiTra.HeaderText = "Người trả Id";
+            this.clmMaNguoiTra.Name = "clmMaNguoiTra";
+            this.clmMaNguoiTra.Visible = false;
+            // 
+            // KhoId
+            // 
+            this.KhoId.HeaderText = "KhoId";
+            this.KhoId.Name = "KhoId";
+            this.KhoId.ReadOnly = true;
+            this.KhoId.Visible = false;
+            // 
+            // clmMa
+            // 
+            this.clmMa.HeaderText = "Mã hoàn trả";
+            this.clmMa.Name = "clmMa";
+            this.clmMa.Width = 250;
+            // 
+            // clmNgayTra
+            // 
+            this.clmNgayTra.HeaderText = "Ngày trả";
+            this.clmNgayTra.Name = "clmNgayTra";
+            // 
+            // clmTenKho
+            // 
+            this.clmTenKho.HeaderText = "Kho hoàn trả";
+            this.clmTenKho.Name = "clmTenKho";
+            this.clmTenKho.Width = 200;
+            // 
+            // clmNguoiTra
+            // 
+            this.clmNguoiTra.HeaderText = "Người trả";
+            this.clmNguoiTra.Name = "clmNguoiTra";
+            this.clmNguoiTra.Width = 200;
+            // 
+            // clmGhiChu
+            // 
+            this.clmGhiChu.HeaderText = "Ghi chú";
+            this.clmGhiChu.Name = "clmGhiChu";
+            this.clmGhiChu.Width = 300;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(718, 20);
+            this.btnSearch.Location = new System.Drawing.Point(596, 23);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(87, 25);
             this.btnSearch.TabIndex = 4;
@@ -124,7 +162,6 @@
             this.groupBox1.Controls.Add(this.dateDenNgay);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.dateTuNgay);
-            this.groupBox1.Controls.Add(this.btnSaveContinue);
             this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtMaPhieu);
@@ -235,54 +272,6 @@
             this.dataGridViewTextBoxColumn12.HeaderText = "Thành Tiền";
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.Visible = false;
-            // 
-            // clmMaNguoiTra
-            // 
-            this.clmMaNguoiTra.HeaderText = "Người trả Id";
-            this.clmMaNguoiTra.Name = "clmMaNguoiTra";
-            this.clmMaNguoiTra.Visible = false;
-            // 
-            // KhoId
-            // 
-            this.KhoId.HeaderText = "KhoId";
-            this.KhoId.Name = "KhoId";
-            this.KhoId.ReadOnly = true;
-            this.KhoId.Visible = false;
-            // 
-            // clmMa
-            // 
-            this.clmMa.HeaderText = "Mã hoàn trả";
-            this.clmMa.Name = "clmMa";
-            this.clmMa.Width = 250;
-            // 
-            // clmNgayTra
-            // 
-            this.clmNgayTra.HeaderText = "Ngày trả";
-            this.clmNgayTra.Name = "clmNgayTra";
-            // 
-            // clmTenKho
-            // 
-            this.clmTenKho.HeaderText = "Kho hoàn trả";
-            this.clmTenKho.Name = "clmTenKho";
-            this.clmTenKho.Width = 200;
-            // 
-            // clmNguoiTra
-            // 
-            this.clmNguoiTra.HeaderText = "Người trả";
-            this.clmNguoiTra.Name = "clmNguoiTra";
-            this.clmNguoiTra.Width = 200;
-            // 
-            // clmGhiChu
-            // 
-            this.clmGhiChu.HeaderText = "Ghi chú";
-            this.clmGhiChu.Name = "clmGhiChu";
-            this.clmGhiChu.Width = 300;
-            // 
             // ThuHoiThuocCtrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -300,7 +289,6 @@
 
         #endregion
         public System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button btnSaveContinue;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtMaPhieu;

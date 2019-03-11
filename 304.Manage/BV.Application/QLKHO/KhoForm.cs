@@ -146,5 +146,11 @@ namespace BV.QLKHO
             oForm.InitData(LoaiKhoType.KhoLe);
             oForm.ShowDialog(this);
         }
+
+        private void mnuKhoChan_DanhSachThuHoiTuTruc_Click(object sender, EventArgs e)
+        {
+            var oForm = new ThuHoiThuocDanhSachForm();
+            oForm.ShowDialog(this);
+        }
     }
 }

@@ -73,9 +73,9 @@ namespace BV.DataModel
         public virtual DbSet<ThuocDuongDung> ThuocDuongDung { get; set; }
         public virtual DbSet<TonGiao> TonGiao { get; set; }
         public virtual DbSet<VATTU_YTE_6061> VATTU_YTE_6061 { get; set; }
-        public virtual DbSet<XuatTra> XuatTra { get; set; }
         public virtual DbSet<XuatTraChiTiet> XuatTraChiTiet { get; set; }
         public virtual DbSet<BYT_DmKhoa> BYT_DmKhoa { get; set; }
         public virtual DbSet<v_ChiTietDonViHangHoa> v_ChiTietDonViHangHoa { get; set; }
+        public virtual DbSet<XuatTra> XuatTra { get; set; }
     }
 }
