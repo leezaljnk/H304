@@ -5,6 +5,14 @@
     //    public List<PhieuNhapChiTiet> ChiTietPhieuNhaps { get; set; }
     //}
 
+    public enum MaLoaiKCB
+    {
+        KhamBenh = 1,
+        DieuTriNgoaiTru = 2,
+        DieuTriNoiTru = 3
+
+    }
+
     public enum LoaiChietKhauType
     {
         PhanTram = 1,
@@ -20,15 +28,6 @@
         TuTruc = 5
     }
 
-    public enum LoaiKhoaType
-    {
-        NoiTru = 1,
-        NgoaiVien = 2,
-        NgoaiTru = 3,
-        CanLamSang = 4,
-        ChucNang = 5
-    }
-
     public enum PhieuDeNghiTinhTrangType
     {
         ChuaDuyet = 1,
@@ -39,7 +38,7 @@
     public enum PhieuDeNghiLoaiType
     {
         NhapKho = 1,
-        XuatKho = 2,
+        XuatToiKho = 2,
         XuatBNNoiTru = 3,
         XuatBNBanTru = 4,
         XuatTuThien = 5

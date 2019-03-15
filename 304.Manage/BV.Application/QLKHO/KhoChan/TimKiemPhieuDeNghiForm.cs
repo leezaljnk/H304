@@ -41,11 +41,15 @@ namespace BV.QLKHO.KhoChan
             }
             dataGridView1.CellClick += dataGridView1_CellClick;
         }
-
-        public void InitControl(PhieuDeNghiLoaiType loaiPhieuDeNghi)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type">Loai phieu de nghi</param>
+        /// <param name="loaiKho">exclude kho type from list Kho to filter</param>
+        public void InitControl(PhieuDeNghiLoaiType type, LoaiKhoType loaiKho)
         {
-            _phieuDeNghiLoai = loaiPhieuDeNghi;
-            _loaiKho = (int)LoaiKhoType.KhoChan;
+            _phieuDeNghiLoai = type;
+            _loaiKho = (int)loaiKho;
             var lstKho = BusApp.GetDanhMuc<Kho>().Where(k => k.LoaiKhoId != _loaiKho).ToList();
             cboKho.DataSource = lstKho;
             cboKho.ValueMember = "MaKho";

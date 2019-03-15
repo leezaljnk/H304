@@ -137,14 +137,14 @@ namespace BV.QLKHO
         private void mnuKhoChan_XuatBNNoiTru_Click(object sender, EventArgs e)
         {
             var oForm = new XuatThuocBenhNhanForm();
-            oForm.InitData(LoaiKhoType.KhoChan);
+            oForm.InitData(LoaiKhoType.KhoLeNoiTru);
             oForm.ShowDialog(this);
         }
 
         private void mnuKhoChan_XuatBNNgoaiTru_Click(object sender, EventArgs e)
         {
             var oForm = new XuatThuocBenhNhanForm();
-            oForm.InitData(LoaiKhoType.KhoLe);
+            oForm.InitData(LoaiKhoType.KhoLeNgoaiTru);
             oForm.ShowDialog(this);
         }
 

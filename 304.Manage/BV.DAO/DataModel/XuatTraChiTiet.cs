@@ -25,6 +25,7 @@ namespace BV.DataModel
         public Nullable<System.Guid> LoHangID { get; set; }
     
         public virtual HangHoa HangHoa { get; set; }
+        public virtual LoHangHoa LoHangHoa { get; set; }
         public virtual XuatTra XuatTra { get; set; }
     }
 }

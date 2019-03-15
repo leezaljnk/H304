@@ -29,10 +29,10 @@ namespace BV.DataModel
         public System.Guid ID { get; set; }
         public string MaKho { get; set; }
         public string TenKho { get; set; }
-        public Nullable<int> KhoaId { get; set; }
+        public Nullable<System.Guid> KhoaId { get; set; }
         public Nullable<int> LoaiKhoId { get; set; }
     
-        public virtual KhoaPhong KhoaPhong { get; set; }
+        public virtual Khoa Khoa { get; set; }
         public virtual LoaiKho LoaiKho { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuDeNghi> PhieuDeNghi { get; set; }

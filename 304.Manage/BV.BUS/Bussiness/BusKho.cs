@@ -28,7 +28,7 @@ namespace BV.BUS
         public static string InitMaPhieuXuatTra()
         {
             var phieuCount = BusApp.CountRecords<XuatTra>();
-            return $"PN{DateTime.Today.ToString("yyymmdd")}{phieuCount}";
+            return $"PXT{DateTime.Today.ToString("yyymmdd")}{phieuCount}";
         }
 
         public static bool SaveXuatTraThuoc(PhieuTraThuoc phieuTra)
@@ -43,11 +43,11 @@ namespace BV.BUS
 
         public static IQueryable<PhieuDeNghi> GetPhieuDeNghi(DateTime? tuNgay, DateTime? denNgay, Guid? khoId, PhieuDeNghiLoaiType phieuDeNghiLoai, PhieuDeNghiTinhTrangType tinhTrang)
         {
-            return DAOKho.GetPhieuDeNghi(tuNgay, denNgay, khoId, phieuDeNghiLoai,tinhTrang);
+            return DAOKho.GetPhieuDeNghi(tuNgay, denNgay, khoId, phieuDeNghiLoai, tinhTrang);
         }
-        public static PhieuDeNghi GetPhieuDeNghi(string maPhieu)
+        public static PhieuDeNghi GetPhieuDeNghi(string maPhieu, PhieuDeNghiLoaiType type)
         {
-            return DAOKho.GetPhieuDeNghi(maPhieu);
+            return DAOKho.GetPhieuDeNghi(maPhieu, type);
         }
         public static void HuyPhieuDeNghi(Guid phieuDeNghiId, string lyDoHuy)
         {

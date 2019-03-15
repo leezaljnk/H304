@@ -348,7 +348,7 @@ namespace BV.DAO
                 PhieuTraThuoc = phieuTra,
                 Kho = phieuTra.Kho,
                 LyDo = phieuTra.LyDoLuuThuHoi,
-                Ngay = DateTime.Today,
+                Ngay = DateTime.Now,
                 NguoiLap = phieuTra.NguoiLap,
                 XuatTraChiTiet = new List<XuatTraChiTiet>()
             };
@@ -360,8 +360,8 @@ namespace BV.DAO
                 Ma = maPhieuNhap,
                 //MaNhaCungCap = oEntity.MaNhaCungCap,
                 //MaPhanLoaiHoaDon = oEntity.MaPhanLoaiHoaDon,
-                NgayHoaDon = DateTime.Today,
-                NgayTao = DateTime.Today,
+                NgayHoaDon = DateTime.Now,
+                NgayTao = DateTime.Now,
                 NguoiCungCap = "nguoi cung cap",
                 NguoiTao = xuatTra.NguoiLap.ToString(),
                 //NhaCungCap = oEntity.NhaCungCap,
@@ -480,9 +480,10 @@ namespace BV.DAO
             return null;
         }
 
-        public static PhieuDeNghi GetPhieuDeNghi(string maPhieu)
+        public static PhieuDeNghi GetPhieuDeNghi(string maPhieu, PhieuDeNghiLoaiType type)
         {
-            return DAOApp.DbContext.PhieuDeNghi.FirstOrDefault(d => d.Ma == maPhieu);
+            var phieuType = (int) type;
+            return DAOApp.DbContext.PhieuDeNghi.FirstOrDefault(d => d.Ma == maPhieu && d.LoaiPhieu == phieuType);
         }
 
         public static void HuyPhieuDenghi(Guid phieuDeNghiId, string lyDoHuy)
@@ -490,7 +491,7 @@ namespace BV.DAO
             var phieuDeNghi = DAOApp.DbContext.PhieuDeNghi.AsNoTracking().FirstOrDefault(e => e.ID == phieuDeNghiId);
             phieuDeNghi.TinhTrang = (int)PhieuDeNghiTinhTrangType.DaHuy;
             phieuDeNghi.LyDoHuy = lyDoHuy;
-            phieuDeNghi.NgayHuy = DateTime.Today;
+            phieuDeNghi.NgayHuy = DateTime.Now;
             phieuDeNghi.NguoiHuy = "Nguoi Huy";
             //if (DAOApp.DbContext.Entry(phieuDeNghi).State == EntityState.Detached)
             //DAOApp.DbContext.PhieuDeNghi.Attach(phieuDeNghi);

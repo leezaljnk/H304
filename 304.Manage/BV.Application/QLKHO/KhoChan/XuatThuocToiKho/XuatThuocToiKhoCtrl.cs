@@ -33,7 +33,7 @@ namespace BV.QLKHO.KhoChan.XuatThuocToiKho
             {
                 _phieuDeNghi = null;
                 var oForm = new TimKiemPhieuDeNghiForm();
-                oForm.InitControl(PhieuDeNghiLoaiType.NhapKho);
+                oForm.InitControl(PhieuDeNghiLoaiType.XuatToiKho, LoaiKhoType.KhoChan);
                 //oForm.ShowDialog(this);
                 if (oForm.ShowDialog(this) == DialogResult.OK)
                 {
@@ -66,7 +66,7 @@ namespace BV.QLKHO.KhoChan.XuatThuocToiKho
                     return;
                 }
 
-                _phieuDeNghi = BusKho.GetPhieuDeNghi(txtMaPhieu.Text);
+                _phieuDeNghi = BusKho.GetPhieuDeNghi(txtMaPhieu.Text, PhieuDeNghiLoaiType.XuatToiKho);
 
                 InitPhieuDeNghiData();
             }
@@ -161,7 +161,7 @@ namespace BV.QLKHO.KhoChan.XuatThuocToiKho
                 {
                     Cursor = Cursors.WaitCursor;
                     _phieuDeNghi.TinhTrang = (int)PhieuDeNghiTinhTrangType.DaHuy;
-                    _phieuDeNghi.NgayHuy = DateTime.Today;
+                    _phieuDeNghi.NgayHuy = DateTime.Now;
                     InitPhieuDeNghiData();
                 }
             }

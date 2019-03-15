@@ -150,9 +150,6 @@
     <Compile Include="Khoa.cs">
       <DependentUpon>BVDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="KhoaPhong.cs">
-      <DependentUpon>BVDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="LoaiGiaHangHoa.cs">
       <DependentUpon>BVDataModel.tt</DependentUpon>
     </Compile>
