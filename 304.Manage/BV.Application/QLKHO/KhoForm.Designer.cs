@@ -219,6 +219,7 @@
             this.mnuKhoChan_XuatTuThien.Name = "mnuKhoChan_XuatTuThien";
             this.mnuKhoChan_XuatTuThien.Size = new System.Drawing.Size(241, 22);
             this.mnuKhoChan_XuatTuThien.Text = "Xuất thuốc từ thiện";
+            this.mnuKhoChan_XuatTuThien.Click += new System.EventHandler(this.mnuKhoChan_XuatThuocTuThien_Click);
             // 
             // mnuKhoChan_XuatToiKho
             // 
@@ -284,7 +285,7 @@
             this.mnuKLNTNhapThuocDanhSachThuHoi,
             this.mnuKLNTNhapThuocQuanLyPhieuNhap});
             this.mnuKLNTNhapThuoc.Name = "mnuKLNTNhapThuoc";
-            this.mnuKLNTNhapThuoc.Size = new System.Drawing.Size(137, 22);
+            this.mnuKLNTNhapThuoc.Size = new System.Drawing.Size(180, 22);
             this.mnuKLNTNhapThuoc.Text = "Nhập thuốc";
             // 
             // mnuKLNTNhapThuocDeNghiNhap
@@ -345,7 +346,7 @@
             this.toolStripMenuItem16,
             this.toolStripMenuItem17});
             this.mnuKLNTXuatThuoc.Name = "mnuKLNTXuatThuoc";
-            this.mnuKLNTXuatThuoc.Size = new System.Drawing.Size(137, 22);
+            this.mnuKLNTXuatThuoc.Size = new System.Drawing.Size(180, 22);
             this.mnuKLNTXuatThuoc.Text = "Xuất thuốc";
             // 
             // toolStripMenuItem1
@@ -387,7 +388,7 @@
             // mnuKLNTBaoCao
             // 
             this.mnuKLNTBaoCao.Name = "mnuKLNTBaoCao";
-            this.mnuKLNTBaoCao.Size = new System.Drawing.Size(137, 22);
+            this.mnuKLNTBaoCao.Size = new System.Drawing.Size(180, 22);
             this.mnuKLNTBaoCao.Text = "Báo cáo";
             // 
             // mnuKLNTTT22
@@ -403,7 +404,7 @@
             this.toolStripMenuItem25,
             this.toolStripMenuItem26});
             this.mnuKLNTTT22.Name = "mnuKLNTTT22";
-            this.mnuKLNTTT22.Size = new System.Drawing.Size(137, 22);
+            this.mnuKLNTTT22.Size = new System.Drawing.Size(180, 22);
             this.mnuKLNTTT22.Text = "TT 22";
             // 
             // toolStripMenuItem18
@@ -468,7 +469,7 @@
             this.toolStripMenuItem35,
             this.toolStripMenuItem36});
             this.mnuKLNTThongKe.Name = "mnuKLNTThongKe";
-            this.mnuKLNTThongKe.Size = new System.Drawing.Size(137, 22);
+            this.mnuKLNTThongKe.Size = new System.Drawing.Size(180, 22);
             this.mnuKLNTThongKe.Text = "Thống kê";
             // 
             // toolStripMenuItem33
@@ -518,7 +519,7 @@
             this.toolStripMenuItem29,
             this.toolStripMenuItem32});
             this.mnuKLNTQuanLy.Name = "mnuKLNTQuanLy";
-            this.mnuKLNTQuanLy.Size = new System.Drawing.Size(137, 22);
+            this.mnuKLNTQuanLy.Size = new System.Drawing.Size(180, 22);
             this.mnuKLNTQuanLy.Text = "Quản lý";
             // 
             // toolStripMenuItem27

@@ -41,7 +41,7 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
 
         private void InitData()
         {
-            txtMaPhieu.Text = BusKho.InitMaPhieuNhap();
+            txtMaPhieu.Text = BusKho.InitMaPhieuNhap(PublicVariable.PhieuNhapKhoCode);
             //lấy dữ liệu các danh mục
             BusApp.GetDanhMuc<NhaCungCap>();
             BusApp.GetDanhMuc<v_ChiTietDonViHangHoa>();
@@ -556,7 +556,7 @@ namespace BV.QLKHO.KhoChan.NhapThuoc
 
         public void ClearForm()
         {
-            txtMaPhieu.Text = BusKho.InitMaPhieuNhap();
+            txtMaPhieu.Text = BusKho.InitMaPhieuNhap(PublicVariable.PhieuNhapKhoCode);
             dataGridView1.Rows.Clear();
             _chiTietPhieus = new List<PhieuNhapChiTiet>();
             _phieuId = Guid.Empty;

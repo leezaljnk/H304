@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using BV.BUS;
@@ -12,7 +13,7 @@ namespace BV.QLKHO.KhoChan
 {
     public partial class TimKiemPhieuDeNghiForm : FormBase
     {
-        private int _loaiKho;
+        //private int _loaiKho;
         private PhieuDeNghiLoaiType _phieuDeNghiLoai;
         public PhieuDeNghi _phieuDeNghi;
         public TimKiemPhieuDeNghiForm()
@@ -48,9 +49,25 @@ namespace BV.QLKHO.KhoChan
         /// <param name="loaiKho">exclude kho type from list Kho to filter</param>
         public void InitControl(PhieuDeNghiLoaiType type, LoaiKhoType loaiKho)
         {
+            List<Kho> lstKho;
             _phieuDeNghiLoai = type;
-            _loaiKho = (int)loaiKho;
-            var lstKho = BusApp.GetDanhMuc<Kho>().Where(k => k.LoaiKhoId != _loaiKho).ToList();
+            var loaiKhoInt = (int)loaiKho;
+            switch (loaiKho)
+            {
+                case LoaiKhoType.KhoChan:
+                    lstKho = BusApp.GetDanhMuc<Kho>().Where(k => k.LoaiKhoId != loaiKhoInt).ToList();
+                    break;
+                case LoaiKhoType.KhoLe:
+                case LoaiKhoType.TuTruc:
+                case LoaiKhoType.KhoDongY:
+                case LoaiKhoType.NganHangMau:
+                    lstKho = BusApp.GetDanhMuc<Kho>().Where(k => k.LoaiKhoId == loaiKhoInt).ToList();
+                    break;
+                default:
+                    lstKho = new List<Kho>();
+                    break;
+            }
+
             cboKho.DataSource = lstKho;
             cboKho.ValueMember = "MaKho";
             cboKho.DisplayMember = "TenKho";
@@ -98,8 +115,8 @@ namespace BV.QLKHO.KhoChan
             if (dataGridView1 != null && e.ColumnIndex == dataGridView1.Columns[$"colDel"].Index)
             {
                 var rowIndex = e.RowIndex;
-                var phieuTraRow = dataGridView1.Rows[rowIndex];
-                _phieuDeNghi = (PhieuDeNghi)phieuTraRow.Tag;
+                var phieuDN = dataGridView1.Rows[rowIndex];
+                _phieuDeNghi = (PhieuDeNghi)phieuDN.Tag;
                 DialogResult = DialogResult.OK;
                 //var oForm = new ThuHoiThuocSearchForm();
                 //oForm.InitData(data);

@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XuatThuocToiKhoCtrl));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dateNgayDuyet = new System.Windows.Forms.DateTimePicker();
@@ -51,7 +49,7 @@
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSoLuongDN = new Infragistics.Win.UltraDataGridView.UltraNumericEditorColumn(this.components);
+            this.colSoLuongDN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTonThucTe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmTenKho = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNguoiTra = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -280,15 +278,9 @@
             // 
             // colSoLuongDN
             // 
-            this.colSoLuongDN.DefaultNewRowValue = ((object)(resources.GetObject("colSoLuongDN.DefaultNewRowValue")));
-            this.colSoLuongDN.DisplayStyle = Infragistics.Win.EmbeddableElementDisplayStyle.Default;
             this.colSoLuongDN.HeaderText = "SL đề nghị";
-            this.colSoLuongDN.MaskInput = null;
             this.colSoLuongDN.Name = "colSoLuongDN";
-            this.colSoLuongDN.PadChar = '\0';
             this.colSoLuongDN.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colSoLuongDN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colSoLuongDN.SpinButtonAlignment = Infragistics.Win.SpinButtonDisplayStyle.None;
             this.colSoLuongDN.Width = 150;
             // 
             // colTonThucTe
@@ -373,7 +365,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMa;
-        private Infragistics.Win.UltraDataGridView.UltraNumericEditorColumn colSoLuongDN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSoLuongDN;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTonThucTe;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTenKho;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNguoiTra;

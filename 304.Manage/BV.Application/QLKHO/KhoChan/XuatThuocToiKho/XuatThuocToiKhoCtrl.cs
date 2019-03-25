@@ -185,7 +185,7 @@ namespace BV.QLKHO.KhoChan.XuatThuocToiKho
 
             try
             {
-                BusKho.DuyetPhieuDeNghi(_phieuDeNghi);
+                BusKho.DuyetPhieuDeNghi(_phieuDeNghi, PhieuDeNghiLoaiType.XuatToiKho);
             }
             catch (Exception ex)
             {

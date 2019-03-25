@@ -17,6 +17,7 @@ namespace BV.DataModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PhanLoaiHoaDon()
         {
+            this.PhieuDeNghi = new HashSet<PhieuDeNghi>();
             this.PhieuNhapKho = new HashSet<PhieuNhapKho>();
             this.PhieuXuatKho = new HashSet<PhieuXuatKho>();
         }
@@ -24,6 +25,8 @@ namespace BV.DataModel
         public int ID { get; set; }
         public string Ten { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhieuDeNghi> PhieuDeNghi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuNhapKho> PhieuNhapKho { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

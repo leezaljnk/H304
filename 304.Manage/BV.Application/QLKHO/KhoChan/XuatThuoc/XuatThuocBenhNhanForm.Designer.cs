@@ -36,14 +36,14 @@
             this.xuatThuocBNCtrl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xuatThuocBNCtrl1.Location = new System.Drawing.Point(0, 0);
             this.xuatThuocBNCtrl1.Name = "xuatThuocBNCtrl1";
-            this.xuatThuocBNCtrl1.Size = new System.Drawing.Size(1030, 521);
+            this.xuatThuocBNCtrl1.Size = new System.Drawing.Size(1393, 810);
             this.xuatThuocBNCtrl1.TabIndex = 0;
             // 
             // XuatThuocBenhNhanForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1030, 521);
+            this.ClientSize = new System.Drawing.Size(1393, 810);
             this.Controls.Add(this.xuatThuocBNCtrl1);
             this.Name = "XuatThuocBenhNhanForm";
             this.Text = "Xuất thuốc bệnh nhân";

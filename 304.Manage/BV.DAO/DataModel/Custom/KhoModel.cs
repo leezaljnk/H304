@@ -22,10 +22,10 @@
     public enum LoaiKhoType
     {
         KhoChan = 1,
-        KhoLeNgoaiTru = 2,
-        KhoLeNoiTru = 3,
+        KhoLe = 2,
+        TuTruc = 3,
         KhoDongY = 4,
-        TuTruc = 5
+        NganHangMau = 5
     }
 
     public enum PhieuDeNghiTinhTrangType
@@ -40,7 +40,7 @@
         NhapKho = 1,
         XuatToiKho = 2,
         XuatBNNoiTru = 3,
-        XuatBNBanTru = 4,
+        XuatBNNgoaiTru = 4,
         XuatTuThien = 5
     }
 

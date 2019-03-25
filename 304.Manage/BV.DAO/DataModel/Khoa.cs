@@ -18,6 +18,7 @@ namespace BV.DataModel
         public Khoa()
         {
             this.Kho = new HashSet<Kho>();
+            this.PhieuDeNghi = new HashSet<PhieuDeNghi>();
         }
     
         public System.Guid ID { get; set; }
@@ -31,5 +32,7 @@ namespace BV.DataModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Kho> Kho { get; set; }
         public virtual NhomKhoa NhomKhoa { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhieuDeNghi> PhieuDeNghi { get; set; }
     }
 }

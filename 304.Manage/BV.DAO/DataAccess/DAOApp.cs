@@ -11,8 +11,12 @@ namespace BV.DAO
         private static BVEntities _bvProvider;
         public static BVEntities DbContext => _bvProvider ?? (_bvProvider = InitConnection());
 
-        public static List<TEntity> GetDanhMuc<TEntity>(int take = 0) where TEntity : class
+        public static List<TEntity> GetDanhMuc<TEntity>(int take, bool tracking) where TEntity : class
         {
+            if (tracking)
+                return take == 0
+                    ? DbContext.Set<TEntity>().ToList()
+                    : DbContext.Set<TEntity>().Take(take).ToList();
             return take == 0
                 ? DbContext.Set<TEntity>().AsNoTracking().ToList()
                 : DbContext.Set<TEntity>().AsNoTracking().Take(take).ToList();

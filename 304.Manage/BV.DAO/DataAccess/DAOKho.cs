@@ -10,6 +10,26 @@ namespace BV.DAO
 {
     public class DAOKho
     {
+        /// <summary>
+        /// Khoa only - No Tracking
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public static Kho GetKhoByCode(string code)
+        {
+            return DAOApp.DbContext.Kho.AsNoTracking().FirstOrDefault(e => e.MaKho == code);
+        }
+        /// <summary>
+        /// Khoa only - No Tracking
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static Kho GetKhoById(Guid id)
+        {
+            return DAOApp.DbContext.Kho.AsNoTracking().FirstOrDefault(e => e.ID == id);
+        }
+
+
         public static Thuoc_VatTuYteTonKho GetThuocTonKho(Guid thuocId)
         {
             return DAOApp.DbContext.Thuoc_VatTuYteTonKho.FirstOrDefault(t => t.ThuocVtytID == thuocId);
@@ -333,7 +353,7 @@ namespace BV.DAO
         #endregion
 
         //TODO: Need more debug and fix Save Tra Thuoc
-        public static bool SaveXuatTraThuoc(PhieuTraThuoc phieuTra, string maPhieuNhap, string maXuatTra)
+        public static bool SaveXuatTraThuoc(PhieuTraThuoc phieuTra, string maPhieuNhap, string maXuatTra, string soHDNhap)
         {
             // update phieu tra
             phieuTra.TinhTrang = (int)PhieuTraThuocType.DaDuyet;
@@ -363,11 +383,11 @@ namespace BV.DAO
                 NgayHoaDon = DateTime.Now,
                 NgayTao = DateTime.Now,
                 NguoiCungCap = "nguoi cung cap",
-                NguoiTao = xuatTra.NguoiLap.ToString(),
+                NguoiTao = PublicVariable.CurrentUserID,
                 //NhaCungCap = oEntity.NhaCungCap,
                 //PhanLoaiHoaDon = oEntity.PhanLoaiHoaDon,
                 //PhieuDeNghiId = oEntity.PhieuDeNghiId,
-                SoHoaDon = "so hoa don",
+                SoHoaDon = soHDNhap,
                 TenPhanLoaiHoaDon = "ten phan loai hoa don",
                 //ThanhTien = oEntity.ThanhTien,
                 TongTien = Converter.obj2double(xuatTra.XuatTraChiTiet.Sum(e => e.Gia * e.SoLuong)),
@@ -467,6 +487,7 @@ namespace BV.DAO
 
         public static IQueryable<PhieuDeNghi> GetPhieuDeNghi(DateTime? tuNgay, DateTime? denNgay, Guid? khoId, PhieuDeNghiLoaiType phieuDeNghiLoai, PhieuDeNghiTinhTrangType tinhTrang)
         {
+            
             if (tuNgay == null && khoId == null)
                 return null;
             var loai = (int)phieuDeNghiLoai;
@@ -474,15 +495,15 @@ namespace BV.DAO
             if (tuNgay != null && khoId == null)
                 return DAOApp.DbContext.PhieuDeNghi.Where(d => d.NgayDeNghi >= tuNgay && d.NgayDeNghi <= denNgay && d.LoaiPhieu == loai && d.TinhTrang == tTrang);
             if (tuNgay != null && khoId != null)
-                return DAOApp.DbContext.PhieuDeNghi.Where(d => d.NgayDeNghi >= tuNgay && d.NgayDeNghi <= denNgay && d.MaKhoNhap == khoId && d.LoaiPhieu == loai && d.TinhTrang == tTrang);
+                return DAOApp.DbContext.PhieuDeNghi.Where(d => d.NgayDeNghi >= tuNgay && d.NgayDeNghi <= denNgay && d.KhoNhapId == khoId && d.LoaiPhieu == loai && d.TinhTrang == tTrang);
             if (tuNgay == null && khoId != null)
-                return DAOApp.DbContext.PhieuDeNghi.Where(d => d.MaKhoNhap == khoId && d.LoaiPhieu == loai && d.TinhTrang == tTrang);
+                return DAOApp.DbContext.PhieuDeNghi.Where(d => d.KhoNhapId == khoId && d.LoaiPhieu == loai && d.TinhTrang == tTrang);
             return null;
         }
 
         public static PhieuDeNghi GetPhieuDeNghi(string maPhieu, PhieuDeNghiLoaiType type)
         {
-            var phieuType = (int) type;
+            var phieuType = (int)type;
             return DAOApp.DbContext.PhieuDeNghi.FirstOrDefault(d => d.Ma == maPhieu && d.LoaiPhieu == phieuType);
         }
 
@@ -492,7 +513,7 @@ namespace BV.DAO
             phieuDeNghi.TinhTrang = (int)PhieuDeNghiTinhTrangType.DaHuy;
             phieuDeNghi.LyDoHuy = lyDoHuy;
             phieuDeNghi.NgayHuy = DateTime.Now;
-            phieuDeNghi.NguoiHuy = "Nguoi Huy";
+            phieuDeNghi.NguoiHuy = PublicVariable.CurrentUserID;
             //if (DAOApp.DbContext.Entry(phieuDeNghi).State == EntityState.Detached)
             //DAOApp.DbContext.PhieuDeNghi.Attach(phieuDeNghi);
             //DAOApp.DbContext.Entry(phieuDeNghi).State = EntityState.Modified;
@@ -502,6 +523,115 @@ namespace BV.DAO
         public static IEnumerable<Thuoc_VatTuYteTonKho> GetThuocTonKhoByIds(IEnumerable<Guid?> thuocIds)
         {
             return DAOApp.DbContext.Thuoc_VatTuYteTonKho.AsNoTracking().Where(e => thuocIds.Contains(e.ThuocVtytID));
+        }
+
+        public static bool DuyetPhieuDeNghi(PhieuDeNghi phieuDeNghi, PhieuDeNghiLoaiType phieuDeNghiLoai, string maPhieuNhap, string soHoaDon)
+        {
+            switch (phieuDeNghiLoai)
+            {
+                case PhieuDeNghiLoaiType.NhapKho:
+                    break;
+                case PhieuDeNghiLoaiType.XuatToiKho:
+                    break;
+                case PhieuDeNghiLoaiType.XuatBNNoiTru:
+                    break;
+                case PhieuDeNghiLoaiType.XuatBNNgoaiTru:
+                    break;
+                case PhieuDeNghiLoaiType.XuatTuThien:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(phieuDeNghiLoai), phieuDeNghiLoai, null);
+            }
+
+            return true;
+        }
+
+        private void DuyetPhieuDeNghi(PhieuDeNghi phieuDeNghi, string maPhieuNhap, string soHoaDon)
+        {
+            phieuDeNghi.TinhTrang = (int)PhieuDeNghiTinhTrangType.DaDuyet;
+
+            var phieuNhap = new PhieuNhapKho
+            {
+                ID = Guid.NewGuid(),
+                Ma = maPhieuNhap,
+                //MaNhaCungCap = oEntity.MaNhaCungCap,
+                MaPhanLoaiHoaDon = phieuDeNghi.PhanLoaiHoaDon.ID,
+                NgayHoaDon = DateTime.Now,
+                NgayTao = DateTime.Now,
+                NguoiCungCap = "NguoiCungCap",
+                NguoiTao = PublicVariable.CurrentUserID,
+                //NhaCungCap = oEntity.NhaCungCap,
+                //PhanLoaiHoaDon = oEntity.PhanLoaiHoaDon,
+                PhieuDeNghiId = phieuDeNghi.ID,
+                SoHoaDon = soHoaDon,
+                TenPhanLoaiHoaDon = phieuDeNghi.PhanLoaiHoaDon.Ten,
+                ThanhTien = phieuDeNghi.PhieuDeNghiChiTiet.Sum(e => e.ThanhTien),
+                TongTien = phieuDeNghi.PhieuDeNghiChiTiet.Sum(e => e.ThanhTien),
+                //VAT = oEntity.VAT,
+                KhoId = phieuDeNghi.KhoNhapId,
+                GhiChu = phieuDeNghi.GhiChu
+            };
+            //DAOApp.DbContext.PhieuNhapKho.Add(phieuNhap);
+            //DAOApp.DbContext.SaveChanges();
+
+            foreach (var chiTietPhieu in phieuDeNghi.PhieuDeNghiChiTiet)
+            {
+                var chiTiet = new PhieuNhapChiTiet
+                {
+                    ID = Guid.NewGuid(),
+                    LoaiChietKhau = chiTietPhieu.LoaiChietKhau,
+                    ThanhTien = chiTietPhieu.ThanhTien,
+                    ChietKhau = chiTietPhieu.ChietKhau,
+                    DonGia = chiTietPhieu.DonGia,
+                    HanSuDung = chiTietPhieu.HanSuDung,
+                    HangHoaID = Converter.Obj2Guid(chiTietPhieu.HangHoaID),
+                    LoHangID = chiTietPhieu.LoHangID,
+                    MaDonVi = chiTietPhieu.MaDonVi,
+                    //PhieuID = phieuNhap.ID,
+                    SoLuong = chiTietPhieu.SoLuong,
+                    SoQuyeDinh = chiTietPhieu.SoQuyeDinh,
+                    TenDonVi = chiTietPhieu.TenDonVi
+                };
+                // DAOApp.DbContext.PhieuNhapChiTiet.Add(chiTiet);
+                var thuocTonKho = GetThuocTonKho(chiTiet.HangHoaID);
+                if (thuocTonKho == null)
+                {
+                    var tonKho = new Thuoc_VatTuYteTonKho
+                    {
+                        ID = Guid.NewGuid(),
+                        HanSuDung = chiTietPhieu.HanSuDung,
+                        MaHoatChat = chiTietPhieu.HangHoa?.HoatChat,
+                        PhanLoaiDuocID = chiTietPhieu.HangHoa?.PhanLoaiDuocID,
+                        SoLo = chiTietPhieu.LoHangHoa?.SoLo,
+                        SoLuongDaNhap = Converter.Obj2decimal(chiTietPhieu.SoLuong),
+                        SoLuongDaXuat = 0,
+                        SoLuongTon = Converter.Obj2decimal(chiTietPhieu.SoLuong),
+                        SoQuyetDinh = chiTietPhieu.SoQuyeDinh,
+                        ThuocVtytID = Converter.Obj2Guid(chiTietPhieu.HangHoaID)
+                    };
+                    DAOApp.DbContext.Thuoc_VatTuYteTonKho.Add(tonKho);
+                }
+                else
+                {
+                    thuocTonKho.HanSuDung = chiTietPhieu.HanSuDung;
+                    thuocTonKho.MaHoatChat = chiTietPhieu.HangHoa?.HoatChat;
+                    thuocTonKho.PhanLoaiDuocID = chiTietPhieu.HangHoa?.PhanLoaiDuocID;
+                    thuocTonKho.SoLo = chiTietPhieu.LoHangHoa?.SoLo;
+                    thuocTonKho.SoLuongDaNhap = thuocTonKho.SoLuongDaNhap + Converter.Obj2decimal(chiTietPhieu.SoLuong);
+                    thuocTonKho.SoLuongDaXuat = thuocTonKho.SoLuongDaXuat;
+                    thuocTonKho.SoLuongTon = thuocTonKho.SoLuongTon + Converter.Obj2decimal(chiTietPhieu.SoLuong);
+                    thuocTonKho.SoQuyetDinh = chiTietPhieu.SoQuyeDinh;
+                    thuocTonKho.ThuocVtytID = Converter.Obj2Guid(chiTietPhieu.HangHoaID);
+                    if (DAOApp.DbContext.Entry(thuocTonKho).State == EntityState.Detached)
+                        DAOApp.DbContext.Thuoc_VatTuYteTonKho.Attach(thuocTonKho);
+                    DAOApp.DbContext.Entry(thuocTonKho).State = EntityState.Modified;
+                }
+
+                phieuNhap.PhieuNhapChiTiet.Add(chiTiet);
+            }
+
+            //DAOApp.DbContext.ChiTietPhieu.AddRange(oEntity.ChiTietPhieus);
+            DAOApp.DbContext.SaveChanges();
         }
     }
 }

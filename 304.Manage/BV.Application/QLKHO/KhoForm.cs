@@ -132,19 +132,22 @@ namespace BV.QLKHO
 
         private void mnuKhoChan_XuatThuocTuThien_Click(object sender, EventArgs e)
         {
+            var oForm = new XuatThuocBenhNhanForm();
+            oForm.InitData(LoaiKhoType.KhoLe, PhieuDeNghiLoaiType.XuatTuThien);
+            oForm.ShowDialog(this);
         }
 
         private void mnuKhoChan_XuatBNNoiTru_Click(object sender, EventArgs e)
         {
             var oForm = new XuatThuocBenhNhanForm();
-            oForm.InitData(LoaiKhoType.KhoLeNoiTru);
+            oForm.InitData(LoaiKhoType.KhoLe, PhieuDeNghiLoaiType.XuatBNNoiTru);
             oForm.ShowDialog(this);
         }
 
         private void mnuKhoChan_XuatBNNgoaiTru_Click(object sender, EventArgs e)
         {
             var oForm = new XuatThuocBenhNhanForm();
-            oForm.InitData(LoaiKhoType.KhoLeNgoaiTru);
+            oForm.InitData(LoaiKhoType.KhoLe,PhieuDeNghiLoaiType.XuatBNNgoaiTru);
             oForm.ShowDialog(this);
         }
 

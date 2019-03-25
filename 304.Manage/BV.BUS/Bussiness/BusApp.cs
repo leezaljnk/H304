@@ -13,14 +13,14 @@ namespace BV.BUS
             return DAOApp.CountRecords<T>();
         }
 
-        public static List<T> GetDanhMuc<T>(bool bRefresh = false, int take = 0) where T : class
+        public static List<T> GetDanhMuc<T>(bool bRefresh = false, int take = 0, bool tracking = false) where T : class
         {
             try
             {
                 var coll = AppCached.GetDanhMuc<T>();
                 if (bRefresh || coll == null)
                 {
-                    coll = DAOApp.GetDanhMuc<T>();
+                    coll = DAOApp.GetDanhMuc<T>(take, tracking);
                     AppCached.AddDanhMuc(coll);
                 }
 

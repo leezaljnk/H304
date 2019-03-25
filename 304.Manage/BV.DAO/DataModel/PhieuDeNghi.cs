@@ -23,10 +23,12 @@ namespace BV.DataModel
     
         public System.Guid ID { get; set; }
         public string Ma { get; set; }
+        public Nullable<int> PhanLoaiHoaDonId { get; set; }
         public Nullable<System.DateTime> NgayTao { get; set; }
         public string NguoiTao { get; set; }
-        public Nullable<System.Guid> MaKhoNhap { get; set; }
-        public Nullable<System.Guid> MaKhoXuat { get; set; }
+        public Nullable<System.Guid> KhoaId { get; set; }
+        public Nullable<System.Guid> KhoNhapId { get; set; }
+        public Nullable<System.Guid> KhoXuatId { get; set; }
         public Nullable<short> LoaiPhieu { get; set; }
         public Nullable<System.DateTime> NgayDeNghi { get; set; }
         public string LyDoDeNghi { get; set; }
@@ -35,10 +37,18 @@ namespace BV.DataModel
         public string LyDoHuy { get; set; }
         public string NguoiHuy { get; set; }
         public Nullable<System.Guid> BenhNhanId { get; set; }
+        public Nullable<System.Guid> BenhAnId { get; set; }
+        public Nullable<int> MA_LOAI_KCB { get; set; }
         public string GhiChu { get; set; }
+        public string MaBenhNhan { get; set; }
+        public string MaKhoa { get; set; }
+        public string MaPhong { get; set; }
+        public string MaBenhAn { get; set; }
     
         public virtual Kho Kho { get; set; }
         public virtual Kho Kho1 { get; set; }
+        public virtual Khoa Khoa { get; set; }
+        public virtual PhanLoaiHoaDon PhanLoaiHoaDon { get; set; }
         public virtual PhieuDeNghiLoai PhieuDeNghiLoai { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuDeNghiChiTiet> PhieuDeNghiChiTiet { get; set; }

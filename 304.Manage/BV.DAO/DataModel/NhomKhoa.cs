@@ -22,10 +22,6 @@ namespace BV.DataModel
     
         public int ID { get; set; }
         public string TenNhom { get; set; }
-        public Nullable<int> CreateByID { get; set; }
-        public Nullable<System.DateTime> CreateDate { get; set; }
-        public Nullable<int> ModifyByID { get; set; }
-        public Nullable<System.DateTime> ModifyDate { get; set; }
         public Nullable<bool> Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
